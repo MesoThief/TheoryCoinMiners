@@ -63,6 +63,27 @@ build CMakeFiles/TheoryCoinMiners.dir/src/Node.cpp.o: CXX_COMPILER__TheoryCoinMi
   OBJECT_DIR = CMakeFiles/TheoryCoinMiners.dir
   OBJECT_FILE_DIR = CMakeFiles/TheoryCoinMiners.dir/src
 
+build CMakeFiles/TheoryCoinMiners.dir/src/shortlex.cpp.o: CXX_COMPILER__TheoryCoinMiners_unscanned_Debug /Users/i_taeyori/Downloads/연세대/25-1/컴퓨터$ 종합설계/TheoryCoinMiners/src/shortlex.cpp || cmake_object_order_depends_target_TheoryCoinMiners
+  DEP_FILE = CMakeFiles/TheoryCoinMiners.dir/src/shortlex.cpp.o.d
+  FLAGS = -g -std=gnu++14 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk -fcolor-diagnostics
+  INCLUDES = -I"/Users/i_taeyori/Downloads/연세대/25-1/컴퓨터 종합설계/TheoryCoinMiners/include"
+  OBJECT_DIR = CMakeFiles/TheoryCoinMiners.dir
+  OBJECT_FILE_DIR = CMakeFiles/TheoryCoinMiners.dir/src
+
+build CMakeFiles/TheoryCoinMiners.dir/src/Ranker.cpp.o: CXX_COMPILER__TheoryCoinMiners_unscanned_Debug /Users/i_taeyori/Downloads/연세대/25-1/컴퓨터$ 종합설계/TheoryCoinMiners/src/Ranker.cpp || cmake_object_order_depends_target_TheoryCoinMiners
+  DEP_FILE = CMakeFiles/TheoryCoinMiners.dir/src/Ranker.cpp.o.d
+  FLAGS = -g -std=gnu++14 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk -fcolor-diagnostics
+  INCLUDES = -I"/Users/i_taeyori/Downloads/연세대/25-1/컴퓨터 종합설계/TheoryCoinMiners/include"
+  OBJECT_DIR = CMakeFiles/TheoryCoinMiners.dir
+  OBJECT_FILE_DIR = CMakeFiles/TheoryCoinMiners.dir/src
+
+build CMakeFiles/TheoryCoinMiners.dir/main.cpp.o: CXX_COMPILER__TheoryCoinMiners_unscanned_Debug /Users/i_taeyori/Downloads/연세대/25-1/컴퓨터$ 종합설계/TheoryCoinMiners/main.cpp || cmake_object_order_depends_target_TheoryCoinMiners
+  DEP_FILE = CMakeFiles/TheoryCoinMiners.dir/main.cpp.o.d
+  FLAGS = -g -std=gnu++14 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk -fcolor-diagnostics
+  INCLUDES = -I"/Users/i_taeyori/Downloads/연세대/25-1/컴퓨터 종합설계/TheoryCoinMiners/include"
+  OBJECT_DIR = CMakeFiles/TheoryCoinMiners.dir
+  OBJECT_FILE_DIR = CMakeFiles/TheoryCoinMiners.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target TheoryCoinMiners
@@ -71,7 +92,7 @@ build CMakeFiles/TheoryCoinMiners.dir/src/Node.cpp.o: CXX_COMPILER__TheoryCoinMi
 #############################################
 # Link the executable TheoryCoinMiners
 
-build TheoryCoinMiners: CXX_EXECUTABLE_LINKER__TheoryCoinMiners_Debug CMakeFiles/TheoryCoinMiners.dir/src/simon-tree.cpp.o CMakeFiles/TheoryCoinMiners.dir/src/Node.cpp.o
+build TheoryCoinMiners: CXX_EXECUTABLE_LINKER__TheoryCoinMiners_Debug CMakeFiles/TheoryCoinMiners.dir/src/simon-tree.cpp.o CMakeFiles/TheoryCoinMiners.dir/src/Node.cpp.o CMakeFiles/TheoryCoinMiners.dir/src/shortlex.cpp.o CMakeFiles/TheoryCoinMiners.dir/src/Ranker.cpp.o CMakeFiles/TheoryCoinMiners.dir/main.cpp.o
   FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.2.sdk
   OBJECT_DIR = CMakeFiles/TheoryCoinMiners.dir
   POST_BUILD = :
