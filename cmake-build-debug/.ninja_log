@@ -1,6 +1,6 @@
 # ninja log v5
 0	350	1743606945368334287	CMakeFiles/TheoryCoinMiners.dir/src/Node.cpp.o	f7a6e37e8e73b65
 1	377	1743606945395769539	CMakeFiles/TheoryCoinMiners.dir/src/Ranker.cpp.o	b14db272d2a9382e
-1	444	1743606945462984789	CMakeFiles/TheoryCoinMiners.dir/main.cpp.o	bd74cc6287291211
 1	445	1743606945464615350	CMakeFiles/TheoryCoinMiners.dir/src/shortlex.cpp.o	bcdbcbddc19e6d07
+1	444	1743606945462984789	CMakeFiles/TheoryCoinMiners.dir/main.cpp.o	bd74cc6287291211
 1	518	1743606945537208444	CMakeFiles/TheoryCoinMiners.dir/src/simon-tree.cpp.o	6d7798b99cb55113

@@ -15,4 +15,6 @@ add_executable(TheoryCoinMiners
         include/Ranker.h
         main.cpp
         utils/RandomTextGenerator.h
+        include/Trees.h
+        src/Trees.cpp
 )
