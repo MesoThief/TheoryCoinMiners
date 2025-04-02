@@ -2,8 +2,12 @@
 #include <random>
 #include <stdexcept>
 #include <iostream>
-#include "utils/RandomTextGenerator.h"
+#include "include/Node.h"
 #include "include/Ranker.h"
+#include "include/Trees.h"
+
+#include "utils/RandomTextGenerator.h"
+#include "utils/CalculateUniversality.h"
 
 std::string generateRandomText(int alphabetSize, int length) {
     const std::string baseAlphabet = "abcdefghijklmnopqrstuvwxyz";
@@ -30,21 +34,21 @@ std::string generateRandomText(int alphabetSize, int length) {
 int main() {
     // Manually set alphabet size and text length
     int alphabetSize = 5;  // for example: a, b, c, d, e
-    int length = 20;
+    int text_length = 20;
 
     // Generate Random text
-    std::string randomText = generateRandomText(alphabetSize, length);
-    std::cout << "Random text: " << randomText << "\n";
+    std::string randText = generateRandomText(alphabetSize, text_length);
+    std::cout << "Random text: " << randText << "\n";
 
-    // Make both X-ranker and Y-ranker table
-    RankerTable ranker(randomText, alphabetSize);
+    // Make and build both X-ranker and Y-ranker table
+    RankerTable ranker(randText, alphabetSize);
     ranker.buildXRankerTable();
     ranker.buildYRankerTable();
 
     // This is to show how both ranker tables are properly set
     // You can comment-out these loops
     std::cout << "\nX-ranker (next position +1 for each char):\n";
-    for (int i = 0; i <= length; ++i) {
+    for (int i = 0; i <= text_length; ++i) {
         for (char c = 'a'; c < 'a' + alphabetSize; ++c) {
             int result = ranker.getX(i, c);
             std::cout << "X(" << i << ", " << c << ") = ";
@@ -56,7 +60,7 @@ int main() {
     }
 
     std::cout << "\nY-ranker (previous position for each char):\n";
-    for (int i = 0; i <= length; ++i) {
+    for (int i = 0; i <= text_length; ++i) {
         for (char c = 'a'; c < 'a' + alphabetSize; ++c) {
             int result = ranker.getY(i, c);
             std::cout << "Y(" << i << ", " << c << ") = ";
@@ -65,5 +69,22 @@ int main() {
         std::cout << "\n";
     }
 
+    // Generate a random pattern
+    int pattern_length = 6;
+    int congruence_class = 2;
+    std::string randPattern = generateRandomText(alphabetSize, pattern_length);
+
+    // Get universality index of such pattern
+    int universality = calculateUniversalityIndex(randPattern, alphabetSize);
+
+    // Make k-class shortlex form of a generated pattern
+    ShortlexResult shortlex_pattern = computeShortlexNormalForm(randPattern, universality, congruence_class);
+
+    // Build X-tree
+    Node xRoot = Trees::buildXTree(ranker, shortlex_pattern, randText);
+
+    // Build Y-tree
+    Node yRoot = Trees::buildYTree(ranker, shortlex_pattern, randText);
+    
     return 0;
 }

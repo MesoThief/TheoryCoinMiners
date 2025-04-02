@@ -6,6 +6,8 @@
 #include <memory>
 
 struct Node {
+    Node(std::shared_ptr<Node> sharedPtr);
+
     int start, end;
     int depth;
     std::shared_ptr<Node> parent;

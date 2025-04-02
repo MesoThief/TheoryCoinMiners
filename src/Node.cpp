@@ -11,3 +11,7 @@ bool Node::isRoot() const {
 bool Node::isLeaf() const {
     return children.empty();
 }
+
+Node::Node(std::shared_ptr<Node> sharedPtr) {
+
+}

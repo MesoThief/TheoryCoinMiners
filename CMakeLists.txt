@@ -17,4 +17,5 @@ add_executable(TheoryCoinMiners
         utils/RandomTextGenerator.h
         include/Trees.h
         src/Trees.cpp
+        utils/CalculateUniversality.h
 )
