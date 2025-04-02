@@ -5,28 +5,11 @@
 #include <memory>
 #include <limits>
 
+#include "Node.h"
+
 using namespace std;
 
 const int INF = numeric_limits<int>::max();
-
-// -------------------- Node Definition --------------------
-struct Node {
-    int start, end;
-    int depth;
-    shared_ptr<Node> parent;
-    vector<shared_ptr<Node>> children;
-
-    Node(int s, int e, int d, shared_ptr<Node> p = nullptr)
-        : start(s), end(e), depth(d), parent(p) {}
-
-    bool isRoot() const {
-        return parent == nullptr;
-    }
-
-    bool isLeaf() const {
-        return children.empty();
-    }
-};
 
 // -------------------- Compute X[i] --------------------
 vector<int> computeX(const string& w) {
