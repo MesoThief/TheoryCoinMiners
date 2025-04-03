@@ -1,7 +1,11 @@
-build:
-	g++ simon-tree.cpp -o simon-tree
-	g++ shortlex.cpp -o shortlex
+CXX = g++
+CXXFLAGS = -std=c++17 -Iinclude
+
+SRC = $(shell find src -name "*.cpp")
+TARGET = main
+
+all:
+	$(CXX) $(CXXFLAGS) $(SRC) -o $(TARGET)
 
 clean:
-	rm simon-tree
-	rm shortlex
+	rm -f $(TARGET)
