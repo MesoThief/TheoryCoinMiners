@@ -3,9 +3,9 @@
 
 #include <string>
 #include <memory>
-#include "Ranker.h"
-#include "shortlex.hpp"
 #include "Node.h"
+#include "Ranker.h"
+#include "Shortlex.h"
 
 class Trees {
 public:

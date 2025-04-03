@@ -1,10 +1,10 @@
 CXX = g++
-CXXFLAGS = -std=c++17 -Iinclude -Iutils
+CXXFLAGS = -std=c++17 -Iinclude
 
-SRC = main.cpp src/Ranker.cpp
-TARGET = rankers
+SRC = src/*.cpp
+TARGET = main
 
-build: $(SRC)
+all:
 	$(CXX) $(CXXFLAGS) $(SRC) -o $(TARGET)
 
 clean:

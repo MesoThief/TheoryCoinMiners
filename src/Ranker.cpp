@@ -1,6 +1,7 @@
-#include "Ranker.h"
 #include <limits>
 #include <stdexcept>
+
+#include "data/Ranker.h"
 
 const int RankerTable::INF = std::numeric_limits<int>::max();
 
