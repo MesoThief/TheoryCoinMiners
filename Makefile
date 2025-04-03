@@ -1,7 +1,7 @@
 CXX = g++
 CXXFLAGS = -std=c++17 -Iinclude
 
-SRC = src/*.cpp
+SRC = $(shell find src -name "*.cpp")
 TARGET = main
 
 all:
