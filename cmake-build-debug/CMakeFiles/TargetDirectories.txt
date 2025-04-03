@@ -1,0 +1,3 @@
+/Users/i_taeyori/Downloads/연세대/25-1/컴퓨터 종합설계/TheoryCoinMiners/cmake-build-debug/CMakeFiles/TheoryCoinMiners.dir
+/Users/i_taeyori/Downloads/연세대/25-1/컴퓨터 종합설계/TheoryCoinMiners/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/i_taeyori/Downloads/연세대/25-1/컴퓨터 종합설계/TheoryCoinMiners/cmake-build-debug/CMakeFiles/rebuild_cache.dir
