@@ -10,8 +10,6 @@
 #include "utils/RandomTextGenerator.h"
 #include "utils/CalculateUniversality.h"
 
-
-
 int main() {
     // Manually set alphabet size and text length
     int alphabetSize = 5;  // for example: a, b, c, d, e

@@ -1,11 +1,9 @@
 #include <iostream>
-#include <string>
-#include "shortlex.hpp"
 
-using namespace std;
+#include "data/Shortlex.h"
 
 // ------------------
-// A simple test driver for shortlex
+// A simple test driver for Shortlex.cpp
 // ------------------
 int main() {
     string w;
