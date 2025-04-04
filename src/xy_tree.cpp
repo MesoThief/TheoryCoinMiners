@@ -1,8 +1,7 @@
 #include <iostream>
 #include <string>
-#include "Trees.cpp"
-#include "Ranker.cpp"
-#include "Node.cpp"
+
+#include "data/Trees.h"
 
 using namespace std;
 
