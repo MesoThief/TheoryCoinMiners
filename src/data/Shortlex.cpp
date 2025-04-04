@@ -16,12 +16,13 @@ ShortlexResult computeShortlexNormalForm(const string& w, int universality, int 
     vector<int> X(n, 0), Y(n, 0);
     const int ALPHABET_SIZE = 256;
     vector<int> counter(ALPHABET_SIZE, 1); // counters for X computation
+    set<unsigned char> alph; // (minimal) \Sigma, yes.
 
     // --- Phase 1a: Compute X-coordinates from left-to-right ---
     // For each position, X[i] is set to the current counter for letter w[i] (then update all counters)
     for (int i = 0; i < n; i++) {
         unsigned char c = static_cast<unsigned char>(w[i]);
-        X[i] = counter[c];
+        X[i] = counter[c]; alph.insert(c);
         counter[c]++;
         int current = counter[c];
         // Update all counters: each counter becomes the minimum of itself and counter[c]
@@ -93,7 +94,9 @@ ShortlexResult computeShortlexNormalForm(const string& w, int universality, int 
     // --- Phase 2: Lexicographically reorder blocks ---
     // For each maximal contiguous block in v where the (newX, newY) pair is the same and the sum equals k+1,
     // sort that block in increasing order.
-    int start = 0;
+    int start = 0; int size_alph = alph.size();
+    vector<set<unsigned char>> s_p; set<unsigned char> s; set<unsigned char> alph_track;
+    vector<int> arch;
     while (start < m) {
         int end = start + 1;
         // Continue while the attributes are identical and their sum equals k+1.
@@ -104,6 +107,18 @@ ShortlexResult computeShortlexNormalForm(const string& w, int universality, int 
             // Sort the substring [start, end) of v in lexicographical order.
             sort(v.begin() + start, v.begin() + end);
         }
+
+        // Update s_p
+        s.clear();
+        for(int a = start; a < end; a++) {
+            s.insert(static_cast<unsigned char>(v[a]));
+            alph_track.insert(static_cast<unsigned char>(v[a]));
+        }
+        s_p.insert(s_p.begin(), s);
+        if(size_alph == alph_track.size()){ // Detect arch
+            alph_track.clear();
+            arch.push_back(end);
+        }
         start = end;
     }
 
@@ -112,5 +127,9 @@ ShortlexResult computeShortlexNormalForm(const string& w, int universality, int 
     result.normalForm = v;
     result.X = newX;
     result.Y = newY;
+    result.s_p = s_p;
+    result.universality = universality;
+    result.alph = alph;
+    result.arch = arch;
     return result;
 }
