@@ -1,8 +1,9 @@
 #include <iostream>
 #include <string>
-#include "Trees.cpp"
-#include "Ranker.cpp"
-#include "Node.cpp"
+
+#include "data/Ranker.h"
+#include "data/Node.h"
+#include "data/Trees.h"
 
 using namespace std;
 
