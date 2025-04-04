@@ -1,4 +1,4 @@
-name: Makefile CI
+name: Auto Build
 
 on:
   push:
@@ -13,5 +13,5 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Run check
-      run: make main
+    - name: Run build
+      run: make all

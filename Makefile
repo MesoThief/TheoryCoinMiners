@@ -9,8 +9,6 @@ XY_TREE = xy_tree
 
 SRC := $(wildcard src/data/*.cpp src/utils/*.cpp)
 
-all: $(MAIN)
-
 $(MAIN): src/main.cpp $(SRC)
 	@mkdir -p $(BIN_DIR)
 	$(CXX) $(CXXFLAGS) $< $(SRC) -o $(BIN_DIR)/$@
@@ -27,7 +25,7 @@ $(XY_TREE): src/xy_tree.cpp $(SRC)
 	@mkdir -p $(BIN_DIR)
 	$(CXX) $(CXXFLAGS) $< $(SRC) -o $(BIN_DIR)/$@
 
-$()
+all: $(MAIN) $(SIMON_TREE) $(SHORTLEX) $(XY_TREE)
 
 clean:
 	rm -rf $(BIN_DIR)
