@@ -1,0 +1,11 @@
+{
+  "cmake.cmakePath": "CMakeLists.txt",
+  "files.associations": {
+    "stack": "cpp",
+    "set": "cpp",
+    "algorithm": "cpp",
+    "vector": "cpp",
+    "limits": "cpp",
+    "new": "cpp"
+  }
+}
