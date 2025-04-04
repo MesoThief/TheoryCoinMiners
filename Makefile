@@ -5,6 +5,7 @@ BIN_DIR = bin
 MAIN = main
 SIMON_TREE = simon_tree
 SHORTLEX = shortlex
+XY_TREE = xy_tree
 
 SRC := $(wildcard src/data/*.cpp src/utils/*.cpp)
 
@@ -21,6 +22,12 @@ $(SIMON_TREE): src/simon_tree.cpp $(SRC)
 $(SHORTLEX): src/shortlex.cpp $(SRC)
 	@mkdir -p $(BIN_DIR)
 	$(CXX) $(CXXFLAGS) $< $(SRC) -o $(BIN_DIR)/$@
+
+$(XY_TREE): src/xy_tree.cpp $(SRC)
+	@mkdir -p $(BIN_DIR)
+	$(CXX) $(CXXFLAGS) $< $(SRC) -o $(BIN_DIR)/$@
+
+$()
 
 clean:
 	rm -rf $(BIN_DIR)
