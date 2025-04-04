@@ -1,27 +1,8 @@
-#ifndef SHORTLEX_HPP
-#define SHORTLEX_HPP
-
+#include <iostream>
 #include <string>
-#include <vector>
-#include <algorithm>
-#include <limits>
-#include <set>
+#include "data/Shortlex.h"
 
 using namespace std;
-
-// Structure to hold the result: the shortlex normal form and its corresponding X- and Y-vectors
-// as well as its stack representation, universality index, etc...
-struct ShortlexResult {
-    string normalForm;
-    vector<int> X; // X-coordinates for each letter in normalForm
-    vector<int> Y; // Y-coordinates for each letter in normalForm
-
-    /* Additional data required for constructing XY-tree */
-    vector<set<unsigned char>> s_p; // Stack representation of SNF
-    int universality; // Universality index
-    set<unsigned char> alph; // Set of all USED character
-    vector<int> arch; // Endpoint of each arch
-};
 
 // Computes the shortlex normal form of w (under Simon's congruence for parameter k)
 // using a two-phase procedure:
@@ -153,4 +134,37 @@ ShortlexResult computeShortlexNormalForm(const string& w, int universality, int 
     return result;
 }
 
+<<<<<<< HEAD:include/shortlex.hpp
 #endif // SHORTLEX_HPP
+=======
+// ------------------
+// A simple test driver for shortlex
+// ------------------
+// int main() {
+//     string w;
+//     int universality;
+//     int k;
+//     cout << "Enter the value of input string w: ";
+//     cin >> w;
+//     cout << "Enter the value of universality index: ";
+//     cin >> universality;
+//     cout << "Enter the value of k: ";
+//     cin >> k;
+    
+//     ShortlexResult result = computeShortlexNormalForm(w, universality, k);
+
+//     cout << "Shortlex normal form: " << result.normalForm << endl;
+//     cout << "X-coordinates: ";
+//     for (int x : result.X) {
+//         cout << x << " ";
+//     }
+//     cout << endl;
+//     cout << "Y-coordinates: ";
+//     for (int y : result.Y) {
+//         cout << y << " ";
+//     }
+//     cout << endl;
+
+//     return 0;
+// }
+>>>>>>> 5172531a1c187540841c3d1bba4d2f04e9c7e885:src/data/Shortlex.cpp

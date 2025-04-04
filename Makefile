@@ -1,10 +1,10 @@
 CXX = g++
-CXXFLAGS = -std=c++17 -Iinclude -Iutils
+CXXFLAGS = -std=c++17 -Iinclude
 
-SRC = main.cpp src/Ranker.cpp src/Trees.cpp src/Node.cpp
-TARGET = rankers
+SRC = $(shell find src -name "*.cpp")
+TARGET = main
 
-build: $(SRC)
+all:
 	$(CXX) $(CXXFLAGS) $(SRC) -o $(TARGET)
 
 clean:

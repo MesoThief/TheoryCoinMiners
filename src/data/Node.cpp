@@ -1,5 +1,4 @@
-// Node.cpp
-#include "Node.h"
+#include "data/Node.h"
 
 Node::Node(int s, int e, int d, std::shared_ptr<Node> p)
     : start(s), end(e), depth(d), parent(p) {}

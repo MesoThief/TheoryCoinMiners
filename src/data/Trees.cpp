@@ -1,5 +1,6 @@
-#include "Trees.h"
 #include <iostream>
+
+#include "data/Trees.h"
 
 // Placeholder for actual X-tree construction logic
 std::shared_ptr<Node> Trees::buildXTree(const RankerTable& ranker, const ShortlexResult& shortlex, const std::string& text) {
