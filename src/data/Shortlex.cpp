@@ -134,37 +134,3 @@ ShortlexResult computeShortlexNormalForm(const string& w, int universality, int 
     return result;
 }
 
-<<<<<<< HEAD:include/shortlex.hpp
-#endif // SHORTLEX_HPP
-=======
-// ------------------
-// A simple test driver for shortlex
-// ------------------
-// int main() {
-//     string w;
-//     int universality;
-//     int k;
-//     cout << "Enter the value of input string w: ";
-//     cin >> w;
-//     cout << "Enter the value of universality index: ";
-//     cin >> universality;
-//     cout << "Enter the value of k: ";
-//     cin >> k;
-    
-//     ShortlexResult result = computeShortlexNormalForm(w, universality, k);
-
-//     cout << "Shortlex normal form: " << result.normalForm << endl;
-//     cout << "X-coordinates: ";
-//     for (int x : result.X) {
-//         cout << x << " ";
-//     }
-//     cout << endl;
-//     cout << "Y-coordinates: ";
-//     for (int y : result.Y) {
-//         cout << y << " ";
-//     }
-//     cout << endl;
-
-//     return 0;
-// }
->>>>>>> 5172531a1c187540841c3d1bba4d2f04e9c7e885:src/data/Shortlex.cpp
