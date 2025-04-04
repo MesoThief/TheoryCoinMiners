@@ -133,4 +133,3 @@ ShortlexResult computeShortlexNormalForm(const string& w, int universality, int 
     result.arch = arch;
     return result;
 }
-
