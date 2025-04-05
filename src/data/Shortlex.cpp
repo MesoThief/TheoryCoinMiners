@@ -1,6 +1,9 @@
 #include <iostream>
 #include <string>
+#include <deque>
+
 #include "data/Shortlex.h"
+#include "utils/Alphabet.h"
 
 using namespace std;
 
@@ -131,5 +134,122 @@ ShortlexResult computeShortlexNormalForm(const string& w, int universality, int 
     result.universality = universality;
     result.alph = alph;
     result.arch = arch;
+    return result;
+}
+
+
+/**
+   * @brief Computes partial shortlex normal form of a substring w.
+   * @param w          a substring of text T
+   * @param X_vector   X-vector of T at start of w
+   * @param Y_vector   Y-vector of T at end of w
+   * @param threshold  if x + y > threashold, delete character.
+   * 
+   * The value of threshold depends on whether w is a XY-link or YX-link.
+   * XY-link: threshold = (k + 1 -(iota(p) - 1)) = k + 2 - iota(p)
+   * YX-link: threshold = k + 1 - iota(p)
+  */
+ShortlexResult computePartialShortlexNormalForm(
+    const string& w,
+    vector<int> X_vector,
+    vector<int> Y_vector,
+    int threshold
+) {
+    int n = w.size();
+    int ALPHABET_SIZE = Alphabet::getInstance().size();
+
+    vector<int> X(n, 0);
+    vector<int> Y(n, 0);
+
+    string normalForm;  
+    deque<int> normalX; // X-coordinates of normal form
+    deque<int> normalY; // Y-coordinates of normal form
+
+    vector<int> new_X_vector = X_vector;   // X-vector which will be updated by iterating normal form
+    vector<int> new_Y_vector = Y_vector;   // Y-vector which will be updated by iterating normal form
+
+    // 1. Compute X-coordinates
+    for (int i = 0; i < n; i++) {
+        char c = w[i];
+        int alphabet_index = Alphabet::getInstance().charToIndex(c);
+
+        X[i] = X_vector[alphabet_index];
+        X_vector[alphabet_index]++;
+
+        for (int j = 0; j < ALPHABET_SIZE; j++) {
+            X_vector[j] = min(X_vector[j], X_vector[alphabet_index]);
+        }
+    }
+
+    // 2. Compute Y-coordinates, and also calculating normal form
+    for (int i = n - 1; i >= 0; i--) {
+        char c = w[i];
+        int alphabet_index = Alphabet::getInstance().charToIndex(c);
+
+        Y[i] = Y_vector[alphabet_index];
+
+        if (X[i] + Y[i] <= threshold) {
+            Y_vector[alphabet_index]++;
+
+            for (int j = 0; j < ALPHABET_SIZE; j++) {
+                Y_vector[j] = min(Y_vector[j], X_vector[alphabet_index]);
+            }
+
+            normalForm.insert(normalForm.begin(), c);
+            normalX.push_front(X[i]);
+            normalY.push_front(Y[i]);
+        }
+    }
+
+    // 3. Lexicographically reorder blocks
+    // block = elements whose coordinate (X,Y) are the same
+    int m = normalForm.size();
+    int start = 0;
+    while (start < m) {
+        // sort block
+        int end = start + 1;
+        while (end < m &&
+            normalX[end] == normalX[start] &&
+            normalY[end] == normalY[start] &&
+            (normalX[start] + normalY[start] == threshold)
+        ) {
+            end++;
+        }
+        if (end - start > 1) {
+            sort(normalForm.begin() + start, normalForm.begin() + end);
+        }
+
+        start = end;
+    }
+
+    // 4. Compute new X-vector for the end of normal form
+    for (int i = 0; i < m; i++) {
+        char c = normalForm[i];
+        int alphabet_index = Alphabet::getInstance().charToIndex(c);
+
+        new_X_vector[alphabet_index]++;
+
+        for (int j = 0; j < ALPHABET_SIZE; j++) {
+            new_X_vector[j] = min(new_X_vector[j], new_X_vector[alphabet_index]);
+        }
+    }
+
+    // 5. Compute new Y-vector for the front of normal form
+    for (int i = m - 1; i >= 0; i--) {
+        char c = normalForm[i];
+
+        int alphabet_index = Alphabet::getInstance().charToIndex(c);
+
+        new_Y_vector[alphabet_index]++;
+
+        for (int j = 0; j < ALPHABET_SIZE; j++) {
+            new_Y_vector[j] = min(new_Y_vector[j], new_Y_vector[alphabet_index]);
+        }
+    }
+
+    ShortlexResult result;
+    result.normalForm = normalForm;
+    result.X = new_X_vector;
+    result.Y = new_Y_vector;
     return result;
 }
