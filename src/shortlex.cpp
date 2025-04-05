@@ -89,7 +89,7 @@ int main(int argc, char* argv[]) {
     );
 
     cout << "Output: " << endl;
-    cout << "   Shortlex normal form: " << result.normalForm << endl;
+    cout << "   Shortlex normal form: " << result.shortlexNormalForm << endl;
     cout << "   new X-vector: ";
     for (int x : result.X_vector) {
         cout << x << " ";
@@ -100,6 +100,8 @@ int main(int argc, char* argv[]) {
         cout << y << " ";
     }
     cout << endl;
+
+    cout << "Testing Simon's congruence 논문 버전 SNF:" << computeShortlexNormalForm(w, k) << endl;
 
     return 0;
 }

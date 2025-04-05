@@ -22,7 +22,7 @@ std::shared_ptr<Node> Trees::buildXTree(const RankerTable& ranker, const Shortle
     int last_arch = 0;
     for(int i = 0; i < shortlex.arch_ends.size(); i++){
         for(int j = 0; j < shortlex.arch_ends.at(i) - last_arch; j++){
-            s_p.back().erase(shortlex.normalForm.at(j+last_arch));
+            s_p.back().erase(shortlex.shortlexNormalForm.at(j+last_arch));
             if(s_p.back().empty()){ s_p.pop_back(); }
         }
         last_arch = shortlex.arch_ends.at(i);

@@ -9,7 +9,7 @@ using namespace std;
 
 // Structure to hold the result: the shortlex normal form and its corresponding X- and Y-vectors.
 struct ShortlexResult {
-    string normalForm;
+    string shortlexNormalForm;
     vector<int> X_vector;
     vector<int> Y_vector;
 
@@ -20,7 +20,7 @@ struct ShortlexResult {
 };
 
 // Testing Simon's congruence 논문 버전
-ShortlexResult computeShortlexNormalForm(
+string computeShortlexNormalForm(
     const string& w,
     int k
 );
