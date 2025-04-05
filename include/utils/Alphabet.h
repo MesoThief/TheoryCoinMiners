@@ -11,6 +11,10 @@ class Alphabet {
       return instance;
     }
 
+    void setAlphabet(string sigma) {
+      alphabet = sigma;
+    }
+
     int size() {
       return alphabet.size();
     }
@@ -24,7 +28,7 @@ class Alphabet {
     }
 
   private:
-    // Alphabet (∑) 정의: 필요에 따라 수정
+    // 기본 Alphabet (∑) 정의: 필요에 따라 수정
     std::string alphabet = "abcdefghijklmnopqrstuvwxyz";
 
     std::unordered_map<char, int> indexMap;
