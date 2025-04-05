@@ -85,6 +85,7 @@ string computeShortlexNormalForm(const string& w, int k) {
             end++;
         }
         if (end - start > 1) {
+            // TODO: replace to custom sorting algorithm --- ex) counting sort
             sort(shortlexNormalForm.begin() + start, shortlexNormalForm.begin() + end);
         }
 
@@ -197,6 +198,7 @@ ShortlexResult computePartialShortlexNormalForm(
             end++;
         }
         if (end - start > 1) {
+            // TODO: replace to custom sorting algorithm --- ex) counting sort
             sort(shortlexNormalForm.begin() + start, shortlexNormalForm.begin() + end);
         }
 
