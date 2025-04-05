@@ -25,7 +25,7 @@ int main(int argc, char* argv[]) {
 
     // read inputs
     string alphabet;
-    string XYorYX;
+    string XYorYX;  // is input string w XY-link or YX-link?
     string w;
     vector<int> X_vector;
     vector<int> Y_vector;
