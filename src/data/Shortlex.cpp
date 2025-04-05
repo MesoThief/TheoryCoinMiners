@@ -10,12 +10,10 @@ using namespace std;
 //   Phase 1: Compute X-coordinates (left-to-right) and Y-coordinates (right-to-left) and mark letters for deletion 
 //            when X[i] + Y[i] > k+1. Then form the reduced word.
 //   Phase 2: For each maximal block of letters having the same attribute (X, Y) with X+Y==k+1, sort that block lexicographically.
-ShortlexResult computeShortlexNormalForm(const string& w, int universality, int k) {
-    // For simplicity, we ignore universality (which in a full implementation may be used
-    // to immediately return w if k is "large" relative to |w|).
+ShortlexResult computeShortlexNormalForm(const string& w, int k) {
     int n = static_cast<int>(w.size());
     vector<int> X(n, 0), Y(n, 0);
-    const int ALPHABET_SIZE = 256;
+    int ALPHABET_SIZE = Alphabet::getInstance().size();
     vector<int> counter(ALPHABET_SIZE, 1); // counters for X computation
     set<char> alph; // (minimal) \Sigma, yes.
 
@@ -126,11 +124,6 @@ ShortlexResult computeShortlexNormalForm(const string& w, int universality, int 
     // Prepare the result.
     ShortlexResult result;
     result.normalForm = v;
-    result.X = newX;
-    result.Y = newY;
-    result.universality = universality;
-    result.alphabet = alph;
-    result.arch_ends = arch;
     return result;
 }
 
@@ -193,7 +186,7 @@ ShortlexResult computePartialShortlexNormalForm(
             Y_vector[alphabet_index]++;
 
             for (int j = 0; j < ALPHABET_SIZE; j++) {
-                Y_vector[j] = min(Y_vector[j], X_vector[alphabet_index]);
+                Y_vector[j] = min(Y_vector[j], Y_vector[alphabet_index]);
             }
 
             normalForm.insert(normalForm.begin(), c);
@@ -243,7 +236,7 @@ ShortlexResult computePartialShortlexNormalForm(
         start = end;
     }
 
-    // 4. Compute new X-vector for the end of normal form
+    // 4. Compute new X-vector based on normal form
     for (int i = 0; i < m; i++) {
         char c = normalForm[i];
         int alphabet_index = Alphabet::getInstance().charToIndex(c);
@@ -255,23 +248,13 @@ ShortlexResult computePartialShortlexNormalForm(
         }
     }
 
-    // 5. Compute new Y-vector for the front of normal form
-    for (int i = m - 1; i >= 0; i--) {
-        char c = normalForm[i];
-
-        int alphabet_index = Alphabet::getInstance().charToIndex(c);
-
-        new_Y_vector[alphabet_index]++;
-
-        for (int j = 0; j < ALPHABET_SIZE; j++) {
-            new_Y_vector[j] = min(new_Y_vector[j], new_Y_vector[alphabet_index]);
-        }
-    }
+    // 5. Y-vector is already updated based on normal form, so don't re-compute.
+    new_Y_vector = Y_vector;
 
     ShortlexResult result;
     result.normalForm = normalForm;
-    result.X = new_X_vector;
-    result.Y = new_Y_vector;
+    result.X_vector = new_X_vector;
+    result.Y_vector = new_Y_vector;
     result.stackForm = stackForm;
     result.arch_ends = arch_ends;
     result.alphabet = w_alphabet;

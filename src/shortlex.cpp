@@ -91,12 +91,12 @@ int main(int argc, char* argv[]) {
     cout << "Output: " << endl;
     cout << "   Shortlex normal form: " << result.normalForm << endl;
     cout << "   new X-vector: ";
-    for (int x : result.X) {
+    for (int x : result.X_vector) {
         cout << x << " ";
     }
     cout << endl;
     cout << "   new Y-vector: ";
-    for (int y : result.Y) {
+    for (int y : result.Y_vector) {
         cout << y << " ";
     }
     cout << endl;
