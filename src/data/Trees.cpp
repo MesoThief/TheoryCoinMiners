@@ -11,30 +11,32 @@ std::shared_ptr<Node> Trees::buildXTree(const RankerTable& ranker, const Shortle
     std::cout << "Building X-tree...\n";
 
     // Copy out s_p
-    std::vector<std::set<unsigned char>> s_p; std::set<unsigned char> s;
-    for(int i = 0; i < shortlex.s_p.size(); i++){
-        s = shortlex.s_p.at(i);
+    std::deque<std::set<char>> s_p;
+    std::set<char> s;
+    for(int i = 0; i < shortlex.stackForm.size(); i++){
+        s = shortlex.stackForm.at(i);
         s_p.push_back(s);
     }
 
     // ln 4-6
     int last_arch = 0;
-    for(int i = 0; i < shortlex.universality; i++){
-        for(int j = 0; j < shortlex.arch.at(i) - last_arch; j++){
+    for(int i = 0; i < shortlex.arch_ends.size(); i++){
+        for(int j = 0; j < shortlex.arch_ends.at(i) - last_arch; j++){
             s_p.back().erase(shortlex.normalForm.at(j+last_arch));
             if(s_p.back().empty()){ s_p.pop_back(); }
         }
-        last_arch = shortlex.arch.at(i);
+        last_arch = shortlex.arch_ends.at(i);
     }
 
     // ln 7-21
     int parent; int x_rnk; int min_x_rnk;
-    std::vector<std::set<unsigned char>> sp_p;
-    std::unordered_map<int, int> r; std::set<unsigned char> S;
-    unsigned char sig;
+    std::deque<std::set<char>> sp_p;
+    std::unordered_map<int, int> r;
+    std::set<char> S;
+    char sig;
     for(int i = 0; i < static_cast<int>(text.size()); i++){
         parent = -69;
-        for(auto a : shortlex.alph){
+        for(auto a : shortlex.alphabet){
             x_rnk = ranker.getX(i, a);
             if(x_rnk > parent) parent = x_rnk;
         }

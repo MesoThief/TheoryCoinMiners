@@ -31,13 +31,11 @@ int main() {
     cout << "Enter the value of alphabet size: ";
     cin >> as;
     
-    string w;
+    string p;
     int universality;
     int k;
-    cout << "Enter the value of input string w: ";
-    cin >> w;
-    cout << "Enter the value of universality index: ";
-    cin >> universality;
+    cout << "Enter the value of pattern p: ";
+    cin >> p;
     cout << "Enter the value of k: ";
     cin >> k;
     
@@ -45,7 +43,12 @@ int main() {
     rankers.buildXRankerTable();
     rankers.buildYRankerTable();
 
-    ShortlexResult shortlex = computeShortlexNormalForm(w, universality, k);
+    ShortlexResult shortlex = computePartialShortlexNormalForm(
+        p,
+        vector<int>(26, 1),
+        vector<int>(26 ,1),
+        k
+    );
 
     shared_ptr<Node> T_X = Trees::buildXTree(rankers, shortlex, t);
 

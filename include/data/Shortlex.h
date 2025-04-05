@@ -2,6 +2,7 @@
 #include <vector>
 #include <algorithm>
 #include <limits>
+#include <deque>
 #include <set>
 
 using namespace std;
@@ -12,10 +13,10 @@ struct ShortlexResult {
     vector<int> X;
     vector<int> Y;
 
-    vector<set<unsigned char>> s_p;
+    deque<set<char>> stackForm;
+    vector<int> arch_ends;
+    set<char> alphabet;
     int universality;
-    set<unsigned char> alph;
-    vector<int> arch;
 };
 
 // Testing Simon's congruence 논문 버전

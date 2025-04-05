@@ -1,5 +1,3 @@
-#include <iostream>
-#include <string>
 #include <deque>
 
 #include "data/Shortlex.h"
@@ -19,7 +17,7 @@ ShortlexResult computeShortlexNormalForm(const string& w, int universality, int 
     vector<int> X(n, 0), Y(n, 0);
     const int ALPHABET_SIZE = 256;
     vector<int> counter(ALPHABET_SIZE, 1); // counters for X computation
-    set<unsigned char> alph; // (minimal) \Sigma, yes.
+    set<char> alph; // (minimal) \Sigma, yes.
 
     // --- Phase 1a: Compute X-coordinates from left-to-right ---
     // For each position, X[i] is set to the current counter for letter w[i] (then update all counters)
@@ -130,10 +128,9 @@ ShortlexResult computeShortlexNormalForm(const string& w, int universality, int 
     result.normalForm = v;
     result.X = newX;
     result.Y = newY;
-    result.s_p = s_p;
     result.universality = universality;
-    result.alph = alph;
-    result.arch = arch;
+    result.alphabet = alph;
+    result.arch_ends = arch;
     return result;
 }
 
@@ -157,6 +154,7 @@ ShortlexResult computePartialShortlexNormalForm(
 ) {
     int n = w.size();
     int ALPHABET_SIZE = Alphabet::getInstance().size();
+    set<char> w_alphabet; // for detecting archs
 
     vector<int> X(n, 0);
     vector<int> Y(n, 0);
@@ -179,9 +177,12 @@ ShortlexResult computePartialShortlexNormalForm(
         for (int j = 0; j < ALPHABET_SIZE; j++) {
             X_vector[j] = min(X_vector[j], X_vector[alphabet_index]);
         }
+
+        // for detecting archs, compute alph(w)
+        w_alphabet.insert(c);
     }
 
-    // 2. Compute Y-coordinates, and also calculating normal form
+    // 2. Compute Y-coordinates and normal form
     for (int i = n - 1; i >= 0; i--) {
         char c = w[i];
         int alphabet_index = Alphabet::getInstance().charToIndex(c);
@@ -203,8 +204,12 @@ ShortlexResult computePartialShortlexNormalForm(
 
     // 3. Lexicographically reorder blocks
     // block = elements whose coordinate (X,Y) are the same
+    // also, compute the stack form of SNF.
     int m = normalForm.size();
     int start = 0;
+    deque<set<char>> stackForm;
+    set<char> alphabet_track;
+    vector<int> arch_ends;
     while (start < m) {
         // sort block
         int end = start + 1;
@@ -217,6 +222,22 @@ ShortlexResult computePartialShortlexNormalForm(
         }
         if (end - start > 1) {
             sort(normalForm.begin() + start, normalForm.begin() + end);
+        }
+
+        // push block to stack form
+        // Note that we iterate from the beginning of normal form, so we push to bottom of stack form
+        set<char> block_charset;
+        for (int i = start; i < end; i++) {
+            char c = normalForm[i];
+            block_charset.insert(c);
+            alphabet_track.insert(c);
+        }
+        stackForm.push_front(block_charset);
+
+        // detect arch ends
+        if (block_charset.size() == w_alphabet.size()) {
+            arch_ends.push_back(end);
+            alphabet_track.clear();
         }
 
         start = end;
@@ -251,5 +272,9 @@ ShortlexResult computePartialShortlexNormalForm(
     result.normalForm = normalForm;
     result.X = new_X_vector;
     result.Y = new_Y_vector;
+    result.stackForm = stackForm;
+    result.arch_ends = arch_ends;
+    result.alphabet = w_alphabet;
+    result.universality = arch_ends.size();
     return result;
 }

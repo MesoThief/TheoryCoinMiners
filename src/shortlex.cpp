@@ -88,7 +88,7 @@ int main(int argc, char* argv[]) {
         threshold
     );
 
-    cout << endl << "Output: " << endl;
+    cout << "Output: " << endl;
     cout << "   Shortlex normal form: " << result.normalForm << endl;
     cout << "   new X-vector: ";
     for (int x : result.X) {
