@@ -2,6 +2,7 @@
 #include <random>
 #include <stdexcept>
 #include <iostream>
+#include <vector>
 
 #include "data/Node.h"
 #include "data/Ranker.h"
@@ -57,7 +58,12 @@ int main() {
     int universality = calculateUniversalityIndex(randPattern, alphabetSize);
 
     // Make k-class shortlex form of a generated pattern
-    ShortlexResult shortlex_pattern = computeShortlexNormalForm(randPattern, universality, congruence_class);
+    ShortlexResult shortlex_pattern = computePartialShortlexNormalForm(
+        randPattern,
+        vector<int>(alphabetSize, 1),
+        vector<int>(alphabetSize, 1),
+        congruence_class
+    );
 
     // Build X-tree
     Node xRoot = Trees::buildXTree(ranker, shortlex_pattern, randText);
