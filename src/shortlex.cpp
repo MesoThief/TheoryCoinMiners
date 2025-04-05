@@ -1,4 +1,6 @@
 #include <iostream>
+#include <fstream>
+#include <sstream>
 
 #include "data/Shortlex.h"
 #include "utils/Alphabet.h"
@@ -7,13 +9,52 @@
 // ------------------
 // A simple test driver for Shortlex.cpp
 // ------------------
-int main() {
+int main(int argc, char* argv[]) {
+    if (argc < 2) {
+        cerr << "You must enter a test input file" << endl;
+        cerr << "Usage: " << argv[0] << " <test-input-file-name>" << endl;
+        return 1;
+    }
+
+    string inputFileName = argv[1];
+    ifstream inputFile(inputFileName);
+    if (!inputFile) {
+        cerr << "Error opening " << inputFileName << endl;
+        return 1;
+    }
+
+    // read inputs
+    string alphabet;
+    string w;
+    vector<int> X_vector;
+    vector<int> Y_vector;
+    int k;
     
-    string w = "bacbaabada"; // assume alphabet = { a, b, c, d } in this example
-    vector<int> X_vector(Alphabet::getInstance().size(), 1);
-    vector<int> Y_vector(Alphabet::getInstance().size(), 1);
-    int universality_index = calculateUniversalityIndex(w, 4);
-    int k = 3;
+    string line;
+
+    getline(inputFile, alphabet);
+    Alphabet::getInstance().setAlphabet(alphabet);
+
+    getline(inputFile, w);
+
+    getline(inputFile, line);
+    istringstream x_vec_stream(line);
+    int num;
+    while (x_vec_stream >> num) {
+        X_vector.push_back(num);
+    }
+
+    getline(inputFile, line);
+    istringstream y_vec_stream(line);
+    while (y_vec_stream >> num) {
+        Y_vector.push_back(num);
+    }
+
+    getline(inputFile, line);
+    istringstream k_stream(line);
+    k_stream >> k;
+
+    int universality_index = calculateUniversalityIndex(w, Alphabet::getInstance().size());
 
     cout << "Input:" << endl;
     cout << "   w: " << w << endl;
@@ -27,9 +68,10 @@ int main() {
         cout << y << " ";
     }
     cout << endl;
-    cout << "   universality_index: " << universality_index << endl;
     cout << "   k: " << k << endl;
+    cout << "   universality_index: " << universality_index << endl;
 
+    // run test
     ShortlexResult result = computePartialShortlexNormalForm(
         w,
         X_vector,
