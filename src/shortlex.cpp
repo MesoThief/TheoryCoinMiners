@@ -25,6 +25,7 @@ int main(int argc, char* argv[]) {
 
     // read inputs
     string alphabet;
+    string XYorYX;
     string w;
     vector<int> X_vector;
     vector<int> Y_vector;
@@ -34,6 +35,8 @@ int main(int argc, char* argv[]) {
 
     getline(inputFile, alphabet);
     Alphabet::getInstance().setAlphabet(alphabet);
+
+    getline(inputFile, XYorYX);
 
     getline(inputFile, w);
 
@@ -55,6 +58,12 @@ int main(int argc, char* argv[]) {
     k_stream >> k;
 
     int universality_index = calculateUniversalityIndex(w, Alphabet::getInstance().size());
+    int threshold;
+    if (XYorYX == "XY") {
+        threshold = k + 2 - universality_index;
+    } else {
+        threshold = k + 1 - universality_index;
+    }
 
     cout << "Input:" << endl;
     cout << "   w: " << w << endl;
@@ -76,7 +85,7 @@ int main(int argc, char* argv[]) {
         w,
         X_vector,
         Y_vector,
-        k + 2 - universality_index
+        threshold
     );
 
     cout << endl << "Output: " << endl;
