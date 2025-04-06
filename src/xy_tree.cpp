@@ -1,7 +1,9 @@
 #include <iostream>
-#include <string>
+#include <fstream>
+#include <sstream>
 
 #include "data/Trees.h"
+#include "utils/Alphabet.h"
 
 using namespace std;
 
@@ -22,30 +24,48 @@ void printTree(const shared_ptr<Node>& node, const string& w, string indent = ""
 // ------------------
 // A simple test driver for tree
 // ------------------
-int main() {
+int main(int argc, char* argv[]) {
+    if (argc < 2) {
+        cerr << "You must enter a test input file" << endl;
+        cerr << "Usage: " << argv[0] << " <test-input-file-name>" << endl;
+        return 1;
+    }
+
+    string inputFileName = argv[1];
+    ifstream inputFile(inputFileName);
+    if (!inputFile) {
+        cerr << "Error opening " << inputFileName << endl;
+        return 1;
+    }
+
+    // read inputs
+    string alphabet;
     string t;
-    cout << "Enter the value of text t: ";
-    cin >> t;
-    
-    int as;
-    cout << "Enter the value of alphabet size: ";
-    cin >> as;
-    
-    string w;
-    int universality;
+    string p;
     int k;
-    cout << "Enter the value of input string w: ";
-    cin >> w;
-    cout << "Enter the value of universality index: ";
-    cin >> universality;
-    cout << "Enter the value of k: ";
-    cin >> k;
     
-    RankerTable rankers = RankerTable(t, as);
+    getline(inputFile, alphabet);
+    Alphabet::getInstance().setAlphabet(alphabet);
+
+    getline(inputFile, t);
+    
+    getline(inputFile, p);
+    
+    string line;
+    getline(inputFile, line);
+    istringstream k_stream(line);
+    k_stream >> k;
+    
+    RankerTable rankers = RankerTable(t, Alphabet::getInstance().size());
     rankers.buildXRankerTable();
     rankers.buildYRankerTable();
 
-    ShortlexResult shortlex = computeShortlexNormalForm(w, universality, k);
+    ShortlexResult shortlex = computePartialShortlexNormalForm(
+        p,
+        vector<int>(Alphabet::getInstance().size(), 1),
+        vector<int>(Alphabet::getInstance().size() ,1),
+        k
+    );
 
     shared_ptr<Node> T_X = Trees::buildXTree(rankers, shortlex, t);
 

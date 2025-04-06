@@ -2,20 +2,33 @@
 #include <vector>
 #include <algorithm>
 #include <limits>
+#include <deque>
 #include <set>
 
 using namespace std;
 
 // Structure to hold the result: the shortlex normal form and its corresponding X- and Y-vectors.
 struct ShortlexResult {
-    string normalForm;
-    vector<int> X; // X-coordinates for each letter in normalForm
-    vector<int> Y; // Y-coordinates for each letter in normalForm
+    string shortlexNormalForm;
+    vector<int> X_vector;
+    vector<int> Y_vector;
 
-    vector<set<unsigned char>> s_p;
+    deque<set<char>> stackForm;
+    vector<int> arch_ends;
+    set<char> alphabet;
     int universality;
-    set<unsigned char> alph;
-    vector<int> arch;
 };
 
-ShortlexResult computeShortlexNormalForm(const string& w, int universality, int k);
+// Testing Simon's congruence 논문 버전
+string computeShortlexNormalForm(
+    const string& w,
+    int k
+);
+
+// Simon's congruence pattern matching에서 필요한 버전
+ShortlexResult computePartialShortlexNormalForm(
+    const string& w,
+    vector<int> X_vector,
+    vector<int> Y_vector,
+    int threshold
+);

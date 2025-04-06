@@ -1,0 +1,6 @@
+abcd
+XY
+cababad
+1 1 1 1
+1 1 1 1
+3
