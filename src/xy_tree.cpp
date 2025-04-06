@@ -48,8 +48,10 @@ int main() {
     ShortlexResult shortlex = computeShortlexNormalForm(w, universality, k);
 
     shared_ptr<Node> T_X = Trees::buildXTree(rankers, shortlex, t);
+    shared_ptr<Node> T_Y = Trees::buildYTree(rankers, shortlex, t);
 
     printTree(T_X, t);
+    printTree(T_Y, t);
 
     return 0;
 }
