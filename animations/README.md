@@ -1,4 +1,8 @@
-### Installation
+# Animations
+
+Visualizations for Simon's Congruence Pattern Matching (and others) coded in python using manim library.
+
+## Installation
 
 1. Install required dependencies (Linux).
 ```
@@ -6,12 +10,19 @@ sudo apt update
 sudo apt install -y libcairo2-dev libpango1.0-dev pkg-config python3-dev
 ```
 
-2. Install project python packages.
+2. Install python packages.
 ```
 pip install -r requirements.txt
 ```
 
-### Testing
+## Available Scenes
+```
+📁 animations/
+├──tree_visual.py
+└──(WIP)
+```
+
+## Testing
 
 1. Run manim render (quick rendering example)
 ```
