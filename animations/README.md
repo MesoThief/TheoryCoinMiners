@@ -13,4 +13,11 @@ pip install -r requirements.txt
 
 ### Usage
 
-TODO
+1. Run manim render (quick rendering example)
+```
+manim -ql tree_visual.py HorizontalTreeVisualizer
+```
+
+2. Go to /animations/media/videos/tree_visual/..
+
+3. Take a look at the output video animation!

@@ -21,13 +21,20 @@ def format_x_ranker_output(ranker, text_length, alphabet_size):
         lines.append("".join(row))
     return "\n".join(lines)
 
+def print_x_tree(node, depth=0):
+    indent = "  " * depth
+    label = f"Node({node.start}, {node.end})"
+    print(f"{indent}- {label}")
+    for child in node.children:
+        print_x_tree(child, depth + 1)
+
 def main():
     # Set alphabet size and text length
-    alphabet_size = 5
+    alphabet_size = 3
     text_length = 20
 
     # Generate random text
-    rand_text = 'eeacccbcbdbebcdcabdc' # generate_random_text(alphabet_size, text_length)
+    rand_text = 'abcbacaabacccbaccaab' # generate_random_text(alphabet_size, text_length)
     print(f"Random text: {rand_text}")
 
     # Build both X-ranker and Y-ranker tables
@@ -86,9 +93,11 @@ def main():
         congruence_class
     )
 
-    # Build X-tree and Y-tree
-    x_root = Trees.build_x_tree(ranker, shortlex_pattern, rand_text)
-    y_root = Trees.build_y_tree(ranker, shortlex_pattern, rand_text)
+    # Build and print X-tree
+    x_tree_root = Trees.build_x_tree(ranker, shortlex_pattern, rand_text)
+    print("\nX-Tree:")
+    print_x_tree(x_tree_root)
+
 
 if __name__ == "__main__":
     main()

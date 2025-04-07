@@ -17,7 +17,7 @@ int main() {
     int text_length = 20;
 
     // Generate Random text
-    std::string randText = generateRandomText(alphabetSize, text_length);
+    std::string randText = "eeacccbcbdbebcdcabdc"; // generateRandomText(alphabetSize, text_length);
     std::cout << "Random text: " << randText << "\n";
 
     // Make and build both X-ranker and Y-ranker table
