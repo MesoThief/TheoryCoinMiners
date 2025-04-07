@@ -76,12 +76,13 @@ class HorizontalTreeVisualizer(Scene):
                 x = char_positions[int(node.start) - 1]
             
 
+            sibling_offset = 0.0
+            step = 0.5
             # Draw children
             count = len(node.children)
             for i in range(count):
                 child = node.children[i]
                 print("Printing child", child.start)
-                sibling_offset = 0.5 * (count // 2 - i)
 
                 child_x = char_positions[int(child.start) - 1]
                 child_y = y_offset + sibling_offset
@@ -99,6 +100,12 @@ class HorizontalTreeVisualizer(Scene):
                 arrow = Line(start=group.get_right(), end=parent.get_left(), color=color).add_tip(at_start=False, tip_width=0.2, tip_length=0.2)
                 self.play(Create(arrow), run_time=0.5)
 
+                # Update the sibling offset
+                sibling_offset -= step
+
+                if(sibling_offset == -step * ((count + 1)// 2)):
+                   sibling_offset = step * (count // 2)
+                
                 animate_node(child, depth + 1, child_y)
 
         animate_node(root, 0, initial_y_offset)
