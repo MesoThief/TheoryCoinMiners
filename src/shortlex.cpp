@@ -57,7 +57,7 @@ int main(int argc, char* argv[]) {
     istringstream k_stream(line);
     k_stream >> k;
 
-    int universality_index = calculateUniversalityIndex(w, Alphabet::getInstance().size());
+    int universality_index = calculateUniversalityIndex(w);
     int threshold;
     if (XYorYX == "XY") {
         threshold = k + 2 - universality_index;

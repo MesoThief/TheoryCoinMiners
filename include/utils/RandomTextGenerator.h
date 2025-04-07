@@ -5,5 +5,5 @@
 #include <random>
 #include <stdexcept>
 
-std::string generateRandomText(int alphabetSize, int length);
+std::string generateRandomText(int length);
 #endif // RANDOM_TEXT_GENERATOR_H
