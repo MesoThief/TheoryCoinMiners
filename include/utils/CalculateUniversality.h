@@ -6,12 +6,11 @@
 #include <unordered_map>
 #include <stdexcept>
 
-int calculateUniversalityIndex(const std::string& text, int alphabetSize) {
-    if (alphabetSize < 1 || alphabetSize > 26) {
-        throw std::invalid_argument("Alphabet size must be between 1 and 26.");
-    }
-  
-    const std::string alphabet = "abcdefghijklmnopqrstuvwxyz";
+#include "utils/Alphabet.h"
+
+inline int calculateUniversalityIndex(const std::string& text) {
+    const int alphabetSize = Alphabet::getInstance().size();
+
     std::vector<int> required(alphabetSize, 0);  // target map: needed letters
     std::vector<int> windowCount(alphabetSize, 0);  // current window count
   

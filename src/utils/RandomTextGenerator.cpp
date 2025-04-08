@@ -1,13 +1,9 @@
 #include "utils/RandomTextGenerator.h"
+#include "utils/Alphabet.h"
 
-std::string generateRandomText(int alphabetSize, int length) {
-  const std::string baseAlphabet = "abcdefghijklmnopqrstuvwxyz";
+std::string generateRandomText(int length) {
+  int alphabetSize = Alphabet::getInstance().size();
 
-  if (alphabetSize < 1 || alphabetSize > 26) {
-      throw std::invalid_argument("Alphabet size must be between 1 and 26.");
-  }
-
-  std::string alphabet = baseAlphabet.substr(0, alphabetSize);
   std::string result;
   result.reserve(length);
 
@@ -16,7 +12,7 @@ std::string generateRandomText(int alphabetSize, int length) {
   std::uniform_int_distribution<> dist(0, alphabetSize - 1);
 
   for (int i = 0; i < length; ++i) {
-      result += alphabet[dist(gen)];
+      result += Alphabet::getInstance().indexToChar(dist(gen));
   }
 
   return result;

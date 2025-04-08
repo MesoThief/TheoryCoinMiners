@@ -8,16 +8,18 @@
 #include "data/Ranker.h"
 #include "data/Trees.h"
 
+#include "utils/Alphabet.h"
 #include "utils/RandomTextGenerator.h"
 #include "utils/CalculateUniversality.h"
 
 int main() {
     // Manually set alphabet size and text length
-    int alphabetSize = 5;  // for example: a, b, c, d, e
+    Alphabet::getInstance().setAlphabet("abcde");
+    int alphabetSize = Alphabet::getInstance().size();
     int text_length = 20;
 
     // Generate Random text
-    std::string randText = "eeacccbcbdbebcdcabdc"; // generateRandomText(alphabetSize, text_length);
+    std::string randText = generateRandomText(text_length);
     std::cout << "Random text: " << randText << "\n";
 
     // Make and build both X-ranker and Y-ranker table
@@ -52,10 +54,10 @@ int main() {
     // Generate a random pattern
     int pattern_length = 6;
     int congruence_class = 2;
-    std::string randPattern = generateRandomText(alphabetSize, pattern_length);
+    std::string randPattern = generateRandomText(pattern_length);
 
     // Get universality index of such pattern
-    int universality = calculateUniversalityIndex(randPattern, alphabetSize);
+    int universality = calculateUniversalityIndex(randPattern);
 
     // Make k-class shortlex form of a generated pattern
     ShortlexResult shortlex_pattern = computePartialShortlexNormalForm(
