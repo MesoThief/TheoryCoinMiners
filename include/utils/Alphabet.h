@@ -10,9 +10,9 @@ class Alphabet {
       static Alphabet instance;
       return instance;
     }
-
-    void setAlphabet(string sigma) {
-      alphabet = sigma;
+    
+    void setAlphabet(std::string value) {
+      alphabet = value;
     }
 
     int size() {
