@@ -38,7 +38,7 @@ std::shared_ptr<Node> Trees::buildXTree(const RankerTable& ranker, const Shortle
     // ln 7-21
     int parent; int x_rank; int min_x_rank;
     std::deque<std::set<char>> sp_p;
-    std::set<char> S;
+    std::unordered_map<int, int> r; std::set<char> S;
     char sigma;
     for(int i = 0; i < static_cast<int>(text.size()); i++){
         parent = -1;
@@ -58,8 +58,7 @@ std::shared_ptr<Node> Trees::buildXTree(const RankerTable& ranker, const Shortle
             }
 
             // line 12: T_X(T).r(i) <- i
-            nodes[i] = std::make_shared<Node>(i, i, 0);
-            nodes[i]->r = i;
+            r[i]= i;
 
             // line 13: while s'_p is not empty
             while(!sp_p.empty()){
@@ -69,7 +68,7 @@ std::shared_ptr<Node> Trees::buildXTree(const RankerTable& ranker, const Shortle
                 // line 15: sigma = arg min (R_X(T, r(i), c))
                 min_x_rank = -1;
                 for(char c : S) {
-                    x_rank = ranker.getX(nodes[i]->r, c);
+                    x_rank = ranker.getX(r[i], c);
                     if (min_x_rank == -1 || x_rank < min_x_rank) { 
                         min_x_rank = x_rank;
                         sigma = c;
@@ -77,8 +76,8 @@ std::shared_ptr<Node> Trees::buildXTree(const RankerTable& ranker, const Shortle
                 }
 
                 // line 16: T_X(T).r(i) <- R_X(T, T_X(T).r(i), sigma)
-                nodes[i]->r = ranker.getX(nodes[i]->r, sigma);
-                if (nodes[i]->r == RankerTable::INF) {
+                r[i] = ranker.getX(r[i], sigma);
+                if (r[i] == RankerTable::INF) {
                     sp_p.clear();
                     break;
                 }
@@ -97,16 +96,20 @@ std::shared_ptr<Node> Trees::buildXTree(const RankerTable& ranker, const Shortle
         if(nodes.count(i) != 0){
             nodes[i]->parent = nodes[parent];
             nodes[parent]->children.push_back(nodes[i]);    // line 18: T_X(T).chld(parent) <- [i, i)
+            nodes[i]->r = r[i];
             std::cout << "Set parent of " << i << " to " << parent << std::endl;
         }
     }
 
     // Clean up
-    for(auto pr : nodes){
-        if(pr.second->parent == nullptr && pr.second != root){
-            pr.second->parent = root;
-            root->children.push_back(pr.second);
-            std::cout << "Set parent of " << pr.first << " to " << RankerTable::INF << std::endl;
+    for(auto pair : nodes){
+        int index = pair.first;
+        std::shared_ptr<Node> node = pair.second;
+        if(node->parent == nullptr && node != root){
+            node->parent = root;
+            root->children.push_back(node);
+            node->r = r[index];
+            std::cout << "Set parent of " << pair.first << " to " << RankerTable::INF << std::endl;
         }
     }
 
@@ -149,7 +152,7 @@ std::shared_ptr<Node> Trees::buildYTree(const RankerTable& ranker, const Shortle
     // ln 7-21
     int parent; int y_rank; int max_y_rank;
     std::vector<std::set<char>> sp_p;
-    std::set<char> S;
+    std::unordered_map<int, int> r; std::set<char> S;
     unsigned char sigma;
     for(int i = static_cast<int>(text.size()); i > 0; i--){
         parent = RankerTable::INF;
@@ -171,8 +174,7 @@ std::shared_ptr<Node> Trees::buildYTree(const RankerTable& ranker, const Shortle
             }
 
             // line 12: T_Y(T).r(i) <- i
-            nodes[i] = std::make_shared<Node>(i, i, 0);
-            nodes[i]->r = i;
+            r[i] = i;
 
             // line 13: while s'_p is not empty
             while(!sp_p.empty()){
@@ -182,7 +184,7 @@ std::shared_ptr<Node> Trees::buildYTree(const RankerTable& ranker, const Shortle
                 // line 15: sigma = arg min (R_X(T, r(i), c))
                 max_y_rank = RankerTable::INF;
                 for(char c : S) {
-                    y_rank = ranker.getY(nodes[i]->r, c);
+                    y_rank = ranker.getY(r[i], c);
                     if (max_y_rank == RankerTable::INF || y_rank > max_y_rank) {
                         max_y_rank = y_rank;
                         sigma = c;
@@ -190,8 +192,8 @@ std::shared_ptr<Node> Trees::buildYTree(const RankerTable& ranker, const Shortle
                 }
 
                 // line 16: T_Y(T).r(i) <- R_Y(T, T_Y(T).r(i), sigma)
-                nodes[i]->r = ranker.getY(nodes[i]->r, sigma);
-                if (nodes[i]->r < 0) {
+                r[i] = ranker.getY(r[i], sigma);
+                if (r[i] < 0) {
                     sp_p.clear();
                     break;
                 }
@@ -210,16 +212,20 @@ std::shared_ptr<Node> Trees::buildYTree(const RankerTable& ranker, const Shortle
         if(nodes.count(i) != 0){
             nodes[i]->parent = nodes[parent];
             nodes[parent]->children.push_back(nodes[i]);    // line 18: T_Y(T).chld(parent) <- [i, i)
+            nodes[i]->r = r[i];
             std::cout << "Set parent of " << i << " to " << parent << std::endl;
         }
     }
 
     // Clean up
-    for(auto pr : nodes){
-        if(pr.second->parent == nullptr && pr.second != root){
-            pr.second->parent = root;
-            root->children.push_back(pr.second);
-            std::cout << "Set parent of " << pr.first << " to -1" << std::endl;
+    for(auto pair : nodes){
+        int index = pair.first;
+        std::shared_ptr<Node> node = pair.second;
+        if(node->parent == nullptr && node != root){
+            node->parent = root;
+            root->children.push_back(node);
+            node->r = r[index];
+            std::cout << "Set parent of " << pair.first << " to -1" << std::endl;
         }
     }
 
