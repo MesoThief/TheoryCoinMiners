@@ -34,3 +34,10 @@
 .vscode
 .idea
 /bin
+
+__pycache__/
+.python-version
+
+animations/media/images/*
+animations/media/texts/*
+animations/media/videos/*
