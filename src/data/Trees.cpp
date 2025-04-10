@@ -87,7 +87,7 @@ std::shared_ptr<Node> Trees::buildXTree(const RankerTable& ranker, const Shortle
         if(pr.second->parent == nullptr && pr.second != root){
             pr.second->parent = root;
             root->children.push_back(pr.second);
-            std::cout << "Set parent of " << pr.first << " to root" << std::endl;
+            std::cout << "Set parent of " << pr.first << " to " << std::numeric_limits<int>::max() << std::endl;
         }
     }
 
@@ -180,10 +180,10 @@ std::shared_ptr<Node> Trees::buildYTree(const RankerTable& ranker, const Shortle
         if(pr.second->parent == nullptr && pr.second != root){
             pr.second->parent = root;
             root->children.push_back(pr.second);
-            std::cout << "Set parent of " << pr.first << " to root" << std::endl;
+            std::cout << "Set parent of " << pr.first << " to -1" << std::endl;
         }
     }
 
-    std::cout << "End of X-tree construction\n\n"; // Double lb is intended
+    std::cout << "End of Y-tree construction\n\n"; // Double lb is intended
     return root;
 }
