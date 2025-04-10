@@ -64,7 +64,7 @@ int main() {
         randPattern,
         vector<int>(alphabetSize, 1),
         vector<int>(alphabetSize, 1),
-        congruence_class
+        congruence_class + 1
     );
 
     // Build X-tree
