@@ -1,7 +1,10 @@
 #include "data/Node.h"
 
-Node::Node(int s, int e, int d, std::shared_ptr<Node> p)
-    : start(s), end(e), depth(d), parent(p) {}
+Node::Node(int start,int end,int depth)
+    : start(start), end(end), depth(depth) {}
+
+Node::Node(int start,int end,int depth, std::shared_ptr<Node> parent)
+    : start(start), end(end), depth(depth), parent(parent) {}
 
 bool Node::isRoot() const {
     return parent == nullptr;
@@ -9,8 +12,4 @@ bool Node::isRoot() const {
 
 bool Node::isLeaf() const {
     return children.empty();
-}
-
-Node::Node(std::shared_ptr<Node> sharedPtr) {
-
 }

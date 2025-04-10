@@ -6,15 +6,17 @@
 #include <memory>
 
 struct Node {
-    Node(std::shared_ptr<Node> sharedPtr);
-
-    int start, end;
+    int start;
+    int end;
     int depth;
-    std::shared_ptr<Node> parent;
+    int r = 0;
+    std::shared_ptr<Node> parent = nullptr;
     std::vector<std::shared_ptr<Node>> children;
 
-    Node(int s, int e, int d, std::shared_ptr<Node> p = nullptr);
+    Node(int start, int end, int depth);
+    Node(int start, int end, int depth, std::shared_ptr<Node> parent);
 
+    
     bool isRoot() const;
     bool isLeaf() const;
 };
