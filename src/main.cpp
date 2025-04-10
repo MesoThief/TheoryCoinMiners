@@ -23,7 +23,7 @@ int main() {
     std::cout << "Random text: " << randText << "\n";
 
     // Make and build both X-ranker and Y-ranker table
-    RankerTable ranker(randText, alphabetSize);
+    RankerTable ranker(randText);
     ranker.buildXRankerTable();
     ranker.buildYRankerTable();
 
@@ -31,7 +31,7 @@ int main() {
     // You can comment-out these loops
     std::cout << "\nX-ranker (next position +1 for each char):\n";
     for (int i = 0; i <= text_length; ++i) {
-        for (char c = 'a'; c < 'a' + alphabetSize; ++c) {
+        for (char c : Alphabet::getInstance().getAlphabet()) {
             int result = ranker.getX(i, c);
             std::cout << "X(" << i << ", " << c << ") = ";
             if (result == RankerTable::INF) std::cout << "INF";
@@ -43,7 +43,7 @@ int main() {
 
     std::cout << "\nY-ranker (previous position for each char):\n";
     for (int i = 0; i <= text_length; ++i) {
-        for (char c = 'a'; c < 'a' + alphabetSize; ++c) {
+        for (char c : Alphabet::getInstance().getAlphabet()) {
             int result = ranker.getY(i, c);
             std::cout << "Y(" << i << ", " << c << ") = ";
             std::cout << result << "\t";

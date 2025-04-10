@@ -56,7 +56,7 @@ int main(int argc, char* argv[]) {
     istringstream k_stream(line);
     k_stream >> k;
     
-    RankerTable rankers = RankerTable(t, Alphabet::getInstance().size());
+    RankerTable rankers = RankerTable(t);
     rankers.buildXRankerTable();
     rankers.buildYRankerTable();
 

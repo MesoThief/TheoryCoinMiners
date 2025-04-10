@@ -21,7 +21,7 @@ inline int calculateUniversalityIndex(const std::string& text) {
   
     for (int right = 0; right < n; ++right) {
         char c = text[right];
-        int idx = c - 'a';
+        int idx = Alphabet::getInstance().charToIndex(c);
   
         // expand window
         if (windowCount[idx] == 0) {

@@ -10,6 +10,10 @@ class Alphabet {
       static Alphabet instance;
       return instance;
     }
+
+    std::string getAlphabet() {
+      return alphabet;
+    }
     
     void setAlphabet(std::string value) {
       alphabet = value;

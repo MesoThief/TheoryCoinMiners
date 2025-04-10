@@ -9,7 +9,7 @@ class RankerTable {
 public:
     static const int INF;
 
-    RankerTable(const std::string& text, int alphabetSize);
+    RankerTable(const std::string& text);
 
     void buildXRankerTable();
     void buildYRankerTable();
@@ -19,11 +19,8 @@ public:
 
 private:
     std::string text;
-    int alphabetSize;
-    std::unordered_map<char, int> charToIndexMap;
     std::vector<std::vector<int> > xTable; // [index][char]
     std::vector<std::vector<int> > yTable; // [index][char]
-    int charToIndex(char c) const;
 };
 
 #endif // RANKER_H
