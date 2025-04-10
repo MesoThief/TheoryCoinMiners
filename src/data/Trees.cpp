@@ -36,48 +36,64 @@ std::shared_ptr<Node> Trees::buildXTree(const RankerTable& ranker, const Shortle
     }
 
     // ln 7-21
-    int parent; int x_rnk; int min_x_rnk;
+    int parent; int x_rank; int min_x_rank;
     std::deque<std::set<char>> sp_p;
-    std::unordered_map<int, int> r;
     std::set<char> S;
-    char sig;
+    char sigma;
     for(int i = 0; i < static_cast<int>(text.size()); i++){
         parent = -69;
-        for(auto a : shortlex.alphabet){
-            x_rnk = ranker.getX(i, a);
-            if(x_rnk > parent) parent = x_rnk;
+        for(char a : shortlex.alphabet){
+            x_rank = ranker.getX(i, a);
+            if(x_rank > parent) parent = x_rank;
         }
 
         // ln 9-18
-        if(nodes.count(parent) == 0){
-            nodes.insert({{parent, std::make_shared<Node>(parent, parent, 0)}});
+        if(nodes.count(parent) == 0) {
+            nodes[parent] = std::make_shared<Node>(parent, parent, 0);
             std::cout << "Generate new node " << parent << std::endl;
 
-            // Copy out s_p (ln 11)
-            for(int j = 0; j < s_p.size(); j++){
-                s = s_p.at(j);
-                sp_p.push_back(s);
+            // line 11: s'_p <- copy(s_p)
+            for(auto entry = s_p.begin(); entry != s_p.end(); entry++){
+                sp_p.push_back(*entry);
             }
 
-            r.insert({{i, i}});
-            while(!sp_p.empty()){ // ln 13-17
+            // line 12: T_X(T).r(i) <- i
+            nodes[i]->r = i;
+
+             // line 13: while s'_p is not empty
+            while(!sp_p.empty()){
+                // line 14: S <- peek(s'_p)
                 S = sp_p.back();
-                min_x_rnk = -69;
-                for(auto c : S){
-                    x_rnk = ranker.getX(r.find(i)->second, c);
-                    if(min_x_rnk == -69 || x_rnk < min_x_rnk){ min_x_rnk = x_rnk; sig = c; }
+
+                // line 15: sigma = arg min (R_X(T, r(i), c))
+                min_x_rank = -1;
+                for(char c : S){
+                    x_rank = ranker.getX(nodes[i]->r, c);
+                    if (min_x_rank == -1 || x_rank < min_x_rank) { 
+                        min_x_rank = x_rank;
+                        sigma = c;
+                    }
                 }
-                r.find(i)->second = ranker.getX(r.find(i)->second, sig);
-                sp_p.back().erase(sig);
-                if(sp_p.back().empty()){ sp_p.pop_back(); }
+
+                // line 16: T_X(T).r(i) <- R_X(T, T_X(T).r(i), sigma)
+                nodes[i]->r = ranker.getX(nodes[i]->r, sigma);
+                if (nodes[i]->r == RankerTable::INF) {
+                    break;
+                }
+
+                // line 17: pop sigma from s'_p
+                sp_p.back().erase(sigma);
+                if (sp_p.back().empty()) {
+                    sp_p.pop_back();
+                }
             }
 
             // T_X(`T`).`chld`(parent) <- [i, i)
         }
         // extend end point of T_X(`T`).`chld`(parent) by one
         if(nodes.count(i) != 0){
-            nodes.find(i)->second->parent = nodes.find(parent)->second;
-            nodes.find(parent)->second->children.push_back(nodes.find(i)->second);
+            nodes[i]->parent = nodes[parent];
+            nodes[parent]->children.push_back(nodes[i]);
             std::cout << "Set parent of " << i << " to " << parent << std::endl;
         }
     }
@@ -161,13 +177,17 @@ std::shared_ptr<Node> Trees::buildYTree(const RankerTable& ranker, const Shortle
                     if(max_y_rnk == std::numeric_limits<int>::max() || y_rnk > max_y_rnk){ max_y_rnk = y_rnk; sig = c; }
                 }
                 r.find(i)->second = ranker.getY(r.find(i)->second, sig);
+                if (r[i] < 0) {
+                    break;
+                }
+
                 sp_p.back().erase(sig);
                 if(sp_p.back().empty()){ sp_p.pop_back(); }
             }
 
-            // T_X(`T`).`chld`(parent) <- [i, i)
+            // T_Y(`T`).`chld`(parent) <- [i, i)
         }
-        // extend end point of T_X(`T`).`chld`(parent) by one
+        // extend end point of T_Y(`T`).`chld`(parent) by one
         if(nodes.count(i) != 0){
             nodes.find(i)->second->parent = nodes.find(parent)->second;
             nodes.find(parent)->second->children.push_back(nodes.find(i)->second);

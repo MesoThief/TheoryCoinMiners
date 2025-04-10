@@ -55,6 +55,9 @@ int main(int argc, char* argv[]) {
     getline(inputFile, line);
     istringstream k_stream(line);
     k_stream >> k;
+
+    cout << "t: " << t << endl;
+    cout << "p: " << p << endl;
     
     RankerTable rankers = RankerTable(t);
     rankers.buildXRankerTable();
