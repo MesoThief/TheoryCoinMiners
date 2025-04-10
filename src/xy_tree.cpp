@@ -60,15 +60,15 @@ int main(int argc, char* argv[]) {
     rankers.buildXRankerTable();
     rankers.buildYRankerTable();
 
-    ShortlexResult shortlex = computePartialShortlexNormalForm(
+    ShortlexResult pattern_shortlex = computePartialShortlexNormalForm(
         p,
         vector<int>(Alphabet::getInstance().size(), 1),
         vector<int>(Alphabet::getInstance().size() ,1),
-        k
+        k + 1
     );
 
-    shared_ptr<Node> T_X = Trees::buildXTree(rankers, shortlex, t);
-    shared_ptr<Node> T_Y = Trees::buildYTree(rankers, shortlex, t);
+    shared_ptr<Node> T_X = Trees::buildXTree(rankers, pattern_shortlex, t);
+    shared_ptr<Node> T_Y = Trees::buildYTree(rankers, pattern_shortlex, t);
 
     printTree(T_X, t);
     printTree(T_Y, t);
