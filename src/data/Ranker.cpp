@@ -3,8 +3,7 @@
 
 #include "data/Ranker.h"
 #include "utils/Alphabet.h"
-
-const int RankerTable::INF = std::numeric_limits<int>::max();
+#include "utils/Common.h"
 
 RankerTable::RankerTable(const std::string& text) : text(text) {
     int n = text.size();

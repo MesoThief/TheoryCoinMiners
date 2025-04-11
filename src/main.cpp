@@ -10,6 +10,7 @@
 #include "utils/Alphabet.h"
 #include "utils/RandomTextGenerator.h"
 #include "utils/CalculateUniversality.h"
+#include "utils/Common.h"
 
 int main() {
     // Manually set alphabet size and text length
@@ -50,7 +51,7 @@ int main() {
         for (char c : Alphabet::getInstance().getAlphabet()) {
             int result = ranker.getX(i, c);
             std::cout << "X(" << i << ", " << c << ") = ";
-            if (result == RankerTable::INF) std::cout << "INF";
+            if (result == INF) std::cout << "INF";
             else std::cout << result;
             std::cout << "\t";
         }

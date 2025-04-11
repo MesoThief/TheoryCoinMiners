@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "data/XYTree.h"
+#include "utils/Common.h"
 
 using namespace std;
 using namespace XYTree;
@@ -17,9 +18,9 @@ Node::Node(int index, shared_ptr<Node> parent) : index(index), parent(parent) {}
  * @return `shared_ptr<Node>` Root of the tree.
  */
 shared_ptr<Node> XYTree::buildXTree(const RankerTable& ranker, const ShortlexResult& shortlex, const string& text) {
-    shared_ptr<Node> root = make_shared<Node>(RankerTable::INF);
+    shared_ptr<Node> root = make_shared<Node>(INF);
     unordered_map<int, shared_ptr<Node>> nodes;
-    nodes[RankerTable::INF] = root;
+    nodes[INF] = root;
     
     cout << "Building X-tree...\n";
 
@@ -87,7 +88,7 @@ shared_ptr<Node> XYTree::buildXTree(const RankerTable& ranker, const ShortlexRes
 
                 // line 16: T_X(T).r(parent) <- R_X(T, T_X(T).r(parent), sigma)
                 parent_node->r = ranker.getX(parent_node->r, sigma);
-                if (parent_node->r == RankerTable::INF) {
+                if (parent_node->r == INF) {
                     break;
                 }
 
@@ -116,7 +117,7 @@ shared_ptr<Node> XYTree::buildXTree(const RankerTable& ranker, const ShortlexRes
         if(node->parent == nullptr && node != root){
             node->parent = root;
             root->children.push_back(node);
-            cout << "Set parent of " << index << " to " << RankerTable::INF << endl;
+            cout << "Set parent of " << index << " to " << INF << endl;
         }
     }
 
@@ -159,12 +160,12 @@ shared_ptr<Node> XYTree::buildYTree(const RankerTable& ranker, const ShortlexRes
     // ln 7-21
     int parent;
     int y_rank;
-    int max_y_rank = RankerTable::INF;
+    int max_y_rank = INF;
     vector<set<char>> sp_p;
     set<char> S;
     char sigma;
     for(int i = static_cast<int>(text.size()); i > 0; i--){
-        parent = RankerTable::INF;
+        parent = INF;
         for(auto a : shortlex.alphabet){
             y_rank = ranker.getY(i, a);
             if(y_rank < parent) parent = y_rank;
@@ -193,10 +194,10 @@ shared_ptr<Node> XYTree::buildYTree(const RankerTable& ranker, const ShortlexRes
                 S = sp_p.back();
 
                 // line 15: sigma = arg min (R_Y(T, r(i), c))
-                max_y_rank = RankerTable::INF;
+                max_y_rank = INF;
                 for(char c : S) {
                     y_rank = ranker.getY(parent_node->r, c);
-                    if (max_y_rank == RankerTable::INF || y_rank > max_y_rank) {
+                    if (max_y_rank == INF || y_rank > max_y_rank) {
                         max_y_rank = y_rank;
                         sigma = c;
                     }

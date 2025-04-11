@@ -7,8 +7,6 @@
 
 class RankerTable {
 public:
-    static const int INF;
-
     RankerTable(const std::string& text);
 
     void buildXRankerTable();
