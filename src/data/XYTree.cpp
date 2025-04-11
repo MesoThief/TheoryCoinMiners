@@ -1,6 +1,13 @@
 #include <iostream>
 
-#include "data/Trees.h"
+#include "data/XYTree.h"
+#include "utils/Common.h"
+
+using namespace std;
+using namespace XYTree;
+
+Node::Node(int index) : index(index) {}
+Node::Node(int index, shared_ptr<Node> parent) : index(index), parent(parent) {}
 
 /**
  * @brief X-Tree Construction given precomputed components.
@@ -8,18 +15,18 @@
  * @param ranker Prebuilt ranker table
  * @param shortlex Precomputed `ShortlexResult` of a pattern string
  * @param text Text.
- * @return `std::shared_ptr<Node>` Root of the tree.
+ * @return `shared_ptr<Node>` Root of the tree.
  */
-std::shared_ptr<Node> Trees::buildXTree(const RankerTable& ranker, const ShortlexResult& shortlex, const std::string& text) {
-    std::shared_ptr<Node> root = std::make_shared<Node>(RankerTable::INF, RankerTable::INF, 0);
-    std::unordered_map<int, std::shared_ptr<Node>> nodes;
-    nodes[RankerTable::INF] = root;
+shared_ptr<Node> XYTree::buildXTree(const RankerTable& ranker, const ShortlexResult& shortlex, const string& text) {
+    shared_ptr<Node> root = make_shared<Node>(INF);
+    unordered_map<int, shared_ptr<Node>> nodes;
+    nodes[INF] = root;
     
-    std::cout << "Building X-tree...\n";
+    cout << "Building X-tree...\n";
 
     // Copy out s_p
-    std::deque<std::set<char>> s_p;
-    std::set<char> s;
+    deque<set<char>> s_p;
+    set<char> s;
     for(int i = 0; i < shortlex.stackForm.size(); i++){
         s = shortlex.stackForm.at(i);
         s_p.push_back(s);
@@ -39,8 +46,8 @@ std::shared_ptr<Node> Trees::buildXTree(const RankerTable& ranker, const Shortle
     int parent;
     int x_rank;
     int min_x_rank = -1;
-    std::deque<std::set<char>> sp_p;
-    std::set<char> S;
+    deque<set<char>> sp_p;
+    set<char> S;
     char sigma;
     for(int i = 0; i < static_cast<int>(text.size()); i++){
         parent = -1;
@@ -51,9 +58,9 @@ std::shared_ptr<Node> Trees::buildXTree(const RankerTable& ranker, const Shortle
 
         // ln 9-18
         if(nodes.count(parent) == 0) {
-            shared_ptr<Node> parent_node = std::make_shared<Node>(parent, parent, 0);
+            shared_ptr<Node> parent_node = make_shared<Node>(parent);
             nodes[parent] = parent_node;
-            std::cout << "Generate new node " << parent << std::endl;
+            cout << "Generate new node " << parent << endl;
 
             // line 11: s'_p <- copy(s_p)
             sp_p.clear();
@@ -81,7 +88,7 @@ std::shared_ptr<Node> Trees::buildXTree(const RankerTable& ranker, const Shortle
 
                 // line 16: T_X(T).r(parent) <- R_X(T, T_X(T).r(parent), sigma)
                 parent_node->r = ranker.getX(parent_node->r, sigma);
-                if (parent_node->r == RankerTable::INF) {
+                if (parent_node->r == INF) {
                     break;
                 }
 
@@ -99,22 +106,22 @@ std::shared_ptr<Node> Trees::buildXTree(const RankerTable& ranker, const Shortle
         if(nodes.count(i) != 0){
             nodes[i]->parent = nodes[parent];
             nodes[parent]->children.push_back(nodes[i]);    // line 18: T_X(T).chld(parent) <- [i, i)
-            std::cout << "Set parent of " << i << " to " << parent << std::endl;
+            cout << "Set parent of " << i << " to " << parent << endl;
         }
     }
 
     // Clean up
     for(auto pair : nodes){
         int index = pair.first;
-        std::shared_ptr<Node> node = pair.second;
+        shared_ptr<Node> node = pair.second;
         if(node->parent == nullptr && node != root){
             node->parent = root;
             root->children.push_back(node);
-            std::cout << "Set parent of " << index << " to " << RankerTable::INF << std::endl;
+            cout << "Set parent of " << index << " to " << INF << endl;
         }
     }
 
-    std::cout << "End of X-tree construction\n\n"; // Double lb is intended
+    cout << "End of X-tree construction\n\n"; // Double lb is intended
     return root;
 }
 
@@ -124,17 +131,17 @@ std::shared_ptr<Node> Trees::buildXTree(const RankerTable& ranker, const Shortle
  * @param ranker Prebuilt ranker table
  * @param shortlex Precomputed `ShortlexResult` of a pattern string
  * @param text Text.
- * @return `std::shared_ptr<Node>` Root of the tree.
+ * @return `shared_ptr<Node>` Root of the tree.
  */
-std::shared_ptr<Node> Trees::buildYTree(const RankerTable& ranker, const ShortlexResult& shortlex, const std::string& text) {
-    std::shared_ptr<Node> root = std::make_shared<Node>(-1, -1, 0);
-    std::unordered_map<int, std::shared_ptr<Node>> nodes;
+shared_ptr<Node> XYTree::buildYTree(const RankerTable& ranker, const ShortlexResult& shortlex, const string& text) {
+    shared_ptr<Node> root = make_shared<Node>(-1);
+    unordered_map<int, shared_ptr<Node>> nodes;
     nodes[-1] = root;
     
-    std::cout << "Building Y-tree...\n";
+    cout << "Building Y-tree...\n";
 
     // Copy out s_p (in reverse order) << not sure if reversing is mandatory
-    std::vector<std::set<char>> s_p; std::set<char> s;
+    vector<set<char>> s_p; set<char> s;
     for(int i = 0; i < shortlex.stackForm.size(); i++){
         s = shortlex.stackForm.at(shortlex.stackForm.size() - i - 1);
         s_p.push_back(s);
@@ -153,12 +160,12 @@ std::shared_ptr<Node> Trees::buildYTree(const RankerTable& ranker, const Shortle
     // ln 7-21
     int parent;
     int y_rank;
-    int max_y_rank = RankerTable::INF;
-    std::vector<std::set<char>> sp_p;
-    std::set<char> S;
+    int max_y_rank = INF;
+    vector<set<char>> sp_p;
+    set<char> S;
     char sigma;
     for(int i = static_cast<int>(text.size()); i > 0; i--){
-        parent = RankerTable::INF;
+        parent = INF;
         for(auto a : shortlex.alphabet){
             y_rank = ranker.getY(i, a);
             if(y_rank < parent) parent = y_rank;
@@ -168,9 +175,9 @@ std::shared_ptr<Node> Trees::buildYTree(const RankerTable& ranker, const Shortle
 
         // ln 9-18
         if(nodes.count(parent) == 0){
-            shared_ptr<Node> parent_node = std::make_shared<Node>(parent, parent, 0);
+            shared_ptr<Node> parent_node = make_shared<Node>(parent);
             nodes[parent] = parent_node;
-            std::cout << "Generate new node " << parent << std::endl;
+            cout << "Generate new node " << parent << endl;
 
             // line 11: s'_p <- copy(s_p)
             sp_p.clear();
@@ -187,10 +194,10 @@ std::shared_ptr<Node> Trees::buildYTree(const RankerTable& ranker, const Shortle
                 S = sp_p.back();
 
                 // line 15: sigma = arg min (R_Y(T, r(i), c))
-                max_y_rank = RankerTable::INF;
+                max_y_rank = INF;
                 for(char c : S) {
                     y_rank = ranker.getY(parent_node->r, c);
-                    if (max_y_rank == RankerTable::INF || y_rank > max_y_rank) {
+                    if (max_y_rank == INF || y_rank > max_y_rank) {
                         max_y_rank = y_rank;
                         sigma = c;
                     }
@@ -216,21 +223,21 @@ std::shared_ptr<Node> Trees::buildYTree(const RankerTable& ranker, const Shortle
         if(nodes.count(i) != 0){
             nodes[i]->parent = nodes[parent];
             nodes[parent]->children.push_back(nodes[i]);    // line 18: T_Y(T).chld(parent) <- [i, i)
-            std::cout << "Set parent of " << i << " to " << parent << std::endl;
+            cout << "Set parent of " << i << " to " << parent << endl;
         }
     }
 
     // Clean up
     for(auto pair : nodes){
         int index = pair.first;
-        std::shared_ptr<Node> node = pair.second;
+        shared_ptr<Node> node = pair.second;
         if(node->parent == nullptr && node != root){
             node->parent = root;
             root->children.push_back(node);
-            std::cout << "Set parent of " << index << " to -1" << std::endl;
+            cout << "Set parent of " << index << " to -1" << endl;
         }
     }
 
-    std::cout << "End of Y-tree construction\n\n"; // Double lb is intended
+    cout << "End of Y-tree construction\n\n"; // Double lb is intended
     return root;
 }
