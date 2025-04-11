@@ -109,7 +109,7 @@ std::shared_ptr<Node> Trees::buildXTree(const RankerTable& ranker, const Shortle
             node->parent = root;
             root->children.push_back(node);
             node->r = r[index];
-            std::cout << "Set parent of " << pair.first << " to " << RankerTable::INF << std::endl;
+            std::cout << "Set parent of " << index << " to " << RankerTable::INF << std::endl;
         }
     }
 
@@ -225,7 +225,7 @@ std::shared_ptr<Node> Trees::buildYTree(const RankerTable& ranker, const Shortle
             node->parent = root;
             root->children.push_back(node);
             node->r = r[index];
-            std::cout << "Set parent of " << pair.first << " to -1" << std::endl;
+            std::cout << "Set parent of " << index << " to -1" << std::endl;
         }
     }
 
