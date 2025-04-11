@@ -20,7 +20,24 @@ int main() {
 
     // Generate Random text
     std::string randText = generateRandomText(text_length);
-    std::cout << "Random text: " << randText << "\n";
+    std::cout << "Random text: " << randText << std::endl;
+
+    // Generate a random pattern
+    int pattern_length = 6;
+    int k = 2;
+    std::string randPattern = generateRandomText(pattern_length);
+    std::cout << "Random patter: " << randPattern << std::endl;
+
+    // Get universality index of such pattern
+    int universality = calculateUniversalityIndex(randPattern);
+
+    // Make k-class shortlex form of a generated pattern
+    ShortlexResult pattern_shortlex = computePartialShortlexNormalForm(
+        randPattern,
+        vector<int>(alphabetSize, 1),
+        vector<int>(alphabetSize, 1),
+        k + 1
+    );
 
     // Make and build both X-ranker and Y-ranker table
     RankerTable ranker(randText);
@@ -51,27 +68,11 @@ int main() {
         std::cout << "\n";
     }
 
-    // Generate a random pattern
-    int pattern_length = 6;
-    int congruence_class = 2;
-    std::string randPattern = generateRandomText(pattern_length);
-
-    // Get universality index of such pattern
-    int universality = calculateUniversalityIndex(randPattern);
-
-    // Make k-class shortlex form of a generated pattern
-    ShortlexResult shortlex_pattern = computePartialShortlexNormalForm(
-        randPattern,
-        vector<int>(alphabetSize, 1),
-        vector<int>(alphabetSize, 1),
-        congruence_class + 1
-    );
-
     // Build X-tree
-    Node xRoot = Trees::buildXTree(ranker, shortlex_pattern, randText);
+    Node xRoot = *Trees::buildXTree(ranker, pattern_shortlex, randText);
 
     // Build Y-tree
-    Node yRoot = Trees::buildYTree(ranker, shortlex_pattern, randText);
+    Node yRoot = *Trees::buildYTree(ranker, pattern_shortlex, randText);
     
     return 0;
 }

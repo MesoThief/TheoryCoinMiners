@@ -13,7 +13,7 @@ void printTree(const shared_ptr<Node>& node, const string& w, string indent = ""
         cout << indent;
         if (depth > 0) cout << (isLast ? "└── " : "├── ");
         int position = node->start;
-        cout << position << "\n";
+        cout << position << "(r=" << node->r << ")" << "\n";
         indent += (isLast ? "    " : "│   ");
     }
     for (size_t i = 0; i < node->children.size(); ++i) {
@@ -55,6 +55,9 @@ int main(int argc, char* argv[]) {
     getline(inputFile, line);
     istringstream k_stream(line);
     k_stream >> k;
+
+    cout << "t: " << t << endl;
+    cout << "p: " << p << endl;
     
     RankerTable rankers = RankerTable(t);
     rankers.buildXRankerTable();
