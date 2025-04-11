@@ -181,7 +181,7 @@ std::shared_ptr<Node> Trees::buildYTree(const RankerTable& ranker, const Shortle
                 // line 14: S <- peek(s'_p)
                 S = sp_p.back();
 
-                // line 15: sigma = arg min (R_X(T, r(i), c))
+                // line 15: sigma = arg min (R_Y(T, r(i), c))
                 max_y_rank = RankerTable::INF;
                 for(char c : S) {
                     y_rank = ranker.getY(r[i], c);
