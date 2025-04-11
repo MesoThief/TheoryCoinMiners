@@ -2,17 +2,18 @@
 #include <fstream>
 #include <sstream>
 
-#include "data/Trees.h"
+#include "data/XYTree.h"
 #include "utils/Alphabet.h"
 
 using namespace std;
+using namespace XYTree;
 
 // -------------------- Print Tree --------------------
 void printTree(const shared_ptr<Node>& node, const string& w, string indent = "", bool isLast = true, int depth = 0) {
     if (true) {
         cout << indent;
         if (depth > 0) cout << (isLast ? "└── " : "├── ");
-        int position = node->start;
+        int position = node->index;
         cout << position << "(r=" << node->r << ")" << "\n";
         indent += (isLast ? "    " : "│   ");
     }
@@ -70,8 +71,8 @@ int main(int argc, char* argv[]) {
         k + 1
     );
 
-    shared_ptr<Node> T_X = Trees::buildXTree(rankers, pattern_shortlex, t);
-    shared_ptr<Node> T_Y = Trees::buildYTree(rankers, pattern_shortlex, t);
+    shared_ptr<Node> T_X = buildXTree(rankers, pattern_shortlex, t);
+    shared_ptr<Node> T_Y = buildYTree(rankers, pattern_shortlex, t);
 
     printTree(T_X, t);
     printTree(T_Y, t);

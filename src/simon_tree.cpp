@@ -2,6 +2,8 @@
 
 #include "data/SimonTree.h"
 
+using namespace SimonTree;
+
 // ------------------
 // A simple test driver for SimonTree.cpp
 // ------------------

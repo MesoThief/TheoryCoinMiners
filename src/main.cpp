@@ -4,9 +4,8 @@
 #include <iostream>
 #include <vector>
 
-#include "data/Node.h"
 #include "data/Ranker.h"
-#include "data/Trees.h"
+#include "data/XYTree.h"
 
 #include "utils/Alphabet.h"
 #include "utils/RandomTextGenerator.h"
@@ -69,10 +68,10 @@ int main() {
     }
 
     // Build X-tree
-    Node xRoot = *Trees::buildXTree(ranker, pattern_shortlex, randText);
+    XYTree::Node xRoot = *XYTree::buildXTree(ranker, pattern_shortlex, randText);
 
     // Build Y-tree
-    Node yRoot = *Trees::buildYTree(ranker, pattern_shortlex, randText);
+    XYTree::Node yRoot = *XYTree::buildYTree(ranker, pattern_shortlex, randText);
     
     return 0;
 }
