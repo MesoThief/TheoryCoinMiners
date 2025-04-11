@@ -28,6 +28,13 @@ def print_x_tree(node, depth=0):
     for child in node.children:
         print_x_tree(child, depth + 1)
 
+def print_y_tree(node, depth=0):
+    indent = "  " * depth
+    label = f"Node({node.start}, {node.end})"
+    print(f"{indent}- {label}")
+    for child in node.children:
+        print_y_tree(child, depth + 1)
+
 def main():
     # Set alphabet size and text length
     alphabet_size = 3
@@ -43,21 +50,21 @@ def main():
     ranker.build_y_ranker_table()
 
     # Load C++ X-ranker block from file
-    with open("./animations/check_x_ranker.txt", "r") as f:
+    with open("check_x_ranker.txt", "r") as f:
         cpp_x_ranker = f.read().strip()
 
     # Generate Python X-ranker block
     py_x_ranker = format_x_ranker_output(ranker, len(rand_text), alphabet_size)
 
     # Optional: write to file for debugging/diffing
-    with open("./animations/py_x_ranker.txt", "w") as f:
+    with open("py_x_ranker.txt", "w") as f:
         f.write(py_x_ranker)
 
     # Compare and assert
     if cpp_x_ranker == py_x_ranker:
-        print("✅ X-ranker output matches exactly with C++.")
+        print("X-ranker output matches exactly with C++.")
     else:
-        print("❌ X-ranker mismatch detected!")
+        print("X-ranker mismatch detected!")
         print("Check /animations/py_x_ranker.txt for the generated Python output.")
 
     # Display X-ranker table
@@ -97,6 +104,11 @@ def main():
     x_tree_root = Trees.build_x_tree(ranker, shortlex_pattern, rand_text)
     print("\nX-Tree:")
     print_x_tree(x_tree_root)
+
+    # Build and print Y-tree
+    y_tree_root = Trees.build_y_tree(ranker, shortlex_pattern, rand_text)
+    print("\nY-Tree:")
+    print_y_tree(y_tree_root)
 
 
 if __name__ == "__main__":
