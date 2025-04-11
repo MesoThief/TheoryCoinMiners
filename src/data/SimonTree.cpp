@@ -6,9 +6,24 @@
 #include "data/SimonTree.h"
 
 using namespace std;
+using namespace SimonTree;
+
+Node::Node(int start, int end, int depth)
+    : start(start), end(end), depth(depth) {}
+
+Node::Node(int start, int end, int depth, std::shared_ptr<Node> parent)
+    : start(start), end(end), depth(depth), parent(parent) {}
+
+bool Node::isRoot() const {
+    return parent == nullptr;
+}
+
+bool Node::isLeaf() const {
+    return children.empty();
+}
 
 // -------------------- Compute X[i] --------------------
-vector<int> computeX(const string& w) {
+vector<int> SimonTree::computeX(const string& w) {
     int n = w.size();
     vector<int> X(n + 2, n + 1);  // 1-based, X[n+1] = ∞
     unordered_map<char, int> lastSeen;
@@ -25,7 +40,7 @@ vector<int> computeX(const string& w) {
 }
 
 // -------------------- Find Node (Algorithm 2) --------------------
-shared_ptr<Node> findNode(int i, const vector<int>& X, shared_ptr<Node> a) {
+shared_ptr<Node> SimonTree::findNode(int i, const vector<int>& X, shared_ptr<Node> a) {
     while (!a->isRoot()) {
         int r = a->end;
         int rp = a->parent->end;
@@ -40,7 +55,7 @@ shared_ptr<Node> findNode(int i, const vector<int>& X, shared_ptr<Node> a) {
 }
 
 // -------------------- Split Node (Algorithm 3) --------------------
-pair<shared_ptr<Node>, shared_ptr<Node>> splitNode(int i, shared_ptr<Node> root, shared_ptr<Node> a) {
+pair<shared_ptr<Node>, shared_ptr<Node>> SimonTree::splitNode(int i, shared_ptr<Node> root, shared_ptr<Node> a) {
     if (a->isLeaf()) {
         // complete current leaf
         auto completed = make_shared<Node>(i + 1, i + 1, a->depth + 1, a);
@@ -53,7 +68,7 @@ pair<shared_ptr<Node>, shared_ptr<Node>> splitNode(int i, shared_ptr<Node> root,
 }
 
 // -------------------- Fix up tree (after loop) --------------------
-void fixTree(shared_ptr<Node> root, int n) {
+void SimonTree::fixTree(shared_ptr<Node> root, int n) {
     shared_ptr<Node> node = root;
     while (!node->children.empty()) {
         node->start = 1;
@@ -75,7 +90,7 @@ void fixTree(shared_ptr<Node> root, int n) {
 }
 
 // -------------------- Print Tree --------------------
-void printTree(const shared_ptr<Node>& node, const string& w, string indent, bool isLast) {
+void SimonTree::printTree(const shared_ptr<Node>& node, const string& w, string indent, bool isLast) {
     if (node->start != -1 && node->start <= (int)w.size()) {
         cout << indent;
         if (node->depth > 0) cout << (isLast ? "└── " : "├── ");
