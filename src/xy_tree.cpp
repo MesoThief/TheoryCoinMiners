@@ -14,7 +14,7 @@ void printTree(const shared_ptr<Node>& node, const string& w, string indent = ""
         cout << indent;
         if (depth > 0) cout << (isLast ? "└── " : "├── ");
         int position = node->index;
-        cout << position << "(r=" << node->r << ")" << "\n";
+        cout << position << "(r=" << node->r << ", next=" << node->next->index << ")" << "\n";
         indent += (isLast ? "    " : "│   ");
     }
     for (size_t i = 0; i < node->children.size(); ++i) {
