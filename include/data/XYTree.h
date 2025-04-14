@@ -14,9 +14,9 @@ namespace XYTree {
         int r;
         shared_ptr<Node> parent = nullptr;
         vector<shared_ptr<Node>> children;
+        shared_ptr<Node> next = nullptr;
     
         Node(int index);
-        Node(int index, shared_ptr<Node> parent);
     };
 
     // Build X-tree using the X-ranker, ShortlexResult, and input text
