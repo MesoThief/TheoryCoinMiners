@@ -13,6 +13,12 @@ int main(int argc, char* argv[]) {
   string text;
   int k;
 
+  // 일부 데이터 전처리
+  set<char> alph_p;
+  for (char c : pattern) {
+    alph_p.insert(c);
+  }
+
   // line 2: Returns: a set S of tripes where, for space positions f and b of T,
   // T[f : b] ~k p if and only if there exists some element e = ([f_1, f_2], [b_1, b_2], offset) in S
   // such that space positions f - offset \in [f_1, f_2] and b - offset \in [b_1, b_2]
@@ -28,14 +34,38 @@ int main(int argc, char* argv[]) {
     vector<int>(Alphabet::getInstance().size(), 1),
     vector<int>(Alphabet::getInstance().size(), 1),
     k + 1
-  );
+  ); // stack form = shortlex_p.stackForm
 
-  // line 5: Slice T whenever T[i] \notin alph(p)
+  // line 5: Slice T whenever T[i] \not-in alph(p)
   vector<string> sub_Ts;
+  string sub_T;
+  for (char t : text) {
+    if (alph_p.count(t) > 0) {
+      sub_T.push_back(t);
+    }
+    else if (!sub_T.empty()) {
+      sub_Ts.push_back(sub_T);
+      sub_T.clear();
+    }
+  }
 
   // line 6: A <- {σ | pσ not~k p}
-
   // line 7: B <- {σ | σp not~k p}
+  set<char> A;
+  set<char> B;
+  for (char sigma : alph_p) {
+    int index = Alphabet::getInstance().charToIndex(sigma);
+    int X = shortlex_p.X_vector[index];
+    int Y = shortlex_p.Y_vector[index];
+
+    if (X + 1 > k + 1) {
+      A.insert(sigma);
+    };
+
+    if (1 + Y > k + 1) {
+      B.insert(sigma);
+    };
+  }
 
   // line 8: for all sliced substrings T' of T do
   for (string sub_T : sub_Ts) {
