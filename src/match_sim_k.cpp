@@ -83,9 +83,10 @@ int main(int argc, char* argv[]) {
     sub_Ts.push_back(interval(start, end - 1));
   }
 
-  for (auto sub_T : sub_Ts) {
-    cout << "(" << get<0>(sub_T) << "," << get<1>(sub_T) << ")" << endl;
-  }
+  // DEBUG: check sub_Ts
+  // for (auto sub_T : sub_Ts) {
+  //   cout << "(" << get<0>(sub_T) << "," << get<1>(sub_T) << ")" << endl;
+  // }
 
   // line 6: A <- {σ | pσ not~k p}
   // line 7: B <- {σ | σp not~k p}
