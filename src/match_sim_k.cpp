@@ -6,6 +6,8 @@
 
 #include "data/XYTree.h"
 #include "utils/Alphabet.h"
+#include "utils/CalculateUniversality.h"
+#include "utils/Common.h"
 
 using namespace std;
 
@@ -31,6 +33,8 @@ int main(int argc, char* argv[]) {
   int k;
 
   getline(inputFile, alphabet);
+  Alphabet::getInstance().setAlphabet(alphabet);
+
   getline(inputFile, text);
   getline(inputFile, pattern);
   string k_line;
@@ -43,6 +47,7 @@ int main(int argc, char* argv[]) {
   for (char c : pattern) {
     alph_p.insert(c);
   }
+  int pattern_universality = calculateUniversalityIndex(pattern);
 
   // line 2: Returns: a set S of tripes where, for space positions f and b of T,
   // T[f : b] ~k p if and only if there exists some element e = ([f_1, f_2], [b_1, b_2], offset) in S
@@ -66,17 +71,20 @@ int main(int argc, char* argv[]) {
   int start = 0;
   int end = 0;
   for (char t : text) {
-    if (alph_p.count(t) != 0) {
-      end++;
-    }
-    else {
-      sub_Ts.push_back(interval(start, end));
+    if (alph_p.count(t) == 0) {
+      if (start < end) sub_Ts.push_back(interval(start, end - 1));
       end++;
       start = end;
+      continue;
     }
+    end++;
   }
-  if (start != end) {
-    sub_Ts.push_back(interval(start, end));
+  if (start < end) {
+    sub_Ts.push_back(interval(start, end - 1));
+  }
+
+  for (auto sub_T : sub_Ts) {
+    cout << "(" << get<0>(sub_T) << "," << get<1>(sub_T) << ")" << endl;
   }
 
   // line 6: A <- {σ | pσ not~k p}
@@ -115,12 +123,23 @@ int main(int argc, char* argv[]) {
     shared_ptr<XYTree::Node> y_tree = XYTree::buildYTree(rankers, shortlex_p, text);
 
     // line 13: for all nodes i \in T_X(T').nodes do
-    for (XYTree::Node i = *x_tree; i.parent != nullptr; i.parent) {
+    for (shared_ptr<XYTree::Node> node_i = x_tree; node_i->parent != nullptr; node_i->parent) {
       // line 14: From i, go up the X-tree for ι(p)-1 edges
+      shared_ptr<XYTree::Node> current_node = node_i;
+      for (int i = 0; i < pattern_universality-1; i++) {
+        if (current_node == nullptr) break;
+        current_node = current_node->parent;
+      }
+      if (current_node == nullptr) continue;
 
       // line 15: j_1 <- T_X(T').r(current node)
+      int j_1 = current_node->r;
+
       // line 16: if j_1 = ∞, break.
+      if (j_1 == INF) break;
+
       // line 17: From j_1, go up the Y-tree using ι(p) calls of T_Y(T').prnt()
+
       // line 18: n <- currrent node
       // line 19: j_2 <- max(T_Y(T').chld(i) AND [max_{σ in B}{R_Y(T', n, σ)+1, n}])
       // line 20: if no such value exists, continue.
