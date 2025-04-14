@@ -108,6 +108,8 @@ int main(int argc, char* argv[]) {
 
   // line 8: for all sliced substrings T' of T do
   for (interval sub_T : sub_Ts) {
+    string sub_T_string = text.substr(get<0>(sub_T), get<1>(sub_T));
+
     // line 9: offset <- the start space position of T' in T
     int offset = get<0>(sub_T);
 
@@ -115,13 +117,13 @@ int main(int argc, char* argv[]) {
     unordered_map<int, string> map;
     
     // line 11: Preprocess X- and Y-ranker array
-    RankerTable rankers = RankerTable(text);
+    RankerTable rankers = RankerTable(sub_T_string);
     rankers.buildXRankerTable();
     rankers.buildYRankerTable();
 
     // line 12: Construct X-tree T_X(T') and Y-tree T_Y(T')
-    shared_ptr<XYTree::Node> x_tree = XYTree::buildXTree(rankers, shortlex_p, text);
-    shared_ptr<XYTree::Node> y_tree = XYTree::buildYTree(rankers, shortlex_p, text);
+    shared_ptr<XYTree::Node> x_tree = XYTree::buildXTree(rankers, shortlex_p, sub_T_string);
+    shared_ptr<XYTree::Node> y_tree = XYTree::buildYTree(rankers, shortlex_p, sub_T_string);
 
     // line 13: for all nodes i \in T_X(T').nodes do
     for (shared_ptr<XYTree::Node> node_i = x_tree; node_i->parent != nullptr; node_i->parent) {
