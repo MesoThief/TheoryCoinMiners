@@ -26,17 +26,17 @@ shared_ptr<Node> XYTree::buildXTree(const RankerTable& ranker, const ShortlexRes
     // Copy out s_p
     deque<set<char>> s_p;
     set<char> s;
-    for(int i = 0; i < shortlex.stackForm.size(); i++){
+    for(int i = 0; i < shortlex.stackForm.size(); i++) {
         s = shortlex.stackForm.at(i);
         s_p.push_back(s);
     }
 
     // ln 4-6
     int last_arch = 0;
-    for(int i = 0; i < shortlex.arch_ends.size(); i++){
-        for(int j = 0; j < shortlex.arch_ends.at(i) - last_arch; j++){
+    for(int i = 0; i < shortlex.arch_ends.size(); i++) {
+        for(int j = 0; j < shortlex.arch_ends.at(i) - last_arch; j++) {
             s_p.back().erase(shortlex.shortlexNormalForm.at(j+last_arch));
-            if(s_p.back().empty()){ s_p.pop_back(); }
+            if(s_p.back().empty()) { s_p.pop_back(); }
         }
         last_arch = shortlex.arch_ends.at(i);
     }
@@ -49,9 +49,9 @@ shared_ptr<Node> XYTree::buildXTree(const RankerTable& ranker, const ShortlexRes
     set<char> S;
     char sigma;
     shared_ptr<Node> last_node = root;
-    for(int i = 0; i < static_cast<int>(text.size()); i++){
+    for(int i = 0; i < static_cast<int>(text.size()); i++) {
         parent = -1;
-        for(char a : shortlex.alphabet){
+        for(char a : shortlex.alphabet) {
             x_rank = ranker.getX(i, a);
             if(x_rank > parent) parent = x_rank;
         }
@@ -66,7 +66,7 @@ shared_ptr<Node> XYTree::buildXTree(const RankerTable& ranker, const ShortlexRes
 
             // line 11: s'_p <- copy(s_p)
             sp_p.clear();
-            for(auto entry = s_p.begin(); entry != s_p.end(); entry++){
+            for(auto entry = s_p.begin(); entry != s_p.end(); entry++) {
                 sp_p.push_back(*entry);
             }
 
@@ -74,7 +74,7 @@ shared_ptr<Node> XYTree::buildXTree(const RankerTable& ranker, const ShortlexRes
             parent_node->r = parent;
 
             // line 13: while s'_p is not empty
-            while(!sp_p.empty()){
+            while(!sp_p.empty()) {
                 // line 14: S <- peek(s'_p)
                 S = sp_p.back();
 
@@ -105,7 +105,7 @@ shared_ptr<Node> XYTree::buildXTree(const RankerTable& ranker, const ShortlexRes
         }
 
         // line 19: extend end point of T_X(`T`).chld(parent) by one
-        if(nodes.count(i) != 0){
+        if(nodes.count(i) != 0) {
             nodes[i]->parent = nodes[parent];
             nodes[parent]->children.push_back(nodes[i]);    // line 18: T_X(T).chld(parent) <- [i, i)
             cout << "Set parent of " << i << " to " << parent << endl;
@@ -114,10 +114,10 @@ shared_ptr<Node> XYTree::buildXTree(const RankerTable& ranker, const ShortlexRes
 
     // Clean up
     last_node->next = root;
-    for(auto pair : nodes){
+    for(auto pair : nodes) {
         int index = pair.first;
         shared_ptr<Node> node = pair.second;
-        if(node->parent == nullptr && node != root){
+        if(node->parent == nullptr && node != root) {
             node->parent = root;
             root->children.push_back(node);
             cout << "Set parent of " << index << " to " << INF << endl;
@@ -145,15 +145,15 @@ shared_ptr<Node> XYTree::buildYTree(const RankerTable& ranker, const ShortlexRes
 
     // Copy out s_p (in reverse order) << not sure if reversing is mandatory
     vector<set<char>> s_p; set<char> s;
-    for(int i = 0; i < shortlex.stackForm.size(); i++){
+    for(int i = 0; i < shortlex.stackForm.size(); i++) {
         s = shortlex.stackForm.at(shortlex.stackForm.size() - i - 1);
         s_p.push_back(s);
     }
 
     // ln 4-6 (Slight rework as well)
     int deleted_chars = 0;
-    for(int i = 0; i < shortlex.universality; i++){
-        while(deleted_chars < shortlex.alphabet.size()){
+    for(int i = 0; i < shortlex.universality; i++) {
+        while(deleted_chars < shortlex.alphabet.size()) {
             deleted_chars += s_p.back().size();
             s_p.pop_back();
         }
@@ -170,7 +170,7 @@ shared_ptr<Node> XYTree::buildYTree(const RankerTable& ranker, const ShortlexRes
     shared_ptr<Node> last_node = root;
     for(int i = static_cast<int>(text.size()); i > 0; i--) {
         parent = INF;
-        for(auto a : shortlex.alphabet){
+        for(auto a : shortlex.alphabet) {
             y_rank = ranker.getY(i, a);
             if(y_rank < parent) parent = y_rank;
         }
@@ -178,7 +178,7 @@ shared_ptr<Node> XYTree::buildYTree(const RankerTable& ranker, const ShortlexRes
         if(parent != -1) parent--;
 
         // ln 9-18
-        if(nodes.count(parent) == 0){
+        if(nodes.count(parent) == 0) {
             shared_ptr<Node> parent_node = make_shared<Node>(parent);
             nodes[parent] = parent_node;
             cout << "Generate new node " << parent << endl;
@@ -187,7 +187,7 @@ shared_ptr<Node> XYTree::buildYTree(const RankerTable& ranker, const ShortlexRes
 
             // line 11: s'_p <- copy(s_p)
             sp_p.clear();
-            for(auto entry = s_p.begin(); entry != s_p.end(); entry++){
+            for(auto entry = s_p.begin(); entry != s_p.end(); entry++) {
                 sp_p.push_back(*entry);
             }
 
@@ -195,7 +195,7 @@ shared_ptr<Node> XYTree::buildYTree(const RankerTable& ranker, const ShortlexRes
             parent_node->r = parent;
 
             // line 13: while s'_p is not empty
-            while(!sp_p.empty()){
+            while(!sp_p.empty()) {
                 // line 14: S <- peek(s'_p)
                 S = sp_p.back();
 
@@ -226,7 +226,7 @@ shared_ptr<Node> XYTree::buildYTree(const RankerTable& ranker, const ShortlexRes
         }
 
         // line 19: extend end point of T_Y(T).chld(parent) by one
-        if(nodes.count(i) != 0){
+        if(nodes.count(i) != 0) {
             nodes[i]->parent = nodes[parent];
             nodes[parent]->children.push_back(nodes[i]);    // line 18: T_Y(T).chld(parent) <- [i, i)
             cout << "Set parent of " << i << " to " << parent << endl;
@@ -235,10 +235,10 @@ shared_ptr<Node> XYTree::buildYTree(const RankerTable& ranker, const ShortlexRes
 
     // Clean up
     last_node->next = root;
-    for(auto pair : nodes){
+    for(auto pair : nodes) {
         int index = pair.first;
         shared_ptr<Node> node = pair.second;
-        if(node->parent == nullptr && node != root){
+        if(node->parent == nullptr && node != root) {
             node->parent = root;
             root->children.push_back(node);
             cout << "Set parent of " << index << " to -1" << endl;
