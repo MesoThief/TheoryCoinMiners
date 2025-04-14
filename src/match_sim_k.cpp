@@ -4,7 +4,6 @@
 #include <string>
 #include <vector>
 
-#include "data/Shortlex.h"
 #include "data/XYTree.h"
 #include "utils/Alphabet.h"
 
@@ -104,13 +103,21 @@ int main(int argc, char* argv[]) {
     int offset = get<0>(sub_T);
 
     // line 10: Map <- empty map for saving vectors and substrings
+    unordered_map<int, string> map;
     
     // line 11: Preprocess X- and Y-ranker array
+    RankerTable rankers = RankerTable(text);
+    rankers.buildXRankerTable();
+    rankers.buildYRankerTable();
+
     // line 12: Construct X-tree T_X(T') and Y-tree T_Y(T')
+    shared_ptr<XYTree::Node> x_tree = XYTree::buildXTree(rankers, shortlex_p, text);
+    shared_ptr<XYTree::Node> y_tree = XYTree::buildYTree(rankers, shortlex_p, text);
 
     // line 13: for all nodes i \in T_X(T').nodes do
-    for (XYTree::Node node : nodes) {
+    for (XYTree::Node i = *x_tree; i.parent != nullptr; i.parent) {
       // line 14: From i, go up the X-tree for ι(p)-1 edges
+
       // line 15: j_1 <- T_X(T').r(current node)
       // line 16: if j_1 = ∞, break.
       // line 17: From j_1, go up the Y-tree using ι(p) calls of T_Y(T').prnt()
@@ -118,10 +125,12 @@ int main(int argc, char* argv[]) {
       // line 19: j_2 <- max(T_Y(T').chld(i) AND [max_{σ in B}{R_Y(T', n, σ)+1, n}])
       // line 20: if no such value exists, continue.
       // line 21: z <- ShortLex_k(T'[j_2 : j_1]) using the checkpoint mechanism and Map
+      string z = "";
+      
       // line 22: Save Checkpoints for each arch link of T'[j_2 : j_1]
       
       // line 23: if z ~k ShortLex(p) then
-      if (z ~k Shortlex(p)) {
+      if (z == shortlex_p.shortlexNormalForm) {
         // line 24: interval1 <- T_X(T').chld(i) AND [max_{σ in B}{R_Y(T', j_2, σ)+1, j_2}]
         // line 25: interval2 <- [j_1, min_{σ in A}{R_X(T', j_1, σ)-1}]
         // line 26: add (interval1, interval2, offset) to positions
