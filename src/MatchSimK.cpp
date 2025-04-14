@@ -22,7 +22,7 @@ int main(int argc, char* argv[]) {
   // line 2: Returns: a set S of tripes where, for space positions f and b of T,
   // T[f : b] ~k p if and only if there exists some element e = ([f_1, f_2], [b_1, b_2], offset) in S
   // such that space positions f - offset \in [f_1, f_2] and b - offset \in [b_1, b_2]
-  using interval = tuple<int, int>;
+  using interval = tuple<int, int>; // inclusive for both end
   using triple = tuple<interval, interval, int>;
 
   // line 3: positions <- empty set
@@ -37,16 +37,21 @@ int main(int argc, char* argv[]) {
   ); // stack form = shortlex_p.stackForm
 
   // line 5: Slice T whenever T[i] \not-in alph(p)
-  vector<string> sub_Ts;
-  string sub_T;
+  vector<interval> sub_Ts;
+  int start = 0;
+  int end = 0;
   for (char t : text) {
-    if (alph_p.count(t) > 0) {
-      sub_T.push_back(t);
+    if (alph_p.count(t) != 0) {
+      end++;
     }
-    else if (!sub_T.empty()) {
-      sub_Ts.push_back(sub_T);
-      sub_T.clear();
+    else {
+      sub_Ts.push_back(interval(start, end));
+      end++;
+      start = end;
     }
+  }
+  if (start != end) {
+    sub_Ts.push_back(interval(start, end));
   }
 
   // line 6: A <- {σ | pσ not~k p}
@@ -68,9 +73,12 @@ int main(int argc, char* argv[]) {
   }
 
   // line 8: for all sliced substrings T' of T do
-  for (string sub_T : sub_Ts) {
+  for (interval sub_T : sub_Ts) {
     // line 9: offset <- the start space position of T' in T
+    int offset = get<0>(sub_T);
+
     // line 10: Map <- empty map for saving vectors and substrings
+    
     // line 11: Preprocess X- and Y-ranker array
     // line 12: Construct X-tree T_X(T') and Y-tree T_Y(T')
 
