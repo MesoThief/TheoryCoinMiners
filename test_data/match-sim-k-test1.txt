@@ -1,4 +1,4 @@
-abcdefghijklmnopqrstuvwxyz  // Alphabet (∑)
-abcbacaabacccbaccaab        // input text T
-abcabcabc                   // input pattern p
-3                           // k
+abcdefghijklmnopqrstuvwxyz
+abcbacaabacccbaccaab
+abcabcabc
+3

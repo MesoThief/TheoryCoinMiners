@@ -1,3 +1,6 @@
+#include <iostream>
+#include <fstream>
+#include <sstream>
 #include <string>
 #include <vector>
 
@@ -8,10 +11,33 @@
 using namespace std;
 
 int main(int argc, char* argv[]) {
+  // 입력값 저장
+  if (argc < 2) {
+    cerr << "You must enter a test input file" << endl;
+    cerr << "Usage: " << argv[0] << " <test-input-file-name>" << endl;
+    return 1;
+  }
+
+  string inputFileName = argv[1];
+  ifstream inputFile(inputFileName);
+  if (!inputFile) {
+      cerr << "Error opening " << inputFileName << endl;
+      return 1;
+  }
+
   // line 1: Given: a pattern p, a text T, an integer k
-  string pattern;
+  string alphabet;
   string text;
+  string pattern;
   int k;
+
+  getline(inputFile, alphabet);
+  getline(inputFile, text);
+  getline(inputFile, pattern);
+  string k_line;
+  getline(inputFile, k_line);
+  istringstream k_stream(k_line);
+  k_stream >> k;
 
   // 일부 데이터 전처리
   set<char> alph_p;
