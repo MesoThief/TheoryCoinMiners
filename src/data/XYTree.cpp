@@ -48,7 +48,7 @@ shared_ptr<Node> XYTree::buildXTree(const RankerTable& ranker, const ShortlexRes
     deque<set<char>> sp_p;
     set<char> S;
     char sigma;
-    shared_ptr<Node> last_node = nullptr;
+    shared_ptr<Node> last_node = root;
     for(int i = 0; i < static_cast<int>(text.size()); i++){
         parent = -1;
         for(char a : shortlex.alphabet){
@@ -61,12 +61,7 @@ shared_ptr<Node> XYTree::buildXTree(const RankerTable& ranker, const ShortlexRes
             shared_ptr<Node> parent_node = make_shared<Node>(parent);
             nodes[parent] = parent_node;
             cout << "Generate new node " << parent << endl;
-            if (last_node != nullptr) {
-                last_node->next = parent_node;
-            }
-            else {
-                root->next = parent_node;
-            }
+            last_node->next = parent_node;
             last_node = parent_node;
 
             // line 11: s'_p <- copy(s_p)
@@ -118,9 +113,7 @@ shared_ptr<Node> XYTree::buildXTree(const RankerTable& ranker, const ShortlexRes
     }
 
     // Clean up
-    if (last_node != nullptr) {
-        last_node->next = root;
-    }
+    last_node->next = root;
     for(auto pair : nodes){
         int index = pair.first;
         shared_ptr<Node> node = pair.second;
@@ -174,7 +167,7 @@ shared_ptr<Node> XYTree::buildYTree(const RankerTable& ranker, const ShortlexRes
     vector<set<char>> sp_p;
     set<char> S;
     char sigma;
-    shared_ptr<Node> last_node = nullptr;
+    shared_ptr<Node> last_node = root;
     for(int i = static_cast<int>(text.size()); i > 0; i--) {
         parent = INF;
         for(auto a : shortlex.alphabet){
@@ -189,12 +182,7 @@ shared_ptr<Node> XYTree::buildYTree(const RankerTable& ranker, const ShortlexRes
             shared_ptr<Node> parent_node = make_shared<Node>(parent);
             nodes[parent] = parent_node;
             cout << "Generate new node " << parent << endl;
-            if (last_node != nullptr) {
-                last_node->next = parent_node;
-            }
-            else {
-                root->next = parent_node;
-            }
+            last_node->next = parent_node;
             last_node = parent_node;
 
             // line 11: s'_p <- copy(s_p)
@@ -246,9 +234,7 @@ shared_ptr<Node> XYTree::buildYTree(const RankerTable& ranker, const ShortlexRes
     }
 
     // Clean up
-    if (last_node != nullptr) {
-        last_node->next = root;
-    }
+    last_node->next = root;
     for(auto pair : nodes){
         int index = pair.first;
         shared_ptr<Node> node = pair.second;
