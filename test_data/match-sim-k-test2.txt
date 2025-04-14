@@ -1,4 +1,4 @@
 abcdefghijklmnopqrstuvwxyz
-xbcbacaxbacccbaxcaax
+abcxacaabacxcbaccaax
 abc
 3
