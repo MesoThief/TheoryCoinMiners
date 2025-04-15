@@ -14,10 +14,16 @@ Node::Node(int index) : index(index) {}
  * @param ranker Prebuilt ranker table
  * @param shortlex Precomputed `ShortlexResult` of a pattern string
  * @param text Text.
- * @return `shared_ptr<Node>` Root of the tree.
+ * @return `XYTree::Tree` the constructed X-tree.
  */
-shared_ptr<Node> XYTree::buildXTree(const RankerTable& ranker, const ShortlexResult& shortlex, const string& text) {
+XYTree::Tree XYTree::buildXTree(const RankerTable& ranker, const ShortlexResult& shortlex, const string& text) {
+    XYTree::Tree tree;
+    
     shared_ptr<Node> root = make_shared<Node>(INF);
+    tree.root = root;
+    tree.parent = vector<shared_ptr<Node>>(text.size() + 1);
+    tree.children = vector<vector<int>>(text.size() + 1);
+
     unordered_map<int, shared_ptr<Node>> nodes;
     nodes[INF] = root;
     
@@ -100,32 +106,27 @@ shared_ptr<Node> XYTree::buildXTree(const RankerTable& ranker, const ShortlexRes
                     sp_p.pop_back();
                 }
             }
-
-            // line 18: implemented within line 19
         }
-
+        
+        // line 18: T_X(T).chld(parent) <- [i, i)
         // line 19: extend end point of T_X(`T`).chld(parent) by one
-        if(nodes.count(i) != 0) {
-            nodes[i]->parent = nodes[parent];
-            nodes[parent]->children.push_back(nodes[i]);    // line 18: T_X(T).chld(parent) <- [i, i)
-            cout << "Set parent of " << i << " to " << parent << endl;
+        if (parent != INF) {
+            tree.children[parent].push_back(i);
         }
+        else {
+            tree.children.back().push_back(i);
+        }
+
+        tree.parent[i] = nodes[parent]; // due to the abuse of notation prnt(i)
+        cout << "Set parent of " << i << " to " << parent << endl;
     }
 
     // Clean up
     last_node->next = root;
-    for(auto pair : nodes) {
-        int index = pair.first;
-        shared_ptr<Node> node = pair.second;
-        if(node->parent == nullptr && node != root) {
-            node->parent = root;
-            root->children.push_back(node);
-            cout << "Set parent of " << index << " to " << INF << endl;
-        }
-    }
+    tree.parent[text.size()] = root;
 
     cout << "End of X-tree construction\n\n"; // Double lb is intended
-    return root;
+    return tree;
 }
 
 /**
@@ -134,10 +135,16 @@ shared_ptr<Node> XYTree::buildXTree(const RankerTable& ranker, const ShortlexRes
  * @param ranker Prebuilt ranker table
  * @param shortlex Precomputed `ShortlexResult` of a pattern string
  * @param text Text.
- * @return `shared_ptr<Node>` Root of the tree.
+ * @return `XYTree::Tree` the constructed Y-tree.
  */
-shared_ptr<Node> XYTree::buildYTree(const RankerTable& ranker, const ShortlexResult& shortlex, const string& text) {
+XYTree::Tree XYTree::buildYTree(const RankerTable& ranker, const ShortlexResult& shortlex, const string& text) {
+    XYTree::Tree tree;
+
     shared_ptr<Node> root = make_shared<Node>(-1);
+    tree.root = root;
+    tree.parent = vector<shared_ptr<Node>>(text.size() + 1);
+    tree.children = vector<vector<int>>(text.size() + 1);
+
     unordered_map<int, shared_ptr<Node>> nodes;
     nodes[-1] = root;
     
@@ -221,30 +228,25 @@ shared_ptr<Node> XYTree::buildYTree(const RankerTable& ranker, const ShortlexRes
                     sp_p.pop_back();
                 }
             }
-
-            // line 18: implemented within line 19
         }
 
+        // line 18: T_Y(T)chld(parent) <- [i, i)
         // line 19: extend end point of T_Y(T).chld(parent) by one
-        if(nodes.count(i) != 0) {
-            nodes[i]->parent = nodes[parent];
-            nodes[parent]->children.push_back(nodes[i]);    // line 18: T_Y(T).chld(parent) <- [i, i)
-            cout << "Set parent of " << i << " to " << parent << endl;
+        if (parent != -1) {
+            tree.children[parent].push_back(i);
         }
+        else {
+            tree.children.back().push_back(i);
+        }
+
+        tree.parent[i] = nodes[parent];
+        cout << "Set parent of " << i << " to " << parent << endl;
     }
 
     // Clean up
     last_node->next = root;
-    for(auto pair : nodes) {
-        int index = pair.first;
-        shared_ptr<Node> node = pair.second;
-        if(node->parent == nullptr && node != root) {
-            node->parent = root;
-            root->children.push_back(node);
-            cout << "Set parent of " << index << " to -1" << endl;
-        }
-    }
+    tree.parent[0] = root;
 
     cout << "End of Y-tree construction\n\n"; // Double lb is intended
-    return root;
+    return tree;
 }
