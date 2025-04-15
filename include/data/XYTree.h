@@ -1,6 +1,7 @@
 #ifndef XYTREE_H
 #define XYTREE_H
 
+#include <iostream>
 #include <string>
 #include <memory>
 #include "data/Ranker.h"
@@ -19,6 +20,14 @@ namespace XYTree {
         Node(int index);
     };
 
+    inline std::ostream& operator<<(std::ostream& os, const Node& node) {
+        if (node.index == INF)
+          os << "(Node INF)";
+        else
+          os << "(Node " << node.index << ")";
+        return os;
+      }
+
     struct Tree {
         shared_ptr<Node> root;
 
@@ -31,4 +40,6 @@ namespace XYTree {
     // Build Y-tree using the Y-ranker, ShortlexResult, and input text
     Tree buildYTree(const RankerTable& ranker, const ShortlexResult& shortlex, const string& text);
 }
+
+
 #endif // XYTREE_H

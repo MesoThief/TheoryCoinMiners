@@ -97,13 +97,13 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(string text, string pattern, int 
     for (shared_ptr<XYTree::Node> node_i = x_tree.root->next; node_i != x_tree.root; node_i = node_i->next) {
       // line 14: From i, go up the X-tree for ι(p)-1 edges
       shared_ptr<XYTree::Node> current_node = node_i;
-      debug(cout << "starting X-tree traversal from: Node " << current_node->index << endl);
+      debug(cout << "starting X-tree traversal from: " << *current_node << endl);
       for (int i = 0; i < pattern_universality-1; i++) {
         current_node = x_tree.parent[current_node->index];
-        debug(cout << "traversing X-tree: Node " << current_node->index << endl);
+        debug(cout << "traversing X-tree: " << *current_node << endl);
         if (current_node == x_tree.root) break;
       }
-      debug(cout << "X-tree ends at: Node " << current_node->index << endl);
+      debug(cout << "X-tree ends at: " << *current_node << endl);
 
 
       // line 15: j_1 <- T_X(T').r(current node)
@@ -113,35 +113,91 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(string text, string pattern, int 
       if (j_1 == INF) break;  // TODO: 이거 맞나?
 
       // line 17: From j_1, go up the Y-tree using ι(p) calls of T_Y(T').prnt()
-      debug(cout << "starting Y-tree traversal from: space position " << current_node->index << endl);
+      debug(cout << "starting Y-tree traversal from: space position " << *current_node << endl);
       current_node = y_tree.parent[j_1];
       for (int i = 0; i < pattern_universality - 1; i++) {
         current_node = y_tree.parent[current_node->index];
-        debug(cout << "traversing Y-tree: Node " << current_node->index << endl);
+        debug(cout << "traversing Y-tree: " << *current_node << endl);
         if (current_node == y_tree.root) break;
       }
-     debug(cout << "Y-tree ends at: Node " << current_node->index << endl);
+      debug(cout << "Y-tree ends at: " << *current_node << endl);
 
-      // line 18: n <- currrent node
+      // line 18: n <- current node
       int n = current_node->index;
 
       // line 19: j_2 <- max(T_Y(T').chld(i) AND [max_{σ in B}{R_Y(T', n, σ)+1, n}])
+      Interval chld = node_i->children;
+      debug(cout << "Children of " << n << " are: " << current_node->children << endl);
+
+      int r_y_bound = n + 1; // if all R_Y return INF, then default to n + 1
+      for (char sigma : B) {
+        int ry = rankers.getY(n, sigma);  // R_Y(T', n, σ)
+        if (ry != INF) {
+          r_y_bound = std::max(r_y_bound, ry + 1);
+        }
+      }
+      debug(cout << "R_Y bounds interval: [" << r_y_bound << ", " << (n + 1) << "]" << endl);
+
+      int j_2 = -1;
+      for (int chld_pos = chld.start; chld_pos <= chld.end; ++chld_pos) { // T_Y(T').chld(i)
+        if (chld_pos >= r_y_bound) {  //&& chld_pos <= n) {
+          j_2 = std::max(j_2, chld_pos);
+        }
+      }
+
       // line 20: if no such value exists, continue.
+      if (j_2 == -1) continue;
+
       // line 21: z <- ShortLex_k(T'[j_2 : j_1]) using the checkpoint mechanism and Map
-      string z = "";
+      string z = text.substr(offset + j_2, j_1 - j_2 + 1);
       
       // line 22: Save Checkpoints for each arch link of T'[j_2 : j_1]
+      ShortlexResult shortlex_z = computePartialShortlexNormalForm(
+        z,
+        vector<int>(Alphabet::getInstance().size(), 1),
+        vector<int>(Alphabet::getInstance().size(), 1),
+        k + 1
+      );
       
       // line 23: if z ~k ShortLex(p) then
       if (z == shortlex_p.shortlexNormalForm) {
         // line 24: interval1 <- T_X(T').chld(i) AND [max_{σ in B}{R_Y(T', j_2, σ)+1, j_2}]
+        int interval1_start = -1;
+        for (char sigma : B) {
+          int ry = rankers.getY(j_2, sigma);
+          if (ry != INF) {
+            interval1_start = std::max(interval1_start, ry + 1);
+          }
+        }
+        int interval1_end = j_2;
+
+        Interval interval1 = Interval(interval1_start, interval1_end);
+        debug(cout << "interval1 becomes: " << interval1 << endl);
+
         // line 25: interval2 <- [j_1, min_{σ in A}{R_X(T', j_1, σ)-1}]
+        int interval2_start = j_1;
+        int interval2_end = INF;
+
+        for (char sigma : A) {
+          int rx = rankers.getX(j_1, sigma);
+          if (rx != INF) {
+            interval2_end = std::min(interval2_end, rx - 1);
+          }
+        }
+
+        Interval interval2 = Interval(interval2_start, interval2_end);
+        debug(cout << "interval2 becomes: " << interval2 << endl);
+
         // line 26: add (interval1, interval2, offset) to positions
+        positions.push_back({
+          Interval(interval1_start, interval1_end),
+          Interval(interval2_start, interval2_end),
+          offset
+        });
       }
     }
   }
 
   // line 27: return positions
-
   return positions;
 }
