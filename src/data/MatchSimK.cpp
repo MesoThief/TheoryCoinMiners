@@ -130,11 +130,11 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(string text, string pattern, int 
       Interval chld = node_i->children;
       debug(cout << "Children of " << n << " are: " << current_node->children << endl);
 
-      int r_y_bound = n + 1; // if all R_Y return INF, then default to n + 1
+      int r_y_bound = n; // if all R_Y return INF, then default to n + 1
       for (char sigma : B) {
         int ry = rankers.getY(n, sigma);  // R_Y(T', n, σ)
         if (ry != INF) {
-          r_y_bound = std::max(r_y_bound, ry + 1);
+          r_y_bound = std::max(r_y_bound, ry);
         }
       }
       debug(cout << "R_Y bounds interval: [" << r_y_bound << ", " << (n + 1) << "]" << endl);
@@ -171,7 +171,7 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(string text, string pattern, int 
         for (char sigma : B) {
           int ry = rankers.getY(j_2, sigma);
           if (ry != INF) {
-            interval1_start = std::max(interval1_start, ry + 1);
+            interval1_start = std::max(interval1_start, ry);
           }
         }
         int interval1_end = j_2;
