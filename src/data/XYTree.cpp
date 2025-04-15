@@ -230,7 +230,7 @@ XYTree::Tree XYTree::buildYTree(const RankerTable& ranker, const ShortlexResult&
             }
         }
 
-        // line 18: T_Y(T)chld(parent) <- [i, i)
+        // line 18: T_Y(T).chld(parent) <- [i, i)
         // line 19: extend end point of T_Y(T).chld(parent) by one
         if (parent != -1) {
             tree.children[parent].push_back(i);
