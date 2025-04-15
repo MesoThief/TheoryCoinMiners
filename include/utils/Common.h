@@ -3,6 +3,13 @@
 
 #include <limits>
 
+struct Interval {
+  int start;
+  int end;
+
+  Interval(int start, int end) : start(start), end(end) {};
+};
+
 constexpr int INF = std::numeric_limits<int>::max();
 
-#endif // COMMON_H
+#endif  // COMMON_H

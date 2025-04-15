@@ -3,16 +3,18 @@
 
 #include <string>
 #include <memory>
-#include "Ranker.h"
-#include "Shortlex.h"
+#include "data/Ranker.h"
+#include "data/Shortlex.h"
+#include "utils/Common.h"
 
 using namespace std;
 
 namespace XYTree {
     struct Node {
         int index;
-        int r;
+        int r = 0;
         shared_ptr<Node> next = nullptr;    // TODO: Y-tree에서는 필요 없는 값. 최적화 시 Y-tree에선 삭제 가능.
+        Interval children = Interval(0, 0); // [start, end)
     
         Node(int index);
     };
@@ -21,7 +23,6 @@ namespace XYTree {
         shared_ptr<Node> root;
 
         vector<shared_ptr<Node>> parent;    // TODO: X-tree에서는 필요 없는 값. 최적화 시 X-tree에선 삭제 가능.
-        vector<vector<int>> children;       // 논문에서는 interval이긴 한데, 일단 vector로 처리함
     };
 
     // Build X-tree using the X-ranker, ShortlexResult, and input text

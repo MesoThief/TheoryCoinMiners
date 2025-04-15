@@ -6,7 +6,7 @@
 using namespace std;
 using namespace XYTree;
 
-Node::Node(int index) : index(index) {}
+Node::Node(int index) : index(index) {};
 
 /**
  * @brief X-Tree Construction given precomputed components.
@@ -22,7 +22,6 @@ XYTree::Tree XYTree::buildXTree(const RankerTable& ranker, const ShortlexResult&
     shared_ptr<Node> root = make_shared<Node>(INF);
     tree.root = root;
     tree.parent = vector<shared_ptr<Node>>(text.size() + 1);
-    tree.children = vector<vector<int>>(text.size() + 1);
 
     unordered_map<int, shared_ptr<Node>> nodes;
     nodes[INF] = root;
@@ -106,16 +105,13 @@ XYTree::Tree XYTree::buildXTree(const RankerTable& ranker, const ShortlexResult&
                     sp_p.pop_back();
                 }
             }
+
+            // line 18: T_X(T).chld(parent) <- [i, i)
+            parent_node->children = Interval(i, i);
         }
         
-        // line 18: T_X(T).chld(parent) <- [i, i)
         // line 19: extend end point of T_X(`T`).chld(parent) by one
-        if (parent != INF) {
-            tree.children[parent].push_back(i);
-        }
-        else {
-            tree.children.back().push_back(i);
-        }
+        nodes[parent]->children.end++;
 
         // line 21: T_X(T).prnt(i) <- parent (Note: 논문의 Algorithm 1 에서는 i가 Nodes에 포함인 경우에만 하도록 되어있지만, 6페이지에 모든 i에 대하여 prnt(i)가 작동하도록 하게끔 abuse한다는 내용이 있음)
         tree.parent[i] = nodes[parent];
@@ -144,7 +140,6 @@ XYTree::Tree XYTree::buildYTree(const RankerTable& ranker, const ShortlexResult&
     shared_ptr<Node> root = make_shared<Node>(-1);
     tree.root = root;
     tree.parent = vector<shared_ptr<Node>>(text.size() + 1);
-    tree.children = vector<vector<int>>(text.size() + 1);
 
     unordered_map<int, shared_ptr<Node>> nodes;
     nodes[-1] = root;
@@ -229,16 +224,13 @@ XYTree::Tree XYTree::buildYTree(const RankerTable& ranker, const ShortlexResult&
                     sp_p.pop_back();
                 }
             }
+
+            // line 18: T_Y(T).chld(parent) <- [i, i)
+            parent_node->children = Interval(i, i);
         }
 
-        // line 18: T_Y(T).chld(parent) <- [i, i)
         // line 19: extend end point of T_Y(T).chld(parent) by one
-        if (parent != -1) {
-            tree.children[parent].push_back(i);
-        }
-        else {
-            tree.children.back().push_back(i);
-        }
+        nodes[parent]->children.start--;
 
         // line 21: T_Y(T).prnt(i) <- parent (Note: 논문의 Algorithm 1 에서는 i가 Nodes에 포함인 경우에만 하도록 되어있지만, 6페이지에 모든 i에 대하여 prnt(i)가 작동하도록 하게끔 abuse한다는 내용이 있음)
         tree.parent[i] = nodes[parent];
