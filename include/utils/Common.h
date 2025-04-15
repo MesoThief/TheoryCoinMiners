@@ -7,6 +7,7 @@ struct Interval {
   int start;
   int end;
 
+  Interval() {};
   Interval(int start, int end) : start(start), end(end) {};
 };
 

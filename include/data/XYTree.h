@@ -12,9 +12,9 @@ using namespace std;
 namespace XYTree {
     struct Node {
         int index;
-        int r = 0;
-        shared_ptr<Node> next = nullptr;    // TODO: Y-tree에서는 필요 없는 값. 최적화 시 Y-tree에선 삭제 가능.
-        Interval children = Interval(0, 0); // [start, end]
+        int r;
+        shared_ptr<Node> next;  // TODO: Y-tree에서는 필요 없는 값. 최적화 시 Y-tree에선 삭제 가능.
+        Interval children;      // [start, end]
     
         Node(int index);
     };
