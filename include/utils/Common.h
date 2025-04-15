@@ -3,6 +3,12 @@
 
 #include <limits>
 
+#ifdef DEBUG
+  #define debug(x) x;
+#else
+  #define debug(x)
+#endif
+
 struct Interval {
   int start;
   int end;

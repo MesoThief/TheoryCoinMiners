@@ -2,6 +2,11 @@ CXX = g++
 CXXFLAGS = -std=c++17 -Iinclude
 BIN_DIR = bin
 
+DEBUG ?= 0
+ifeq ($(DEBUG), 1)
+	CXXFLAGS += -DDEBUG
+endif
+
 MAIN = main
 SIMON_TREE = simon_tree
 SHORTLEX = shortlex
