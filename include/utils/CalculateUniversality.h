@@ -34,7 +34,6 @@ inline int calculateUniversalityIndex(const std::string& text) {
             ++archCount;
   
             // move left to end of arch (minimize window)
-            ++right;  // move past the arch
             left = right;
   
             // reset counts
