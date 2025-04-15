@@ -113,8 +113,9 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(string text, string pattern, int 
       if (j_1 == INF) break;  // TODO: 이거 맞나?
 
       // line 17: From j_1, go up the Y-tree using ι(p) calls of T_Y(T').prnt()
-      debug(cout << "starting Y-tree traversal from: space position " << *current_node << endl);
+      debug(cout << "starting Y-tree traversal from: " << *current_node << endl);
       current_node = y_tree.parent[j_1];
+      debug(cout << "Y-tree start becomes: " << *current_node << endl);
       for (int i = 0; i < pattern_universality - 1; i++) {
         current_node = y_tree.parent[current_node->index];
         debug(cout << "traversing Y-tree: " << *current_node << endl);
