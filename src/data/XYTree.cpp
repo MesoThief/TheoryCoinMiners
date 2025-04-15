@@ -226,7 +226,7 @@ XYTree::Tree XYTree::buildYTree(const RankerTable& ranker, const ShortlexResult&
             }
 
             // line 18: T_Y(T).chld(parent) <- [i, i]   // 논문에서는 [i, i)지만 편의상 [i, i]를 쓰기로
-            parent_node->children = Interval(i, i - 1); // line 19 에서 [i, i]로 바뀔 것
+            parent_node->children = Interval(i + 1, i); // line 19 에서 [i, i]로 바뀔 것
         }
 
         // line 19: extend end point of T_Y(T).chld(parent) by one
