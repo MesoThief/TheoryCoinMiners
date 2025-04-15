@@ -65,7 +65,7 @@ XYTree::Tree XYTree::buildXTree(const RankerTable& ranker, const ShortlexResult&
         if(nodes.count(parent) == 0) {
             shared_ptr<Node> parent_node = make_shared<Node>(parent);
             nodes[parent] = parent_node;
-            cout << "Generate new node " << parent << endl;
+            cout << "Generate new node " << *parent_node << endl;
             last_node->next = parent_node;
             last_node = parent_node;
 
@@ -115,14 +115,14 @@ XYTree::Tree XYTree::buildXTree(const RankerTable& ranker, const ShortlexResult&
 
         // line 21: T_X(T).prnt(i) <- parent (Note: 논문의 Algorithm 1 에서는 i가 Nodes에 포함인 경우에만 하도록 되어있지만, 6페이지에 모든 i에 대하여 prnt(i)가 작동하도록 하게끔 abuse한다는 내용이 있음)
         tree.parent[i] = nodes[parent];
-        cout << "Set parent of " << i << " to " << parent << endl;
+        debug(cout << "Set parent of " << i << " to " << *nodes[parent] << endl);
     }
 
     // Clean up
     last_node->next = root;
     tree.parent[text.size()] = root;
 
-    cout << "End of X-tree construction\n\n"; // Double lb is intended
+    debug(cout << "End of X-tree construction" << endl << endl);
     return tree;
 }
 
@@ -184,7 +184,7 @@ XYTree::Tree XYTree::buildYTree(const RankerTable& ranker, const ShortlexResult&
         if(nodes.count(parent) == 0) {
             shared_ptr<Node> parent_node = make_shared<Node>(parent);
             nodes[parent] = parent_node;
-            cout << "Generate new node " << parent << endl;
+            debug(cout << "Generate new node " << *parent_node << endl);
             last_node->next = parent_node;
             last_node = parent_node;
 
@@ -234,13 +234,13 @@ XYTree::Tree XYTree::buildYTree(const RankerTable& ranker, const ShortlexResult&
 
         // line 21: T_Y(T).prnt(i) <- parent (Note: 논문의 Algorithm 1 에서는 i가 Nodes에 포함인 경우에만 하도록 되어있지만, 6페이지에 모든 i에 대하여 prnt(i)가 작동하도록 하게끔 abuse한다는 내용이 있음)
         tree.parent[i] = nodes[parent];
-        cout << "Set parent of " << i << " to " << parent << endl;
+        debug(cout << "Set parent of " << i << " to " << *nodes[parent] << endl);
     }
 
     // Clean up
     last_node->next = root;
     tree.parent[0] = root;
 
-    cout << "End of Y-tree construction\n\n"; // Double lb is intended
+    debug(cout << "End of Y-tree construction" << endl << endl);
     return tree;
 }
