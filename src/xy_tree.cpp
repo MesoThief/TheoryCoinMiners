@@ -30,7 +30,7 @@ void printTree(const Tree& tree) {
             cout << setw(10) << tree.parent[i]->index;
         }
 
-        cout << "[" << current_node->children.start << "," << current_node->children.end << ")";
+        cout << "[" << current_node->children.start << "," << current_node->children.end << "]";
 
         cout << endl;
     }
