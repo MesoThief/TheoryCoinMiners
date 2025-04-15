@@ -6,7 +6,7 @@
 using namespace std;
 using namespace XYTree;
 
-Node::Node(int index) : index(index) {}
+Node::Node(int index) : index(index) {};
 
 /**
  * @brief X-Tree Construction given precomputed components.
@@ -14,10 +14,15 @@ Node::Node(int index) : index(index) {}
  * @param ranker Prebuilt ranker table
  * @param shortlex Precomputed `ShortlexResult` of a pattern string
  * @param text Text.
- * @return `shared_ptr<Node>` Root of the tree.
+ * @return `XYTree::Tree` the constructed X-tree.
  */
-shared_ptr<Node> XYTree::buildXTree(const RankerTable& ranker, const ShortlexResult& shortlex, const string& text) {
+XYTree::Tree XYTree::buildXTree(const RankerTable& ranker, const ShortlexResult& shortlex, const string& text) {
+    XYTree::Tree tree;
+    
     shared_ptr<Node> root = make_shared<Node>(INF);
+    tree.root = root;
+    tree.parent = vector<shared_ptr<Node>>(text.size() + 1);
+
     unordered_map<int, shared_ptr<Node>> nodes;
     nodes[INF] = root;
     
@@ -101,31 +106,24 @@ shared_ptr<Node> XYTree::buildXTree(const RankerTable& ranker, const ShortlexRes
                 }
             }
 
-            // line 18: implemented within line 19
+            // line 18: T_X(T).chld(parent) <- [i, i]   // 논문에서는 [i, i)지만 편의상 [i, i]를 쓰기로
+            parent_node->children = Interval(i, i - 1); // line 19 에서 [i, i]로 바뀔 것
         }
-
+        
         // line 19: extend end point of T_X(`T`).chld(parent) by one
-        if(nodes.count(i) != 0) {
-            nodes[i]->parent = nodes[parent];
-            nodes[parent]->children.push_back(nodes[i]);    // line 18: T_X(T).chld(parent) <- [i, i)
-            cout << "Set parent of " << i << " to " << parent << endl;
-        }
+        nodes[parent]->children.end++;
+
+        // line 21: T_X(T).prnt(i) <- parent (Note: 논문의 Algorithm 1 에서는 i가 Nodes에 포함인 경우에만 하도록 되어있지만, 6페이지에 모든 i에 대하여 prnt(i)가 작동하도록 하게끔 abuse한다는 내용이 있음)
+        tree.parent[i] = nodes[parent];
+        cout << "Set parent of " << i << " to " << parent << endl;
     }
 
     // Clean up
     last_node->next = root;
-    for(auto pair : nodes) {
-        int index = pair.first;
-        shared_ptr<Node> node = pair.second;
-        if(node->parent == nullptr && node != root) {
-            node->parent = root;
-            root->children.push_back(node);
-            cout << "Set parent of " << index << " to " << INF << endl;
-        }
-    }
+    tree.parent[text.size()] = root;
 
     cout << "End of X-tree construction\n\n"; // Double lb is intended
-    return root;
+    return tree;
 }
 
 /**
@@ -134,10 +132,15 @@ shared_ptr<Node> XYTree::buildXTree(const RankerTable& ranker, const ShortlexRes
  * @param ranker Prebuilt ranker table
  * @param shortlex Precomputed `ShortlexResult` of a pattern string
  * @param text Text.
- * @return `shared_ptr<Node>` Root of the tree.
+ * @return `XYTree::Tree` the constructed Y-tree.
  */
-shared_ptr<Node> XYTree::buildYTree(const RankerTable& ranker, const ShortlexResult& shortlex, const string& text) {
+XYTree::Tree XYTree::buildYTree(const RankerTable& ranker, const ShortlexResult& shortlex, const string& text) {
+    XYTree::Tree tree;
+
     shared_ptr<Node> root = make_shared<Node>(-1);
+    tree.root = root;
+    tree.parent = vector<shared_ptr<Node>>(text.size() + 1);
+
     unordered_map<int, shared_ptr<Node>> nodes;
     nodes[-1] = root;
     
@@ -222,29 +225,22 @@ shared_ptr<Node> XYTree::buildYTree(const RankerTable& ranker, const ShortlexRes
                 }
             }
 
-            // line 18: implemented within line 19
+            // line 18: T_Y(T).chld(parent) <- [i, i]   // 논문에서는 [i, i)지만 편의상 [i, i]를 쓰기로
+            parent_node->children = Interval(i + 1, i); // line 19 에서 [i, i]로 바뀔 것
         }
 
         // line 19: extend end point of T_Y(T).chld(parent) by one
-        if(nodes.count(i) != 0) {
-            nodes[i]->parent = nodes[parent];
-            nodes[parent]->children.push_back(nodes[i]);    // line 18: T_Y(T).chld(parent) <- [i, i)
-            cout << "Set parent of " << i << " to " << parent << endl;
-        }
+        nodes[parent]->children.start--;
+
+        // line 21: T_Y(T).prnt(i) <- parent (Note: 논문의 Algorithm 1 에서는 i가 Nodes에 포함인 경우에만 하도록 되어있지만, 6페이지에 모든 i에 대하여 prnt(i)가 작동하도록 하게끔 abuse한다는 내용이 있음)
+        tree.parent[i] = nodes[parent];
+        cout << "Set parent of " << i << " to " << parent << endl;
     }
 
     // Clean up
     last_node->next = root;
-    for(auto pair : nodes) {
-        int index = pair.first;
-        shared_ptr<Node> node = pair.second;
-        if(node->parent == nullptr && node != root) {
-            node->parent = root;
-            root->children.push_back(node);
-            cout << "Set parent of " << index << " to -1" << endl;
-        }
-    }
+    tree.parent[0] = root;
 
     cout << "End of Y-tree construction\n\n"; // Double lb is intended
-    return root;
+    return tree;
 }
