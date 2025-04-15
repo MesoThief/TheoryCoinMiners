@@ -18,6 +18,8 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(string text, string pattern, int 
     alph_p.insert(c);
   }
   int pattern_universality = calculateUniversalityIndex(pattern);
+  
+  cout << "Computing MatchSimK..." << endl;
 
   // line 2: Returns: a set S of tripes where, for space positions f and b of T,
   // T[f : b] ~k p if and only if there exists some element e = ([f_1, f_2], [b_1, b_2], offset) in S
@@ -33,6 +35,7 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(string text, string pattern, int 
     vector<int>(Alphabet::getInstance().size(), 1),
     k + 1
   ); // stack form = shortlex_p.stackForm
+  debug(cout << "shortlex normal form of pattern is: " << shortlex_p.shortlexNormalForm << endl);
 
   // line 5: Slice T whenever T[i] \not-in alph(p)
   vector<Interval> sub_Ts;
@@ -175,9 +178,7 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(string text, string pattern, int 
           }
         }
         int interval1_end = j_2;
-
         Interval interval1 = Interval(interval1_start, interval1_end);
-        debug(cout << "interval1 becomes: " << interval1 << endl);
 
         // line 25: interval2 <- [j_1, min_{σ in A}{R_X(T', j_1, σ)-1}]
         int interval2_start = j_1;
@@ -189,9 +190,7 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(string text, string pattern, int 
             interval2_end = std::min(interval2_end, r_x - 1);
           }
         }
-
         Interval interval2 = Interval(interval2_start, interval2_end);
-        debug(cout << "interval2 becomes: " << interval2 << endl);
 
         // line 26: add (interval1, interval2, offset) to positions
         positions.push_back({
@@ -199,6 +198,7 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(string text, string pattern, int 
           Interval(interval2_start, interval2_end),
           offset
         });
+        debug(cout << "push new position: " << interval1 << ", " << interval2 << ", " << offset << endl);
       }
     }
   }
