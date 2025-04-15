@@ -69,10 +69,10 @@ int main() {
     }
 
     // Build X-tree
-    XYTree::Node xRoot = *XYTree::buildXTree(ranker, pattern_shortlex, randText);
+    XYTree::Tree x_tree = XYTree::buildXTree(ranker, pattern_shortlex, randText);
 
     // Build Y-tree
-    XYTree::Node yRoot = *XYTree::buildYTree(ranker, pattern_shortlex, randText);
+    XYTree::Tree y_tree = XYTree::buildYTree(ranker, pattern_shortlex, randText);
     
     return 0;
 }

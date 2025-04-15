@@ -1,25 +1,41 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <iomanip>
 
 #include "data/XYTree.h"
 #include "utils/Alphabet.h"
+#include "utils/Common.h"
 
 using namespace std;
 using namespace XYTree;
 
 // -------------------- Print Tree --------------------
-void printTree(const shared_ptr<Node>& node, const string& w, string indent = "", bool isLast = true, int depth = 0) {
-    if (true) {
-        cout << indent;
-        if (depth > 0) cout << (isLast ? "└── " : "├── ");
-        int position = node->index;
-        cout << position << "(r=" << node->r << ", next=" << node->next->index << ")" << "\n";
-        indent += (isLast ? "    " : "│   ");
+void printTree(const Tree& tree) {
+    cout << "Visual Tree Structure:\n";
+    cout << "----------------------\n";
+    cout << left << setw(10) << "Index"
+              << setw(10) << "Parent"
+              << "Children\n";
+
+    ;
+    for (shared_ptr<XYTree::Node> current_node = tree.root->next; current_node != tree.root; current_node = current_node->next) {
+        int i = current_node->index;
+        cout << left << setw(10) << i;
+        
+        if (tree.parent[i]->index == INF) {
+            cout << setw(10) << "INF";
+        }
+        else {
+            cout << setw(10) << tree.parent[i]->index;
+        }
+
+        cout << "[" << current_node->children.start << "," << current_node->children.end << "]";
+
+        cout << endl;
     }
-    for (size_t i = 0; i < node->children.size(); ++i) {
-        printTree(node->children[i], w, indent, i == node->children.size() - 1, depth+1);
-    }
+
+    cout << "----------------------\n";
 }
 
 // ------------------
@@ -71,11 +87,16 @@ int main(int argc, char* argv[]) {
         k + 1
     );
 
-    shared_ptr<Node> T_X = buildXTree(rankers, pattern_shortlex, t);
-    shared_ptr<Node> T_Y = buildYTree(rankers, pattern_shortlex, t);
+    XYTree::Tree T_X = buildXTree(rankers, pattern_shortlex, t);
+    XYTree::Tree T_Y = buildYTree(rankers, pattern_shortlex, t);
 
-    printTree(T_X, t);
-    printTree(T_Y, t);
+    cout << "X-tree:" << endl;
+    printTree(T_X);
+    
+    cout << endl;
+
+    cout << "Y-tree:" << endl;
+    printTree(T_Y);
 
     return 0;
 }
