@@ -150,17 +150,21 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(string text, string pattern, int 
       if (j_2 == -1) continue;
 
       // line 21: z <- ShortLex_k(T'[j_2 : j_1]) using the checkpoint mechanism and Map
-      string z = text.substr(offset + j_2, j_1 - j_2 + 1);
-      
-      // line 22: Save Checkpoints for each arch link of T'[j_2 : j_1]
+      string T_prime = text.substr(offset + j_2, j_1 - j_2 + 1);
       ShortlexResult shortlex_z = computePartialShortlexNormalForm(
-        z,
+        T_prime,
         vector<int>(Alphabet::getInstance().size(), 1),
         vector<int>(Alphabet::getInstance().size(), 1),
         k + 1
       );
       
+      // line 22: Save Checkpoints for each arch link of T'[j_2 : j_1]
+      // TODO memoization, checkpoints 통해서 최척화
+      
       // line 23: if z ~k ShortLex(p) then
+      string z = shortlex_z.shortlexNormalForm;
+      debug(cout << "z becomes: " << z << endl);
+
       if (z == shortlex_p.shortlexNormalForm) {
         // line 24: interval1 <- T_X(T').chld(i) AND [max_{σ in B}{R_Y(T', j_2, σ)+1, j_2}]
         int interval1_start = -1;
@@ -180,9 +184,9 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(string text, string pattern, int 
         int interval2_end = INF;
 
         for (char sigma : A) {
-          int rx = rankers.getX(j_1, sigma);
-          if (rx != INF) {
-            interval2_end = std::min(interval2_end, rx - 1);
+          int r_x = rankers.getX(j_1, sigma);
+          if (r_x != INF) {
+            interval2_end = std::min(interval2_end, r_x - 1);
           }
         }
 
