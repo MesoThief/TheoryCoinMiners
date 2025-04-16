@@ -47,15 +47,12 @@ XYTree::Tree XYTree::buildXTree(const RankerTable& ranker, const ShortlexResult&
     }
 
     // ln 7-21
-    int parent;
-    int x_rank;
-    int min_x_rank = -1;
     deque<set<char>> sp_p;
     set<char> S;
-    char sigma;
     shared_ptr<Node> last_node = root;
     for(int i = 0; i < static_cast<int>(text.size()); i++) {
-        parent = -1;
+        int parent = -1;
+        int x_rank;
         for(char a : shortlex.alphabet) {
             x_rank = ranker.getX(i, a);
             if(x_rank > parent) parent = x_rank;
@@ -84,7 +81,8 @@ XYTree::Tree XYTree::buildXTree(const RankerTable& ranker, const ShortlexResult&
                 S = sp_p.back();
 
                 // line 15: sigma = arg min (R_X(T, T_X(T).r(parent), c))
-                min_x_rank = -1;
+                int min_x_rank = -1;
+                char sigma;
                 for(char c : S) {
                     x_rank = ranker.getX(parent_node->r, c);
                     if (min_x_rank == -1 || x_rank < min_x_rank) { 
@@ -96,6 +94,7 @@ XYTree::Tree XYTree::buildXTree(const RankerTable& ranker, const ShortlexResult&
                 // line 16: T_X(T).r(parent) <- R_X(T, T_X(T).r(parent), sigma)
                 parent_node->r = ranker.getX(parent_node->r, sigma);
                 if (parent_node->r == INF) {
+                    parent_node->r = parent;
                     break;
                 }
 
@@ -164,15 +163,12 @@ XYTree::Tree XYTree::buildYTree(const RankerTable& ranker, const ShortlexResult&
     }
 
     // ln 7-21
-    int parent;
-    int y_rank;
-    int max_y_rank = INF;
     vector<set<char>> sp_p;
     set<char> S;
-    char sigma;
     shared_ptr<Node> last_node = root;
     for(int i = static_cast<int>(text.size()); i > 0; i--) {
-        parent = INF;
+        int parent = INF;
+        int y_rank;
         for(auto a : shortlex.alphabet) {
             y_rank = ranker.getY(i, a);
             if(y_rank < parent) parent = y_rank;
@@ -203,7 +199,8 @@ XYTree::Tree XYTree::buildYTree(const RankerTable& ranker, const ShortlexResult&
                 S = sp_p.back();
 
                 // line 15: sigma = arg min (R_Y(T, r(i), c))
-                max_y_rank = INF;
+                int max_y_rank = INF;
+                char sigma;
                 for(char c : S) {
                     y_rank = ranker.getY(parent_node->r, c);
                     if (max_y_rank == INF || y_rank > max_y_rank) {
@@ -215,6 +212,7 @@ XYTree::Tree XYTree::buildYTree(const RankerTable& ranker, const ShortlexResult&
                 // line 16: T_Y(T).r(i) <- R_Y(T, T_Y(T).r(i), sigma)
                 parent_node->r = ranker.getY(parent_node->r, sigma);
                 if (parent_node->r < 0) {
+                    parent_node->r = parent;
                     break;
                 }
 
