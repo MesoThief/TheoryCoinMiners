@@ -121,8 +121,7 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(string text,string pattern,int k)
             debug(cout << "j_1 value: " << j_1 << endl);
 
             // line 16: if j_1 = ∞, break.
-            if (j_1 == INF)
-            break;  // TODO: 이거 맞나?
+            if (j_1 == INF) break;  // TODO: 이거 맞나?
 
             // line 17: From j_1, go up the Y-tree using ι(p) calls of T_Y(T').prnt()
             debug(cout << "starting Y-tree traversal from: " << *current_node << endl);
@@ -161,7 +160,7 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(string text,string pattern,int k)
             }
             else {
                 // line 20: if no such value exists, continue.
-                debug(cout << "skip due to j_2 = -1: " << endl);
+                debug(cout << "skipping due to invalid j_2" << endl);
                 continue;
             }
             debug(cout << "j_2 value: " << j_2 << endl);
