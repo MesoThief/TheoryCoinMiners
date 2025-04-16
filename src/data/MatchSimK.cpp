@@ -1,6 +1,7 @@
+#include "data/MatchSimK.h"
+
 #include <iostream>
 
-#include "data/MatchSimK.h"
 #include "data/XYTree.h"
 #include "utils/Alphabet.h"
 #include "utils/CalculateUniversality.h"
@@ -9,7 +10,7 @@
 /**
  * MatchSimK 알고리즘 구현
  */
-vector<MatchSimK::triple> MatchSimK::matchSimK(string text,string pattern,int k) {
+vector<MatchSimK::triple> MatchSimK::matchSimK(string text, string pattern, int k) {
     // line 1: Given: a pattern p, a text T, an integer k
 
     // 일부 데이터 전처리
@@ -24,19 +25,18 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(string text,string pattern,int k)
     debug(cout << "Computing MatchSimK..." << endl);
 
     // line 2: Returns: a set S of tripes where, for space positions f and b of T,
-    // T[f : b] ~k p if and only if there exists some element e = ([f_1, f_2], [b_1, b_2], offset) in S
-    // such that space positions f - offset \in [f_1, f_2] and b - offset \in [b_1, b_2]
+    // T[f : b] ~k p if and only if there exists some element e = ([f_1, f_2],
+    // [b_1, b_2], offset) in S such that space positions f - offset \in [f_1,
+    // f_2] and b - offset \in [b_1, b_2]
 
     // line 3: positions <- empty set
     vector<triple> positions;
 
     // line 4: s_p <-ShortLex_k(p) in stack form
-    ShortlexResult shortlex_p = computePartialShortlexNormalForm(
-        pattern,
+    ShortlexResult shortlex_p = computePartialShortlexNormalForm(pattern,
         vector<int>(Alphabet::getInstance().size(), 1),
         vector<int>(Alphabet::getInstance().size(), 1),
-        k + 1
-    );  // stack form = shortlex_p.stackForm
+        k + 1);  // stack form = shortlex_p.stackForm
     debug(cout << "shortlex normal form of pattern is: " << shortlex_p.shortlexNormalForm << endl);
 
     // line 5: Slice T whenever T[i] \not-in alph(p)
@@ -74,11 +74,8 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(string text,string pattern,int k)
         };
     }
     debug(
-        cout << "A: ";
-        for (char sigma : A) { cout << sigma << " "; } cout << endl;
-        cout << "B: ";
-        for (char sigma : B) { cout << sigma << " "; } cout << endl;
-    );
+        cout << "A: "; for (char sigma : A) { cout << sigma << " "; } cout << endl; cout << "B: ";
+        for (char sigma : B) { cout << sigma << " "; } cout << endl;);
 
     // line 8: for all sliced substrings T' of T do
     for (Interval sub_T : sub_Ts) {
@@ -89,7 +86,7 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(string text,string pattern,int k)
         int offset = sub_T.start;
 
         // line 10: Map <- empty map for saving vectors and substrings
-        unordered_map<int, string> map; // TODO: checkpoint 관련 구현 시 수정
+        unordered_map<int, string> map;  // TODO: checkpoint 관련 구현 시 수정
 
         // line 11: Preprocess X- and Y-ranker array
         RankerTable rankers = RankerTable(sub_T_string);
@@ -141,7 +138,8 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(string text,string pattern,int k)
             // line 18: n <- current node
             int n = current_node->index;
 
-            // line 19: j_2 <- max(T_X(T').chld(i) AND [max_{σ in B}{R_Y(T', n, σ)+1, n}])
+            // line 19: j_2 <- max(T_X(T').chld(i) AND [max_{σ in B}{R_Y(T', n, σ)+1,
+            // n}])
             debug(cout << "children of " << *node_i << " are: " << node_i->children << endl);
             int max_r_y = -1;
             for (char sigma : B) {
@@ -157,22 +155,20 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(string text,string pattern,int k)
             int intersection_end = min(node_i->children.end, j_2_candidate.end);
             if (intersection_start <= intersection_end) {
                 j_2 = intersection_end;
-            }
-            else {
+            } else {
                 // line 20: if no such value exists, continue.
                 debug(cout << "skipping due to invalid j_2" << endl);
                 continue;
             }
             debug(cout << "j_2 value: " << j_2 << endl);
 
-            // line 21: z <- ShortLex_k(T'[j_2 : j_1]) using the checkpoint mechanism and Map
+            // line 21: z <- ShortLex_k(T'[j_2 : j_1]) using the checkpoint mechanism
+            // and Map
             // TODO memoization, checkpoints 통해서 최척화
-            ShortlexResult shortlex_z = computePartialShortlexNormalForm(
-                sub_T_string.substr(j_2, j_1 - j_2 + 1),
+            ShortlexResult shortlex_z = computePartialShortlexNormalForm(sub_T_string.substr(j_2, j_1 - j_2 + 1),
                 vector<int>(Alphabet::getInstance().size(), 1),
                 vector<int>(Alphabet::getInstance().size(), 1),
-                k + 1
-            );
+                k + 1);
 
             // line 22: Save Checkpoints for each arch link of T'[j_2 : j_1]
             // TODO memoization, checkpoints 통해서 최척화
@@ -182,7 +178,8 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(string text,string pattern,int k)
             debug(cout << "z becomes: " << z << endl);
 
             if (z == shortlex_p.shortlexNormalForm) {
-                // line 24: interval1 <- T_X(T').chld(i) AND [max_{σ in B}{R_Y(T', j_2, σ)+1, j_2}]
+                // line 24: interval1 <- T_X(T').chld(i) AND [max_{σ in B}{R_Y(T', j_2,
+                // σ)+1, j_2}]
                 int interval1_start = -1;
                 for (char sigma : B) {
                     int r_y = rankers.getY(j_2, sigma);

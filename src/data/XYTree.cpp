@@ -1,6 +1,7 @@
+#include "data/XYTree.h"
+
 #include <iostream>
 
-#include "data/XYTree.h"
 #include "utils/Common.h"
 
 using namespace std;
@@ -18,30 +19,32 @@ Node::Node(int index) : index(index) {};
  */
 XYTree::Tree XYTree::buildXTree(const RankerTable& ranker, const ShortlexResult& shortlex, const string& text) {
     XYTree::Tree tree;
-    
+
     shared_ptr<Node> root = make_shared<Node>(INF);
     tree.root = root;
     tree.parent = vector<shared_ptr<Node>>(text.size() + 1);
 
     unordered_map<int, shared_ptr<Node>> nodes;
     nodes[INF] = root;
-    
+
     debug(cout << "Building X-tree..." << endl);
 
     //) Copy out s_p
     deque<set<char>> s_p;
     set<char> s;
-    for(int i = 0; i < shortlex.stackForm.size(); i++) {
+    for (int i = 0; i < shortlex.stackForm.size(); i++) {
         s = shortlex.stackForm.at(i);
         s_p.push_back(s);
     }
 
     // ln 4-6
     int last_arch = 0;
-    for(int i = 0; i < shortlex.arch_ends.size(); i++) {
-        for(int j = 0; j < shortlex.arch_ends.at(i) - last_arch; j++) {
-            s_p.back().erase(shortlex.shortlexNormalForm.at(j+last_arch));
-            if(s_p.back().empty()) { s_p.pop_back(); }
+    for (int i = 0; i < shortlex.arch_ends.size(); i++) {
+        for (int j = 0; j < shortlex.arch_ends.at(i) - last_arch; j++) {
+            s_p.back().erase(shortlex.shortlexNormalForm.at(j + last_arch));
+            if (s_p.back().empty()) {
+                s_p.pop_back();
+            }
         }
         last_arch = shortlex.arch_ends.at(i);
     }
@@ -50,16 +53,16 @@ XYTree::Tree XYTree::buildXTree(const RankerTable& ranker, const ShortlexResult&
     deque<set<char>> sp_p;
     set<char> S;
     shared_ptr<Node> last_node = root;
-    for(int i = 0; i < static_cast<int>(text.size()); i++) {
+    for (int i = 0; i < static_cast<int>(text.size()); i++) {
         int parent = -1;
         int x_rank;
-        for(char a : shortlex.alphabet) {
+        for (char a : shortlex.alphabet) {
             x_rank = ranker.getX(i, a);
-            if(x_rank > parent) parent = x_rank;
+            if (x_rank > parent) parent = x_rank;
         }
 
         // ln 9-18
-        if(nodes.count(parent) == 0) {
+        if (nodes.count(parent) == 0) {
             shared_ptr<Node> parent_node = make_shared<Node>(parent);
             nodes[parent] = parent_node;
             debug(cout << "Generate new node " << *parent_node << endl);
@@ -68,7 +71,7 @@ XYTree::Tree XYTree::buildXTree(const RankerTable& ranker, const ShortlexResult&
 
             // line 11: s'_p <- copy(s_p)
             sp_p.clear();
-            for(auto entry = s_p.begin(); entry != s_p.end(); entry++) {
+            for (auto entry = s_p.begin(); entry != s_p.end(); entry++) {
                 sp_p.push_back(*entry);
             }
 
@@ -76,16 +79,16 @@ XYTree::Tree XYTree::buildXTree(const RankerTable& ranker, const ShortlexResult&
             parent_node->r = parent;
 
             // line 13: while s'_p is not empty
-            while(!sp_p.empty()) {
+            while (!sp_p.empty()) {
                 // line 14: S <- peek(s'_p)
                 S = sp_p.back();
 
                 // line 15: sigma = arg min (R_X(T, T_X(T).r(parent), c))
                 int min_x_rank = -1;
                 char sigma;
-                for(char c : S) {
+                for (char c : S) {
                     x_rank = ranker.getX(parent_node->r, c);
-                    if (min_x_rank == -1 || x_rank < min_x_rank) { 
+                    if (min_x_rank == -1 || x_rank < min_x_rank) {
                         min_x_rank = x_rank;
                         sigma = c;
                     }
@@ -106,9 +109,9 @@ XYTree::Tree XYTree::buildXTree(const RankerTable& ranker, const ShortlexResult&
             }
 
             // line 18: T_X(T).chld(parent) <- [i, i]   // 논문에서는 [i, i)지만 편의상 [i, i]를 쓰기로
-            parent_node->children = Interval(i, i - 1); // line 19 에서 [i, i]로 바뀔 것
+            parent_node->children = Interval(i, i - 1);  // line 19 에서 [i, i]로 바뀔 것
         }
-        
+
         // line 19: extend end point of T_X(`T`).chld(parent) by one
         nodes[parent]->children.end++;
 
@@ -142,20 +145,21 @@ XYTree::Tree XYTree::buildYTree(const RankerTable& ranker, const ShortlexResult&
 
     unordered_map<int, shared_ptr<Node>> nodes;
     nodes[-1] = root;
-    
+
     debug(cout << "Building Y-tree..." << endl);
 
     // Copy out s_p (in reverse order) << not sure if reversing is mandatory
-    vector<set<char>> s_p; set<char> s;
-    for(int i = 0; i < shortlex.stackForm.size(); i++) {
+    vector<set<char>> s_p;
+    set<char> s;
+    for (int i = 0; i < shortlex.stackForm.size(); i++) {
         s = shortlex.stackForm.at(shortlex.stackForm.size() - i - 1);
         s_p.push_back(s);
     }
 
     // ln 4-6 (Slight rework as well)
     int deleted_chars = 0;
-    for(int i = 0; i < shortlex.universality; i++) {
-        while(deleted_chars < shortlex.alphabet.size()) {
+    for (int i = 0; i < shortlex.universality; i++) {
+        while (deleted_chars < shortlex.alphabet.size()) {
             deleted_chars += s_p.back().size();
             s_p.pop_back();
         }
@@ -166,18 +170,18 @@ XYTree::Tree XYTree::buildYTree(const RankerTable& ranker, const ShortlexResult&
     vector<set<char>> sp_p;
     set<char> S;
     shared_ptr<Node> last_node = root;
-    for(int i = static_cast<int>(text.size()); i > 0; i--) {
+    for (int i = static_cast<int>(text.size()); i > 0; i--) {
         int parent = INF;
         int y_rank;
-        for(auto a : shortlex.alphabet) {
+        for (auto a : shortlex.alphabet) {
             y_rank = ranker.getY(i, a);
-            if(y_rank < parent) parent = y_rank;
+            if (y_rank < parent) parent = y_rank;
         }
 
-        if(parent != -1) parent--;
+        if (parent != -1) parent--;
 
         // ln 9-18
-        if(nodes.count(parent) == 0) {
+        if (nodes.count(parent) == 0) {
             shared_ptr<Node> parent_node = make_shared<Node>(parent);
             nodes[parent] = parent_node;
             debug(cout << "Generate new node " << *parent_node << endl);
@@ -186,7 +190,7 @@ XYTree::Tree XYTree::buildYTree(const RankerTable& ranker, const ShortlexResult&
 
             // line 11: s'_p <- copy(s_p)
             sp_p.clear();
-            for(auto entry = s_p.begin(); entry != s_p.end(); entry++) {
+            for (auto entry = s_p.begin(); entry != s_p.end(); entry++) {
                 sp_p.push_back(*entry);
             }
 
@@ -194,14 +198,14 @@ XYTree::Tree XYTree::buildYTree(const RankerTable& ranker, const ShortlexResult&
             parent_node->r = parent;
 
             // line 13: while s'_p is not empty
-            while(!sp_p.empty()) {
+            while (!sp_p.empty()) {
                 // line 14: S <- peek(s'_p)
                 S = sp_p.back();
 
                 // line 15: sigma = arg min (R_Y(T, r(i), c))
                 int max_y_rank = INF;
                 char sigma;
-                for(char c : S) {
+                for (char c : S) {
                     y_rank = ranker.getY(parent_node->r, c);
                     if (max_y_rank == INF || y_rank > max_y_rank) {
                         max_y_rank = y_rank;
@@ -218,13 +222,13 @@ XYTree::Tree XYTree::buildYTree(const RankerTable& ranker, const ShortlexResult&
 
                 // line 17: pop sigma from s'_p
                 sp_p.back().erase(sigma);
-                if(sp_p.back().empty()) {
+                if (sp_p.back().empty()) {
                     sp_p.pop_back();
                 }
             }
 
             // line 18: T_Y(T).chld(parent) <- [i, i]   // 논문에서는 [i, i)지만 편의상 [i, i]를 쓰기로
-            parent_node->children = Interval(i + 1, i); // line 19 에서 [i, i]로 바뀔 것
+            parent_node->children = Interval(i + 1, i);  // line 19 에서 [i, i]로 바뀔 것
         }
 
         // line 19: extend end point of T_Y(T).chld(parent) by one

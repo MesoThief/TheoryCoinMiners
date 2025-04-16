@@ -1,8 +1,9 @@
-#include <iostream>
+#include "data/Shortlex.h"
+
 #include <fstream>
+#include <iostream>
 #include <sstream>
 
-#include "data/Shortlex.h"
 #include "utils/Alphabet.h"
 #include "utils/CalculateUniversality.h"
 
@@ -30,7 +31,7 @@ int main(int argc, char* argv[]) {
     vector<int> X_vector;
     vector<int> Y_vector;
     int k;
-    
+
     string line;
 
     getline(inputFile, alphabet);
@@ -81,12 +82,7 @@ int main(int argc, char* argv[]) {
     cout << "   universality_index: " << universality_index << endl;
 
     // run test
-    ShortlexResult result = computePartialShortlexNormalForm(
-        w,
-        X_vector,
-        Y_vector,
-        threshold
-    );
+    ShortlexResult result = computePartialShortlexNormalForm(w, X_vector, Y_vector, threshold);
 
     cout << "Output: " << endl;
     cout << "   Shortlex normal form: " << result.shortlexNormalForm << endl;

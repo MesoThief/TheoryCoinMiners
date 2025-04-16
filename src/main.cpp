@@ -1,16 +1,15 @@
-#include <string>
+#include <iostream>
 #include <random>
 #include <stdexcept>
-#include <iostream>
+#include <string>
 #include <vector>
 
 #include "data/Ranker.h"
 #include "data/XYTree.h"
-
 #include "utils/Alphabet.h"
-#include "utils/RandomTextGenerator.h"
 #include "utils/CalculateUniversality.h"
 #include "utils/Common.h"
+#include "utils/RandomTextGenerator.h"
 
 int main() {
     // Manually set alphabet size and text length
@@ -33,11 +32,7 @@ int main() {
 
     // Make k-class shortlex form of a generated pattern
     ShortlexResult pattern_shortlex = computePartialShortlexNormalForm(
-        randPattern,
-        vector<int>(alphabetSize, 1),
-        vector<int>(alphabetSize, 1),
-        k + 1
-    );
+        randPattern, vector<int>(alphabetSize, 1), vector<int>(alphabetSize, 1), k + 1);
 
     // Make and build both X-ranker and Y-ranker table
     RankerTable ranker(randText);
@@ -51,8 +46,10 @@ int main() {
         for (char c : Alphabet::getInstance().getAlphabet()) {
             int result = ranker.getX(i, c);
             std::cout << "X(" << i << ", " << c << ") = ";
-            if (result == INF) std::cout << "INF";
-            else std::cout << result;
+            if (result == INF)
+                std::cout << "INF";
+            else
+                std::cout << result;
             std::cout << "\t";
         }
         std::cout << "\n";
@@ -73,6 +70,6 @@ int main() {
 
     // Build Y-tree
     XYTree::Tree y_tree = XYTree::buildYTree(ranker, pattern_shortlex, randText);
-    
+
     return 0;
 }

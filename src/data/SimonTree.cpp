@@ -1,29 +1,24 @@
-#include <iostream>
-#include <vector>
-#include <unordered_map>
-#include <memory>
-
 #include "data/SimonTree.h"
+
+#include <iostream>
+#include <memory>
+#include <unordered_map>
+#include <vector>
 
 using namespace std;
 using namespace SimonTree;
 
-Node::Node(int start, int end, int depth)
-    : start(start), end(end), depth(depth) {}
+Node::Node(int start, int end, int depth) : start(start), end(end), depth(depth) {}
 
 Node::Node(int start, int end, int depth, std::shared_ptr<Node> parent)
     : start(start), end(end), depth(depth), parent(parent) {}
 
-bool Node::isRoot() const {
-    return parent == nullptr;
-}
+bool Node::isRoot() const { return parent == nullptr; }
 
-bool Node::isLeaf() const {
-    return children.empty();
-}
+bool Node::isLeaf() const { return children.empty(); }
 
 // -------------------- Compute X[i] --------------------
-vector<int> SimonTree::computeX(const string& w) {
+vector<int> SimonTree::computeX(const string &w) {
     int n = w.size();
     vector<int> X(n + 2, n + 1);  // 1-based, X[n+1] = ∞
     unordered_map<char, int> lastSeen;
@@ -40,14 +35,14 @@ vector<int> SimonTree::computeX(const string& w) {
 }
 
 // -------------------- Find Node (Algorithm 2) --------------------
-shared_ptr<Node> SimonTree::findNode(int i, const vector<int>& X, shared_ptr<Node> a) {
+shared_ptr<Node> SimonTree::findNode(int i, const vector<int> &X, shared_ptr<Node> a) {
     while (!a->isRoot()) {
         int r = a->end;
         int rp = a->parent->end;
         if (X[i] >= r && X[i] < rp) {
             return a;
         } else {
-            a->start = i + 1; // Close block
+            a->start = i + 1;  // Close block
             a = a->parent;
         }
     }
@@ -90,14 +85,14 @@ void SimonTree::fixTree(shared_ptr<Node> root, int n) {
 }
 
 // -------------------- Print Tree --------------------
-void SimonTree::printTree(const shared_ptr<Node>& node, const string& w, string indent, bool isLast) {
+void SimonTree::printTree(const shared_ptr<Node> &node, const string &w, string indent, bool isLast) {
     if (node->start != -1 && node->start <= (int)w.size()) {
         cout << indent;
         if (node->depth > 0) cout << (isLast ? "└── " : "├── ");
         string label = w.substr(node->start - 1, node->end - node->start + 1);
         string position = (node->start == node->end)
-    ? "[" + to_string(node->start) + "]"
-    : "[" + to_string(node->start) + ":" + to_string(node->end) + "] (k=" + to_string(node->depth) + ")";
+            ? "[" + to_string(node->start) + "]"
+            : "[" + to_string(node->start) + ":" + to_string(node->end) + "] (k=" + to_string(node->depth) + ")";
         cout << label << position << "\n";
         indent += (isLast ? "    " : "│   ");
     }
