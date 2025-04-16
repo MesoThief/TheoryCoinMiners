@@ -17,6 +17,8 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(string text, string pattern, int 
   for (char c : pattern) {
     alph_p.insert(c);
   }
+  std::string alph_p_string(alph_p.begin(), alph_p.end());
+  Alphabet::getInstance().setAlphabet(alph_p_string);
   int pattern_universality = calculateUniversalityIndex(pattern);
   
   cout << "Computing MatchSimK..." << endl;
@@ -205,7 +207,7 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(string text, string pattern, int 
         Interval interval1 = Interval(interval1_start, interval1_end);
 
         // line 25: interval2 <- [j_1, min_{σ in A}{R_X(T', j_1, σ)-1}]
-        int interval2_end = sub_T.end;  // TODO: 이거 맞는지 확인
+        int interval2_end = sub_T.end - offset;  // TODO: 이거 맞는지 확인
         for (char sigma : A) {
           int r_x = rankers.getX(j_1, sigma);
           interval2_end = std::min(interval2_end, r_x - 1);
