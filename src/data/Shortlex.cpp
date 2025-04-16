@@ -101,7 +101,7 @@ string computeShortlexNormalForm(const string& w, int k) {
    * @param w          a substring of text T
    * @param X_vector   X-vector of T at start of w
    * @param Y_vector   Y-vector of T at end of w
-   * @param threshold  if x + y > threashold, delete character.
+   * @param threshold  if x + y > threshold, delete character.
    * 
    * The value of threshold depends on whether w is a XY-link or YX-link.
    * XY-link: threshold = (k + 1 -(iota(p) - 1)) = k + 2 - iota(p)
