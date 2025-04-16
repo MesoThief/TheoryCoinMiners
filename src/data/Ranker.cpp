@@ -1,11 +1,12 @@
+#include "data/Ranker.h"
+
 #include <limits>
 #include <stdexcept>
 
-#include "data/Ranker.h"
 #include "utils/Alphabet.h"
 #include "utils/Common.h"
 
-RankerTable::RankerTable(const std::string& text) : text(text) {
+RankerTable::RankerTable(const std::string &text) : text(text) {
     int n = text.size();
     int alphabetSize = Alphabet::getInstance().size();
 
@@ -31,7 +32,7 @@ void RankerTable::buildXRankerTable() {
 void RankerTable::buildYRankerTable() {
     int n = text.size();
     int alphabetSize = Alphabet::getInstance().size();
-    
+
     std::vector<int> prev(alphabetSize, -1);
 
     for (int i = 0; i < n; ++i) {
