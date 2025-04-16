@@ -161,16 +161,17 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(string text, string pattern, int 
       Interval j_2_candidate = Interval(max_r_y, n);
 
       int j_2 = -1;
-      // interval이 겹치지 않는 경우 처리(완료)
-      if (node_i->children.end >= j_2_candidate.start || node_i->children.start <= j_2_candidate.end)
-          j_2 = min(node_i->children.end, j_2_candidate.end);
-      debug(cout << "j_2 value: " << j_2 << endl);
-
-      // line 20: if no such value exists, continue.
-      if (j_2 == -1) {
+      int intersection_start = max(node_i->children.start, j_2_candidate.start);
+      int intersection_end = min(node_i->children.end, j_2_candidate.end);
+      if (intersection_start <= intersection_end) {
+        j_2 = intersection_end;
+      }
+      else {
+        // line 20: if no such value exists, continue.
         debug(cout << "skip due to j_2 = -1: " << endl);
         continue;
       }
+      debug(cout << "j_2 value: " << j_2 << endl);
 
       // line 21: z <- ShortLex_k(T'[j_2 : j_1]) using the checkpoint mechanism and Map
       ShortlexResult shortlex_z = computePartialShortlexNormalForm(
