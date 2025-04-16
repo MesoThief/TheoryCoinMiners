@@ -79,19 +79,19 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(string text, string pattern, int 
     };
   }
 
-  #ifdef DEBUG
-  cout << "A: ";
-  for(char sigma : A) {
-    cout << sigma << " ";
-  }
-  cout << endl;
-  cout << "B: ";
-  for(char sigma : B) {
-    cout << sigma << " ";
-  }
-  cout << endl;
-  #endif
 
+  debug(
+    cout << "A: ";
+    for(char sigma : A) {
+      cout << sigma << " ";
+    }
+    cout << endl;
+    cout << "B: ";
+    for(char sigma : B) {
+      cout << sigma << " ";
+    }
+    cout << endl;
+  );
   // line 8: for all sliced substrings T' of T do
   for (Interval sub_T : sub_Ts) {
     string sub_T_string = text.substr(sub_T.start, sub_T.end - sub_T.start);
@@ -127,7 +127,6 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(string text, string pattern, int 
         continue;
       }
       debug(cout << "X-tree ends at: " << *current_node << endl);
-
 
       // line 15: j_1 <- T_X(T').r(current node)
       int j_1 = current_node->r;
