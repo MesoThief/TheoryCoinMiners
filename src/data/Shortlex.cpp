@@ -1,6 +1,7 @@
+#include "data/Shortlex.h"
+
 #include <deque>
 
-#include "data/Shortlex.h"
 #include "utils/Alphabet.h"
 
 using namespace std;
@@ -13,15 +14,15 @@ using namespace std;
 string computeShortlexNormalForm(const string& w, int k) {
     int n = w.size();
 
-    vector<int> X(n, 0);    // X-coordinates
-    vector<int> Y(n, 0);    // Y-coordinates
+    vector<int> X(n, 0);  // X-coordinates
+    vector<int> Y(n, 0);  // Y-coordinates
 
     int ALPHABET_SIZE = Alphabet::getInstance().size();
-    
+
     string shortlexNormalForm;
-    deque<int> shortlexNormalX;    // X-coordinates of SNF
-    deque<int> shortlexNormalY;    // Y-coordinates of SNF
-    
+    deque<int> shortlexNormalX;  // X-coordinates of SNF
+    deque<int> shortlexNormalY;  // Y-coordinates of SNF
+
     // 1. Compute X-coordinates from left-to-right
     vector<int> counter(ALPHABET_SIZE, 1);
     for (int i = 0; i < n; i++) {
@@ -30,14 +31,14 @@ string computeShortlexNormalForm(const string& w, int k) {
 
         X[i] = counter[alphabetIndex];
         counter[alphabetIndex]++;
-        
+
         for (int a = 0; a < ALPHABET_SIZE; a++) {
             counter[a] = min(counter[a], counter[alphabetIndex]);
         }
     }
 
     // 2. Compute Y-coordinates from right-to-left, while computing SNF and its coordinates
-    fill(counter.begin(), counter.end(), 1); // reset counters for Y
+    fill(counter.begin(), counter.end(), 1);  // reset counters for Y
     for (int i = n - 1; i >= 0; i--) {
         char c = w[i];
         int alphabetIndex = Alphabet::getInstance().charToIndex(c);
@@ -54,7 +55,7 @@ string computeShortlexNormalForm(const string& w, int k) {
             shortlexNormalForm.insert(shortlexNormalForm.begin(), c);
             shortlexNormalX.push_front(X[i]);
             shortlexNormalY.push_front(Y[i]);
-        } // otherwise, do not include the letter in SNF.
+        }  // otherwise, do not include the letter in SNF.
     }
 
     // 3. Re-compute X-coordinates based on SNF
@@ -66,7 +67,7 @@ string computeShortlexNormalForm(const string& w, int k) {
 
         shortlexNormalX.push_back(counter[alphabetIndex]);
         counter[alphabetIndex]++;
-        
+
         for (int a = 0; a < ALPHABET_SIZE; a++) {
             counter[a] = min(counter[a], counter[alphabetIndex]);
         }
@@ -77,11 +78,9 @@ string computeShortlexNormalForm(const string& w, int k) {
     int start = 0;
     while (start < m) {
         int end = start + 1;
-        while (end < m &&
-            shortlexNormalX[end] == shortlexNormalX[start] &&
+        while (end < m && shortlexNormalX[end] == shortlexNormalX[start] &&
             shortlexNormalY[end] == shortlexNormalY[start] &&
-            (shortlexNormalX[start] + shortlexNormalY[start] == k + 1)
-        ) {
+            (shortlexNormalX[start] + shortlexNormalY[start] == k + 1)) {
             end++;
         }
         if (end - start > 1) {
@@ -94,7 +93,6 @@ string computeShortlexNormalForm(const string& w, int k) {
 
     return shortlexNormalForm;
 }
-
 
 /**
    * @brief Computes partial shortlex normal form of a substring w.
@@ -109,25 +107,21 @@ string computeShortlexNormalForm(const string& w, int k) {
    * 
    * Simon's congruence pattern matching 논문에서 필요한 SNF 계산 알고리즘
   */
-ShortlexResult computePartialShortlexNormalForm(
-    const string& w,
-    vector<int> X_vector,
-    vector<int> Y_vector,
-    int threshold
-) {
+ShortlexResult
+computePartialShortlexNormalForm(const string& w, vector<int> X_vector, vector<int> Y_vector, int threshold) {
     int n = w.size();
     int ALPHABET_SIZE = Alphabet::getInstance().size();
-    set<char> w_alphabet; // for detecting archs
+    set<char> w_alphabet;  // for detecting archs
 
-    vector<int> X(n, 0);    // X-coordinates
-    vector<int> Y(n, 0);    // Y-coordinates
+    vector<int> X(n, 0);  // X-coordinates
+    vector<int> Y(n, 0);  // Y-coordinates
 
-    string shortlexNormalForm;  
-    deque<int> shortlexNormalX; // X-coordinates of normal form
-    deque<int> shortlexNormalY; // Y-coordinates of normal form
+    string shortlexNormalForm;
+    deque<int> shortlexNormalX;  // X-coordinates of normal form
+    deque<int> shortlexNormalY;  // Y-coordinates of normal form
 
-    vector<int> new_X_vector = X_vector;   // X-vector which will be updated by iterating normal form
-    vector<int> new_Y_vector = Y_vector;   // Y-vector which will be updated by iterating normal form
+    vector<int> new_X_vector = X_vector;  // X-vector which will be updated by iterating normal form
+    vector<int> new_Y_vector = Y_vector;  // Y-vector which will be updated by iterating normal form
 
     // 1. Compute X-coordinates
     for (int i = 0; i < n; i++) {
@@ -190,11 +184,9 @@ ShortlexResult computePartialShortlexNormalForm(
     while (start < m) {
         // sort block
         int end = start + 1;
-        while (end < m &&
-            shortlexNormalX[end] == shortlexNormalX[start] &&
+        while (end < m && shortlexNormalX[end] == shortlexNormalX[start] &&
             shortlexNormalY[end] == shortlexNormalY[start] &&
-            (shortlexNormalX[start] + shortlexNormalY[start] == threshold)
-        ) {
+            (shortlexNormalX[start] + shortlexNormalY[start] == threshold)) {
             end++;
         }
         if (end - start > 1) {

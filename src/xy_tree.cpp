@@ -1,11 +1,12 @@
-#include <iostream>
 #include <fstream>
-#include <sstream>
 #include <iomanip>
+#include <iostream>
+#include <sstream>
 
 #include "data/XYTree.h"
 #include "utils/Alphabet.h"
 #include "utils/Common.h"
+
 
 using namespace std;
 using namespace XYTree;
@@ -14,19 +15,18 @@ using namespace XYTree;
 void printTree(const Tree& tree) {
     cout << "Visual Tree Structure:\n";
     cout << "----------------------\n";
-    cout << left << setw(10) << "Index"
-              << setw(10) << "Parent"
-              << "Children\n";
+    cout << left << setw(10) << "Index" << setw(10) << "Parent"
+         << "Children\n";
 
     ;
-    for (shared_ptr<XYTree::Node> current_node = tree.root->next; current_node != tree.root; current_node = current_node->next) {
+    for (shared_ptr<XYTree::Node> current_node = tree.root->next; current_node != tree.root;
+        current_node = current_node->next) {
         int i = current_node->index;
         cout << left << setw(10) << i;
-        
+
         if (tree.parent[i]->index == INF) {
             cout << setw(10) << "INF";
-        }
-        else {
+        } else {
             cout << setw(10) << tree.parent[i]->index;
         }
 
@@ -60,14 +60,14 @@ int main(int argc, char* argv[]) {
     string t;
     string p;
     int k;
-    
+
     getline(inputFile, alphabet);
     Alphabet::getInstance().setAlphabet(alphabet);
 
     getline(inputFile, t);
-    
+
     getline(inputFile, p);
-    
+
     string line;
     getline(inputFile, line);
     istringstream k_stream(line);
@@ -75,24 +75,20 @@ int main(int argc, char* argv[]) {
 
     cout << "t: " << t << endl;
     cout << "p: " << p << endl;
-    
+
     RankerTable rankers = RankerTable(t);
     rankers.buildXRankerTable();
     rankers.buildYRankerTable();
 
     ShortlexResult pattern_shortlex = computePartialShortlexNormalForm(
-        p,
-        vector<int>(Alphabet::getInstance().size(), 1),
-        vector<int>(Alphabet::getInstance().size() ,1),
-        k + 1
-    );
+        p, vector<int>(Alphabet::getInstance().size(), 1), vector<int>(Alphabet::getInstance().size(), 1), k + 1);
 
     XYTree::Tree T_X = buildXTree(rankers, pattern_shortlex, t);
     XYTree::Tree T_Y = buildYTree(rankers, pattern_shortlex, t);
 
     cout << "X-tree:" << endl;
     printTree(T_X);
-    
+
     cout << endl;
 
     cout << "Y-tree:" << endl;
