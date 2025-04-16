@@ -120,6 +120,10 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(string text, string pattern, int 
         debug(cout << "traversing X-tree: " << *current_node << endl);
         if (current_node == x_tree.root) break;
       }
+      if (current_node == x_tree.root) {
+        debug(cout << "reached root while traversing X-tree. Skipping to next T'" << endl);
+        continue;
+      }
       debug(cout << "X-tree ends at: " << *current_node << endl);
 
 
@@ -138,6 +142,10 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(string text, string pattern, int 
         current_node = y_tree.parent[current_node->index];
         debug(cout << "traversing Y-tree: " << *current_node << endl);
         if (current_node == y_tree.root) break;
+      }
+      if (current_node == y_tree.root) {
+        debug(cout << "reached root while traversing Y-tree. Skipping to next T'" << endl);
+        continue;
       }
       debug(cout << "Y-tree ends at: " << *current_node << endl);
 
