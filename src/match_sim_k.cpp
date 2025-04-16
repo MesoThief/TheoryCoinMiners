@@ -43,8 +43,13 @@ int main(int argc, char* argv[]) {
   istringstream k_stream(k_line);
   k_stream >> k;
 
+  cout << "text: " << text << endl;
+  cout << "pattern: " << pattern << endl;
+  cout << "k: " << k << endl;
+
   vector<MatchSimK::triple> positions = MatchSimK::matchSimK(text, pattern, k);
 
+  cout << endl << "returned positions:" << endl;
   for(MatchSimK::triple position : positions) {
     cout << get<0>(position) << ", " << get<1>(position) << ", offset=" << get<2>(position) << endl;
   }
