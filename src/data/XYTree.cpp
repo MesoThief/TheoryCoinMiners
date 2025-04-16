@@ -26,9 +26,9 @@ XYTree::Tree XYTree::buildXTree(const RankerTable& ranker, const ShortlexResult&
     unordered_map<int, shared_ptr<Node>> nodes;
     nodes[INF] = root;
     
-    cout << "Building X-tree...\n";
+    debug(cout << "Building X-tree..." << endl);
 
-    // Copy out s_p
+    //) Copy out s_p
     deque<set<char>> s_p;
     set<char> s;
     for(int i = 0; i < shortlex.stackForm.size(); i++) {
@@ -65,7 +65,7 @@ XYTree::Tree XYTree::buildXTree(const RankerTable& ranker, const ShortlexResult&
         if(nodes.count(parent) == 0) {
             shared_ptr<Node> parent_node = make_shared<Node>(parent);
             nodes[parent] = parent_node;
-            cout << "Generate new node " << *parent_node << endl;
+            debug(cout << "Generate new node " << *parent_node << endl);
             last_node->next = parent_node;
             last_node = parent_node;
 
@@ -144,7 +144,7 @@ XYTree::Tree XYTree::buildYTree(const RankerTable& ranker, const ShortlexResult&
     unordered_map<int, shared_ptr<Node>> nodes;
     nodes[-1] = root;
     
-    cout << "Building Y-tree...\n";
+    debug(cout << "Building Y-tree..." << endl);
 
     // Copy out s_p (in reverse order) << not sure if reversing is mandatory
     vector<set<char>> s_p; set<char> s;

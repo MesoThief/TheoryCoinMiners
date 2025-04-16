@@ -21,7 +21,7 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(string text, string pattern, int 
   Alphabet::getInstance().setAlphabet(alph_p_string);
   int pattern_universality = calculateUniversalityIndex(pattern);
   
-  cout << "Computing MatchSimK..." << endl;
+  debug(cout << "Computing MatchSimK..." << endl);
 
   // line 2: Returns: a set S of tripes where, for space positions f and b of T,
   // T[f : b] ~k p if and only if there exists some element e = ([f_1, f_2], [b_1, b_2], offset) in S
@@ -55,11 +55,6 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(string text, string pattern, int 
   if (start < end) {
     sub_Ts.push_back(Interval(start, end));
   }
-
-  // DEBUG: check sub_Ts
-  // for (auto sub_T : sub_Ts) {
-  //   cout << "(" << get<0>(sub_T) << "," << get<1>(sub_T) << ")" << endl;
-  // }
 
   // line 6: A <- {σ | pσ not~k p}
   // line 7: B <- {σ | σp not~k p}
