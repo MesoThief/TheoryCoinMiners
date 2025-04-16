@@ -17,6 +17,10 @@ class Alphabet {
     
     void setAlphabet(std::string value) {
       alphabet = value;
+      indexMap.clear();
+      for (int i = 0; i < alphabet.size(); i++) {
+        indexMap[alphabet[i]] = i;
+      }
     }
 
     int size() {

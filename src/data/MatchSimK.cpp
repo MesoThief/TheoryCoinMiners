@@ -68,18 +68,32 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(string text, string pattern, int 
     int X = shortlex_p.X_vector[index];
     int Y = shortlex_p.Y_vector[index];
 
-    if (X + 1 > k + 1) {
+    if (X + 1 <= k + 1) {
       A.insert(sigma);
     };
 
-    if (1 + Y > k + 1) {
+    if (1 + Y <= k + 1) {
       B.insert(sigma);
     };
   }
 
+  #ifdef DEBUG
+  cout << "A: ";
+  for(char sigma : A) {
+    cout << sigma << " ";
+  }
+  cout << endl;
+  cout << "B: ";
+  for(char sigma : B) {
+    cout << sigma << " ";
+  }
+  cout << endl;
+  #endif
+
   // line 8: for all sliced substrings T' of T do
   for (Interval sub_T : sub_Ts) {
-    string sub_T_string = text.substr(sub_T.start, sub_T.end);
+    string sub_T_string = text.substr(sub_T.start, sub_T.end - sub_T.start + 1);
+    debug(cout << "For sub_T string: " << sub_T_string << endl);
 
     // line 9: offset <- the start space position of T' in T
     int offset = sub_T.start;
@@ -111,6 +125,7 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(string text, string pattern, int 
 
       // line 15: j_1 <- T_X(T').r(current node)
       int j_1 = current_node->r;
+      debug(cout << "j_1 value: " << j_1 << endl);
 
       // line 16: if j_1 = ∞, break.
       if (j_1 == INF) break;  // TODO: 이거 맞나?
@@ -129,33 +144,35 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(string text, string pattern, int 
       // line 18: n <- current node
       int n = current_node->index;
 
-      // line 19: j_2 <- max(T_Y(T').chld(i) AND [max_{σ in B}{R_Y(T', n, σ)+1, n}])
+      // line 19: j_2 <- max(T_X(T').chld(i) AND [max_{σ in B}{R_Y(T', n, σ)+1, n}])
       Interval chld = node_i->children;
-      debug(cout << "Children of " << n << " are: " << current_node->children << endl);
+      debug(cout << "children of " << *node_i << " are: " << current_node->children << endl);
 
-      int r_y_bound = n; // if all R_Y return INF, then default to n + 1
+      vector<int> max_r_ys = {};
       for (char sigma : B) {
         int ry = rankers.getY(n, sigma);  // R_Y(T', n, σ)
         if (ry != INF) {
-          r_y_bound = std::max(r_y_bound, ry);
+          max_r_ys.push_back(std::max(ry + 1, n));
         }
       }
-      debug(cout << "R_Y bounds interval: [" << r_y_bound << ", " << (n + 1) << "]" << endl);
 
       int j_2 = -1;
-      for (int chld_pos = chld.start; chld_pos <= chld.end; ++chld_pos) { // T_Y(T').chld(i)
-        if (chld_pos >= r_y_bound) {  //&& chld_pos <= n) {
-          j_2 = std::max(j_2, chld_pos);
+      for (int r_y : max_r_ys) { // T_Y(T').chld(i)
+        if (chld.start <= r_y && r_y <= chld.end) {  //&& chld_pos <= n) {
+          j_2 = std::max(j_2, r_y);
         }
       }
+      debug(cout << "j_2 value: " << j_2 << endl);
 
       // line 20: if no such value exists, continue.
-      if (j_2 == -1) continue;
+      if (j_2 != -1) {
+        debug(cout << "skip due to j_2 = -1: " << endl);
+        continue;
+      }
 
       // line 21: z <- ShortLex_k(T'[j_2 : j_1]) using the checkpoint mechanism and Map
-      string T_prime = text.substr(offset + j_2, j_1 - j_2 + 1);
       ShortlexResult shortlex_z = computePartialShortlexNormalForm(
-        T_prime,
+        sub_T_string.substr(offset + j_2, j_1 - j_2 + 1),
         vector<int>(Alphabet::getInstance().size(), 1),
         vector<int>(Alphabet::getInstance().size(), 1),
         k + 1
