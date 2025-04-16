@@ -193,11 +193,11 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(string text, string pattern, int 
         for (char sigma : B) {
           int r_y = rankers.getY(j_2, sigma);
           if (r_y != INF) {
-            interval1_start = std::max(interval1_start, r_y + 1);
+            interval1_start = max(interval1_start, r_y + 1);
           }
         }
-        interval1_start = std::max(chld.start, interval1_start); // intersection with T_X(T').chld(i) using intervals
-        int interval1_end = std::min(chld.end, j_2); // intersection with T_X(T').chld(i) using intervals
+        interval1_start = max(node_i->children.start, interval1_start);
+        int interval1_end = min(node_i->children.end, j_2);
         Interval interval1 = Interval(interval1_start, interval1_end);
 
         // line 25: interval2 <- [j_1, min_{σ in A}{R_X(T', j_1, σ)-1}]
