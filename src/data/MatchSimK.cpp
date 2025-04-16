@@ -92,7 +92,7 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(string text, string pattern, int 
 
   // line 8: for all sliced substrings T' of T do
   for (Interval sub_T : sub_Ts) {
-    string sub_T_string = text.substr(sub_T.start, sub_T.end - sub_T.start + 1);
+    string sub_T_string = text.substr(sub_T.start, sub_T.end - sub_T.start);
     debug(cout << "For sub_T string: " << sub_T_string << endl);
 
     // line 9: offset <- the start space position of T' in T
@@ -178,7 +178,7 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(string text, string pattern, int 
 
       // line 21: z <- ShortLex_k(T'[j_2 : j_1]) using the checkpoint mechanism and Map
       ShortlexResult shortlex_z = computePartialShortlexNormalForm(
-        sub_T_string.substr(offset + j_2, j_1 - j_2 + 1),
+        sub_T_string.substr(j_2, j_1 - j_2 + 1),
         vector<int>(Alphabet::getInstance().size(), 1),
         vector<int>(Alphabet::getInstance().size(), 1),
         k + 1

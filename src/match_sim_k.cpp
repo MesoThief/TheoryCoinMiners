@@ -45,5 +45,9 @@ int main(int argc, char* argv[]) {
 
   vector<MatchSimK::triple> positions = MatchSimK::matchSimK(text, pattern, k);
 
+  for(MatchSimK::triple position : positions) {
+    cout << get<0>(position) << ", " << get<1>(position) << ", offset=" << get<2>(position) << endl;
+  }
+
   return 0;
 }
