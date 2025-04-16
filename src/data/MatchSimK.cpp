@@ -43,7 +43,7 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(string text, string pattern, int 
   int end = 0;
   for (char t : text) {
     if (alph_p.count(t) == 0) {
-      if (start < end) sub_Ts.push_back(Interval(start, end - 1));
+      if (start < end) sub_Ts.push_back(Interval(start, end));
       end++;
       start = end;
       continue;
@@ -51,7 +51,7 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(string text, string pattern, int 
     end++;
   }
   if (start < end) {
-    sub_Ts.push_back(Interval(start, end - 1));
+    sub_Ts.push_back(Interval(start, end));
   }
 
   // DEBUG: check sub_Ts
@@ -146,26 +146,24 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(string text, string pattern, int 
 
       // line 19: j_2 <- max(T_X(T').chld(i) AND [max_{σ in B}{R_Y(T', n, σ)+1, n}])
       Interval chld = node_i->children;
-      debug(cout << "children of " << *node_i << " are: " << current_node->children << endl);
+      debug(cout << "children of " << *node_i << " are: " << node_i->children << endl);
 
-      vector<int> max_r_ys = {};
+      int max_r_y = -1;
       for (char sigma : B) {
-        int ry = rankers.getY(n, sigma);  // R_Y(T', n, σ)
-        if (ry != INF) {
-          max_r_ys.push_back(std::max(ry + 1, n));
+        int r_y = rankers.getY(n, sigma) + 1;  // R_Y(T', n, σ) + 1
+        if (r_y != INF) {
+          max_r_y = max(r_y, max_r_y);
         }
       }
+      Interval j_2_candidate = Interval(max_r_y, n);
 
       int j_2 = -1;
-      for (int r_y : max_r_ys) { // T_Y(T').chld(i)
-        if (chld.start <= r_y && r_y <= chld.end) {  //&& chld_pos <= n) {
-          j_2 = std::max(j_2, r_y);
-        }
-      }
+      // TODO: interval이 겹치지 않는 경우 처리
+      j_2 = min(node_i->children.end, j_2_candidate.end);
       debug(cout << "j_2 value: " << j_2 << endl);
 
       // line 20: if no such value exists, continue.
-      if (j_2 != -1) {
+      if (j_2 == -1) {
         debug(cout << "skip due to j_2 = -1: " << endl);
         continue;
       }
@@ -194,25 +192,22 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(string text, string pattern, int 
             interval1_start = std::max(interval1_start, r_y + 1);
           }
         }
-        interval1_start = std::min(chld.start, interval1_start); // intersection with T_X(T').chld(i) using intervals
-        int interval1_end = std::max(chld.end, j_2); // intersection with T_X(T').chld(i) using intervals
+        interval1_start = std::max(chld.start, interval1_start); // intersection with T_X(T').chld(i) using intervals
+        int interval1_end = std::min(chld.end, j_2); // intersection with T_X(T').chld(i) using intervals
         Interval interval1 = Interval(interval1_start, interval1_end);
 
         // line 25: interval2 <- [j_1, min_{σ in A}{R_X(T', j_1, σ)-1}]
-        int interval2_start = j_1;
-        int interval2_end = INF;
+        int interval2_end = sub_T.end;  // TODO: 이거 맞는지 확인
         for (char sigma : A) {
           int r_x = rankers.getX(j_1, sigma);
-          if (r_x != INF) {
-            interval2_end = std::min(interval2_end, r_x - 1);
-          }
+          interval2_end = std::min(interval2_end, r_x - 1);
         }
-        Interval interval2 = Interval(interval2_start, interval2_end);
+        Interval interval2 = Interval(j_1, interval2_end);
 
         // line 26: add (interval1, interval2, offset) to positions
         positions.push_back({
-          Interval(interval1_start, interval1_end),
-          Interval(interval2_start, interval2_end),
+          interval1,
+          interval2,
           offset
         });
         debug(cout << "push new position: " << interval1 << ", " << interval2 << ", " << offset << endl);
