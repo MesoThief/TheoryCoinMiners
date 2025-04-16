@@ -1,0 +1,39 @@
+BasedOnStyle: Google
+IndentWidth: 4
+TabWidth: 4
+ContinuationIndentWidth: 4
+UseTab: Never
+
+# Namespace
+NamespaceIndentation: All
+
+# Parameter formatting
+AlignAfterOpenBracket: DontAlign
+AlignOperands: false
+AllowAllParametersOfDeclarationOnNextLine: false
+BinPackParameters: false
+BinPackArguments: false
+
+# Line breaking & brace style
+AlwaysBreakAfterReturnType: None
+AlwaysBreakTemplateDeclarations: No
+BreakBeforeBraces: Attach
+BreakBeforeTernaryOperators: true
+BreakBeforeBinaryOperators: None
+# BreakBeforeInlineASMColon: None
+# AlignOperands: false
+
+# AllowShortBlocksOnASingleLine: false
+# AllowShortIfStatementsOnASingleLine: false
+# AllowShortForStatementsOnASingleLine: false
+BraceWrapping:
+  AfterControlStatement: false
+
+# Limits
+ColumnLimit: 120
+PenaltyBreakBeforeFirstCallParameter: 1
+PenaltyReturnTypeOnItsOwnLine: 100
+
+# Comments
+ReflowComments: false
+CommentPragmas: "^ IWYU pragma:"  # Don't wrap pragmas
