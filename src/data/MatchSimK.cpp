@@ -149,7 +149,6 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(string text, string pattern, int 
       int n = current_node->index;
 
       // line 19: j_2 <- max(T_X(T').chld(i) AND [max_{σ in B}{R_Y(T', n, σ)+1, n}])
-      Interval chld = node_i->children;
       debug(cout << "children of " << *node_i << " are: " << node_i->children << endl);
 
       int max_r_y = -1;
