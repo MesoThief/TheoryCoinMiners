@@ -205,7 +205,7 @@ computePartialShortlexNormalForm(const string& w, vector<int> X_vector, vector<i
         stackForm.push_front(block_charset);
 
         // detect arch ends
-        if (block_charset.size() == w_alphabet.size()) {
+        if (alphabet_track.size() == w_alphabet.size()) {
             arch_ends.push_back(end);
             alphabet_track.clear();
         }
