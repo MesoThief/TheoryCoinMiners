@@ -97,6 +97,41 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(string text, string pattern, int 
         XYTree::Tree x_tree = XYTree::buildXTree(rankers, shortlex_p, sub_T_string);
         XYTree::Tree y_tree = XYTree::buildYTree(rankers, shortlex_p, sub_T_string);
 
+        // preprocessing: update Y-tree arch indexes of each space position
+        vector<int> arch_counter_table(sub_T.end - sub_T.start, 0);
+        shared_ptr<XYTree::Node> cur_node = y_tree.root->next;
+//        cout << "=== Starting preprocessing of Y-tree arch indexes ===\n";
+
+        for (; cur_node != y_tree.root; cur_node = cur_node->next) {
+            shared_ptr<XYTree::Node> parent_node = y_tree.parent[cur_node->index];
+//            cout << "[Node @ " << cur_node->index << "] Processing indices: "
+//                 << cur_node->index << " -> " << parent_node->index << "\n";
+
+            for (int i = cur_node->index; i > parent_node->index; i--) {
+                int offset = i - sub_T.start;
+                cur_node->arch_index[cur_node->index - i] = arch_counter_table[offset]++;
+
+                // Debug print: current i and updated values
+//                cout << "  i = " << i
+//                     << ", arch_index[" << i << "] = " << cur_node->arch_index[cur_node->index - i]
+//                     << ", arch_counter_table[" << offset << "] = " << arch_counter_table[offset]
+//                     << "\n";
+            }
+
+            // Optional: print entire arch_index of the current node (if not sparse)
+//            cout << "  arch_index of current node:\n";
+//            for (size_t j = 0; j < cur_node->arch_index.size(); ++j) {
+//                cout << "    [" << j << "] = " << cur_node->arch_index[j] << "\n";
+//            }
+//            cout << "-----------------------------\n";
+        }
+
+        // Print final arch_counter_table
+//        cout << "\n=== Final arch_counter_table ===\n";
+//        for (size_t i = 0; i < arch_counter_table.size(); ++i) {
+//            cout << "  [" << (i + sub_T.start) << "] = " << arch_counter_table[i] << "\n";
+//        }
+
         // line 13: for all nodes i \in T_X(T').nodes do
         for (shared_ptr<XYTree::Node> node_i = x_tree.root->next; node_i != x_tree.root; node_i = node_i->next) {
             // line 14: From i, go up the X-tree for ι(p)-1 edges

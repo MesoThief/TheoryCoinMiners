@@ -18,7 +18,6 @@ void printTree(const Tree& tree) {
     cout << left << setw(10) << "Index" << setw(10) << "Parent"
          << "Children\n";
 
-    ;
     for (shared_ptr<XYTree::Node> current_node = tree.root->next; current_node != tree.root;
         current_node = current_node->next) {
         int i = current_node->index;

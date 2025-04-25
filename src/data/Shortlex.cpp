@@ -25,7 +25,7 @@ string computeShortlexNormalForm(const string& w, int k) {
 
     // 1. Compute X-coordinates from left-to-right
     vector<int> counter(ALPHABET_SIZE, 1);
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i< n; i++) {
         char c = w[i];
         int alphabetIndex = Alphabet::getInstance().charToIndex(c);
 

@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <limits>
+#include <vector>
 
 #ifdef DEBUG
 #define debug(x) x;
@@ -16,6 +17,17 @@ struct Interval {
 
     Interval() {};
     Interval(int start, int end) : start(start), end(end) {};
+};
+
+struct CheckPoint {
+    Interval link;
+    bool isYX; // True for YX-link, False for XY-link
+    vector<int> x_vector;
+    vector<int> y_vector;
+
+    CheckPoint() {};
+    CheckPoint(Interval link, bool isXY, int alph_num)
+        : link(link), isYX(isXY), x_vector(alph_num, 1), y_vector(alph_num, 1) {};
 };
 
 constexpr int INF = std::numeric_limits<int>::max();
