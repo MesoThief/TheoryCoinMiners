@@ -22,8 +22,8 @@ struct Interval {
 struct CheckPoint {
     Interval link;
     bool isYX; // True for YX-link, False for XY-link
-    vector<int> x_vector;
-    vector<int> y_vector;
+    std::vector<int> x_vector;
+    std::vector<int> y_vector;
 
     CheckPoint() {};
     CheckPoint(Interval link, bool isXY, int alph_num)

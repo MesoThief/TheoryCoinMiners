@@ -1,6 +1,6 @@
-abcd
+abc
 XY
-acbdcbadacbcbadb
-1 1 1 1
-1 1 1 1
-4
+abcbacaabacccbaccaab
+1 1 1
+1 1 1
+9
