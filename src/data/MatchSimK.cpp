@@ -97,48 +97,21 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(string text, string pattern, int 
         XYTree::Tree x_tree = XYTree::buildXTree(rankers, shortlex_p, sub_T_string);
         XYTree::Tree y_tree = XYTree::buildYTree(rankers, shortlex_p, sub_T_string);
 
-        // preprocessing: update Y-tree arch indexes of each space position
-        vector<int> arch_counter_table(sub_T.end - sub_T.start, 0);
-        shared_ptr<XYTree::Node> cur_node = y_tree.root->next;
-//        cout << "=== Starting preprocessing of Y-tree arch indexes ===\n";
-
-        for (; cur_node != y_tree.root; cur_node = cur_node->next) {
-            shared_ptr<XYTree::Node> parent_node = y_tree.parent[cur_node->index];
-//            cout << "[Node @ " << cur_node->index << "] Processing indices: "
-//                 << cur_node->index << " -> " << parent_node->index << "\n";
-
-            for (int i = cur_node->index; i > parent_node->index; i--) {
-                int offset = i - sub_T.start;
-                cur_node->arch_index[cur_node->index - i] = arch_counter_table[offset]++;
-
-                // Debug print: current i and updated values
-//                cout << "  i = " << i
-//                     << ", arch_index[" << i << "] = " << cur_node->arch_index[cur_node->index - i]
-//                     << ", arch_counter_table[" << offset << "] = " << arch_counter_table[offset]
-//                     << "\n";
-            }
-
-            // Optional: print entire arch_index of the current node (if not sparse)
-//            cout << "  arch_index of current node:\n";
-//            for (size_t j = 0; j < cur_node->arch_index.size(); ++j) {
-//                cout << "    [" << j << "] = " << cur_node->arch_index[j] << "\n";
-//            }
-//            cout << "-----------------------------\n";
-        }
-
-        // Print final arch_counter_table
-//        cout << "\n=== Final arch_counter_table ===\n";
-//        for (size_t i = 0; i < arch_counter_table.size(); ++i) {
-//            cout << "  [" << (i + sub_T.start) << "] = " << arch_counter_table[i] << "\n";
-//        }
+        // make a sub_tree length of vector
+        // which stores check_point starting from such indexes
+        vector<vector<CheckPoint>> check_points(sub_T.end - sub_T.start);
 
         // line 13: for all nodes i \in T_X(T').nodes do
         for (shared_ptr<XYTree::Node> node_i = x_tree.root->next; node_i != x_tree.root; node_i = node_i->next) {
+            // preprocessing: make vector x_arch_indexes to save the end points of x-arch links
+            vector<int> x_arch_indexes;
+            x_arch_indexes.push_back(node_i->index);
             // line 14: From i, go up the X-tree for ι(p)-1 edges
             shared_ptr<XYTree::Node> current_node = node_i;
             debug(cout << "starting X-tree traversal from: " << *current_node << endl);
             for (int i = 0; i < pattern_universality - 1; i++) {
                 current_node = x_tree.parent[current_node->index];
+                x_arch_indexes.push_back(current_node->index);
                 debug(cout << "traversing X-tree: " << *current_node << endl);
                 if (current_node == x_tree.root) break;
             }
@@ -153,14 +126,19 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(string text, string pattern, int 
             debug(cout << "j_1 value: " << j_1 << endl);
 
             // line 16: if j_1 = ∞, break.
-            if (j_1 == INF) break;  // TODO: 이거 맞나?
+            if (j_1 == INF) break;
+
+            // preprocessing: make vector x_arch_indexes to save the end points of x-arch links
+            vector<int> y_arch_indexes;
 
             // line 17: From j_1, go up the Y-tree using ι(p) calls of T_Y(T').prnt()
             debug(cout << "starting Y-tree traversal from: " << *current_node << endl);
             current_node = y_tree.parent[j_1];
+            y_arch_indexes.push_back(current_node->index);
             debug(cout << "Y-tree start becomes: " << *current_node << endl);
             for (int i = 0; i < pattern_universality - 1; i++) {
                 current_node = y_tree.parent[current_node->index];
+                y_arch_indexes.push_back(current_node->index);
                 debug(cout << "traversing Y-tree: " << *current_node << endl);
                 if (current_node == y_tree.root) break;
             }
@@ -199,18 +177,107 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(string text, string pattern, int 
 
             // line 21: z <- ShortLex_k(T'[j_2 : j_1]) using the checkpoint mechanism
             // and Map
-            // TODO memoization, checkpoints 통해서 최척화
-            ShortlexResult shortlex_z = computePartialShortlexNormalForm(sub_T_string.substr(j_2, j_1 - j_2 + 1),
-                vector<int>(Alphabet::getInstance().size(), 1),
-                vector<int>(Alphabet::getInstance().size(), 1),
-                k + 1);
+            // memoization, checkpoints 통해서 최척화
+            vector<string> partial_shortlex_z(2 * pattern_universality - 1);
+            vector<vector<int>> x_vectors(pattern_universality - 1);
+            vector<vector<int>> y_vectors(pattern_universality - 1);
 
-            // line 22: Save Checkpoints for each arch link of T'[j_2 : j_1]
-            // TODO memoization, checkpoints 통해서 최척화
+            // compute YX-link first
+            for (int i = 0; i < pattern_universality - 1; i++) {
+                int x_val = x_arch_indexes[i];
+                int y_val = y_arch_indexes[pattern_universality - i - 2];
 
-            // line 23: if z ~k ShortLex(p) then
-            string z = shortlex_z.shortlexNormalForm;
-            debug(cout << "z becomes: " << z << endl);
+                Interval yx_link(x_val, y_val);
+
+                bool found = false;
+
+                for (const CheckPoint& cp : check_points[x_val]) {
+                    if (cp.link.end != y_val) continue;
+
+                    partial_shortlex_z[2*i - 1] = cp.partial_shortlex;
+
+                    debug(std::cout << "[YX-link FOUND] i = " << i
+                              << ", Interval = (" << x_val << ", " << y_val << ")"
+                              << ", Partial ShortLex = " << cp.partial_shortlex << std::endl;);
+
+                    found = true;
+                    break;
+                }
+
+                if (!found || check_points[x_val].empty()) {
+                    // ADD DEBUG before computing manually
+                    debug(std::cout << "[YX-link COMPUTE] i = " << i
+                              << ", Will compute shortlex for substring [" << x_val << ", " << y_val << "] "
+                              << "size = " << (y_val - x_val + 1) << std::endl;);
+
+                    ShortlexResult partialShortlex = computePartialShortlexNormalForm(
+                        sub_T_string.substr(x_val, y_val - x_val + 1),
+                        vector<int>(Alphabet::getInstance().size(), i + 2),
+                        vector<int>(Alphabet::getInstance().size(), pattern_universality - i),
+                        k + 1 - calculateUniversalityIndex(sub_T_string.substr(x_val, y_val - x_val + 1))
+                    );
+
+                    partial_shortlex_z[2*i - 1] = partialShortlex.shortlexNormalForm;
+
+                    check_points[x_val].emplace_back(yx_link, partialShortlex.shortlexNormalForm);
+                    x_vectors[i] = partialShortlex.X_vector;
+                    y_vectors[i] = partialShortlex.Y_vector;
+
+                    debug(std::cout << "[YX-link COMPUTED] i = " << i
+                              << ", Computed ShortLex = " << partialShortlex.shortlexNormalForm << std::endl;);
+                }
+            }
+
+            // compute XY-link next
+            for (int i = 0; i < pattern_universality; i++) {
+                int x_val = y_arch_indexes[pattern_universality - i - 1];
+                int y_val = x_arch_indexes[i];
+
+                Interval xy_link(x_val, y_val);
+
+                bool found = false;
+
+                for (const CheckPoint& cp : check_points[x_val]) {
+                    if (cp.link.end == y_val) {
+                        partial_shortlex_z[2*i] = cp.partial_shortlex;
+
+                        debug(std::cout << "[XY-link FOUND] i = " << i
+                                  << ", Interval = (" << x_val << ", " << y_val << ")"
+                                  << ", Partial ShortLex = " << cp.partial_shortlex << std::endl;);
+
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (!found) {
+                    vector<int> x_vector =
+                        (i == 0) ? vector<int>(Alphabet::getInstance().size(), 1) : x_vectors[i - 1];
+                    vector<int> y_vector =
+                        (i == pattern_universality - 1) ? vector<int>(Alphabet::getInstance().size(), 1) : y_vectors[i];
+
+                    ShortlexResult partialShortlex = computePartialShortlexNormalForm(
+                        sub_T_string.substr(x_val, y_val - x_val + 1),
+                        x_vector,
+                        y_vector,
+                        k + 2 - calculateUniversalityIndex(sub_T_string.substr(x_val, y_val - x_val + 1))
+                    );
+
+                    partial_shortlex_z[2*i] = partialShortlex.shortlexNormalForm;
+
+                    check_points[x_val].emplace_back(xy_link, partialShortlex.shortlexNormalForm);
+
+                    debug(std::cout << "[XY-link COMPUTED] i = " << i
+                              << ", Computed ShortLex = " << partialShortlex.shortlexNormalForm << std::endl;);
+                }
+            }
+
+            // finally, combine
+            std::string z;
+            for (const std::string& part : partial_shortlex_z) {
+                z += part;
+            }
+            debug(std::cout << "[Final Z Combined String] = " << z << std::endl;);
 
             if (z == shortlex_p.shortlexNormalForm) {
                 // line 24: interval1 <- T_X(T').chld(i) AND [max_{σ in B}{R_Y(T', j_2,

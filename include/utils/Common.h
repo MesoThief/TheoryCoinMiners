@@ -21,13 +21,11 @@ struct Interval {
 
 struct CheckPoint {
     Interval link;
-    bool isYX; // True for YX-link, False for XY-link
-    std::vector<int> x_vector;
-    std::vector<int> y_vector;
+    std::string partial_shortlex;
 
     CheckPoint() {};
-    CheckPoint(Interval link, bool isXY, int alph_num)
-        : link(link), isYX(isXY), x_vector(alph_num, 1), y_vector(alph_num, 1) {};
+    CheckPoint(Interval link, std::string partial_shortlex)
+        : link(link), partial_shortlex(partial_shortlex) {};
 };
 
 constexpr int INF = std::numeric_limits<int>::max();

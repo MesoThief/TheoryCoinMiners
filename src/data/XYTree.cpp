@@ -243,38 +243,5 @@ XYTree::Tree XYTree::buildYTree(const RankerTable& ranker, const ShortlexResult&
     last_node->next = root;
     tree.parent[0] = root;
 
-    // add preprocessing of arch index checkpoints here, only for Y-tree
-    // initializes to zero
-    shared_ptr<Node> cur_node = root->next;
-    debug("\n=== Starting arch_index preprocessing for Y-tree ===");
-
-    for (; cur_node->index != -1; cur_node = cur_node->next) {
-        int cur_index = cur_node->index;
-        int parent_index = tree.parent[cur_index]->index;
-        int arch_index_size = cur_index - parent_index;
-
-        debug("\nProcessing Node @ index " + to_string(cur_index));
-        debug("  Parent index: " + to_string(parent_index));
-        debug("  Calculated arch_index_size: " + to_string(arch_index_size));
-
-        if (arch_index_size < 0) {
-            debug("  ⚠️  Error: arch_index_size is negative! Skipping node.");
-        } else {
-            cur_node->arch_index = vector<int>(arch_index_size, 0);
-            debug("  Initialized arch_index with " + to_string(arch_index_size) + " zeros:");
-
-            std::string arch_debug = "    ";
-            for (int i = 0; i < arch_index_size; ++i) {
-                arch_debug += to_string(cur_node->arch_index[i]) + " ";
-            }
-            debug(arch_debug);
-        }
-
-        debug("  Moving to next node...");
-    }
-
-    debug("\n=== Finished preprocessing arch_index ===");
-
-    debug(cout << "End of Y-tree construction" << endl << endl);
     return tree;
 }

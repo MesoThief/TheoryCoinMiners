@@ -17,7 +17,6 @@ namespace XYTree {
         int r;
         shared_ptr<Node> next;  // TODO: Y-tree에서는 필요 없는 값. 최적화 시 Y-tree에선 삭제 가능.
         Interval children;      // [start, end]
-        vector<int> arch_index; // For preprocessing checkpoint algorithm
 
         Node(int index);
     };
