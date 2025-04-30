@@ -195,6 +195,8 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(string text, string pattern, int 
                     if (cp.link.end != y_val) continue;
 
                     partial_shortlex_z[2*i - 1] = cp.partial_shortlex;
+                    x_vectors[i] = cp.x_vector;
+                    y_vectors[i] = cp.y_vector;
 
                     debug(std::cout << "[YX-link FOUND] i = " << i
                               << ", Interval = (" << x_val << ", " << y_val << ")"
@@ -219,7 +221,12 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(string text, string pattern, int 
 
                     partial_shortlex_z[2*i - 1] = partialShortlex.shortlexNormalForm;
 
-                    check_points[x_val].emplace_back(yx_link, partialShortlex.shortlexNormalForm);
+                    check_points[x_val].emplace_back(
+                        yx_link,
+                        partialShortlex.shortlexNormalForm,
+                        partialShortlex.X_vector,
+                        partialShortlex.Y_vector
+                        );
                     x_vectors[i] = partialShortlex.X_vector;
                     y_vectors[i] = partialShortlex.Y_vector;
 

@@ -19,15 +19,6 @@ struct Interval {
     Interval(int start, int end) : start(start), end(end) {};
 };
 
-struct CheckPoint {
-    Interval link;
-    std::string partial_shortlex;
-
-    CheckPoint() {};
-    CheckPoint(Interval link, std::string partial_shortlex)
-        : link(link), partial_shortlex(partial_shortlex) {};
-};
-
 constexpr int INF = std::numeric_limits<int>::max();
 
 inline std::ostream& operator<<(std::ostream& os, const Interval& interval) {
