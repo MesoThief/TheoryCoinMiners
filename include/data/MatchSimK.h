@@ -8,7 +8,7 @@ using namespace std;
 namespace MatchSimK {
     using triple = tuple<Interval, Interval, int>;  // ([f_1, f_2], [b_1, b_2], offset)
 
-    vector<triple> matchSimK(string text, string pattern, int k);
+    vector<triple> matchSimK(const string& text, const string& pattern, int k);
 
     struct CheckPoint {
         Interval link;

@@ -86,9 +86,6 @@ int main(int argc, char* argv[]) {
 
     // run test
     ShortlexResult result = computePartialShortlexNormalForm(w, X_vector, Y_vector, threshold);
-
-
-
     cout << "Output: " << endl;
     cout << "   Shortlex normal form: " << result.shortlexNormalForm << endl;
     cout << "   X_vector size: " << result.X_vector.capacity() << endl;
@@ -105,7 +102,7 @@ int main(int argc, char* argv[]) {
     cout << endl;
 
     cout << "   shortlex universality: " << result.universality << endl;
-    cout << "Testing Simon's congruence 논문 버전 SNF:" << computeShortlexNormalForm(w, threshold - 1) << endl;
+    cout << "Testing Simon's congruence 논문 버전 SNF:" << computeShortlexNormalForm(w, k) << endl;
 
     return 0;
 }

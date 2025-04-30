@@ -6,7 +6,6 @@
 
 #include "data/MatchSimK.h"
 #include "utils/Alphabet.h"
-#include "utils/CalculateUniversality.h"
 #include "utils/Common.h"
 
 using namespace std;
