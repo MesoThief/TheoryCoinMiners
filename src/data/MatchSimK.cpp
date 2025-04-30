@@ -159,8 +159,7 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(const string& text, const string&
             // line 18: n <- current node
             int n = current_node->index;
 
-            // line 19: j_2 <- max(T_X(T').chld(i) AND [max_{σ in B}{R_Y(T', n, σ)+1,
-            // n}])
+            // line 19: j_2 <- max(T_X(T').chld(i) AND [max_{σ in B}{R_Y(T', n, σ)+1, n}])
             debug(cout << "children of " << *node_i << " are: " << node_i->children << endl);
             int max_r_y = -1;
             for (char sigma : B) {
@@ -186,131 +185,15 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(const string& text, const string&
             // make j_2 a starting point of x_arch_indexes
             x_arch_indexes.insert(x_arch_indexes.begin(), j_2);
 
-            // line 21: z <- ShortLex_k(T'[j_2 : j_1]) using the checkpoint mechanism
-            // and Map
-            // memoization, checkpoints 통해서 최척화
-            vector<string> partial_shortlex_z(2 * pattern_universality);
-            vector<vector<int>> x_vectors(pattern_universality);
-            vector<vector<int>> y_vectors(pattern_universality);
+            // line 21: z <- ShortLex_k(T'[j_2 : j_1]) using the checkpoint mechanism and Map
+            // line 22: Save Checkpoints for each arch link of T'[j_2 : j_1]
+            string z = shortlex_with_checkpoint(k, pattern_universality, sub_T_string, check_points, x_arch_indexes, y_arch_indexes);
 
-            std::cout << "\nTargeting minimal candidate: ["
-                      <<  x_arch_indexes[0] << ", " << x_arch_indexes[pattern_universality]
-                      <<  "]" << std::endl;
-
-            // compute YX-link first
-            for (int i = 0; i < pattern_universality; i++) {
-                int x_val = x_arch_indexes[i];
-                int y_val = y_arch_indexes[pattern_universality - i - 1];
-
-                Interval yx_link(x_val, y_val);
-
-                bool found = false;
-
-                for (const CheckPoint& cp : check_points[x_val]) {
-                    if (cp.link.end != y_val) continue;
-
-                    partial_shortlex_z[2 * i] = cp.partial_shortlex;
-                    x_vectors[i] = cp.x_vector;
-                    y_vectors[i] = cp.y_vector;
-
-                    std::cout << "[YX-link FOUND] i = " << i
-                              << ", Interval = (" << x_val << ", " << y_val << ")"
-                              << ", Partial ShortLex = " << cp.partial_shortlex << std::endl;
-
-                    found = true;
-                    break;
-                }
-
-                if (!found || check_points[x_val].empty()) {
-                    std::cout << "[YX-link COMPUTE] i = " << i
-                              << ", Will compute shortlex for substring [" << x_val << ", " << y_val << "]"
-                              << " = " << sub_T_string.substr(x_val, y_val - x_val) << std::endl;
-
-                    ShortlexResult partialShortlex = computePartialShortlexNormalForm(
-                        sub_T_string.substr(x_val, y_val - x_val),
-                        vector<int>(Alphabet::getInstance().size(), 1),
-                        vector<int>(Alphabet::getInstance().size(), 1),
-                        k + 1 - pattern_universality
-                    );
-
-                    partial_shortlex_z[2 * i] = partialShortlex.shortlexNormalForm;
-
-                    check_points[x_val].emplace_back(
-                        yx_link,
-                        partialShortlex.shortlexNormalForm,
-                        partialShortlex.X_vector,
-                        partialShortlex.Y_vector
-                        );
-                    x_vectors[i] = partialShortlex.X_vector;
-                    y_vectors[i] = partialShortlex.Y_vector;
-
-                    std::cout << "[YX-link COMPUTED] i = " << i
-                              << ", Computed ShortLex = " << partialShortlex.shortlexNormalForm << std::endl;
-                }
-            }
-
-            // compute XY-link next
-            for (int i = 0; i < pattern_universality; i++) {
-                int x_val = y_arch_indexes[pattern_universality - i - 1];
-                int y_val = x_arch_indexes[i + 1];
-
-                Interval xy_link(x_val, y_val);
-
-                bool found = false;
-
-                for (const CheckPoint& cp : check_points[x_val]) {
-                    if (cp.link.end == y_val) {
-                        partial_shortlex_z[2 * i + 1] = cp.partial_shortlex;
-
-                        std::cout << "[XY-link FOUND] i = " << i
-                                  << ", Interval = (" << x_val << ", " << y_val << ")"
-                                  << ", Partial ShortLex = " << cp.partial_shortlex << std::endl;
-
-                        found = true;
-                        break;
-                    }
-                }
-
-                if (!found) {
-                    vector<int> x_vector =
-                        (i == 0) ? vector<int>(Alphabet::getInstance().size(), 1) : x_vectors[i];
-                    vector<int> y_vector =
-                        (i == pattern_universality - 1) ? vector<int>(Alphabet::getInstance().size(), 1) : y_vectors[i + 1];
-
-                    std::cout << "[XY-link COMPUTE] i = " << i
-                              << ", Will compute shortlex for substring [" << x_val << ", " << y_val << "]"
-                              << " = " << sub_T_string.substr(x_val, y_val - x_val) << std::endl;
-
-                    printVector(x_vector, "X_vector");
-                    printVector(y_vector, "Y_vector");
-
-                    ShortlexResult partialShortlex = computePartialShortlexNormalForm(
-                        sub_T_string.substr(x_val, y_val - x_val),
-                        x_vector,
-                        y_vector,
-                        k + 2 - pattern_universality
-                    );
-
-                    partial_shortlex_z[2 * i + 1] = partialShortlex.shortlexNormalForm;
-
-                    check_points[x_val].emplace_back(xy_link, partialShortlex.shortlexNormalForm);
-
-                    std::cout << "[XY-link COMPUTED] i = " << i
-                              << ", Computed ShortLex = " << partialShortlex.shortlexNormalForm << std::endl;
-                }
-            }
-
-            // finally, combine
-            std::string z;
-            for (const std::string& part : partial_shortlex_z) {
-                z += part;
-            }
-            std::cout << "[Final Z Combined String] = " << z << std::endl;
-
+            // line 23: if z ~k ShortLex(p) then
             if (z == shortlex_p.shortlexNormalForm) {
                 std::cout << "\n[DEBUG] ✅ z == shortlex_p.shortlexNormalForm MATCHED\n";
-
-                // ----- interval1 computation -----
+                
+                // line 24: interval1 <- T_X(T').chld(i) AND [max_{σ in B}{R_Y(T', j_2, σ)+1, j_2}]
                 std::cout << "[interval1] Computing from B and getY(j_2 = " << j_2 << ")\n";
 
                 int interval1_start = -1;
@@ -330,7 +213,7 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(const string& text, const string&
                 Interval interval1(interval1_start, interval1_end);
                 std::cout << "  => Final interval1 = [" << interval1.start << ", " << interval1.end << "]\n";
 
-                // ----- interval2 computation -----
+                // line 25: interval2 <- [j_1, min_{σ in A}{R_X(T', j_1, σ)-1}]
                 std::cout << "[interval2] Computing from A and getX(j_1 = " << j_1 << ")\n";
 
                 int interval2_end = sub_T.end - offset;
@@ -343,7 +226,7 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(const string& text, const string&
                 Interval interval2(j_1, interval2_end);
                 std::cout << "  => Final interval2 = [" << interval2.start << ", " << interval2.end << "]\n";
 
-                // ----- Add position -----
+                // line 26: add (interval1, interval2, offset) to positions
                 positions.emplace_back(interval1, interval2, offset);
                 std::cout << "[position ADDED] interval1 = [" << interval1.start << ", " << interval1.end << "], "
                           << "interval2 = [" << interval2.start << ", " << interval2.end << "], "
@@ -354,4 +237,126 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(const string& text, const string&
 
     // line 27: return positions
     return positions;
+}
+
+string MatchSimK::shortlex_with_checkpoint(int k, int pattern_universality, string sub_T_string, vector<vector<MatchSimK::CheckPoint>> check_points, vector<int> x_arch_indexes, vector<int> y_arch_indexes) {
+    vector<string> partial_shortlex_z(2 * pattern_universality);
+    vector<vector<int>> x_vectors(pattern_universality);
+    vector<vector<int>> y_vectors(pattern_universality);
+
+    std::cout << "\nTargeting minimal candidate: ["
+                <<  x_arch_indexes[0] << ", " << x_arch_indexes[pattern_universality]
+                <<  "]" << std::endl;
+
+    // compute YX-link first
+    for (int i = 0; i < pattern_universality; i++) {
+        int x_val = x_arch_indexes[i];
+        int y_val = y_arch_indexes[pattern_universality - i - 1];
+
+        Interval yx_link(x_val, y_val);
+
+        bool found = false;
+
+        for (const MatchSimK::CheckPoint& cp : check_points[x_val]) {
+            if (cp.link.end != y_val) continue;
+
+            partial_shortlex_z[2 * i] = cp.partial_shortlex;
+            x_vectors[i] = cp.x_vector;
+            y_vectors[i] = cp.y_vector;
+
+            std::cout << "[YX-link FOUND] i = " << i
+                        << ", Interval = (" << x_val << ", " << y_val << ")"
+                        << ", Partial ShortLex = " << cp.partial_shortlex << std::endl;
+
+            found = true;
+            break;
+        }
+
+        if (!found || check_points[x_val].empty()) {
+            std::cout << "[YX-link COMPUTE] i = " << i
+                        << ", Will compute shortlex for substring [" << x_val << ", " << y_val << "]"
+                        << " = " << sub_T_string.substr(x_val, y_val - x_val) << std::endl;
+
+            ShortlexResult partialShortlex = computePartialShortlexNormalForm(
+                sub_T_string.substr(x_val, y_val - x_val),
+                vector<int>(Alphabet::getInstance().size(), 1),
+                vector<int>(Alphabet::getInstance().size(), 1),
+                k + 1 - pattern_universality
+            );
+
+            partial_shortlex_z[2 * i] = partialShortlex.shortlexNormalForm;
+
+            check_points[x_val].emplace_back(
+                yx_link,
+                partialShortlex.shortlexNormalForm,
+                partialShortlex.X_vector,
+                partialShortlex.Y_vector
+                );
+            x_vectors[i] = partialShortlex.X_vector;
+            y_vectors[i] = partialShortlex.Y_vector;
+
+            std::cout << "[YX-link COMPUTED] i = " << i
+                        << ", Computed ShortLex = " << partialShortlex.shortlexNormalForm << std::endl;
+        }
+    }
+
+    // compute XY-link next
+    for (int i = 0; i < pattern_universality; i++) {
+        int x_val = y_arch_indexes[pattern_universality - i - 1];
+        int y_val = x_arch_indexes[i + 1];
+
+        Interval xy_link(x_val, y_val);
+
+        bool found = false;
+
+        for (const MatchSimK::CheckPoint& cp : check_points[x_val]) {
+            if (cp.link.end == y_val) {
+                partial_shortlex_z[2 * i + 1] = cp.partial_shortlex;
+
+                std::cout << "[XY-link FOUND] i = " << i
+                            << ", Interval = (" << x_val << ", " << y_val << ")"
+                            << ", Partial ShortLex = " << cp.partial_shortlex << std::endl;
+
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            vector<int> x_vector =
+                (i == 0) ? vector<int>(Alphabet::getInstance().size(), 1) : x_vectors[i];
+            vector<int> y_vector =
+                (i == pattern_universality - 1) ? vector<int>(Alphabet::getInstance().size(), 1) : y_vectors[i + 1];
+
+            std::cout << "[XY-link COMPUTE] i = " << i
+                        << ", Will compute shortlex for substring [" << x_val << ", " << y_val << "]"
+                        << " = " << sub_T_string.substr(x_val, y_val - x_val) << std::endl;
+
+            printVector(x_vector, "X_vector");
+            printVector(y_vector, "Y_vector");
+
+            ShortlexResult partialShortlex = computePartialShortlexNormalForm(
+                sub_T_string.substr(x_val, y_val - x_val),
+                x_vector,
+                y_vector,
+                k + 2 - pattern_universality
+            );
+
+            partial_shortlex_z[2 * i + 1] = partialShortlex.shortlexNormalForm;
+
+            check_points[x_val].emplace_back(xy_link, partialShortlex.shortlexNormalForm);
+
+            std::cout << "[XY-link COMPUTED] i = " << i
+                        << ", Computed ShortLex = " << partialShortlex.shortlexNormalForm << std::endl;
+        }
+    }
+
+    // finally, combine
+    std::string z;
+    for (const std::string& part : partial_shortlex_z) {
+        z += part;
+    }
+    std::cout << "[Final Z Combined String] = " << z << std::endl;
+
+    return z;
 }

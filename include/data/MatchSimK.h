@@ -21,4 +21,13 @@ namespace MatchSimK {
         CheckPoint(Interval link, std::string partial_shortlex, std::vector<int> x_vector, std::vector<int> y_vector)
             : link(link), partial_shortlex(partial_shortlex), x_vector(x_vector), y_vector(y_vector) {};
     };
+
+    string shortlex_with_checkpoint(
+        int k,
+        int pattern_universality,
+        string sub_T_string,
+        vector<vector<MatchSimK::CheckPoint>> check_points,
+        vector<int> x_arch_indexes,
+        vector<int> y_arch_indexes
+    );
 }  // namespace MatchSimK
