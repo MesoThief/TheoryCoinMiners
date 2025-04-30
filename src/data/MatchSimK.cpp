@@ -33,9 +33,8 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(const string& text, const string&
     debug(cout << "Computing MatchSimK..." << endl);
 
     // line 2: Returns: a set S of tripes where, for space positions f and b of T,
-    // T[f : b] ~k p if and only if there exists some element e = ([f_1, f_2],
-    // [b_1, b_2], offset) in S such that space positions f - offset \in [f_1,
-    // f_2] and b - offset \in [b_1, b_2]
+    // T[f : b] ~k p if and only if there exists some element e = ([f_1, f_2], [b_1, b_2], offset) in S
+    // such that space positions f - offset \in [f_1, f_2] and b - offset \in [b_1, b_2]
 
     // line 3: positions <- empty set
     vector<triple> positions;
