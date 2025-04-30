@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <limits>
-#include <vector>
 
 #ifdef DEBUG
 #define debug(x) x;
