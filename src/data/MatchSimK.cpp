@@ -226,7 +226,8 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(const string& text, const string&
                 int interval2_end = sub_T.end - offset;
                 for (char sigma : A) {
                     int r_x = rankers.getX(j_1, sigma);
-                    cout << "  - A contains '" << sigma << "', getX(" << j_1 << ", '" << sigma << "') = " << r_x << "\n";
+                    cout << "  - A contains '" << sigma << "', getX(" << j_1 << ", '" << sigma << "') = " 
+                              << ((r_x == INF) ? "INF" : to_string(r_x)) << "\n";
                     interval2_end = min(interval2_end, r_x - 1);
                 }
 
