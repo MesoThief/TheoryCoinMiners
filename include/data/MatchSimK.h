@@ -25,9 +25,9 @@ namespace MatchSimK {
     string shortlex_with_checkpoint(
         int k,
         int pattern_universality,
-        string& sub_T_string,
+        const string& sub_T_string,
         vector<vector<MatchSimK::CheckPoint>>& check_points,
-        vector<int>& x_arch_indexes,
-        vector<int>& y_arch_indexes
+        const vector<int>& x_arch_indexes,
+        const vector<int>& y_arch_indexes
     );
 }  // namespace MatchSimK

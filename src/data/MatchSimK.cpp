@@ -241,10 +241,10 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(const string& text, const string&
 string MatchSimK::shortlex_with_checkpoint(
     int k,
     int pattern_universality,
-    string& sub_T_string,
+    const string& sub_T_string,
     vector<vector<MatchSimK::CheckPoint>>& check_points,
-    vector<int>& x_arch_indexes,
-    vector<int>& y_arch_indexes
+    const vector<int>& x_arch_indexes,
+    const vector<int>& y_arch_indexes
 ) {
     vector<string> partial_shortlex_z(2 * pattern_universality);
     vector<vector<int>> x_vectors(pattern_universality);
