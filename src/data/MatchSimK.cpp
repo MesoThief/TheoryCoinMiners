@@ -113,12 +113,14 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(const string& text, const string&
             // preprocessing: make vector x_arch_indexes to save the end points of x-arch links
             vector<int> x_arch_indexes;
             x_arch_indexes.push_back(node_i->index);
+            debug(cout << "add to x_arch_indexes: " << node_i->index << endl);
             // line 14: From i, go up the X-tree for ι(p)-1 edges
             shared_ptr<XYTree::Node> current_node = node_i;
             debug(cout << "starting X-tree traversal from: " << *current_node << endl);
             for (int i = 0; i < pattern_universality - 1; i++) {
                 current_node = x_tree.parent[current_node->index];
                 x_arch_indexes.push_back(current_node->index);
+                debug(cout << "add to x_arch_indexes: " << current_node->index << endl);
                 debug(cout << "traversing X-tree: " << *current_node << endl);
                 if (current_node == x_tree.root) break;
             }
@@ -142,10 +144,12 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(const string& text, const string&
             debug(cout << "starting Y-tree traversal from: " << *current_node << endl);
             current_node = y_tree.parent[j_1];
             y_arch_indexes.push_back(current_node->index);
+            debug(cout << "add to y_arch_indexes: " << current_node->index << endl);
             debug(cout << "Y-tree start becomes: " << *current_node << endl);
             for (int i = 0; i < pattern_universality - 1; i++) {
                 current_node = y_tree.parent[current_node->index];
                 y_arch_indexes.push_back(current_node->index);
+                debug(cout << "add to y_arch_indexes: " << current_node->index << endl);
                 debug(cout << "traversing Y-tree: " << *current_node << endl);
                 if (current_node == y_tree.root) break;
             }
@@ -163,6 +167,7 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(const string& text, const string&
             int max_r_y = -1;
             for (char sigma : B) {
                 int r_y = rankers.getY(n, sigma) + 1;
+                debug(cout << "ranker_Y = " << r_y-1 << " (n=" << n << ", sigma=" << sigma << ")" << endl);
                 if (r_y != INF) {
                     max_r_y = max(r_y, max_r_y);
                 }
@@ -172,11 +177,13 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(const string& text, const string&
             int j_2;
             int intersection_start = max(node_i->children.start, j_2_candidate.start);
             int intersection_end = min(node_i->children.end, j_2_candidate.end);
+            debug(cout << "Intv 1 (chld): " << node_i->children << endl);
+            debug(cout << "Intv 2 (j_2): " << j_2_candidate << endl);
             if (intersection_start <= intersection_end) {
                 j_2 = intersection_end;
             } else {
                 // line 20: if no such value exists, continue.
-                debug(cout << "skipping due to invalid j_2" << endl);
+                debug(cout << "skipping due to invalid j_2" << endl << endl);
                 continue;
             }
             debug(cout << "j_2 value: " << j_2 << endl);
@@ -190,7 +197,7 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(const string& text, const string&
 
             // line 23: if z ~k ShortLex(p) then
             if (z == shortlex_p.shortlexNormalForm) {
-                cout << "\n[DEBUG] ✅ z == shortlex_p.shortlexNormalForm MATCHED\n";
+                cout << "\n[DEBUG] z == shortlex_p.shortlexNormalForm MATCHED\n";
                 
                 // line 24: interval1 <- T_X(T').chld(i) AND [max_{σ in B}{R_Y(T', j_2, σ)+1, j_2}]
                 cout << "[interval1] Computing from B and getY(j_2 = " << j_2 << ")\n";
@@ -205,7 +212,7 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(const string& text, const string&
                     }
                 }
 
-                cout << "  → After max with node_i->children.start = " << node_i->children.start << "\n";
+                cout << "  -> After max with node_i->children.start = " << node_i->children.start << "\n";
                 interval1_start = max(node_i->children.start, interval1_start);
                 int interval1_end = min(node_i->children.end, j_2);
 
@@ -229,7 +236,7 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(const string& text, const string&
                 positions.emplace_back(interval1, interval2, offset);
                 cout << "[position ADDED] interval1 = " << interval1 << ", "
                           << "interval2 = " << interval2 << ", "
-                          << "offset = " << offset << "\n";
+                          << "offset = " << offset << "\n\n";
             }
         }
     }
@@ -364,7 +371,7 @@ string MatchSimK::shortlex_with_checkpoint(
     for (const string& part : partial_shortlex_z) {
         z += part;
     }
-    cout << "[Final Z Combined String] = " << z << endl;
+    cout << "[Final Z Combined String] = " << z << endl << endl;
 
     return z;
 }

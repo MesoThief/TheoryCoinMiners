@@ -243,5 +243,6 @@ XYTree::Tree XYTree::buildYTree(const RankerTable& ranker, const ShortlexResult&
     last_node->next = root;
     tree.parent[0] = root;
 
+    debug(cout << "End of Y-tree construction" << endl << endl);
     return tree;
 }
