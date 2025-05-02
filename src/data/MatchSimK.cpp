@@ -139,6 +139,7 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(const string& text, const string&
 
             // preprocessing: make vector y_arch_indexes to save the end points of y-arch links
             vector<int> y_arch_indexes;
+            y_arch_indexes.push_back(j_1);
 
             // line 17: From j_1, go up the Y-tree using ι(p) calls of T_Y(T').prnt()
             debug(cout << "starting Y-tree traversal from: " << *current_node << endl);
@@ -160,7 +161,7 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(const string& text, const string&
             debug(cout << "Y-tree ends at: " << *current_node << endl);
 
             // line 18: n <- current node
-            int n = current_node->index;
+            int n = current_node->r;
 
             // line 19: j_2 <- max(T_X(T').chld(i) AND [max_{σ in B}{R_Y(T', n, σ)+1, n}])
             debug(cout << "children of " << *node_i << " are: " << node_i->children << endl);
@@ -168,7 +169,7 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(const string& text, const string&
             for (char sigma : B) {
                 int r_y = rankers.getY(n, sigma) + 1;
                 debug(cout << "ranker_Y = " << r_y-1 << " (n=" << n << ", sigma=" << sigma << ")" << endl);
-                if (r_y != INF) {
+                if (r_y != -1) {
                     max_r_y = max(r_y, max_r_y);
                 }
             }
@@ -253,18 +254,18 @@ string MatchSimK::shortlex_with_checkpoint(
     const vector<int>& x_arch_indexes,
     const vector<int>& y_arch_indexes
 ) {
-    vector<string> partial_shortlex_z(2 * pattern_universality);
-    vector<vector<int>> x_vectors(pattern_universality);
-    vector<vector<int>> y_vectors(pattern_universality);
+    vector<string> partial_shortlex_z(2 * pattern_universality + 1);
+    vector<vector<int>> x_vectors(pattern_universality + 1);
+    vector<vector<int>> y_vectors(pattern_universality + 1);
 
     cout << "\nTargeting minimal candidate: ["
                 <<  x_arch_indexes[0] << ", " << x_arch_indexes[pattern_universality]
                 <<  "]" << endl;
 
     // compute YX-link first
-    for (int i = 0; i < pattern_universality; i++) {
+    for (int i = 0; i <= pattern_universality; i++) {
         int x_val = x_arch_indexes[i];
-        int y_val = y_arch_indexes[pattern_universality - i - 1];
+        int y_val = y_arch_indexes[pattern_universality - i];
 
         Interval yx_link(x_val, y_val);
 
@@ -317,7 +318,7 @@ string MatchSimK::shortlex_with_checkpoint(
 
     // compute XY-link next
     for (int i = 0; i < pattern_universality; i++) {
-        int x_val = y_arch_indexes[pattern_universality - i - 1];
+        int x_val = y_arch_indexes[pattern_universality - i];
         int y_val = x_arch_indexes[i + 1];
 
         Interval xy_link(x_val, y_val);

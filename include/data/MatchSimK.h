@@ -16,8 +16,12 @@ namespace MatchSimK {
         std::vector<int> x_vector, y_vector;
 
         CheckPoint() {};
+
+        // This constructor is for saving XY-link
         CheckPoint(Interval link, std::string partial_shortlex)
             : link(link), partial_shortlex(partial_shortlex) {};
+
+        // This constructor is for saving YX-link
         CheckPoint(Interval link, std::string partial_shortlex, std::vector<int> x_vector, std::vector<int> y_vector)
             : link(link), partial_shortlex(partial_shortlex), x_vector(x_vector), y_vector(y_vector) {};
     };
