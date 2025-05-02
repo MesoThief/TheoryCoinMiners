@@ -37,7 +37,7 @@ void RankerTable::buildYRankerTable() {
 
     for (int i = 0; i < n; ++i) {
         int charIndex = Alphabet::getInstance().charToIndex(text[i]);
-        prev[charIndex] = i + 1;
+        prev[charIndex] = i;
         for (int c = 0; c < alphabetSize; ++c) {
             yTable[i + 1][c] = prev[c];
         }
