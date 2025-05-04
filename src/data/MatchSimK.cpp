@@ -106,7 +106,8 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(const string& text, const string&
 
         // make a sub_tree length of vector
         // which stores check_point starting from such indexes
-        vector<vector<CheckPoint>> check_points(sub_T.end - sub_T.start);
+        vector<vector<CheckPoint>> check_points(sub_T.end - sub_T.start + 1);
+        debug(cout << "checkpoint was initialized with max size " << sub_T.end - sub_T.start + 1 << "\n");
 
         // line 13: for all nodes i \in T_X(T').nodes do
         for (shared_ptr<XYTree::Node> node_i = x_tree.root->next; node_i != x_tree.root; node_i = node_i->next) {
