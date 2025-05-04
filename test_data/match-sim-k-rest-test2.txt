@@ -1,4 +1,4 @@
 abcd
 cccdcbadacbbcdaabdaccbaba
-bcdaabda
+aabdac
 3
