@@ -1,0 +1,6 @@
+abc
+XY
+abcbacaabacccbaccaab
+1 1 1
+1 1 1
+9

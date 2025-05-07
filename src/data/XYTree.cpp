@@ -178,7 +178,6 @@ XYTree::Tree XYTree::buildYTree(const RankerTable& ranker, const ShortlexResult&
             if (y_rank < parent) parent = y_rank;
         }
 
-        if (parent != -1) parent--;
 
         // ln 9-18
         if (nodes.count(parent) == 0) {

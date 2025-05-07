@@ -82,10 +82,10 @@ int main(int argc, char* argv[]) {
     cout << endl;
     cout << "   k: " << k << endl;
     cout << "   universality_index: " << universality_index << endl;
+    cout << "   threshold: " << threshold << endl;
 
     // run test
     ShortlexResult result = computePartialShortlexNormalForm(w, X_vector, Y_vector, threshold);
-
     cout << "Output: " << endl;
     cout << "   Shortlex normal form: " << result.shortlexNormalForm << endl;
     cout << "   X_vector size: " << result.X_vector.capacity() << endl;
