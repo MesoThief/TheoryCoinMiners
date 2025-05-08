@@ -30,7 +30,7 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(const string& text, const string&
     Alphabet::getInstance().setAlphabet(alph_p_string);
     int pattern_universality = calculateUniversalityIndex(pattern);
 
-    // pre-compute: check if universal pattern
+    // preprocessing: check if universal pattern
     string universal_pattern;
     for(int i = 0; i < pattern_universality; i++)
     {
@@ -325,13 +325,13 @@ string MatchSimK::shortlex_with_checkpoint(
 
             cout << "[YX-link COMPUTED] i = " << i
                         << ", Computed ShortLex = " << partialShortlex.shortlexNormalForm << endl;
+        }
 
-            // edge case: during YX-link iteration, shift y-arch if shortlexNormalForm returns empty
-            // only applies to universal pattern matching
-            if(partialShortlex.shortlexNormalForm.empty() && isUniversalPattern ) {
-                cout << "edge case: shifting y-arch " << y_arch_indexes[pattern_universality - i] << "->" << x_arch_indexes[i] << endl;
-                y_arch_indexes[pattern_universality - i] = x_arch_indexes[i];
-            }
+        // edge case: during YX-link iteration, shift y-arch if shortlexNormalForm returns empty
+        // only applies to universal pattern matching
+        if(partial_shortlex_z[2 * i].empty() && isUniversalPattern ) {
+            cout << "edge case: shifting y-arch " << y_arch_indexes[pattern_universality - i] << "->" << x_arch_indexes[i] << endl;
+            y_arch_indexes[pattern_universality - i] = x_arch_indexes[i];
         }
     }
 
