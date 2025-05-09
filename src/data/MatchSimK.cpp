@@ -122,10 +122,9 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(const string& text, const string&
             // preprocessing: make vector x_arch_indexes to save the end points of x-arch links
             vector<int> x_arch_indexes;
             x_arch_indexes.push_back(node_i->index);
-            debug(cout << "add to x_arch_indexes: " << node_i->index << endl);
             // line 14: From i, go up the X-tree for ι(p)-1 edges
             shared_ptr<XYTree::Node> current_node = node_i;
-            debug(cout << "starting X-tree traversal from: " << *current_node << endl);
+            debug(cout << "Starting X-tree traversal from: " << *current_node << endl);
             for (int i = 0; i < pattern_universality - 1; i++) {
                 current_node = x_tree.parent[current_node->index];
                 x_arch_indexes.push_back(current_node->index);
