@@ -33,21 +33,23 @@ XYTree::Tree XYTree::buildXTree(const RankerTable& ranker, const ShortlexResult&
     deque<set<char>> s_p;
     set<char> s;
     for (int i = 0; i < shortlex.stackForm.size(); i++) {
+        debug(cout << "i: " << i << ", pushing s which consists of: " << endl);
         s = shortlex.stackForm.at(i);
         s_p.push_back(s);
+        debug(for(auto a: s){ cout << a << " "; } cout << endl);
     }
 
     // ln 4-6
-    int last_arch = 0;
-    for (int i = 0; i < shortlex.arch_ends.size(); i++) {
-        for (int j = 0; j < shortlex.arch_ends.at(i) - last_arch; j++) {
-            s_p.back().erase(shortlex.shortlexNormalForm.at(j + last_arch));
-            if (s_p.back().empty()) {
-                s_p.pop_back();
-            }
+    set<char> deleted_chars;
+    for (int i = 0; i < shortlex.universality; i++) {
+        while (deleted_chars.size() < shortlex.alphabet.size()) {
+            for(auto a: s_p.back()) deleted_chars.insert(a);
+            s_p.pop_back();
         }
-        last_arch = shortlex.arch_ends.at(i);
+        deleted_chars.clear();
     }
+    debug(cout << "s_p is left with: " << endl);
+    debug(for(auto ss: s_p){ for(auto a: ss){ cout << a << endl; } } cout << endl);
 
     // ln 7-21
     deque<set<char>> sp_p;
@@ -152,19 +154,23 @@ XYTree::Tree XYTree::buildYTree(const RankerTable& ranker, const ShortlexResult&
     vector<set<char>> s_p;
     set<char> s;
     for (int i = 0; i < shortlex.stackForm.size(); i++) {
+        debug(cout << "i: " << i << ", pushing s which consists of: " << endl);
         s = shortlex.stackForm.at(shortlex.stackForm.size() - i - 1);
         s_p.push_back(s);
+        debug(for(auto a: s){ cout << a << " "; } cout << endl);
     }
 
     // ln 4-6 (Slight rework as well)
-    int deleted_chars = 0;
+    set<char> deleted_chars;
     for (int i = 0; i < shortlex.universality; i++) {
-        while (deleted_chars < shortlex.alphabet.size()) {
-            deleted_chars += s_p.back().size();
+        while (deleted_chars.size() < shortlex.alphabet.size()) {
+            for(auto a: s_p.back()) deleted_chars.insert(a);
             s_p.pop_back();
         }
-        deleted_chars = 0;
+        deleted_chars.clear();
     }
+    debug(cout << "s_p is left with: " << endl);
+    debug(for(auto ss: s_p){ for(auto a: ss){ cout << a << endl; } } cout << endl);
 
     // ln 7-21
     vector<set<char>> sp_p;

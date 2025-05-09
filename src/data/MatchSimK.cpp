@@ -293,6 +293,7 @@ string MatchSimK::shortlex_with_checkpoint(
         bool found = false;
 
         for (const MatchSimK::CheckPoint& cp : check_points[x_val]) {
+            if(i == 0 || i == pattern_universality) break; // Skip getting info from cp
             if (cp.link.end != y_val) continue;
 
             partial_shortlex_z[2 * i] = cp.partial_shortlex;
@@ -332,6 +333,9 @@ string MatchSimK::shortlex_with_checkpoint(
             x_vectors[i] = partialShortlex.X_vector;
             y_vectors[i] = partialShortlex.Y_vector;
 
+            printVector(x_vectors[i], "X_vector");
+            printVector(y_vectors[i], "Y_vector");
+
             cout << "threshold = " << threshold 
                 << ", computed shortlex = " << formatEmptyString(partialShortlex.shortlexNormalForm) << endl;
         }
@@ -354,6 +358,7 @@ string MatchSimK::shortlex_with_checkpoint(
         bool found = false;
 
         for (const MatchSimK::CheckPoint& cp : check_points[x_val]) {
+            if(i == 0 || i == pattern_universality - 1) break; // Skip getting info from cp
             if (cp.link.end == y_val) {
                 partial_shortlex_z[2 * i + 1] = cp.partial_shortlex;
 
