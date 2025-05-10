@@ -46,6 +46,9 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(const string& text, const string&
         k + 1);  // stack form = shortlex_p.stackForm
     debug(cout << "shortlex normal form of pattern is: " << shortlex_p.shortlexNormalForm << endl);
 
+    // preprocessing: if P is a universal pattern
+    bool isUniversalPattern = shortlex_p.shortlexNormalForm == pattern;
+
     // line 5: Slice T whenever T[i] \not-in alph(p)
     vector<Interval> sub_Ts;
     int start = 0;
@@ -195,7 +198,7 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(const string& text, const string&
 
             // line 21: z <- ShortLex_k(T'[j_2 : j_1]) using the checkpoint mechanism and Map
             // line 22: Save Checkpoints for each arch link of T'[j_2 : j_1]
-            string z = shortlex_with_checkpoint(k, pattern_universality, sub_T_string, check_points, x_arch_indexes, y_arch_indexes);
+            string z = shortlex_with_checkpoint(k, pattern_universality, sub_T_string, check_points, x_arch_indexes, y_arch_indexes, isUniversalPattern);
 
             // line 23: if z ~k ShortLex(p) then
             if (z == shortlex_p.shortlexNormalForm) {
@@ -254,7 +257,8 @@ string MatchSimK::shortlex_with_checkpoint(
     const string& sub_T_string,
     vector<vector<MatchSimK::CheckPoint>>& check_points,
     const vector<int>& x_arch_indexes,
-    const vector<int>& y_arch_indexes
+    vector<int>& y_arch_indexes,
+    bool isUniversalPattern
 ) {
     vector<string> partial_shortlex_z(2 * pattern_universality + 1);
     vector<vector<int>> x_vectors(pattern_universality + 1);
@@ -320,6 +324,13 @@ string MatchSimK::shortlex_with_checkpoint(
 
             cout << "[YX-link COMPUTED] i = " << i
                         << ", Computed ShortLex = " << partialShortlex.shortlexNormalForm << endl;
+        }
+
+        // edge case: during YX-link iteration, shift y-arch if shortlexNormalForm returns empty
+        // only applies to universal pattern matching
+        if(partial_shortlex_z[2 * i].empty() && isUniversalPattern ) {
+            cout << "edge case: shifting y-arch " << y_arch_indexes[pattern_universality - i] << "->" << x_arch_indexes[i] << endl;
+            y_arch_indexes[pattern_universality - i] = x_arch_indexes[i];
         }
     }
 
