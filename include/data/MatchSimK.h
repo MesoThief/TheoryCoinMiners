@@ -32,6 +32,7 @@ namespace MatchSimK {
         const string& sub_T_string,
         vector<vector<MatchSimK::CheckPoint>>& check_points,
         const vector<int>& x_arch_indexes,
-        const vector<int>& y_arch_indexes
+        vector<int>& y_arch_indexes,
+        bool isUniversalPattern
     );
 }  // namespace MatchSimK
