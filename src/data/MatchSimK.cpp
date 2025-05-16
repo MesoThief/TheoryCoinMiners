@@ -47,7 +47,8 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(const string& text, const string&
     debug(cout << "shortlex normal form of pattern is: " << shortlex_p.shortlexNormalForm << endl);
 
     // preprocessing: if P is a universal pattern
-    bool isUniversalPattern = shortlex_p.shortlexNormalForm == pattern;
+    int k_pattern = calculateUniversalityIndex(pattern);
+    bool isUniversalPattern = (k <= k_pattern);
 
     // line 5: Slice T whenever T[i] \not-in alph(p)
     vector<Interval> sub_Ts;
