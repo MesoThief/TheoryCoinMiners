@@ -117,7 +117,6 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(const string& text, const string&
         for (shared_ptr<XYTree::Node> node_i = x_tree.root->next; node_i != x_tree.root; node_i = node_i->next) {
             int j_1;
             int j_2;
-            bool congruenceCondition = false;
             if(!isUniversalPattern) {
                 // preprocessing: make vector x_arch_indexes to save the end points of x-arch links
                 vector<int> x_arch_indexes;
@@ -204,10 +203,10 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(const string& text, const string&
                 // line 22: Save Checkpoints for each arch link of T'[j_2 : j_1]
                 string z = shortlex_with_checkpoint(k, pattern_universality, sub_T_string, check_points, x_arch_indexes, y_arch_indexes);
 
-                congruenceCondition = (z == shortlex_p.shortlexNormalForm);
-            }
-            else
-            {
+                // line 23 pre-processing
+                if(z != shortlex_p.shortlexNormalForm) continue;
+            } else {
+                // edge case universal pattern: same as non-universal case, except no need to save arches
                 // line 14: From i, go up the X-tree for ι(p)-1 edges
                 shared_ptr<XYTree::Node> current_node = node_i;
                 debug(cout << "starting X-tree traversal from: " << *current_node << endl);
@@ -275,53 +274,51 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(const string& text, const string&
                 }
                 debug(cout << "j_2 value: " << j_2 << endl);
 
-                congruenceCondition = true;
+                // line 23 pre-processing: no need to check shortlex pattern, already true
             }
             
-            // line 23: if z ~k ShortLex(p) then
-            if (congruenceCondition) {
-                debug(cout << "\n[DEBUG] z == shortlex_p.shortlexNormalForm MATCHED\n");
-                
-                // line 24: interval1 <- T_X(T').chld(i) AND [max_{σ in B}{R_Y(T', j_2, σ)+1, j_2}]
-                debug(cout << "[interval1] Computing from B and getY(j_2 = " << j_2 << ")\n");
+            // line 23: if z ~k ShortLex(p) then (done via preprocessing)
+            debug(cout << "\n[DEBUG] z == shortlex_p.shortlexNormalForm MATCHED\n");
+            
+            // line 24: interval1 <- T_X(T').chld(i) AND [max_{σ in B}{R_Y(T', j_2, σ)+1, j_2}]
+            debug(cout << "[interval1] Computing from B and getY(j_2 = " << j_2 << ")\n");
 
-                int interval1_start = -1;
-                for (char sigma : B) {
-                    int r_y = rankers.getY(j_2, sigma);
-                    debug(cout << "  - B contains '" << sigma << "', getY(" << j_2 << ", '" << sigma << "') = "
-                              << ((r_y == INF) ? "INF" : to_string(r_y)) << "\n");
-                    if (r_y != INF) {
-                        interval1_start = max(interval1_start, r_y + 1);
-                    }
+            int interval1_start = -1;
+            for (char sigma : B) {
+                int r_y = rankers.getY(j_2, sigma);
+                debug(cout << "  - B contains '" << sigma << "', getY(" << j_2 << ", '" << sigma << "') = "
+                            << ((r_y == INF) ? "INF" : to_string(r_y)) << "\n");
+                if (r_y != INF) {
+                    interval1_start = max(interval1_start, r_y + 1);
                 }
-
-                debug(cout << "  -> After max with node_i->children.start = " << node_i->children.start << "\n");
-                interval1_start = max(node_i->children.start, interval1_start);
-                int interval1_end = min(node_i->children.end, j_2);
-
-                Interval interval1(interval1_start, interval1_end);
-                debug(cout << "  => Final interval1 = [" << interval1.start << ", " << interval1.end << "]\n");
-
-                // line 25: interval2 <- [j_1, min_{σ in A}{R_X(T', j_1, σ)-1}]
-                debug(cout << "[interval2] Computing from A and getX(j_1 = " << j_1 << ")\n");
-
-                int interval2_end = sub_T.end - offset;
-                for (char sigma : A) {
-                    int r_x = rankers.getX(j_1, sigma);
-                    debug(cout << "  - A contains '" << sigma << "', getX(" << j_1 << ", '" << sigma << "') = " 
-                              << ((r_x == INF) ? "INF" : to_string(r_x)) << "\n");
-                    interval2_end = min(interval2_end, r_x - 1);
-                }
-
-                Interval interval2(j_1, interval2_end);
-                debug(cout << "  => Final interval2 = [" << interval2.start << ", " << interval2.end << "]\n");
-
-                // line 26: add (interval1, interval2, offset) to positions
-                positions.emplace_back(interval1, interval2, offset);
-                debug(cout << "[position ADDED] interval1 = " << interval1 << ", "
-                          << "interval2 = " << interval2 << ", "
-                          << "offset = " << offset << "\n\n");
             }
+
+            debug(cout << "  -> After max with node_i->children.start = " << node_i->children.start << "\n");
+            interval1_start = max(node_i->children.start, interval1_start);
+            int interval1_end = min(node_i->children.end, j_2);
+
+            Interval interval1(interval1_start, interval1_end);
+            debug(cout << "  => Final interval1 = [" << interval1.start << ", " << interval1.end << "]\n");
+
+            // line 25: interval2 <- [j_1, min_{σ in A}{R_X(T', j_1, σ)-1}]
+            debug(cout << "[interval2] Computing from A and getX(j_1 = " << j_1 << ")\n");
+
+            int interval2_end = sub_T.end - offset;
+            for (char sigma : A) {
+                int r_x = rankers.getX(j_1, sigma);
+                debug(cout << "  - A contains '" << sigma << "', getX(" << j_1 << ", '" << sigma << "') = " 
+                            << ((r_x == INF) ? "INF" : to_string(r_x)) << "\n");
+                interval2_end = min(interval2_end, r_x - 1);
+            }
+
+            Interval interval2(j_1, interval2_end);
+            debug(cout << "  => Final interval2 = [" << interval2.start << ", " << interval2.end << "]\n");
+
+            // line 26: add (interval1, interval2, offset) to positions
+            positions.emplace_back(interval1, interval2, offset);
+            debug(cout << "[position ADDED] interval1 = " << interval1 << ", "
+                        << "interval2 = " << interval2 << ", "
+                        << "offset = " << offset << "\n\n");
         }
     }
 
