@@ -203,7 +203,7 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(const string& text, const string&
                 // line 22: Save Checkpoints for each arch link of T'[j_2 : j_1]
                 string z = shortlex_with_checkpoint(k, pattern_universality, sub_T_string, check_points, x_arch_indexes, y_arch_indexes);
 
-                // line 23 pre-processing
+                // line 23: if z ~k ShortLex(p)
                 if(z != shortlex_p.shortlexNormalForm) continue;
             } else {
                 // edge case universal pattern: same as non-universal case, except no need to save arches
@@ -274,10 +274,9 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(const string& text, const string&
                 }
                 debug(cout << "j_2 value: " << j_2 << endl);
 
-                // line 23 pre-processing: no need to check shortlex pattern, already true
+                // line 23: condition is already true
             }
             
-            // line 23: if z ~k ShortLex(p) then (done via preprocessing)
             debug(cout << "\n[DEBUG] z == shortlex_p.shortlexNormalForm MATCHED\n");
             
             // line 24: interval1 <- T_X(T').chld(i) AND [max_{σ in B}{R_Y(T', j_2, σ)+1, j_2}]
