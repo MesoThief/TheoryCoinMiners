@@ -223,7 +223,8 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(const string& text, const string&
                 debug(cout << "X-tree ends at: " << *current_node << endl);
 
                 // line 15: j_1 <- T_X(T').r(current node)
-                j_1 = current_node->r;
+                // in universal case, no r exists
+                j_1 = current_node->index;
                 debug(cout << "j_1 value: " << j_1 << endl);
 
                 // line 16: if j_1 = ∞, break.
@@ -247,7 +248,8 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(const string& text, const string&
                 debug(cout << "Y-tree ends at: " << *current_node << endl);
 
                 // line 18: n <- current node
-                int n = current_node->r;
+                // in universal case, no r exists
+                int n = current_node->index;
 
                 // line 19: j_2 <- max(T_X(T').chld(i) AND [max_{σ in B}{R_Y(T', n, σ)+1, n}])
                 debug(cout << "children of " << *node_i << " are: " << node_i->children << endl);
