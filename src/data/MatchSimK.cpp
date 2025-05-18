@@ -115,135 +115,212 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(const string& text, const string&
 
         // line 13: for all nodes i \in T_X(T').nodes do
         for (shared_ptr<XYTree::Node> node_i = x_tree.root->next; node_i != x_tree.root; node_i = node_i->next) {
-            // preprocessing: make vector x_arch_indexes to save the end points of x-arch links
-            vector<int> x_arch_indexes;
-            x_arch_indexes.push_back(node_i->index);
-            debug(cout << "add to x_arch_indexes: " << node_i->index << endl);
-            // line 14: From i, go up the X-tree for ι(p)-1 edges
-            shared_ptr<XYTree::Node> current_node = node_i;
-            debug(cout << "starting X-tree traversal from: " << *current_node << endl);
-            for (int i = 0; i < pattern_universality - 1; i++) {
-                current_node = x_tree.parent[current_node->index];
-                x_arch_indexes.push_back(current_node->index);
-                debug(cout << "add to x_arch_indexes: " << current_node->index << endl);
-                debug(cout << "traversing X-tree: " << *current_node << endl);
-                if (current_node == x_tree.root) break;
-            }
-            if (current_node == x_tree.root) {
-                debug(cout << "reached root while traversing X-tree. Skipping to next T'" << endl);
-                continue;
-            }
-            debug(cout << "X-tree ends at: " << *current_node << endl);
+            int j_1;
+            int j_2;
+            bool congruenceCondition = false;
+            if(!isUniversalPattern) {
+                // preprocessing: make vector x_arch_indexes to save the end points of x-arch links
+                vector<int> x_arch_indexes;
+                x_arch_indexes.push_back(node_i->index);
+                debug(cout << "add to x_arch_indexes: " << node_i->index << endl);
+                // line 14: From i, go up the X-tree for ι(p)-1 edges
+                shared_ptr<XYTree::Node> current_node = node_i;
+                debug(cout << "starting X-tree traversal from: " << *current_node << endl);
+                for (int i = 0; i < pattern_universality - 1; i++) {
+                    current_node = x_tree.parent[current_node->index];
+                    x_arch_indexes.push_back(current_node->index);
+                    debug(cout << "add to x_arch_indexes: " << current_node->index << endl);
+                    debug(cout << "traversing X-tree: " << *current_node << endl);
+                    if (current_node == x_tree.root) break;
+                }
+                if (current_node == x_tree.root) {
+                    debug(cout << "reached root while traversing X-tree. Skipping to next T'" << endl);
+                    continue;
+                }
+                debug(cout << "X-tree ends at: " << *current_node << endl);
 
-            // line 15: j_1 <- T_X(T').r(current node)
-            int j_1 = current_node->r;
-            debug(cout << "j_1 value: " << j_1 << endl);
+                // line 15: j_1 <- T_X(T').r(current node)
+                j_1 = current_node->r;
+                debug(cout << "j_1 value: " << j_1 << endl);
 
-            // line 16: if j_1 = ∞, break.
-            if (j_1 == INF) break;
+                // line 16: if j_1 = ∞, break.
+                if (j_1 == INF) break;
 
-            // preprocessing: make vector y_arch_indexes to save the end points of y-arch links
-            vector<int> y_arch_indexes;
-            y_arch_indexes.push_back(j_1);
+                // preprocessing: make vector y_arch_indexes to save the end points of y-arch links
+                vector<int> y_arch_indexes;
+                y_arch_indexes.push_back(j_1);
 
-            // line 17: From j_1, go up the Y-tree using ι(p) calls of T_Y(T').prnt()
-            debug(cout << "starting Y-tree traversal from: " << *current_node << endl);
-            current_node = y_tree.parent[j_1];
-            y_arch_indexes.push_back(current_node->index);
-            debug(cout << "add to y_arch_indexes: " << current_node->index << endl);
-            debug(cout << "Y-tree start becomes: " << *current_node << endl);
-            for (int i = 0; i < pattern_universality - 1; i++) {
-                current_node = y_tree.parent[current_node->index];
+                // line 17: From j_1, go up the Y-tree using ι(p) calls of T_Y(T').prnt()
+                debug(cout << "starting Y-tree traversal from: " << *current_node << endl);
+                current_node = y_tree.parent[j_1];
                 y_arch_indexes.push_back(current_node->index);
                 debug(cout << "add to y_arch_indexes: " << current_node->index << endl);
-                debug(cout << "traversing Y-tree: " << *current_node << endl);
-                if (current_node == y_tree.root) break;
-            }
-            if (current_node == y_tree.root) {
-                debug(cout << "reached root while traversing Y-tree. Skipping to next T'" << endl);
-                continue;
-            }
-            debug(cout << "Y-tree ends at: " << *current_node << endl);
-
-            // line 18: n <- current node
-            int n = current_node->r;
-
-            // line 19: j_2 <- max(T_X(T').chld(i) AND [max_{σ in B}{R_Y(T', n, σ)+1, n}])
-            debug(cout << "children of " << *node_i << " are: " << node_i->children << endl);
-            int max_r_y = -1;
-            for (char sigma : B) {
-                int r_y = rankers.getY(n, sigma) + 1;
-                debug(cout << "ranker_Y = " << r_y-1 << " (n=" << n << ", sigma=" << sigma << ")" << endl);
-                if (r_y != -1) {
-                    max_r_y = max(r_y, max_r_y);
+                debug(cout << "Y-tree start becomes: " << *current_node << endl);
+                for (int i = 0; i < pattern_universality - 1; i++) {
+                    current_node = y_tree.parent[current_node->index];
+                    y_arch_indexes.push_back(current_node->index);
+                    debug(cout << "add to y_arch_indexes: " << current_node->index << endl);
+                    debug(cout << "traversing Y-tree: " << *current_node << endl);
+                    if (current_node == y_tree.root) break;
                 }
+                if (current_node == y_tree.root) {
+                    debug(cout << "reached root while traversing Y-tree. Skipping to next T'" << endl);
+                    continue;
+                }
+                debug(cout << "Y-tree ends at: " << *current_node << endl);
+
+                // line 18: n <- current node
+                int n = current_node->r;
+
+                // line 19: j_2 <- max(T_X(T').chld(i) AND [max_{σ in B}{R_Y(T', n, σ)+1, n}])
+                debug(cout << "children of " << *node_i << " are: " << node_i->children << endl);
+                int max_r_y = -1;
+                for (char sigma : B) {
+                    int r_y = rankers.getY(n, sigma) + 1;
+                    debug(cout << "ranker_Y = " << r_y-1 << " (n=" << n << ", sigma=" << sigma << ")" << endl);
+                    if (r_y != -1) {
+                        max_r_y = max(r_y, max_r_y);
+                    }
+                }
+                Interval j_2_candidate = Interval(max_r_y, n);
+
+                int intersection_start = max(node_i->children.start, j_2_candidate.start);
+                int intersection_end = min(node_i->children.end, j_2_candidate.end);
+                debug(cout << "Intv 1 (chld): " << node_i->children << endl);
+                debug(cout << "Intv 2 (j_2): " << j_2_candidate << endl);
+                if (intersection_start <= intersection_end) {
+                    j_2 = intersection_end;
+                } else {
+                    // line 20: if no such value exists, continue.
+                    debug(cout << "skipping due to invalid j_2" << endl << endl);
+                    continue;
+                }
+                debug(cout << "j_2 value: " << j_2 << endl);
+
+                // make j_2 a starting point of x_arch_indexes
+                x_arch_indexes.insert(x_arch_indexes.begin(), j_2);
+
+                // line 21: z <- ShortLex_k(T'[j_2 : j_1]) using the checkpoint mechanism and Map
+                // line 22: Save Checkpoints for each arch link of T'[j_2 : j_1]
+                string z = shortlex_with_checkpoint(k, pattern_universality, sub_T_string, check_points, x_arch_indexes, y_arch_indexes);
+
+                congruenceCondition = (z == shortlex_p.shortlexNormalForm);
             }
-            Interval j_2_candidate = Interval(max_r_y, n);
+            else
+            {
+                // line 14: From i, go up the X-tree for ι(p)-1 edges
+                shared_ptr<XYTree::Node> current_node = node_i;
+                debug(cout << "starting X-tree traversal from: " << *current_node << endl);
+                for (int i = 0; i < pattern_universality - 1; i++) {
+                    current_node = x_tree.parent[current_node->index];
+                    debug(cout << "add to x_arch_indexes: " << current_node->index << endl);
+                    debug(cout << "traversing X-tree: " << *current_node << endl);
+                    if (current_node == x_tree.root) break;
+                }
+                if (current_node == x_tree.root) {
+                    debug(cout << "reached root while traversing X-tree. Skipping to next T'" << endl);
+                    continue;
+                }
+                debug(cout << "X-tree ends at: " << *current_node << endl);
 
-            int j_2;
-            int intersection_start = max(node_i->children.start, j_2_candidate.start);
-            int intersection_end = min(node_i->children.end, j_2_candidate.end);
-            debug(cout << "Intv 1 (chld): " << node_i->children << endl);
-            debug(cout << "Intv 2 (j_2): " << j_2_candidate << endl);
-            if (intersection_start <= intersection_end) {
-                j_2 = intersection_end;
-            } else {
-                // line 20: if no such value exists, continue.
-                debug(cout << "skipping due to invalid j_2" << endl << endl);
-                continue;
+                // line 15: j_1 <- T_X(T').r(current node)
+                j_1 = current_node->r;
+                debug(cout << "j_1 value: " << j_1 << endl);
+
+                // line 16: if j_1 = ∞, break.
+                if (j_1 == INF) break;
+
+                // line 17: From j_1, go up the Y-tree using ι(p) calls of T_Y(T').prnt()
+                debug(cout << "starting Y-tree traversal from: " << *current_node << endl);
+                current_node = y_tree.parent[j_1];
+                debug(cout << "add to y_arch_indexes: " << current_node->index << endl);
+                debug(cout << "Y-tree start becomes: " << *current_node << endl);
+                for (int i = 0; i < pattern_universality - 1; i++) {
+                    current_node = y_tree.parent[current_node->index];
+                    debug(cout << "add to y_arch_indexes: " << current_node->index << endl);
+                    debug(cout << "traversing Y-tree: " << *current_node << endl);
+                    if (current_node == y_tree.root) break;
+                }
+                if (current_node == y_tree.root) {
+                    debug(cout << "reached root while traversing Y-tree. Skipping to next T'" << endl);
+                    continue;
+                }
+                debug(cout << "Y-tree ends at: " << *current_node << endl);
+
+                // line 18: n <- current node
+                int n = current_node->r;
+
+                // line 19: j_2 <- max(T_X(T').chld(i) AND [max_{σ in B}{R_Y(T', n, σ)+1, n}])
+                debug(cout << "children of " << *node_i << " are: " << node_i->children << endl);
+                int max_r_y = -1;
+                for (char sigma : B) {
+                    int r_y = rankers.getY(n, sigma) + 1;
+                    debug(cout << "ranker_Y = " << r_y-1 << " (n=" << n << ", sigma=" << sigma << ")" << endl);
+                    if (r_y != -1) {
+                        max_r_y = max(r_y, max_r_y);
+                    }
+                }
+                Interval j_2_candidate = Interval(max_r_y, n);
+
+                int intersection_start = max(node_i->children.start, j_2_candidate.start);
+                int intersection_end = min(node_i->children.end, j_2_candidate.end);
+                debug(cout << "Intv 1 (chld): " << node_i->children << endl);
+                debug(cout << "Intv 2 (j_2): " << j_2_candidate << endl);
+                if (intersection_start <= intersection_end) {
+                    j_2 = intersection_end;
+                } else {
+                    // line 20: if no such value exists, continue.
+                    debug(cout << "skipping due to invalid j_2" << endl << endl);
+                    continue;
+                }
+                debug(cout << "j_2 value: " << j_2 << endl);
+
+                congruenceCondition = true;
             }
-            debug(cout << "j_2 value: " << j_2 << endl);
-
-            // make j_2 a starting point of x_arch_indexes
-            x_arch_indexes.insert(x_arch_indexes.begin(), j_2);
-
-            // line 21: z <- ShortLex_k(T'[j_2 : j_1]) using the checkpoint mechanism and Map
-            // line 22: Save Checkpoints for each arch link of T'[j_2 : j_1]
-            string z = shortlex_with_checkpoint(k, pattern_universality, sub_T_string, check_points, x_arch_indexes, y_arch_indexes, isUniversalPattern);
-
+            
             // line 23: if z ~k ShortLex(p) then
-            if (z == shortlex_p.shortlexNormalForm) {
-                cout << "\n[DEBUG] z == shortlex_p.shortlexNormalForm MATCHED\n";
+            if (congruenceCondition) {
+                debug(cout << "\n[DEBUG] z == shortlex_p.shortlexNormalForm MATCHED\n");
                 
                 // line 24: interval1 <- T_X(T').chld(i) AND [max_{σ in B}{R_Y(T', j_2, σ)+1, j_2}]
-                cout << "[interval1] Computing from B and getY(j_2 = " << j_2 << ")\n";
+                debug(cout << "[interval1] Computing from B and getY(j_2 = " << j_2 << ")\n");
 
                 int interval1_start = -1;
                 for (char sigma : B) {
                     int r_y = rankers.getY(j_2, sigma);
-                    cout << "  - B contains '" << sigma << "', getY(" << j_2 << ", '" << sigma << "') = "
-                              << ((r_y == INF) ? "INF" : to_string(r_y)) << "\n";
+                    debug(cout << "  - B contains '" << sigma << "', getY(" << j_2 << ", '" << sigma << "') = "
+                              << ((r_y == INF) ? "INF" : to_string(r_y)) << "\n");
                     if (r_y != INF) {
                         interval1_start = max(interval1_start, r_y + 1);
                     }
                 }
 
-                cout << "  -> After max with node_i->children.start = " << node_i->children.start << "\n";
+                debug(cout << "  -> After max with node_i->children.start = " << node_i->children.start << "\n");
                 interval1_start = max(node_i->children.start, interval1_start);
                 int interval1_end = min(node_i->children.end, j_2);
 
                 Interval interval1(interval1_start, interval1_end);
-                cout << "  => Final interval1 = [" << interval1.start << ", " << interval1.end << "]\n";
+                debug(cout << "  => Final interval1 = [" << interval1.start << ", " << interval1.end << "]\n");
 
                 // line 25: interval2 <- [j_1, min_{σ in A}{R_X(T', j_1, σ)-1}]
-                cout << "[interval2] Computing from A and getX(j_1 = " << j_1 << ")\n";
+                debug(cout << "[interval2] Computing from A and getX(j_1 = " << j_1 << ")\n");
 
                 int interval2_end = sub_T.end - offset;
                 for (char sigma : A) {
                     int r_x = rankers.getX(j_1, sigma);
-                    cout << "  - A contains '" << sigma << "', getX(" << j_1 << ", '" << sigma << "') = " 
-                              << ((r_x == INF) ? "INF" : to_string(r_x)) << "\n";
+                    debug(cout << "  - A contains '" << sigma << "', getX(" << j_1 << ", '" << sigma << "') = " 
+                              << ((r_x == INF) ? "INF" : to_string(r_x)) << "\n");
                     interval2_end = min(interval2_end, r_x - 1);
                 }
 
                 Interval interval2(j_1, interval2_end);
-                cout << "  => Final interval2 = [" << interval2.start << ", " << interval2.end << "]\n";
+                debug(cout << "  => Final interval2 = [" << interval2.start << ", " << interval2.end << "]\n");
 
                 // line 26: add (interval1, interval2, offset) to positions
                 positions.emplace_back(interval1, interval2, offset);
-                cout << "[position ADDED] interval1 = " << interval1 << ", "
+                debug(cout << "[position ADDED] interval1 = " << interval1 << ", "
                           << "interval2 = " << interval2 << ", "
-                          << "offset = " << offset << "\n\n";
+                          << "offset = " << offset << "\n\n");
             }
         }
     }
@@ -258,16 +335,15 @@ string MatchSimK::shortlex_with_checkpoint(
     const string& sub_T_string,
     vector<vector<MatchSimK::CheckPoint>>& check_points,
     const vector<int>& x_arch_indexes,
-    vector<int>& y_arch_indexes,
-    bool isUniversalPattern
+    const vector<int>& y_arch_indexes
 ) {
     vector<string> partial_shortlex_z(2 * pattern_universality + 1);
     vector<vector<int>> x_vectors(pattern_universality + 1);
     vector<vector<int>> y_vectors(pattern_universality + 1);
 
-    cout << "\nTargeting minimal candidate: ["
+    debug(cout << "\nTargeting minimal candidate: ["
                 <<  x_arch_indexes[0] << ", " << x_arch_indexes[pattern_universality]
-                <<  "]" << endl;
+                <<  "]" << endl);
 
     // compute YX-link first
     for (int i = 0; i <= pattern_universality; i++) {
@@ -287,21 +363,21 @@ string MatchSimK::shortlex_with_checkpoint(
             x_vectors[i] = cp.x_vector;
             y_vectors[i] = cp.y_vector;
 
-            cout << "[YX-link FOUND] i = " << i
+            debug(cout << "[YX-link FOUND] i = " << i
                         << ", Interval = (" << x_val << ", " << y_val << ")"
-                        << ", Partial ShortLex = " << cp.partial_shortlex << endl;
+                        << ", Partial ShortLex = " << cp.partial_shortlex << endl);
 
             found = true;
             break;
         }
 
         if (!found || check_points[x_val].empty()) {
-            cout << "[YX-link COMPUTE] i = " << i
+            debug(cout << "[YX-link COMPUTE] i = " << i
                         << ", Will compute shortlex for substring [" << x_val << ", " << y_val << "]"
-                        << " = " << sub_T_string.substr(x_val, y_val - x_val) << endl;
+                        << " = " << sub_T_string.substr(x_val, y_val - x_val) << endl);
 
             int threshold = k + 1 - pattern_universality;
-            cout <<  "threshold: " << threshold << endl;
+            debug(cout <<  "threshold: " << threshold << endl);
             ShortlexResult partialShortlex = computePartialShortlexNormalForm(
                 sub_T_string.substr(x_val, y_val - x_val),
                 vector<int>(Alphabet::getInstance().size(), 1),
@@ -320,18 +396,11 @@ string MatchSimK::shortlex_with_checkpoint(
             x_vectors[i] = partialShortlex.X_vector;
             y_vectors[i] = partialShortlex.Y_vector;
 
-            printVector(x_vectors[i], "X_vector");
-            printVector(y_vectors[i], "Y_vector");
+            debug(printVector(x_vectors[i], "X_vector"));
+            debug(printVector(y_vectors[i], "Y_vector"));
 
-            cout << "[YX-link COMPUTED] i = " << i
-                        << ", Computed ShortLex = " << partialShortlex.shortlexNormalForm << endl;
-        }
-
-        // edge case: during YX-link iteration, shift y-arch if shortlexNormalForm returns empty
-        // only applies to universal pattern matching
-        if(partial_shortlex_z[2 * i].empty() && isUniversalPattern ) {
-            cout << "edge case: shifting y-arch " << y_arch_indexes[pattern_universality - i] << "->" << x_arch_indexes[i] << endl;
-            y_arch_indexes[pattern_universality - i] = x_arch_indexes[i];
+            debug(cout << "[YX-link COMPUTED] i = " << i
+                        << ", Computed ShortLex = " << partialShortlex.shortlexNormalForm << endl);
         }
     }
 
@@ -350,9 +419,9 @@ string MatchSimK::shortlex_with_checkpoint(
             if (cp.link.end == y_val) {
                 partial_shortlex_z[2 * i + 1] = cp.partial_shortlex;
 
-                cout << "[XY-link FOUND] i = " << i
+                debug(cout << "[XY-link FOUND] i = " << i
                             << ", Interval = (" << x_val << ", " << y_val << ")"
-                            << ", Partial ShortLex = " << cp.partial_shortlex << endl;
+                            << ", Partial ShortLex = " << cp.partial_shortlex << endl);
 
                 found = true;
                 break;
@@ -365,12 +434,12 @@ string MatchSimK::shortlex_with_checkpoint(
             vector<int> y_vector =
                 (i == pattern_universality - 1) ? vector<int>(Alphabet::getInstance().size(), 1) : y_vectors[i + 1];
 
-            cout << "[XY-link COMPUTE] i = " << i
+            debug(cout << "[XY-link COMPUTE] i = " << i
                         << ", Will compute shortlex for substring [" << x_val << ", " << y_val << "]"
-                        << " = " << sub_T_string.substr(x_val, y_val - x_val) << endl;
+                        << " = " << sub_T_string.substr(x_val, y_val - x_val) << endl);
 
-            printVector(x_vector, "X_vector");
-            printVector(y_vector, "Y_vector");
+            debug(printVector(x_vector, "X_vector"));
+            debug(printVector(y_vector, "Y_vector"));
 
             ShortlexResult partialShortlex = computePartialShortlexNormalForm(
                 sub_T_string.substr(x_val, y_val - x_val),
@@ -383,8 +452,8 @@ string MatchSimK::shortlex_with_checkpoint(
 
             check_points[x_val].emplace_back(xy_link, partialShortlex.shortlexNormalForm);
 
-            cout << "[XY-link COMPUTED] i = " << i
-                        << ", Computed ShortLex = " << partialShortlex.shortlexNormalForm << endl;
+            debug(cout << "[XY-link COMPUTED] i = " << i
+                        << ", Computed ShortLex = " << partialShortlex.shortlexNormalForm << endl);
         }
     }
 
@@ -393,7 +462,7 @@ string MatchSimK::shortlex_with_checkpoint(
     for (const string& part : partial_shortlex_z) {
         z += part;
     }
-    cout << "[Final Z Combined String] = " << z << endl << endl;
+    debug(cout << "[Final Z Combined String] = " << z << endl << endl);
 
     return z;
 }
