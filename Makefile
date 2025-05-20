@@ -12,6 +12,7 @@ SIMON_TREE = simon_tree
 SHORTLEX = shortlex
 XY_TREE = xy_tree
 MATCH_SIM_K = match_sim_k
+RT_EXP = rt_exp
 
 SRC := $(wildcard src/data/*.cpp src/utils/*.cpp)
 
@@ -32,6 +33,10 @@ $(XY_TREE): src/xy_tree.cpp $(SRC)
 	$(CXX) $(CXXFLAGS) $< $(SRC) -o $(BIN_DIR)/$@
 	
 $(MATCH_SIM_K): src/match_sim_k.cpp $(SRC)
+	@mkdir -p $(BIN_DIR)
+	$(CXX) $(CXXFLAGS) $< $(SRC) -o $(BIN_DIR)/$@
+	
+$(RT_EXP): src/rt_exp.cpp $(SRC)
 	@mkdir -p $(BIN_DIR)
 	$(CXX) $(CXXFLAGS) $< $(SRC) -o $(BIN_DIR)/$@
 
