@@ -75,9 +75,9 @@ int main(int argc, char* argv[]) {
 
         // pattern mining: given k, find the most frequent ~k matching pattern in a given text
         // testing every substring to the matchSimK algorithm
-        for(int start = 0; start < sequence.size(); start++){
-            for(int end = start + 1; end < sequence.size(); end++){
-                string substr = sequence.substr(start, end);
+        for (int start = 0; start < sequence.size(); ++start) {
+            for (int end = start + 1; end <= sequence.size(); ++end) {
+                string substr = sequence.substr(start, end - start);
                 string shortlexSubstr = computeShortlexNormalForm(substr, exp_k);
 
                 // get matching positions and compute the number of total matches
@@ -98,21 +98,32 @@ int main(int argc, char* argv[]) {
         }
 
         // determine the representative substring match and save
+        // determine the representative substring match and save
         rep_match_data.emplace_back(sequence, key, exp_k, most_matching_substr.first, most_matching_substr.second);
+
+        // print result immediately
+        cout << "Sequence " << rep_match_data.size() << ":" << endl;
+        cout << "[" << sequence << "]" << endl;
+        cout << "expected k: " << exp_k << endl;
+        cout << "Most frequently matching substring: " << most_matching_substr.first << endl;
+        cout << "-> with " << most_matching_substr.second << " matches" << endl;
+        cout << "-> aligning with key: " << key << endl;
+        cout << endl;
+
     }
 
     // print out result
-    int counter = 1;
-    for(tuple<string, int, int, string, int> match_data : rep_match_data) {
-        cout << "Sequence " << counter << ":" << endl;
-        cout << "[" << get<0>(match_data) << "]" << endl;
-        cout << "expected k: " << get<2>(match_data) << endl;
-        cout << "Most frequently matching substring: " << get<3>(match_data) << endl;
-        cout << "-> with " << get<4>(match_data) << " matches" << endl;
-        cout << "-> aligning with key: " << get<1>(match_data) << endl;
-        cout << endl;
-        counter++;
-    }
+//    int counter = 1;
+//    for(tuple<string, int, int, string, int> match_data : rep_match_data) {
+//        cout << "Sequence " << counter << ":" << endl;
+//        cout << "[" << get<0>(match_data) << "]" << endl;
+//        cout << "expected k: " << get<2>(match_data) << endl;
+//        cout << "Most frequently matching substring: " << get<3>(match_data) << endl;
+//        cout << "-> with " << get<4>(match_data) << " matches" << endl;
+//        cout << "-> aligning with key: " << get<1>(match_data) << endl;
+//        cout << endl;
+//        counter++;
+//    }
 
     return 0;
 }
