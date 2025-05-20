@@ -1,6 +1,6 @@
-abc
+acgt
 XY
-abcbacaabacccbaccaab
-1 1 1
-1 1 1
-9
+atgccccaactaaataccgccgtatgacccaccataattaccccatactcctgacactatttctcgtcacccaactaaaaatattaaattcaaattaccatctacccccctcaccaaaacccataaaaataaaaaactacaataaaccctgagaaccaaaatgaacgaaaatctattcgcttcatttcg
+1 1 1 1
+1 1 1 1
+10
