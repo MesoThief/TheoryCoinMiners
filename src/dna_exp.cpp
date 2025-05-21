@@ -42,7 +42,7 @@ int main(int argc, char* argv[]) {
         istringstream iss(line);
         string seq; int k;
         if (iss >> seq >> k)
-            inputs.emplace_back(move(seq), k);
+            inputs.emplace_back(std::move(seq), k);
     }
 
     // 1) Init alphabet once
@@ -90,9 +90,9 @@ int main(int argc, char* argv[]) {
                             * (get<1>(t).end - get<1>(t).start + 1);
                     }
                     if (total > R.best_count) {
-                        R.best_count  = total;
-                        R.best_orig   = move(raw);
-                        R.best_snf    = move(snf);
+                        R.best_count = total;
+                        R.best_orig  = std::move(raw);
+                        R.best_snf   = std::move(snf);
                     }
                 }
             }
