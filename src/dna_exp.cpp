@@ -6,6 +6,7 @@
 #include <string>
 #include <unordered_map>
 #include <vector>
+#include <chrono>              // ← for timing
 
 #include "data/MatchSimK.h"
 #include "utils/Alphabet.h"
@@ -21,6 +22,7 @@ struct Result {
     int    exp_k;
     string best_orig, best_snf;
     int    best_count;
+    double duration_ms;      // ← new: how long this sequence took
 };
 
 int main(int argc, char* argv[]) {
@@ -65,7 +67,10 @@ int main(int argc, char* argv[]) {
             unordered_map<string, string> snf_cache;
             snf_cache.reserve(1024);
 
-            Result R{ sequence, key, exp_k, "", "", 0 };
+            Result R{ sequence, key, exp_k, "", "", 0, 0.0 };
+
+            // ← START TIMING
+            auto t0 = chrono::high_resolution_clock::now();
 
             // for each substring
             for (int i = 0; i < (int)sequence.size(); ++i) {
@@ -91,11 +96,16 @@ int main(int argc, char* argv[]) {
                     }
                     if (total > R.best_count) {
                         R.best_count = total;
-                        R.best_orig  = std::move(raw);
-                        R.best_snf   = std::move(snf);
+                        R.best_orig  = raw;
+                        R.best_snf   = snf;
                     }
                 }
             }
+
+            auto t1 = chrono::high_resolution_clock::now();
+            R.duration_ms = chrono::duration<double, milli>(t1 - t0).count();
+            // ← END TIMING
+
             return R;
         }));
     }
@@ -109,6 +119,8 @@ int main(int argc, char* argv[]) {
         cout << "Original substring:        " << R.best_orig << "\n";
         cout << "Shortlex-normalized form:  " << R.best_snf  << "\n";
         cout << "-> with " << R.best_count << " matches\n";
+        cout << "Processing time: "
+             << R.duration_ms << " ms\n";   // ← print timing
         cout << "-> aligning with key: " << R.key << "\n\n";
     }
 }
