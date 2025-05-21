@@ -7,6 +7,8 @@
 #include "utils/CalculateUniversality.h"
 #include "utils/Common.h"
 
+using namespace XYTree;
+
 auto printVector = [](const vector<int>& v, const string& name) {
     cout << name << " = [ ";
     for (int val : v) {
@@ -114,7 +116,7 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(const string& text, const string&
         debug(cout << "checkpoint was initialized with max size " << sub_T.end - sub_T.start + 1 << "\n");
 
         // line 13: for all nodes i \in T_X(T').nodes do
-        for (shared_ptr<XYTree::Node> node_i = x_tree.root->next; node_i != x_tree.root; node_i = node_i->next) {
+        for (Node* node_i = x_tree.root->next; node_i != x_tree.root; node_i = node_i->next) {
             int j_1;
             int j_2;
             if(!isUniversalPattern) {
@@ -123,7 +125,7 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(const string& text, const string&
                 x_arch_indexes.push_back(node_i->index);
                 debug(cout << "add to x_arch_indexes: " << node_i->index << endl);
                 // line 14: From i, go up the X-tree for ι(p)-1 edges
-                shared_ptr<XYTree::Node> current_node = node_i;
+                Node* current_node = node_i;
                 debug(cout << "starting X-tree traversal from: " << *current_node << endl);
                 for (int i = 0; i < pattern_universality - 1; i++) {
                     current_node = x_tree.parent[current_node->index];
@@ -208,7 +210,7 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(const string& text, const string&
             } else {
                 // edge case universal pattern: same as non-universal case, except no need to save arches
                 // line 14: From i, go up the X-tree for ι(p)-1 edges
-                shared_ptr<XYTree::Node> current_node = node_i;
+                Node* current_node = node_i;
                 debug(cout << "starting X-tree traversal from: " << *current_node << endl);
                 for (int i = 0; i < pattern_universality - 1; i++) {
                     current_node = x_tree.parent[current_node->index];

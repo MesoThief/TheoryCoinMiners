@@ -14,11 +14,11 @@ using namespace std;
 namespace XYTree {
     struct Node {
         int index;
-        int r;
-        shared_ptr<Node> next;  // TODO: Y-tree에서는 필요 없는 값. 최적화 시 Y-tree에선 삭제 가능.
+        int r{};
+        Node* next{};  // TODO: Y-tree에서는 필요 없는 값. 최적화 시 Y-tree에선 삭제 가능.
         Interval children;      // [start, end]
 
-        Node(int index);
+        explicit Node(int index);
     };
 
     inline std::ostream& operator<<(std::ostream& os, const Node& node) {
@@ -30,10 +30,16 @@ namespace XYTree {
     }
 
     struct Tree {
-        shared_ptr<Node> root;
-
-        vector<shared_ptr<Node>> parent;  // TODO: X-tree에서는 필요 없는 값. 최적화 시 X-tree에선 삭제 가능.
+        Node*                   root;
+        std::vector<Node*>      parent;
     };
+
+    // to allocate pool and map only once in both x-tree and y-tree
+    extern thread_local std::vector<Node>              nodePoolX;
+    extern thread_local std::unordered_map<int, Node*> nodesMapX;
+
+    extern thread_local std::vector<Node>              nodePoolY;
+    extern thread_local std::unordered_map<int, Node*> nodesMapY;
 
     // Build X-tree using the X-ranker, ShortlexResult, and input text
     Tree buildXTree(const RankerTable& ranker, const ShortlexResult& shortlex, const string& text);
