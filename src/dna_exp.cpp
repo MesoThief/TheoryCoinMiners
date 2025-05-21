@@ -50,7 +50,6 @@ int main(int argc, char* argv[]) {
     // 1) Init alphabet once
     Alphabet &alpha = Alphabet::getInstance();
     alpha.setAlphabet("ATGC");
-    alpha.enableExtension(false);  // strict mode
 
     // 2) Launch one async task per sequence
     int N = inputs.size();

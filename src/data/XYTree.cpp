@@ -63,8 +63,8 @@ namespace XYTree
             deleted_chars.clear();
             while (deleted_chars.size() < alphaSize) {
                 if (s_p.empty()) {
-                    cerr << "[XYTree] Warning: ran out of stackForm blocks at universality step "
-                         << u << " (needed " << alphaSize << " distinct chars)\n";
+//                    cerr << "[XYTree] Warning: ran out of stackForm blocks at universality step "
+//                         << u << " (needed " << alphaSize << " distinct chars)\n";
                     break;        // bail out of the while, then go to next u
                 }
                 for (char c : s_p.back()) {
@@ -132,54 +132,72 @@ namespace XYTree
     Tree buildYTree(const RankerTable& ranker,
         const ShortlexResult& shortlex,
         const std::string& text) {
-        // clear and reuse
+
+        // 1) Clear and reuse thread-local pools/maps
         nodePoolY.clear();
         nodesMapY.clear();
 
+        // 2) Reserve to avoid reallocation (keep pointers valid)
         nodePoolY.reserve(text.size() + shortlex.stackForm.size() + 5);
         nodesMapY.reserve(text.size() + 5);
 
+        // 3) Initialize tree and root
         Tree tree;
-        // root
         nodePoolY.emplace_back(-1);
         Node* root = &nodePoolY.back();
         tree.root = root;
-        tree.parent.assign(text.size()+1, nullptr);
+        tree.parent.assign(text.size() + 1, nullptr);
         nodesMapY[-1] = root;
 
-        // copy & trim stackForm
+        // 4) Copy stackForm in reverse
         std::vector<std::set<char>> s_p;
         s_p.reserve(shortlex.stackForm.size());
-        for (int i = (int)shortlex.stackForm.size()-1; i >= 0; --i)
+        for (int i = (int)shortlex.stackForm.size() - 1; i >= 0; --i) {
             s_p.push_back(shortlex.stackForm[i]);
+        }
 
-        // clamp universality so it never exceeds s_p.size()
-        int uni = min(shortlex.universality, (int)s_p.size());
-        {
+        // 5) Clamp universality and trim s_p safely
+        int uni = std::min(shortlex.universality, (int)s_p.size());
+        const size_t alphaSize = shortlex.alphabet.size();
+        for (int u = 0; u < uni; ++u) {
             std::set<char> deleted;
-            for (int u = 0; u < uni; ++u) {
-                deleted.clear();
-                while (deleted.size() < shortlex.alphabet.size()) {
-                    if (s_p.empty()) break;
-                    for (char c : s_p.back()) deleted.insert(c);
-                    s_p.pop_back();
+            while (deleted.size() < alphaSize) {
+                if (s_p.empty()) {
+                    break;  // no more blocks
                 }
+                for (char c : s_p.back()) {
+                    deleted.insert(c);
+                }
+                s_p.pop_back();
             }
         }
 
-
-        // build
+        // 6) Build Y-tree along text indices
         Node* last = root;
-        int L = (int)text.size();
-        for (int i = L; i > 0; --i) {
-            // pick minimal y_rank
+        int N = (int)text.size();
+
+        // Fill parent[0..N]
+        for (int i = N; i >= 0; --i) {
+            // 6a) compute minimal Y-rank over alphabet
+            debug(cout << "[buildYTree] i = " << i << endl);
+
+            // 6a) compute minimal Y-rank over alphabet
             int parentRank = INF;
             for (char a : shortlex.alphabet) {
                 int yr = ranker.getY(i, a);
+                debug(cout << "  getY(" << i << ", '" << a << "') = " << yr << endl);
                 if (yr < parentRank) parentRank = yr;
             }
+            debug(cout << "  -> minimal parentRank = " << parentRank << endl);
 
-            // find or create node
+            // 6b) if no valid rank, point back at root
+            if (parentRank == INF || parentRank < 0) {
+                debug(cout << "  parentRank invalid, setting parent[" << i << "] = root\n");
+                tree.parent[i] = root;
+                continue;
+            }
+
+            // 6c) find or create the Node for parentRank
             Node* pnode;
             auto it = nodesMapY.find(parentRank);
             if (it == nodesMapY.end()) {
@@ -190,37 +208,40 @@ namespace XYTree
                 last->next = pnode;
                 last = pnode;
 
-                // copy s_p and apply checkpoint loop
+                // checkpoint loop, initializing pnode->r & children interval
                 auto sp_p = s_p;
                 pnode->r = parentRank;
                 while (!sp_p.empty()) {
-                    auto S = sp_p.back();
-                    int best = INF; char sigma=0;
+                    const auto &S = sp_p.back();
+                    int bestY = parentRank;
+                    char sigma = 0;
                     for (char c : S) {
                         int yr = ranker.getY(pnode->r, c);
-                        if (yr > best) {
-                            best = yr;
+                        if (yr > bestY) {
+                            bestY = yr;
                             sigma = c;
                         }
                     }
-                    pnode->r = (best==INF ? parentRank : best);
-                    if (pnode->r == parentRank) break;
+                    if (bestY == parentRank) break;
+                    pnode->r = bestY;
                     sp_p.back().erase(sigma);
                     if (sp_p.back().empty()) sp_p.pop_back();
                 }
-                // init interval
-                pnode->children = Interval(i+1, i);
+
+                // set up the initial child-interval [i+1..i]
+                pnode->children = Interval(i + 1, i);
             } else {
                 pnode = it->second;
             }
 
-            // extend
+            // 6d) extend the start down by one and record parent
             pnode->children.start--;
             tree.parent[i] = pnode;
         }
 
-        last->next = root;
-        tree.parent[0] = root;
+        // 7) close the circle and set the final parent slot
+        last->next    = root;
+
         return tree;
     }
 }

@@ -1,0 +1,10 @@
+text: abcbacaabacccbaccaab
+pattern: abcabcabc
+k: 3
+
+returned positions:
+[0, 0], [11, 20], offset=0
+[1, 2], [14, 20], offset=0
+[3, 3], [15, 20], offset=0
+[4, 5], [20, 20], offset=0
+[6, 8], [20, 20], offset=0

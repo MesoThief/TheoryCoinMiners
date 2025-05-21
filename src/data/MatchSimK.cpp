@@ -28,8 +28,8 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(const string& text, const string&
     for (char c : pattern) {
         alph_p.insert(c);
     }
-    string alph_p_string(alph_p.begin(), alph_p.end());
-    Alphabet::getInstance().setAlphabet(alph_p_string);
+//    string alph_p_string(alph_p.begin(), alph_p.end());
+//    Alphabet::getInstance().setAlphabet(alph_p_string);
     int pattern_universality = calculateUniversalityIndex(pattern);
 
     debug(cout << "Computing MatchSimK..." << endl);
@@ -158,11 +158,11 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(const string& text, const string&
                 debug(cout << "add to y_arch_indexes: " << current_node->index << endl);
                 debug(cout << "Y-tree start becomes: " << *current_node << endl);
                 for (int i = 0; i < pattern_universality - 1; i++) {
+                    if (current_node == y_tree.root) break;
                     current_node = y_tree.parent[current_node->index];
                     y_arch_indexes.push_back(current_node->index);
                     debug(cout << "add to y_arch_indexes: " << current_node->index << endl);
                     debug(cout << "traversing Y-tree: " << *current_node << endl);
-                    if (current_node == y_tree.root) break;
                 }
                 if (current_node == y_tree.root) {
                     debug(cout << "reached root while traversing Y-tree. Skipping to next T'" << endl);
@@ -238,10 +238,10 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(const string& text, const string&
                 debug(cout << "add to y_arch_indexes: " << current_node->index << endl);
                 debug(cout << "Y-tree start becomes: " << *current_node << endl);
                 for (int i = 0; i < pattern_universality - 1; i++) {
+                    if (current_node == y_tree.root) break;
                     current_node = y_tree.parent[current_node->index];
                     debug(cout << "add to y_arch_indexes: " << current_node->index << endl);
                     debug(cout << "traversing Y-tree: " << *current_node << endl);
-                    if (current_node == y_tree.root) break;
                 }
                 if (current_node == y_tree.root) {
                     debug(cout << "reached root while traversing Y-tree. Skipping to next T'" << endl);

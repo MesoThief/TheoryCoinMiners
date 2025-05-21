@@ -1,0 +1,194 @@
+t: abcbacaabacccbaccaab
+p: abcabcabc
+Building X-tree...
+s_p is left with: 
+
+[buildYTree] i = 20
+  getY(20, 'a') = 18
+  getY(20, 'b') = 19
+  getY(20, 'c') = 16
+  -> minimal parentRank = 16
+[buildYTree] i = 19
+  getY(19, 'a') = 18
+  getY(19, 'b') = 13
+  getY(19, 'c') = 16
+  -> minimal parentRank = 13
+[buildYTree] i = 18
+  getY(18, 'a') = 17
+  getY(18, 'b') = 13
+  getY(18, 'c') = 16
+  -> minimal parentRank = 13
+[buildYTree] i = 17
+  getY(17, 'a') = 14
+  getY(17, 'b') = 13
+  getY(17, 'c') = 16
+  -> minimal parentRank = 13
+[buildYTree] i = 16
+  getY(16, 'a') = 14
+  getY(16, 'b') = 13
+  getY(16, 'c') = 15
+  -> minimal parentRank = 13
+[buildYTree] i = 15
+  getY(15, 'a') = 14
+  getY(15, 'b') = 13
+  getY(15, 'c') = 12
+  -> minimal parentRank = 12
+[buildYTree] i = 14
+  getY(14, 'a') = 9
+  getY(14, 'b') = 13
+  getY(14, 'c') = 12
+  -> minimal parentRank = 9
+[buildYTree] i = 13
+  getY(13, 'a') = 9
+  getY(13, 'b') = 8
+  getY(13, 'c') = 12
+  -> minimal parentRank = 8
+[buildYTree] i = 12
+  getY(12, 'a') = 9
+  getY(12, 'b') = 8
+  getY(12, 'c') = 11
+  -> minimal parentRank = 8
+[buildYTree] i = 11
+  getY(11, 'a') = 9
+  getY(11, 'b') = 8
+  getY(11, 'c') = 10
+  -> minimal parentRank = 8
+[buildYTree] i = 10
+  getY(10, 'a') = 9
+  getY(10, 'b') = 8
+  getY(10, 'c') = 5
+  -> minimal parentRank = 5
+[buildYTree] i = 9
+  getY(9, 'a') = 7
+  getY(9, 'b') = 8
+  getY(9, 'c') = 5
+  -> minimal parentRank = 5
+[buildYTree] i = 8
+  getY(8, 'a') = 7
+  getY(8, 'b') = 3
+  getY(8, 'c') = 5
+  -> minimal parentRank = 3
+[buildYTree] i = 7
+  getY(7, 'a') = 6
+  getY(7, 'b') = 3
+  getY(7, 'c') = 5
+  -> minimal parentRank = 3
+[buildYTree] i = 6
+  getY(6, 'a') = 4
+  getY(6, 'b') = 3
+  getY(6, 'c') = 5
+  -> minimal parentRank = 3
+[buildYTree] i = 5
+  getY(5, 'a') = 4
+  getY(5, 'b') = 3
+  getY(5, 'c') = 2
+  -> minimal parentRank = 2
+[buildYTree] i = 4
+  getY(4, 'a') = 0
+  getY(4, 'b') = 3
+  getY(4, 'c') = 2
+  -> minimal parentRank = 0
+[buildYTree] i = 3
+  getY(3, 'a') = 0
+  getY(3, 'b') = 1
+  getY(3, 'c') = 2
+  -> minimal parentRank = 0
+[buildYTree] i = 2
+  getY(2, 'a') = 0
+  getY(2, 'b') = 1
+  getY(2, 'c') = -1
+  -> minimal parentRank = -1
+  parentRank invalid, setting parent[2] = root
+[buildYTree] i = 1
+  getY(1, 'a') = 0
+  getY(1, 'b') = -1
+  getY(1, 'c') = -1
+  -> minimal parentRank = -1
+  parentRank invalid, setting parent[1] = root
+[buildYTree] i = 0
+  getY(0, 'a') = -1
+  getY(0, 'b') = -1
+  getY(0, 'c') = -1
+  -> minimal parentRank = -1
+  parentRank invalid, setting parent[0] = root
+X-tree:
+Visual Tree Structure:
+----------------------
+Index     Parent    Children
+3         6         [0,0]
+5         9         [1,2]
+6         11        [3,3]
+9         14        [4,5]
+11        15        [6,8]
+14        20        [9,9]
+15        20        [10,12]
+16        20        [13,13]
+20        INF       [14,16]
+----------------------
+
+X-tree parents:
+Index   → Parent
+-----------------
+0       → 3
+1       → 5
+2       → 5
+3       → 6
+4       → 9
+5       → 9
+6       → 11
+7       → 11
+8       → 11
+9       → 14
+10      → 15
+11      → 15
+12      → 15
+13      → 16
+14      → 20
+15      → 20
+16      → 20
+17      → INF
+18      → INF
+19      → INF
+20      → INF
+-----------------
+
+Y-tree:
+Visual Tree Structure:
+----------------------
+Index     Parent    Children
+16        13        [20,20]
+13        8         [16,19]
+12        8         [15,15]
+9         5         [14,14]
+8         3         [11,13]
+5         2         [9,10]
+3         0         [6,8]
+2         -1        [5,5]
+0         -1        [3,4]
+----------------------
+
+Y-tree parents:
+Index   → Parent
+-----------------
+0       → -1
+1       → -1
+2       → -1
+3       → 0
+4       → 0
+5       → 2
+6       → 3
+7       → 3
+8       → 3
+9       → 5
+10      → 5
+11      → 8
+12      → 8
+13      → 8
+14      → 9
+15      → 12
+16      → 13
+17      → 13
+18      → 13
+19      → 13
+20      → 16
+-----------------

@@ -37,6 +37,23 @@ void printTree(const Tree& tree) {
     cout << "----------------------\n";
 }
 
+// -------------------- Print Parent Array --------------------
+void printParent(const Tree& tree) {
+    cout << "Index   → Parent\n";
+    cout << "-----------------\n";
+    int N = (int)tree.parent.size();
+    for (int i = 0; i < N; ++i) {
+        cout << setw(5) << i << "   → ";
+        int p = tree.parent[i]->index;
+        if (p == INF)
+            cout << "INF\n";
+        else
+            cout << p << "\n";
+    }
+    cout << "-----------------\n";
+}
+
+
 // ------------------
 // A simple test driver for tree
 // ------------------
@@ -88,10 +105,16 @@ int main(int argc, char* argv[]) {
     cout << "X-tree:" << endl;
     printTree(T_X);
 
+    cout << "\nX-tree parents:\n";
+    printParent(T_X);
+
     cout << endl;
 
     cout << "Y-tree:" << endl;
     printTree(T_Y);
+
+    cout << "\nY-tree parents:\n";
+    printParent(T_Y);
 
     return 0;
 }
