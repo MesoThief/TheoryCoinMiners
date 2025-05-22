@@ -1,0 +1,3370 @@
+Title: sequence class
+
+Benchmark text length & time cost: 200 chars with 10 secs
+
+Sequence 1 length: 207 → est. time: 11.0872 secs
+ → up to est. time: 11.0872 secs
+Sequence 2 length: 681 → est. time: 394.777 secs
+ → up to est. time: 405.864 secs
+Sequence 3 length: 1248 → est. time: 2429.71 secs
+ → up to est. time: 2835.57 secs
+Sequence 4 length: 1239 → est. time: 2377.52 secs
+ → up to est. time: 5213.09 secs
+Sequence 5 length: 1008 → est. time: 1280.24 secs
+ → up to est. time: 6493.33 secs
+Sequence 6 length: 960 → est. time: 1105.92 secs
+ → up to est. time: 7599.25 secs
+Sequence 7 length: 1086 → est. time: 1601.03 secs
+ → up to est. time: 9200.28 secs
+Sequence 8 length: 1764 → est. time: 6861.29 secs
+ → up to est. time: 16061.6 secs
+Sequence 9 length: 1353 → est. time: 3096.02 secs
+ → up to est. time: 19157.6 secs
+Sequence 10 length: 4512 → est. time: 114820 secs
+ → up to est. time: 133978 secs
+Sequence 11 length: 4485 → est. time: 112771 secs
+ → up to est. time: 246748 secs
+Sequence 12 length: 1965 → est. time: 9484.13 secs
+ → up to est. time: 256233 secs
+Sequence 13 length: 1227 → est. time: 2309.11 secs
+ → up to est. time: 258542 secs
+Sequence 14 length: 960 → est. time: 1105.92 secs
+ → up to est. time: 259648 secs
+Sequence 15 length: 963 → est. time: 1116.32 secs
+ → up to est. time: 260764 secs
+Sequence 16 length: 756 → est. time: 540.102 secs
+ → up to est. time: 261304 secs
+Sequence 17 length: 1218 → est. time: 2258.67 secs
+ → up to est. time: 263563 secs
+Sequence 18 length: 993 → est. time: 1223.93 secs
+ → up to est. time: 264787 secs
+Sequence 19 length: 2175 → est. time: 12861.4 secs
+ → up to est. time: 277648 secs
+Sequence 20 length: 2301 → est. time: 15228.6 secs
+ → up to est. time: 292877 secs
+Sequence 21 length: 2304 → est. time: 15288.2 secs
+ → up to est. time: 308165 secs
+Sequence 22 length: 888 → est. time: 875.284 secs
+ → up to est. time: 309040 secs
+Sequence 23 length: 1527 → est. time: 4450.69 secs
+ → up to est. time: 313491 secs
+Sequence 24 length: 1428 → est. time: 3639.94 secs
+ → up to est. time: 317131 secs
+Sequence 25 length: 1923 → est. time: 8888.9 secs
+ → up to est. time: 326020 secs
+Sequence 26 length: 1011 → est. time: 1291.71 secs
+ → up to est. time: 327311 secs
+Sequence 27 length: 1260 → est. time: 2500.47 secs
+ → up to est. time: 329812 secs
+Sequence 28 length: 972 → est. time: 1147.91 secs
+ → up to est. time: 330960 secs
+Sequence 29 length: 1002 → est. time: 1257.52 secs
+ → up to est. time: 332217 secs
+Sequence 30 length: 1782 → est. time: 7073.48 secs
+ → up to est. time: 339291 secs
+Sequence 31 length: 1086 → est. time: 1601.03 secs
+ → up to est. time: 340892 secs
+Sequence 32 length: 156 → est. time: 4.74552 secs
+ → up to est. time: 340897 secs
+Sequence 33 length: 1026 → est. time: 1350.06 secs
+ → up to est. time: 342247 secs
+Sequence 34 length: 1521 → est. time: 4398.43 secs
+ → up to est. time: 346645 secs
+Sequence 35 length: 1572 → est. time: 4855.88 secs
+ → up to est. time: 351501 secs
+Sequence 36 length: 1521 → est. time: 4398.43 secs
+ → up to est. time: 355899 secs
+Sequence 37 length: 2232 → est. time: 13899.3 secs
+ → up to est. time: 369799 secs
+Sequence 38 length: 1395 → est. time: 3393.38 secs
+ → up to est. time: 373192 secs
+Sequence 39 length: 1128 → est. time: 1794.06 secs
+ → up to est. time: 374986 secs
+Sequence 40 length: 1581 → est. time: 4939.76 secs
+ → up to est. time: 379926 secs
+Sequence 41 length: 1614 → est. time: 5255.58 secs
+ → up to est. time: 385181 secs
+Sequence 42 length: 1518 → est. time: 4372.45 secs
+ → up to est. time: 389554 secs
+Sequence 43 length: 1191 → est. time: 2111.76 secs
+ → up to est. time: 391666 secs
+Sequence 44 length: 1014 → est. time: 1303.24 secs
+ → up to est. time: 392969 secs
+Sequence 45 length: 2508 → est. time: 19719.4 secs
+ → up to est. time: 412688 secs
+Sequence 46 length: 2361 → est. time: 16451.2 secs
+ → up to est. time: 429139 secs
+Sequence 47 length: 2229 → est. time: 13843.3 secs
+ → up to est. time: 442983 secs
+Sequence 48 length: 2523 → est. time: 20075.3 secs
+ → up to est. time: 463058 secs
+Sequence 49 length: 501 → est. time: 157.189 secs
+ → up to est. time: 463215 secs
+Sequence 50 length: 237 → est. time: 16.6401 secs
+ → up to est. time: 463232 secs
+Sequence 51 length: 477 → est. time: 135.664 secs
+ → up to est. time: 463368 secs
+Sequence 52 length: 165 → est. time: 5.61516 secs
+ → up to est. time: 463373 secs
+Sequence 53 length: 1200 → est. time: 2160 secs
+ → up to est. time: 465533 secs
+Sequence 54 length: 1026 → est. time: 1350.06 secs
+ → up to est. time: 466883 secs
+Sequence 55 length: 723 → est. time: 472.416 secs
+ → up to est. time: 467356 secs
+Sequence 56 length: 1494 → est. time: 4168.33 secs
+ → up to est. time: 471524 secs
+Sequence 57 length: 4356 → est. time: 103317 secs
+ → up to est. time: 574841 secs
+Sequence 58 length: 3138 → est. time: 38625 secs
+ → up to est. time: 613466 secs
+Sequence 59 length: 996 → est. time: 1235.06 secs
+ → up to est. time: 614701 secs
+Sequence 60 length: 1041 → est. time: 1410.14 secs
+ → up to est. time: 616112 secs
+Sequence 61 length: 978 → est. time: 1169.3 secs
+ → up to est. time: 617281 secs
+Sequence 62 length: 1128 → est. time: 1794.06 secs
+ → up to est. time: 619075 secs
+Sequence 63 length: 1248 → est. time: 2429.71 secs
+ → up to est. time: 621505 secs
+Sequence 64 length: 1026 → est. time: 1350.06 secs
+ → up to est. time: 622855 secs
+Sequence 65 length: 1044 → est. time: 1422.37 secs
+ → up to est. time: 624277 secs
+Sequence 66 length: 957 → est. time: 1095.58 secs
+ → up to est. time: 625373 secs
+Sequence 67 length: 327 → est. time: 43.7072 secs
+ → up to est. time: 625416 secs
+Sequence 68 length: 1083 → est. time: 1587.8 secs
+ → up to est. time: 627004 secs
+Sequence 69 length: 1776 → est. time: 7002.27 secs
+ → up to est. time: 634006 secs
+Sequence 70 length: 1779 → est. time: 7037.82 secs
+ → up to est. time: 641044 secs
+Sequence 71 length: 1047 → est. time: 1434.66 secs
+ → up to est. time: 642479 secs
+Sequence 72 length: 1362 → est. time: 3158.21 secs
+ → up to est. time: 645637 secs
+Sequence 73 length: 1170 → est. time: 2002.02 secs
+ → up to est. time: 647639 secs
+Sequence 74 length: 1443 → est. time: 3755.86 secs
+ → up to est. time: 651395 secs
+Sequence 75 length: 1428 → est. time: 3639.94 secs
+ → up to est. time: 655035 secs
+Sequence 76 length: 1389 → est. time: 3349.78 secs
+ → up to est. time: 658385 secs
+Sequence 77 length: 753 → est. time: 533.697 secs
+ → up to est. time: 658918 secs
+Sequence 78 length: 1101 → est. time: 1668.29 secs
+ → up to est. time: 660587 secs
+Sequence 79 length: 1020 → est. time: 1326.51 secs
+ → up to est. time: 661913 secs
+Sequence 80 length: 1044 → est. time: 1422.37 secs
+ → up to est. time: 663336 secs
+Sequence 81 length: 960 → est. time: 1105.92 secs
+ → up to est. time: 664442 secs
+Sequence 82 length: 1899 → est. time: 8560.22 secs
+ → up to est. time: 673002 secs
+Sequence 83 length: 1848 → est. time: 7888.89 secs
+ → up to est. time: 680891 secs
+Sequence 84 length: 159 → est. time: 5.0246 secs
+ → up to est. time: 680896 secs
+Sequence 85 length: 1002 → est. time: 1257.52 secs
+ → up to est. time: 682153 secs
+Sequence 86 length: 1539 → est. time: 4556.44 secs
+ → up to est. time: 686710 secs
+Sequence 87 length: 1857 → est. time: 8004.71 secs
+ → up to est. time: 694714 secs
+Sequence 88 length: 1860 → est. time: 8043.57 secs
+ → up to est. time: 702758 secs
+Sequence 89 length: 1290 → est. time: 2683.36 secs
+ → up to est. time: 705441 secs
+Sequence 90 length: 819 → est. time: 686.692 secs
+ → up to est. time: 706128 secs
+Sequence 91 length: 1002 → est. time: 1257.52 secs
+ → up to est. time: 707386 secs
+Sequence 92 length: 1413 → est. time: 3526.44 secs
+ → up to est. time: 710912 secs
+Sequence 93 length: 1131 → est. time: 1808.41 secs
+ → up to est. time: 712720 secs
+Sequence 94 length: 1260 → est. time: 2500.47 secs
+ → up to est. time: 715221 secs
+Sequence 95 length: 996 → est. time: 1235.06 secs
+ → up to est. time: 716456 secs
+Sequence 96 length: 1011 → est. time: 1291.71 secs
+ → up to est. time: 717748 secs
+Sequence 97 length: 801 → est. time: 642.403 secs
+ → up to est. time: 718390 secs
+Sequence 98 length: 609 → est. time: 282.333 secs
+ → up to est. time: 718672 secs
+Sequence 99 length: 1011 → est. time: 1291.71 secs
+ → up to est. time: 719964 secs
+Sequence 100 length: 1071 → est. time: 1535.6 secs
+ → up to est. time: 721500 secs
+Sequence 101 length: 621 → est. time: 299.354 secs
+ → up to est. time: 721799 secs
+Sequence 102 length: 720 → est. time: 466.56 secs
+ → up to est. time: 722266 secs
+Sequence 103 length: 1110 → est. time: 1709.54 secs
+ → up to est. time: 723975 secs
+Sequence 104 length: 990 → est. time: 1212.87 secs
+ → up to est. time: 725188 secs
+Sequence 105 length: 963 → est. time: 1116.32 secs
+ → up to est. time: 726304 secs
+Sequence 106 length: 510 → est. time: 165.814 secs
+ → up to est. time: 726470 secs
+Sequence 107 length: 237 → est. time: 16.6401 secs
+ → up to est. time: 726487 secs
+Sequence 108 length: 144 → est. time: 3.73248 secs
+ → up to est. time: 726490 secs
+Sequence 109 length: 1308 → est. time: 2797.26 secs
+ → up to est. time: 729288 secs
+Sequence 110 length: 459 → est. time: 120.878 secs
+ → up to est. time: 729409 secs
+Sequence 111 length: 1215 → est. time: 2242.02 secs
+ → up to est. time: 731651 secs
+Sequence 112 length: 1068 → est. time: 1522.73 secs
+ → up to est. time: 733173 secs
+Sequence 113 length: 1797 → est. time: 7253.61 secs
+ → up to est. time: 740427 secs
+Sequence 114 length: 1044 → est. time: 1422.37 secs
+ → up to est. time: 741849 secs
+Sequence 115 length: 1302 → est. time: 2758.94 secs
+ → up to est. time: 744608 secs
+Sequence 116 length: 2787 → est. time: 27059.6 secs
+ → up to est. time: 771668 secs
+Sequence 117 length: 1356 → est. time: 3116.66 secs
+ → up to est. time: 774785 secs
+Sequence 118 length: 2685 → est. time: 24196 secs
+ → up to est. time: 798980 secs
+Sequence 119 length: 2658 → est. time: 23473.3 secs
+ → up to est. time: 822454 secs
+Sequence 120 length: 2940 → est. time: 31765.2 secs
+ → up to est. time: 854219 secs
+Sequence 121 length: 2853 → est. time: 29027.9 secs
+ → up to est. time: 883247 secs
+Sequence 122 length: 2913 → est. time: 30898.1 secs
+ → up to est. time: 914145 secs
+Sequence 123 length: 2637 → est. time: 22921.4 secs
+ → up to est. time: 937066 secs
+Sequence 124 length: 918 → est. time: 967.026 secs
+ → up to est. time: 938033 secs
+Sequence 125 length: 4092 → est. time: 85647.9 secs
+ → up to est. time: 1.02368e+06 secs
+Sequence 126 length: 5406 → est. time: 197487 secs
+ → up to est. time: 1.22117e+06 secs
+Sequence 127 length: 5379 → est. time: 194543 secs
+ → up to est. time: 1.41571e+06 secs
+Sequence 128 length: 609 → est. time: 282.333 secs
+ → up to est. time: 1.41599e+06 secs
+Sequence 129 length: 2736 → est. time: 25601.1 secs
+ → up to est. time: 1.44159e+06 secs
+Sequence 130 length: 2781 → est. time: 26885.2 secs
+ → up to est. time: 1.46848e+06 secs
+Sequence 131 length: 2736 → est. time: 25601.1 secs
+ → up to est. time: 1.49408e+06 secs
+Sequence 132 length: 2664 → est. time: 23632.7 secs
+ → up to est. time: 1.51771e+06 secs
+Sequence 133 length: 4188 → est. time: 91818.5 secs
+ → up to est. time: 1.60953e+06 secs
+Sequence 134 length: 1077 → est. time: 1561.55 secs
+ → up to est. time: 1.61109e+06 secs
+Sequence 135 length: 1734 → est. time: 6517.14 secs
+ → up to est. time: 1.61761e+06 secs
+Sequence 136 length: 627 → est. time: 308.115 secs
+ → up to est. time: 1.61792e+06 secs
+Sequence 137 length: 1644 → est. time: 5554.12 secs
+ → up to est. time: 1.62347e+06 secs
+Sequence 138 length: 1122 → est. time: 1765.58 secs
+ → up to est. time: 1.62524e+06 secs
+Sequence 139 length: 699 → est. time: 426.915 secs
+ → up to est. time: 1.62566e+06 secs
+Sequence 140 length: 1530 → est. time: 4476.97 secs
+ → up to est. time: 1.63014e+06 secs
+Sequence 141 length: 1410 → est. time: 3504.03 secs
+ → up to est. time: 1.63365e+06 secs
+Sequence 142 length: 1287 → est. time: 2664.68 secs
+ → up to est. time: 1.63631e+06 secs
+Sequence 143 length: 1308 → est. time: 2797.26 secs
+ → up to est. time: 1.63911e+06 secs
+Sequence 144 length: 1188 → est. time: 2095.85 secs
+ → up to est. time: 1.6412e+06 secs
+Sequence 145 length: 156 → est. time: 4.74552 secs
+ → up to est. time: 1.64121e+06 secs
+Sequence 146 length: 1008 → est. time: 1280.24 secs
+ → up to est. time: 1.64249e+06 secs
+Sequence 147 length: 1155 → est. time: 1926 secs
+ → up to est. time: 1.64441e+06 secs
+Sequence 148 length: 1038 → est. time: 1397.98 secs
+ → up to est. time: 1.64581e+06 secs
+Sequence 149 length: 903 → est. time: 920.393 secs
+ → up to est. time: 1.64673e+06 secs
+Sequence 150 length: 4155 → est. time: 89665 secs
+ → up to est. time: 1.7364e+06 secs
+Sequence 151 length: 3534 → est. time: 55170.8 secs
+ → up to est. time: 1.79157e+06 secs
+Sequence 152 length: 3372 → est. time: 47926.2 secs
+ → up to est. time: 1.8395e+06 secs
+Sequence 153 length: 4380 → est. time: 105035 secs
+ → up to est. time: 1.94453e+06 secs
+Sequence 154 length: 4212 → est. time: 93406.1 secs
+ → up to est. time: 2.03794e+06 secs
+Sequence 155 length: 4443 → est. time: 109632 secs
+ → up to est. time: 2.14757e+06 secs
+Sequence 156 length: 4155 → est. time: 89665 secs
+ → up to est. time: 2.23723e+06 secs
+Sequence 157 length: 4353 → est. time: 103104 secs
+ → up to est. time: 2.34034e+06 secs
+Sequence 158 length: 1590 → est. time: 5024.6 secs
+ → up to est. time: 2.34536e+06 secs
+Sequence 159 length: 1545 → est. time: 4609.94 secs
+ → up to est. time: 2.34997e+06 secs
+Sequence 160 length: 1581 → est. time: 4939.76 secs
+ → up to est. time: 2.35491e+06 secs
+Sequence 161 length: 1296 → est. time: 2720.98 secs
+ → up to est. time: 2.35763e+06 secs
+Sequence 162 length: 1782 → est. time: 7073.48 secs
+ → up to est. time: 2.36471e+06 secs
+Sequence 163 length: 582 → est. time: 246.422 secs
+ → up to est. time: 2.36495e+06 secs
+Sequence 164 length: 1005 → est. time: 1268.84 secs
+ → up to est. time: 2.36622e+06 secs
+Sequence 165 length: 546 → est. time: 203.464 secs
+ → up to est. time: 2.36642e+06 secs
+Sequence 166 length: 2517 → est. time: 19932.4 secs
+ → up to est. time: 2.38636e+06 secs
+Sequence 167 length: 2463 → est. time: 18676.8 secs
+ → up to est. time: 2.40503e+06 secs
+Sequence 168 length: 2316 → est. time: 15528.4 secs
+ → up to est. time: 2.42056e+06 secs
+Sequence 169 length: 2289 → est. time: 14991.6 secs
+ → up to est. time: 2.43555e+06 secs
+Sequence 170 length: 2184 → est. time: 13021.7 secs
+ → up to est. time: 2.44858e+06 secs
+Sequence 171 length: 2037 → est. time: 10565.3 secs
+ → up to est. time: 2.45914e+06 secs
+Sequence 172 length: 2487 → est. time: 19228.1 secs
+ → up to est. time: 2.47837e+06 secs
+Sequence 173 length: 2502 → est. time: 19578.2 secs
+ → up to est. time: 2.49795e+06 secs
+Sequence 174 length: 1572 → est. time: 4855.88 secs
+ → up to est. time: 2.5028e+06 secs
+Sequence 175 length: 1710 → est. time: 6250.26 secs
+ → up to est. time: 2.50905e+06 secs
+Sequence 176 length: 1635 → est. time: 5463.4 secs
+ → up to est. time: 2.51452e+06 secs
+Sequence 177 length: 1251 → est. time: 2447.27 secs
+ → up to est. time: 2.51696e+06 secs
+Sequence 178 length: 837 → est. time: 732.97 secs
+ → up to est. time: 2.5177e+06 secs
+Sequence 179 length: 771 → est. time: 572.893 secs
+ → up to est. time: 2.51827e+06 secs
+Sequence 180 length: 960 → est. time: 1105.92 secs
+ → up to est. time: 2.51938e+06 secs
+Sequence 181 length: 522 → est. time: 177.796 secs
+ → up to est. time: 2.51955e+06 secs
+Sequence 182 length: 1014 → est. time: 1303.24 secs
+ → up to est. time: 2.52086e+06 secs
+Sequence 183 length: 1581 → est. time: 4939.76 secs
+ → up to est. time: 2.5258e+06 secs
+Sequence 184 length: 186 → est. time: 8.04357 secs
+ → up to est. time: 2.5258e+06 secs
+Sequence 185 length: 2082 → est. time: 11281.1 secs
+ → up to est. time: 2.53709e+06 secs
+Sequence 186 length: 471 → est. time: 130.609 secs
+ → up to est. time: 2.53722e+06 secs
+Sequence 187 length: 1038 → est. time: 1397.98 secs
+ → up to est. time: 2.53861e+06 secs
+Sequence 188 length: 915 → est. time: 957.576 secs
+ → up to est. time: 2.53957e+06 secs
+Sequence 189 length: 1356 → est. time: 3116.66 secs
+ → up to est. time: 2.54269e+06 secs
+Sequence 190 length: 405 → est. time: 83.0377 secs
+ → up to est. time: 2.54277e+06 secs
+Sequence 191 length: 3261 → est. time: 43347.3 secs
+ → up to est. time: 2.58612e+06 secs
+Sequence 192 length: 1401 → est. time: 3437.36 secs
+ → up to est. time: 2.58956e+06 secs
+Sequence 193 length: 1203 → est. time: 2176.24 secs
+ → up to est. time: 2.59173e+06 secs
+Sequence 194 length: 1362 → est. time: 3158.21 secs
+ → up to est. time: 2.59489e+06 secs
+Sequence 195 length: 2073 → est. time: 11135.5 secs
+ → up to est. time: 2.60603e+06 secs
+Sequence 196 length: 2076 → est. time: 11183.9 secs
+ → up to est. time: 2.61721e+06 secs
+Sequence 197 length: 3921 → est. time: 75353 secs
+ → up to est. time: 2.69256e+06 secs
+Sequence 198 length: 3438 → est. time: 50795.8 secs
+ → up to est. time: 2.74336e+06 secs
+Sequence 199 length: 3789 → est. time: 67996.1 secs
+ → up to est. time: 2.81136e+06 secs
+Sequence 200 length: 3306 → est. time: 45166.7 secs
+ → up to est. time: 2.85652e+06 secs
+Sequence 201 length: 264 → est. time: 22.9997 secs
+ → up to est. time: 2.85654e+06 secs
+Sequence 202 length: 1887 → est. time: 8398.96 secs
+ → up to est. time: 2.86494e+06 secs
+Sequence 203 length: 1869 → est. time: 8160.9 secs
+ → up to est. time: 2.8731e+06 secs
+Sequence 204 length: 2922 → est. time: 31185.4 secs
+ → up to est. time: 2.90429e+06 secs
+Sequence 205 length: 1764 → est. time: 6861.29 secs
+ → up to est. time: 2.91115e+06 secs
+Sequence 206 length: 1653 → est. time: 5645.84 secs
+ → up to est. time: 2.9168e+06 secs
+Sequence 207 length: 1725 → est. time: 6416.19 secs
+ → up to est. time: 2.92321e+06 secs
+Sequence 208 length: 1806 → est. time: 7363.14 secs
+ → up to est. time: 2.93058e+06 secs
+Sequence 209 length: 1563 → est. time: 4772.95 secs
+ → up to est. time: 2.93535e+06 secs
+Sequence 210 length: 1236 → est. time: 2360.29 secs
+ → up to est. time: 2.93771e+06 secs
+Sequence 211 length: 681 → est. time: 394.777 secs
+ → up to est. time: 2.9381e+06 secs
+Sequence 212 length: 621 → est. time: 299.354 secs
+ → up to est. time: 2.9384e+06 secs
+Sequence 213 length: 1263 → est. time: 2518.37 secs
+ → up to est. time: 2.94092e+06 secs
+Sequence 214 length: 438 → est. time: 105.035 secs
+ → up to est. time: 2.94103e+06 secs
+Sequence 215 length: 810 → est. time: 664.301 secs
+ → up to est. time: 2.94169e+06 secs
+Sequence 216 length: 687 → est. time: 405.303 secs
+ → up to est. time: 2.9421e+06 secs
+Sequence 217 length: 1260 → est. time: 2500.47 secs
+ → up to est. time: 2.9446e+06 secs
+Sequence 218 length: 1464 → est. time: 3922.23 secs
+ → up to est. time: 2.94852e+06 secs
+Sequence 219 length: 1365 → est. time: 3179.13 secs
+ → up to est. time: 2.9517e+06 secs
+Sequence 220 length: 429 → est. time: 98.692 secs
+ → up to est. time: 2.9518e+06 secs
+Sequence 221 length: 1431 → est. time: 3662.93 secs
+ → up to est. time: 2.95546e+06 secs
+Sequence 222 length: 1473 → est. time: 3995.01 secs
+ → up to est. time: 2.95946e+06 secs
+Sequence 223 length: 1470 → est. time: 3970.65 secs
+ → up to est. time: 2.96343e+06 secs
+Sequence 224 length: 1176 → est. time: 2032.97 secs
+ → up to est. time: 2.96546e+06 secs
+Sequence 225 length: 1359 → est. time: 3137.39 secs
+ → up to est. time: 2.9686e+06 secs
+Sequence 226 length: 2919 → est. time: 31089.4 secs
+ → up to est. time: 2.99969e+06 secs
+Sequence 227 length: 2916 → est. time: 30993.6 secs
+ → up to est. time: 3.03068e+06 secs
+Sequence 228 length: 936 → est. time: 1025.03 secs
+ → up to est. time: 3.0317e+06 secs
+Sequence 229 length: 825 → est. time: 701.895 secs
+ → up to est. time: 3.03241e+06 secs
+Sequence 230 length: 753 → est. time: 533.697 secs
+ → up to est. time: 3.03294e+06 secs
+Sequence 231 length: 2388 → est. time: 17022.1 secs
+ → up to est. time: 3.04996e+06 secs
+Sequence 232 length: 2286 → est. time: 14932.7 secs
+ → up to est. time: 3.06489e+06 secs
+Sequence 233 length: 1362 → est. time: 3158.21 secs
+ → up to est. time: 3.06805e+06 secs
+Sequence 234 length: 900 → est. time: 911.25 secs
+ → up to est. time: 3.06896e+06 secs
+Sequence 235 length: 1782 → est. time: 7073.48 secs
+ → up to est. time: 3.07604e+06 secs
+Sequence 236 length: 2640 → est. time: 22999.7 secs
+ → up to est. time: 3.09904e+06 secs
+Sequence 237 length: 2610 → est. time: 22224.5 secs
+ → up to est. time: 3.12126e+06 secs
+Sequence 238 length: 2586 → est. time: 21617 secs
+ → up to est. time: 3.14288e+06 secs
+Sequence 239 length: 2352 → est. time: 16263.8 secs
+ → up to est. time: 3.15914e+06 secs
+Sequence 240 length: 1518 → est. time: 4372.45 secs
+ → up to est. time: 3.16352e+06 secs
+Sequence 241 length: 771 → est. time: 572.893 secs
+ → up to est. time: 3.16409e+06 secs
+Sequence 242 length: 588 → est. time: 254.122 secs
+ → up to est. time: 3.16434e+06 secs
+Sequence 243 length: 2469 → est. time: 18813.7 secs
+ → up to est. time: 3.18316e+06 secs
+Sequence 244 length: 1944 → est. time: 9183.3 secs
+ → up to est. time: 3.19234e+06 secs
+Sequence 245 length: 1362 → est. time: 3158.21 secs
+ → up to est. time: 3.1955e+06 secs
+Sequence 246 length: 1230 → est. time: 2326.08 secs
+ → up to est. time: 3.19782e+06 secs
+Sequence 247 length: 1452 → est. time: 3826.57 secs
+ → up to est. time: 3.20165e+06 secs
+Sequence 248 length: 354 → est. time: 55.4523 secs
+ → up to est. time: 3.20171e+06 secs
+Sequence 249 length: 1422 → est. time: 3594.25 secs
+ → up to est. time: 3.2053e+06 secs
+Sequence 250 length: 1425 → est. time: 3617.05 secs
+ → up to est. time: 3.20892e+06 secs
+Sequence 251 length: 1014 → est. time: 1303.24 secs
+ → up to est. time: 3.21022e+06 secs
+Sequence 252 length: 876 → est. time: 840.277 secs
+ → up to est. time: 3.21106e+06 secs
+Sequence 253 length: 1443 → est. time: 3755.86 secs
+ → up to est. time: 3.21482e+06 secs
+Sequence 254 length: 2520 → est. time: 20003.8 secs
+ → up to est. time: 3.23482e+06 secs
+Sequence 255 length: 2340 → est. time: 16016.1 secs
+ → up to est. time: 3.25084e+06 secs
+Sequence 256 length: 2553 → est. time: 20800 secs
+ → up to est. time: 3.27164e+06 secs
+Sequence 257 length: 2469 → est. time: 18813.7 secs
+ → up to est. time: 3.29045e+06 secs
+Sequence 258 length: 2295 → est. time: 15109.8 secs
+ → up to est. time: 3.30556e+06 secs
+Sequence 259 length: 2259 → est. time: 14409.8 secs
+ → up to est. time: 3.31997e+06 secs
+Sequence 260 length: 2484 → est. time: 19158.6 secs
+ → up to est. time: 3.33913e+06 secs
+Sequence 261 length: 2025 → est. time: 10379.7 secs
+ → up to est. time: 3.34951e+06 secs
+Sequence 262 length: 2067 → est. time: 11039 secs
+ → up to est. time: 3.36055e+06 secs
+Sequence 263 length: 1707 → est. time: 6217.43 secs
+ → up to est. time: 3.36676e+06 secs
+Sequence 264 length: 1725 → est. time: 6416.19 secs
+ → up to est. time: 3.37318e+06 secs
+Sequence 265 length: 2001 → est. time: 10015 secs
+ → up to est. time: 3.3832e+06 secs
+Sequence 266 length: 459 → est. time: 120.878 secs
+ → up to est. time: 3.38332e+06 secs
+Sequence 267 length: 1782 → est. time: 7073.48 secs
+ → up to est. time: 3.39039e+06 secs
+Sequence 268 length: 1611 → est. time: 5226.33 secs
+ → up to est. time: 3.39562e+06 secs
+Sequence 269 length: 1734 → est. time: 6517.14 secs
+ → up to est. time: 3.40213e+06 secs
+Sequence 270 length: 2712 → est. time: 24933.3 secs
+ → up to est. time: 3.42707e+06 secs
+Sequence 271 length: 2583 → est. time: 21541.9 secs
+ → up to est. time: 3.44861e+06 secs
+Sequence 272 length: 2262 → est. time: 14467.3 secs
+ → up to est. time: 3.46308e+06 secs
+Sequence 273 length: 1368 → est. time: 3200.14 secs
+ → up to est. time: 3.46628e+06 secs
+Sequence 274 length: 1548 → est. time: 4636.85 secs
+ → up to est. time: 3.47091e+06 secs
+Sequence 275 length: 1545 → est. time: 4609.94 secs
+ → up to est. time: 3.47552e+06 secs
+Sequence 276 length: 1413 → est. time: 3526.44 secs
+ → up to est. time: 3.47905e+06 secs
+Sequence 277 length: 2394 → est. time: 17150.7 secs
+ → up to est. time: 3.4962e+06 secs
+Sequence 278 length: 2382 → est. time: 16894.1 secs
+ → up to est. time: 3.51309e+06 secs
+Sequence 279 length: 1923 → est. time: 8888.9 secs
+ → up to est. time: 3.52198e+06 secs
+Sequence 280 length: 1554 → est. time: 4690.97 secs
+ → up to est. time: 3.52667e+06 secs
+Sequence 281 length: 1485 → est. time: 4093.45 secs
+ → up to est. time: 3.53077e+06 secs
+Sequence 282 length: 504 → est. time: 160.03 secs
+ → up to est. time: 3.53093e+06 secs
+Sequence 283 length: 7551 → est. time: 538175 secs
+ → up to est. time: 4.0691e+06 secs
+Sequence 284 length: 7533 → est. time: 534335 secs
+ → up to est. time: 4.60344e+06 secs
+Sequence 285 length: 1122 → est. time: 1765.58 secs
+ → up to est. time: 4.6052e+06 secs
+Sequence 286 length: 1014 → est. time: 1303.24 secs
+ → up to est. time: 4.60651e+06 secs
+Sequence 287 length: 4407 → est. time: 106989 secs
+ → up to est. time: 4.7135e+06 secs
+Sequence 288 length: 4305 → est. time: 99730.8 secs
+ → up to est. time: 4.81323e+06 secs
+Sequence 289 length: 4233 → est. time: 94810.1 secs
+ → up to est. time: 4.90804e+06 secs
+Sequence 290 length: 2160 → est. time: 12597.1 secs
+ → up to est. time: 4.92063e+06 secs
+Sequence 291 length: 1023 → est. time: 1338.25 secs
+ → up to est. time: 4.92197e+06 secs
+Sequence 292 length: 1056 → est. time: 1471.98 secs
+ → up to est. time: 4.92344e+06 secs
+Sequence 293 length: 3555 → est. time: 56160.2 secs
+ → up to est. time: 4.9796e+06 secs
+Sequence 294 length: 2742 → est. time: 25769.9 secs
+ → up to est. time: 5.00537e+06 secs
+Sequence 295 length: 3039 → est. time: 35083.4 secs
+ → up to est. time: 5.04046e+06 secs
+Sequence 296 length: 606 → est. time: 278.181 secs
+ → up to est. time: 5.04074e+06 secs
+Sequence 297 length: 1950 → est. time: 9268.59 secs
+ → up to est. time: 5.05e+06 secs
+Sequence 298 length: 2178 → est. time: 12914.7 secs
+ → up to est. time: 5.06292e+06 secs
+Sequence 299 length: 6054 → est. time: 277356 secs
+ → up to est. time: 5.34027e+06 secs
+Sequence 300 length: 5949 → est. time: 263173 secs
+ → up to est. time: 5.60345e+06 secs
+Sequence 301 length: 2604 → est. time: 22071.6 secs
+ → up to est. time: 5.62552e+06 secs
+Sequence 302 length: 2220 → est. time: 13676.3 secs
+ → up to est. time: 5.6392e+06 secs
+Sequence 303 length: 2103 → est. time: 11625.9 secs
+ → up to est. time: 5.65082e+06 secs
+Sequence 304 length: 240 → est. time: 17.28 secs
+ → up to est. time: 5.65084e+06 secs
+Sequence 305 length: 954 → est. time: 1085.31 secs
+ → up to est. time: 5.65192e+06 secs
+Sequence 306 length: 273 → est. time: 25.433 secs
+ → up to est. time: 5.65195e+06 secs
+Sequence 307 length: 2469 → est. time: 18813.7 secs
+ → up to est. time: 5.67076e+06 secs
+Sequence 308 length: 492 → est. time: 148.869 secs
+ → up to est. time: 5.67091e+06 secs
+Sequence 309 length: 450 → est. time: 113.906 secs
+ → up to est. time: 5.67103e+06 secs
+Sequence 310 length: 624 → est. time: 303.713 secs
+ → up to est. time: 5.67133e+06 secs
+Sequence 311 length: 1395 → est. time: 3393.38 secs
+ → up to est. time: 5.67472e+06 secs
+Sequence 312 length: 762 → est. time: 553.063 secs
+ → up to est. time: 5.67528e+06 secs
+Sequence 313 length: 1395 → est. time: 3393.38 secs
+ → up to est. time: 5.67867e+06 secs
+Sequence 314 length: 2409 → est. time: 17475.1 secs
+ → up to est. time: 5.69614e+06 secs
+Sequence 315 length: 2301 → est. time: 15228.6 secs
+ → up to est. time: 5.71137e+06 secs
+Sequence 316 length: 1338 → est. time: 2994.18 secs
+ → up to est. time: 5.71437e+06 secs
+Sequence 317 length: 1284 → est. time: 2646.09 secs
+ → up to est. time: 5.71701e+06 secs
+Sequence 318 length: 1224 → est. time: 2292.21 secs
+ → up to est. time: 5.71931e+06 secs
+Sequence 319 length: 1245 → est. time: 2412.23 secs
+ → up to est. time: 5.72172e+06 secs
+Sequence 320 length: 366 → est. time: 61.2849 secs
+ → up to est. time: 5.72178e+06 secs
+Sequence 321 length: 438 → est. time: 105.035 secs
+ → up to est. time: 5.72188e+06 secs
+Sequence 322 length: 2496 → est. time: 19437.6 secs
+ → up to est. time: 5.74132e+06 secs
+Sequence 323 length: 2247 → est. time: 14181.4 secs
+ → up to est. time: 5.7555e+06 secs
+Sequence 324 length: 2499 → est. time: 19507.8 secs
+ → up to est. time: 5.77501e+06 secs
+Sequence 325 length: 2487 → est. time: 19228.1 secs
+ → up to est. time: 5.79424e+06 secs
+Sequence 326 length: 2244 → est. time: 14124.7 secs
+ → up to est. time: 5.80836e+06 secs
+Sequence 327 length: 2238 → est. time: 14011.7 secs
+ → up to est. time: 5.82238e+06 secs
+Sequence 328 length: 2220 → est. time: 13676.3 secs
+ → up to est. time: 5.83605e+06 secs
+Sequence 329 length: 2250 → est. time: 14238.3 secs
+ → up to est. time: 5.85029e+06 secs
+Sequence 330 length: 681 → est. time: 394.777 secs
+ → up to est. time: 5.85068e+06 secs
+Sequence 331 length: 390 → est. time: 74.1487 secs
+ → up to est. time: 5.85076e+06 secs
+Sequence 332 length: 2721 → est. time: 25182.3 secs
+ → up to est. time: 5.87594e+06 secs
+Sequence 333 length: 603 → est. time: 274.07 secs
+ → up to est. time: 5.87622e+06 secs
+Sequence 334 length: 3024 → est. time: 34566.5 secs
+ → up to est. time: 5.91078e+06 secs
+Sequence 335 length: 3363 → est. time: 47543.4 secs
+ → up to est. time: 5.95833e+06 secs
+Sequence 336 length: 2502 → est. time: 19578.2 secs
+ → up to est. time: 5.9779e+06 secs
+Sequence 337 length: 3651 → est. time: 60833.9 secs
+ → up to est. time: 6.03874e+06 secs
+Sequence 338 length: 3504 → est. time: 53777.7 secs
+ → up to est. time: 6.09252e+06 secs
+Sequence 339 length: 3558 → est. time: 56302.5 secs
+ → up to est. time: 6.14882e+06 secs
+Sequence 340 length: 1239 → est. time: 2377.52 secs
+ → up to est. time: 6.1512e+06 secs
+Sequence 341 length: 1692 → est. time: 6054.96 secs
+ → up to est. time: 6.15725e+06 secs
+Sequence 342 length: 1521 → est. time: 4398.43 secs
+ → up to est. time: 6.16165e+06 secs
+Sequence 343 length: 1437 → est. time: 3709.2 secs
+ → up to est. time: 6.16536e+06 secs
+Sequence 344 length: 2958 → est. time: 32352.3 secs
+ → up to est. time: 6.19771e+06 secs
+Sequence 345 length: 2949 → est. time: 32057.8 secs
+ → up to est. time: 6.22977e+06 secs
+Sequence 346 length: 4425 → est. time: 108305 secs
+ → up to est. time: 6.33807e+06 secs
+Sequence 347 length: 4410 → est. time: 107208 secs
+ → up to est. time: 6.44528e+06 secs
+Sequence 348 length: 4434 → est. time: 108968 secs
+ → up to est. time: 6.55425e+06 secs
+Sequence 349 length: 4434 → est. time: 108968 secs
+ → up to est. time: 6.66322e+06 secs
+Sequence 350 length: 405 → est. time: 83.0377 secs
+ → up to est. time: 6.6633e+06 secs
+Sequence 351 length: 2376 → est. time: 16766.8 secs
+ → up to est. time: 6.68007e+06 secs
+Sequence 352 length: 2385 → est. time: 16958 secs
+ → up to est. time: 6.69702e+06 secs
+Sequence 353 length: 2337 → est. time: 15954.6 secs
+ → up to est. time: 6.71298e+06 secs
+Sequence 354 length: 507 → est. time: 162.905 secs
+ → up to est. time: 6.71314e+06 secs
+Sequence 355 length: 2520 → est. time: 20003.8 secs
+ → up to est. time: 6.73315e+06 secs
+Sequence 356 length: 957 → est. time: 1095.58 secs
+ → up to est. time: 6.73424e+06 secs
+Sequence 357 length: 981 → est. time: 1180.1 secs
+ → up to est. time: 6.73542e+06 secs
+Sequence 358 length: 1518 → est. time: 4372.45 secs
+ → up to est. time: 6.73979e+06 secs
+Sequence 359 length: 2742 → est. time: 25769.9 secs
+ → up to est. time: 6.76556e+06 secs
+Sequence 360 length: 2631 → est. time: 22765.3 secs
+ → up to est. time: 6.78833e+06 secs
+Sequence 361 length: 2685 → est. time: 24196 secs
+ → up to est. time: 6.81252e+06 secs
+Sequence 362 length: 2742 → est. time: 25769.9 secs
+ → up to est. time: 6.83829e+06 secs
+Sequence 363 length: 2742 → est. time: 25769.9 secs
+ → up to est. time: 6.86406e+06 secs
+Sequence 364 length: 2763 → est. time: 26366.5 secs
+ → up to est. time: 6.89043e+06 secs
+Sequence 365 length: 2325 → est. time: 15710.1 secs
+ → up to est. time: 6.90614e+06 secs
+Sequence 366 length: 1410 → est. time: 3504.03 secs
+ → up to est. time: 6.90964e+06 secs
+Sequence 367 length: 732 → est. time: 490.279 secs
+ → up to est. time: 6.91013e+06 secs
+Sequence 368 length: 2808 → est. time: 27675.9 secs
+ → up to est. time: 6.93781e+06 secs
+Sequence 369 length: 3063 → est. time: 35921.2 secs
+ → up to est. time: 6.97373e+06 secs
+Sequence 370 length: 2976 → est. time: 32946.5 secs
+ → up to est. time: 7.00668e+06 secs
+Sequence 371 length: 2811 → est. time: 27764.7 secs
+ → up to est. time: 7.03444e+06 secs
+Sequence 372 length: 2649 → est. time: 23235.7 secs
+ → up to est. time: 7.05768e+06 secs
+Sequence 373 length: 4161 → est. time: 90054 secs
+ → up to est. time: 7.14773e+06 secs
+Sequence 374 length: 4113 → est. time: 86973.3 secs
+ → up to est. time: 7.23471e+06 secs
+Sequence 375 length: 3927 → est. time: 75699.4 secs
+ → up to est. time: 7.31041e+06 secs
+Sequence 376 length: 6948 → est. time: 419266 secs
+ → up to est. time: 7.72967e+06 secs
+Sequence 377 length: 6927 → est. time: 415476 secs
+ → up to est. time: 8.14515e+06 secs
+Sequence 378 length: 6891 → est. time: 409032 secs
+ → up to est. time: 8.55418e+06 secs
+Sequence 379 length: 4929 → est. time: 149688 secs
+ → up to est. time: 8.70387e+06 secs
+Sequence 380 length: 4878 → est. time: 145089 secs
+ → up to est. time: 8.84896e+06 secs
+Sequence 381 length: 4911 → est. time: 148054 secs
+ → up to est. time: 8.99701e+06 secs
+Sequence 382 length: 4878 → est. time: 145089 secs
+ → up to est. time: 9.1421e+06 secs
+Sequence 383 length: 1509 → est. time: 4295.14 secs
+ → up to est. time: 9.14639e+06 secs
+Sequence 384 length: 1353 → est. time: 3096.02 secs
+ → up to est. time: 9.14949e+06 secs
+Sequence 385 length: 1275 → est. time: 2590.84 secs
+ → up to est. time: 9.15208e+06 secs
+Sequence 386 length: 1455 → est. time: 3850.34 secs
+ → up to est. time: 9.15593e+06 secs
+Sequence 387 length: 843 → est. time: 748.846 secs
+ → up to est. time: 9.15668e+06 secs
+Sequence 388 length: 357 → est. time: 56.8741 secs
+ → up to est. time: 9.15674e+06 secs
+Sequence 389 length: 1077 → est. time: 1561.55 secs
+ → up to est. time: 9.1583e+06 secs
+Sequence 390 length: 1134 → est. time: 1822.84 secs
+ → up to est. time: 9.16012e+06 secs
+Sequence 391 length: 1128 → est. time: 1794.06 secs
+ → up to est. time: 9.16192e+06 secs
+Sequence 392 length: 3435 → est. time: 50662.9 secs
+ → up to est. time: 9.21258e+06 secs
+Sequence 393 length: 1776 → est. time: 7002.27 secs
+ → up to est. time: 9.21958e+06 secs
+Sequence 394 length: 3216 → est. time: 41577.5 secs
+ → up to est. time: 9.26116e+06 secs
+Sequence 395 length: 4143 → est. time: 88890.4 secs
+ → up to est. time: 9.35005e+06 secs
+Sequence 396 length: 3834 → est. time: 70447.6 secs
+ → up to est. time: 9.4205e+06 secs
+Sequence 397 length: 4029 → est. time: 81752.6 secs
+ → up to est. time: 9.50225e+06 secs
+Sequence 398 length: 4062 → est. time: 83778 secs
+ → up to est. time: 9.58603e+06 secs
+Sequence 399 length: 1287 → est. time: 2664.68 secs
+ → up to est. time: 9.58869e+06 secs
+Sequence 400 length: 1269 → est. time: 2554.44 secs
+ → up to est. time: 9.59125e+06 secs
+Sequence 401 length: 1143 → est. time: 1866.59 secs
+ → up to est. time: 9.59311e+06 secs
+Sequence 402 length: 1503 → est. time: 4244.11 secs
+ → up to est. time: 9.59736e+06 secs
+Sequence 403 length: 1308 → est. time: 2797.26 secs
+ → up to est. time: 9.60015e+06 secs
+Sequence 404 length: 1134 → est. time: 1822.84 secs
+ → up to est. time: 9.60198e+06 secs
+Sequence 405 length: 2355 → est. time: 16326.1 secs
+ → up to est. time: 9.6183e+06 secs
+Sequence 406 length: 2070 → est. time: 11087.2 secs
+ → up to est. time: 9.62939e+06 secs
+Sequence 407 length: 1227 → est. time: 2309.11 secs
+ → up to est. time: 9.6317e+06 secs
+Sequence 408 length: 2982 → est. time: 33146.1 secs
+ → up to est. time: 9.66485e+06 secs
+Sequence 409 length: 2916 → est. time: 30993.6 secs
+ → up to est. time: 9.69584e+06 secs
+Sequence 410 length: 2154 → est. time: 12492.4 secs
+ → up to est. time: 9.70833e+06 secs
+Sequence 411 length: 1800 → est. time: 7290 secs
+ → up to est. time: 9.71562e+06 secs
+Sequence 412 length: 1716 → est. time: 6316.29 secs
+ → up to est. time: 9.72194e+06 secs
+Sequence 413 length: 1671 → est. time: 5832.29 secs
+ → up to est. time: 9.72777e+06 secs
+Sequence 414 length: 1593 → est. time: 5053.09 secs
+ → up to est. time: 9.73282e+06 secs
+Sequence 415 length: 453 → est. time: 116.2 secs
+ → up to est. time: 9.73294e+06 secs
+Sequence 416 length: 978 → est. time: 1169.3 secs
+ → up to est. time: 9.73411e+06 secs
+Sequence 417 length: 1347 → est. time: 3055.01 secs
+ → up to est. time: 9.73716e+06 secs
+Sequence 418 length: 1233 → est. time: 2343.15 secs
+ → up to est. time: 9.73951e+06 secs
+Sequence 419 length: 621 → est. time: 299.354 secs
+ → up to est. time: 9.73981e+06 secs
+Sequence 420 length: 3963 → est. time: 77800.5 secs
+ → up to est. time: 9.81761e+06 secs
+Sequence 421 length: 1146 → est. time: 1881.33 secs
+ → up to est. time: 9.81949e+06 secs
+Sequence 422 length: 1077 → est. time: 1561.55 secs
+ → up to est. time: 9.82105e+06 secs
+Sequence 423 length: 204 → est. time: 10.6121 secs
+ → up to est. time: 9.82106e+06 secs
+Sequence 424 length: 1371 → est. time: 3221.23 secs
+ → up to est. time: 9.82428e+06 secs
+Sequence 425 length: 798 → est. time: 635.212 secs
+ → up to est. time: 9.82492e+06 secs
+Sequence 426 length: 564 → est. time: 224.258 secs
+ → up to est. time: 9.82514e+06 secs
+Sequence 427 length: 483 → est. time: 140.848 secs
+ → up to est. time: 9.82528e+06 secs
+Sequence 428 length: 2205 → est. time: 13401 secs
+ → up to est. time: 9.83868e+06 secs
+Sequence 429 length: 2595 → est. time: 21843.5 secs
+ → up to est. time: 9.86053e+06 secs
+Sequence 430 length: 1689 → est. time: 6022.81 secs
+ → up to est. time: 9.86655e+06 secs
+Sequence 431 length: 846 → est. time: 756.87 secs
+ → up to est. time: 9.86731e+06 secs
+Sequence 432 length: 1662 → est. time: 5738.56 secs
+ → up to est. time: 9.87304e+06 secs
+Sequence 433 length: 1662 → est. time: 5738.56 secs
+ → up to est. time: 9.87878e+06 secs
+Sequence 434 length: 1083 → est. time: 1587.8 secs
+ → up to est. time: 9.88037e+06 secs
+Sequence 435 length: 1329 → est. time: 2934.17 secs
+ → up to est. time: 9.8833e+06 secs
+Sequence 436 length: 1506 → est. time: 4269.58 secs
+ → up to est. time: 9.88757e+06 secs
+Sequence 437 length: 912 → est. time: 948.188 secs
+ → up to est. time: 9.88852e+06 secs
+Sequence 438 length: 2163 → est. time: 12649.7 secs
+ → up to est. time: 9.90117e+06 secs
+Sequence 439 length: 1416 → est. time: 3548.95 secs
+ → up to est. time: 9.90472e+06 secs
+Sequence 440 length: 1317 → est. time: 2855.4 secs
+ → up to est. time: 9.90758e+06 secs
+Sequence 441 length: 123 → est. time: 2.32608 secs
+ → up to est. time: 9.90758e+06 secs
+Sequence 442 length: 489 → est. time: 146.163 secs
+ → up to est. time: 9.90773e+06 secs
+Sequence 443 length: 441 → est. time: 107.208 secs
+ → up to est. time: 9.90783e+06 secs
+Sequence 444 length: 1056 → est. time: 1471.98 secs
+ → up to est. time: 9.9093e+06 secs
+Sequence 445 length: 852 → est. time: 773.088 secs
+ → up to est. time: 9.91008e+06 secs
+Sequence 446 length: 723 → est. time: 472.416 secs
+ → up to est. time: 9.91055e+06 secs
+Sequence 447 length: 1008 → est. time: 1280.24 secs
+ → up to est. time: 9.91183e+06 secs
+Sequence 448 length: 729 → est. time: 484.276 secs
+ → up to est. time: 9.91231e+06 secs
+Sequence 449 length: 795 → est. time: 628.075 secs
+ → up to est. time: 9.91294e+06 secs
+Sequence 450 length: 3213 → est. time: 41461.2 secs
+ → up to est. time: 9.9544e+06 secs
+Sequence 451 length: 3093 → est. time: 36987.1 secs
+ → up to est. time: 9.99139e+06 secs
+Sequence 452 length: 3045 → est. time: 35291.6 secs
+ → up to est. time: 1.00267e+07 secs
+Sequence 453 length: 2823 → est. time: 28121.8 secs
+ → up to est. time: 1.00548e+07 secs
+Sequence 454 length: 3237 → est. time: 42397.3 secs
+ → up to est. time: 1.00972e+07 secs
+Sequence 455 length: 3183 → est. time: 40310.7 secs
+ → up to est. time: 1.01375e+07 secs
+Sequence 456 length: 3189 → est. time: 40539.1 secs
+ → up to est. time: 1.01781e+07 secs
+Sequence 457 length: 1239 → est. time: 2377.52 secs
+ → up to est. time: 1.01804e+07 secs
+Sequence 458 length: 1737 → est. time: 6551.03 secs
+ → up to est. time: 1.0187e+07 secs
+Sequence 459 length: 1764 → est. time: 6861.29 secs
+ → up to est. time: 1.01938e+07 secs
+Sequence 460 length: 1860 → est. time: 8043.57 secs
+ → up to est. time: 1.02019e+07 secs
+Sequence 461 length: 1086 → est. time: 1601.03 secs
+ → up to est. time: 1.02035e+07 secs
+Sequence 462 length: 408 → est. time: 84.8966 secs
+ → up to est. time: 1.02036e+07 secs
+Sequence 463 length: 2289 → est. time: 14991.6 secs
+ → up to est. time: 1.02186e+07 secs
+Sequence 464 length: 2154 → est. time: 12492.4 secs
+ → up to est. time: 1.02311e+07 secs
+Sequence 465 length: 2130 → est. time: 12079.5 secs
+ → up to est. time: 1.02431e+07 secs
+Sequence 466 length: 2226 → est. time: 13787.5 secs
+ → up to est. time: 1.02569e+07 secs
+Sequence 467 length: 6678 → est. time: 372262 secs
+ → up to est. time: 1.06292e+07 secs
+Sequence 468 length: 6690 → est. time: 374273 secs
+ → up to est. time: 1.10035e+07 secs
+Sequence 469 length: 6501 → est. time: 343440 secs
+ → up to est. time: 1.13469e+07 secs
+Sequence 470 length: 2853 → est. time: 29027.9 secs
+ → up to est. time: 1.13759e+07 secs
+Sequence 471 length: 2484 → est. time: 19158.6 secs
+ → up to est. time: 1.13951e+07 secs
+Sequence 472 length: 2775 → est. time: 26711.5 secs
+ → up to est. time: 1.14218e+07 secs
+Sequence 473 length: 1770 → est. time: 6931.54 secs
+ → up to est. time: 1.14287e+07 secs
+Sequence 474 length: 1731 → est. time: 6483.38 secs
+ → up to est. time: 1.14352e+07 secs
+Sequence 475 length: 3591 → est. time: 57883.7 secs
+ → up to est. time: 1.14931e+07 secs
+Sequence 476 length: 3462 → est. time: 51867 secs
+ → up to est. time: 1.1545e+07 secs
+Sequence 477 length: 2853 → est. time: 29027.9 secs
+ → up to est. time: 1.1574e+07 secs
+Sequence 478 length: 3591 → est. time: 57883.7 secs
+ → up to est. time: 1.16319e+07 secs
+Sequence 479 length: 3339 → est. time: 46532.8 secs
+ → up to est. time: 1.16784e+07 secs
+Sequence 480 length: 3588 → est. time: 57738.7 secs
+ → up to est. time: 1.17361e+07 secs
+Sequence 481 length: 1686 → est. time: 5990.77 secs
+ → up to est. time: 1.17421e+07 secs
+Sequence 482 length: 1266 → est. time: 2536.36 secs
+ → up to est. time: 1.17447e+07 secs
+Sequence 483 length: 1206 → est. time: 2192.56 secs
+ → up to est. time: 1.17469e+07 secs
+Sequence 484 length: 3117 → est. time: 37854.8 secs
+ → up to est. time: 1.17847e+07 secs
+Sequence 485 length: 3261 → est. time: 43347.3 secs
+ → up to est. time: 1.18281e+07 secs
+Sequence 486 length: 3123 → est. time: 38073.8 secs
+ → up to est. time: 1.18661e+07 secs
+Sequence 487 length: 3108 → est. time: 37527.8 secs
+ → up to est. time: 1.19037e+07 secs
+Sequence 488 length: 3138 → est. time: 38625 secs
+ → up to est. time: 1.19423e+07 secs
+Sequence 489 length: 261 → est. time: 22.2245 secs
+ → up to est. time: 1.19423e+07 secs
+Sequence 490 length: 1389 → est. time: 3349.78 secs
+ → up to est. time: 1.19457e+07 secs
+Sequence 491 length: 1056 → est. time: 1471.98 secs
+ → up to est. time: 1.19471e+07 secs
+Sequence 492 length: 495 → est. time: 151.609 secs
+ → up to est. time: 1.19473e+07 secs
+Sequence 493 length: 420 → est. time: 92.61 secs
+ → up to est. time: 1.19474e+07 secs
+Sequence 494 length: 393 → est. time: 75.8731 secs
+ → up to est. time: 1.19475e+07 secs
+Sequence 495 length: 483 → est. time: 140.848 secs
+ → up to est. time: 1.19476e+07 secs
+Sequence 496 length: 384 → est. time: 70.7789 secs
+ → up to est. time: 1.19477e+07 secs
+Sequence 497 length: 495 → est. time: 151.609 secs
+ → up to est. time: 1.19478e+07 secs
+Sequence 498 length: 486 → est. time: 143.489 secs
+ → up to est. time: 1.1948e+07 secs
+Sequence 499 length: 2424 → est. time: 17803.6 secs
+ → up to est. time: 1.19658e+07 secs
+Sequence 500 length: 2352 → est. time: 16263.8 secs
+ → up to est. time: 1.1982e+07 secs
+Sequence 501 length: 2262 → est. time: 14467.3 secs
+ → up to est. time: 1.19965e+07 secs
+Sequence 502 length: 2259 → est. time: 14409.8 secs
+ → up to est. time: 1.20109e+07 secs
+Sequence 503 length: 2007 → est. time: 10105.4 secs
+ → up to est. time: 1.2021e+07 secs
+Sequence 504 length: 540 → est. time: 196.83 secs
+ → up to est. time: 1.20212e+07 secs
+Sequence 505 length: 408 → est. time: 84.8966 secs
+ → up to est. time: 1.20213e+07 secs
+Sequence 506 length: 2190 → est. time: 13129.3 secs
+ → up to est. time: 1.20344e+07 secs
+Sequence 507 length: 2199 → est. time: 13291.9 secs
+ → up to est. time: 1.20477e+07 secs
+Sequence 508 length: 2286 → est. time: 14932.7 secs
+ → up to est. time: 1.20626e+07 secs
+Sequence 509 length: 1923 → est. time: 8888.9 secs
+ → up to est. time: 1.20715e+07 secs
+Sequence 510 length: 1818 → est. time: 7510.89 secs
+ → up to est. time: 1.2079e+07 secs
+Sequence 511 length: 2181 → est. time: 12968.1 secs
+ → up to est. time: 1.2092e+07 secs
+Sequence 512 length: 2169 → est. time: 12755.2 secs
+ → up to est. time: 1.21048e+07 secs
+Sequence 513 length: 1812 → est. time: 7436.77 secs
+ → up to est. time: 1.21122e+07 secs
+Sequence 514 length: 1668 → est. time: 5800.94 secs
+ → up to est. time: 1.2118e+07 secs
+Sequence 515 length: 1839 → est. time: 7774.19 secs
+ → up to est. time: 1.21258e+07 secs
+Sequence 516 length: 1167 → est. time: 1986.66 secs
+ → up to est. time: 1.21278e+07 secs
+Sequence 517 length: 1053 → est. time: 1459.47 secs
+ → up to est. time: 1.21292e+07 secs
+Sequence 518 length: 3450 → est. time: 51329.5 secs
+ → up to est. time: 1.21806e+07 secs
+Sequence 519 length: 3393 → est. time: 48827.2 secs
+ → up to est. time: 1.22294e+07 secs
+Sequence 520 length: 3324 → est. time: 45908.5 secs
+ → up to est. time: 1.22753e+07 secs
+Sequence 521 length: 3441 → est. time: 50928.9 secs
+ → up to est. time: 1.23262e+07 secs
+Sequence 522 length: 234 → est. time: 16.0161 secs
+ → up to est. time: 1.23262e+07 secs
+Sequence 523 length: 3921 → est. time: 75353 secs
+ → up to est. time: 1.24016e+07 secs
+Sequence 524 length: 309 → est. time: 36.8795 secs
+ → up to est. time: 1.24016e+07 secs
+Sequence 525 length: 741 → est. time: 508.586 secs
+ → up to est. time: 1.24021e+07 secs
+Sequence 526 length: 2016 → est. time: 10241.9 secs
+ → up to est. time: 1.24124e+07 secs
+Sequence 527 length: 639 → est. time: 326.146 secs
+ → up to est. time: 1.24127e+07 secs
+Sequence 528 length: 231 → est. time: 15.408 secs
+ → up to est. time: 1.24127e+07 secs
+Sequence 529 length: 1389 → est. time: 3349.78 secs
+ → up to est. time: 1.24161e+07 secs
+Sequence 530 length: 459 → est. time: 120.878 secs
+ → up to est. time: 1.24162e+07 secs
+Sequence 531 length: 1368 → est. time: 3200.14 secs
+ → up to est. time: 1.24194e+07 secs
+Sequence 532 length: 168 → est. time: 5.92704 secs
+ → up to est. time: 1.24194e+07 secs
+Sequence 533 length: 1434 → est. time: 3686.02 secs
+ → up to est. time: 1.24231e+07 secs
+Sequence 534 length: 2469 → est. time: 18813.7 secs
+ → up to est. time: 1.24419e+07 secs
+Sequence 535 length: 2517 → est. time: 19932.4 secs
+ → up to est. time: 1.24618e+07 secs
+Sequence 536 length: 1662 → est. time: 5738.56 secs
+ → up to est. time: 1.24676e+07 secs
+Sequence 537 length: 4341 → est. time: 102254 secs
+ → up to est. time: 1.25698e+07 secs
+Sequence 538 length: 4311 → est. time: 100148 secs
+ → up to est. time: 1.267e+07 secs
+Sequence 539 length: 4365 → est. time: 103959 secs
+ → up to est. time: 1.27739e+07 secs
+Sequence 540 length: 4323 → est. time: 100987 secs
+ → up to est. time: 1.28749e+07 secs
+Sequence 541 length: 2904 → est. time: 30612.6 secs
+ → up to est. time: 1.29055e+07 secs
+Sequence 542 length: 2748 → est. time: 25939.4 secs
+ → up to est. time: 1.29315e+07 secs
+Sequence 543 length: 2487 → est. time: 19228.1 secs
+ → up to est. time: 1.29507e+07 secs
+Sequence 544 length: 1446 → est. time: 3779.33 secs
+ → up to est. time: 1.29545e+07 secs
+Sequence 545 length: 1605 → est. time: 5168.15 secs
+ → up to est. time: 1.29596e+07 secs
+Sequence 546 length: 4338 → est. time: 102042 secs
+ → up to est. time: 1.30617e+07 secs
+Sequence 547 length: 4251 → est. time: 96024.8 secs
+ → up to est. time: 1.31577e+07 secs
+Sequence 548 length: 4101 → est. time: 86214.3 secs
+ → up to est. time: 1.32439e+07 secs
+Sequence 549 length: 4017 → est. time: 81024.3 secs
+ → up to est. time: 1.33249e+07 secs
+Sequence 550 length: 3366 → est. time: 47670.8 secs
+ → up to est. time: 1.33726e+07 secs
+Sequence 551 length: 2673 → est. time: 23873 secs
+ → up to est. time: 1.33965e+07 secs
+Sequence 552 length: 1167 → est. time: 1986.66 secs
+ → up to est. time: 1.33985e+07 secs
+Sequence 553 length: 1215 → est. time: 2242.02 secs
+ → up to est. time: 1.34007e+07 secs
+Sequence 554 length: 1212 → est. time: 2225.45 secs
+ → up to est. time: 1.34029e+07 secs
+Sequence 555 length: 1266 → est. time: 2536.36 secs
+ → up to est. time: 1.34055e+07 secs
+Sequence 556 length: 768 → est. time: 566.231 secs
+ → up to est. time: 1.34061e+07 secs
+Sequence 557 length: 1545 → est. time: 4609.94 secs
+ → up to est. time: 1.34107e+07 secs
+Sequence 558 length: 1155 → est. time: 1926 secs
+ → up to est. time: 1.34126e+07 secs
+Sequence 559 length: 2280 → est. time: 14815.4 secs
+ → up to est. time: 1.34274e+07 secs
+Sequence 560 length: 2070 → est. time: 11087.2 secs
+ → up to est. time: 1.34385e+07 secs
+Sequence 561 length: 2214 → est. time: 13565.7 secs
+ → up to est. time: 1.34521e+07 secs
+Sequence 562 length: 2022 → est. time: 10333.6 secs
+ → up to est. time: 1.34624e+07 secs
+Sequence 563 length: 2163 → est. time: 12649.7 secs
+ → up to est. time: 1.3475e+07 secs
+Sequence 564 length: 987 → est. time: 1201.88 secs
+ → up to est. time: 1.34762e+07 secs
+Sequence 565 length: 3339 → est. time: 46532.8 secs
+ → up to est. time: 1.35228e+07 secs
+Sequence 566 length: 2808 → est. time: 27675.9 secs
+ → up to est. time: 1.35504e+07 secs
+Sequence 567 length: 558 → est. time: 217.176 secs
+ → up to est. time: 1.35507e+07 secs
+Sequence 568 length: 5895 → est. time: 256072 secs
+ → up to est. time: 1.38067e+07 secs
+Sequence 569 length: 5829 → est. time: 247567 secs
+ → up to est. time: 1.40543e+07 secs
+Sequence 570 length: 5877 → est. time: 253733 secs
+ → up to est. time: 1.4308e+07 secs
+Sequence 571 length: 5856 → est. time: 251023 secs
+ → up to est. time: 1.45591e+07 secs
+Sequence 572 length: 3084 → est. time: 36665.1 secs
+ → up to est. time: 1.45957e+07 secs
+Sequence 573 length: 2949 → est. time: 32057.8 secs
+ → up to est. time: 1.46278e+07 secs
+Sequence 574 length: 2637 → est. time: 22921.4 secs
+ → up to est. time: 1.46507e+07 secs
+Sequence 575 length: 312 → est. time: 37.9642 secs
+ → up to est. time: 1.46507e+07 secs
+Sequence 576 length: 231 → est. time: 15.408 secs
+ → up to est. time: 1.46508e+07 secs
+Sequence 577 length: 1650 → est. time: 5615.16 secs
+ → up to est. time: 1.46564e+07 secs
+Sequence 578 length: 1632 → est. time: 5433.38 secs
+ → up to est. time: 1.46618e+07 secs
+Sequence 579 length: 1134 → est. time: 1822.84 secs
+ → up to est. time: 1.46636e+07 secs
+Sequence 580 length: 1092 → est. time: 1627.71 secs
+ → up to est. time: 1.46653e+07 secs
+Sequence 581 length: 3444 → est. time: 51062.2 secs
+ → up to est. time: 1.47163e+07 secs
+Sequence 582 length: 3534 → est. time: 55170.8 secs
+ → up to est. time: 1.47715e+07 secs
+Sequence 583 length: 651 → est. time: 344.868 secs
+ → up to est. time: 1.47718e+07 secs
+Sequence 584 length: 5598 → est. time: 219285 secs
+ → up to est. time: 1.49911e+07 secs
+Sequence 585 length: 5532 → est. time: 211620 secs
+ → up to est. time: 1.52027e+07 secs
+Sequence 586 length: 2220 → est. time: 13676.3 secs
+ → up to est. time: 1.52164e+07 secs
+Sequence 587 length: 1980 → est. time: 9702.99 secs
+ → up to est. time: 1.52261e+07 secs
+Sequence 588 length: 522 → est. time: 177.796 secs
+ → up to est. time: 1.52263e+07 secs
+Sequence 589 length: 447 → est. time: 111.643 secs
+ → up to est. time: 1.52264e+07 secs
+Sequence 590 length: 420 → est. time: 92.61 secs
+ → up to est. time: 1.52265e+07 secs
+Sequence 591 length: 453 → est. time: 116.2 secs
+ → up to est. time: 1.52266e+07 secs
+Sequence 592 length: 645 → est. time: 335.42 secs
+ → up to est. time: 1.5227e+07 secs
+Sequence 593 length: 1290 → est. time: 2683.36 secs
+ → up to est. time: 1.52296e+07 secs
+Sequence 594 length: 1083 → est. time: 1587.8 secs
+ → up to est. time: 1.52312e+07 secs
+Sequence 595 length: 990 → est. time: 1212.87 secs
+ → up to est. time: 1.52324e+07 secs
+Sequence 596 length: 2103 → est. time: 11625.9 secs
+ → up to est. time: 1.52441e+07 secs
+Sequence 597 length: 1794 → est. time: 7217.34 secs
+ → up to est. time: 1.52513e+07 secs
+Sequence 598 length: 4227 → est. time: 94407.6 secs
+ → up to est. time: 1.53457e+07 secs
+Sequence 599 length: 4242 → est. time: 95416.2 secs
+ → up to est. time: 1.54411e+07 secs
+Sequence 600 length: 2295 → est. time: 15109.8 secs
+ → up to est. time: 1.54562e+07 secs
+Sequence 601 length: 1794 → est. time: 7217.34 secs
+ → up to est. time: 1.54634e+07 secs
+Sequence 602 length: 4923 → est. time: 149142 secs
+ → up to est. time: 1.56126e+07 secs
+Sequence 603 length: 2169 → est. time: 12755.2 secs
+ → up to est. time: 1.56253e+07 secs
+Sequence 604 length: 2169 → est. time: 12755.2 secs
+ → up to est. time: 1.56381e+07 secs
+Sequence 605 length: 2127 → est. time: 12028.5 secs
+ → up to est. time: 1.56501e+07 secs
+Sequence 606 length: 2118 → est. time: 11876.5 secs
+ → up to est. time: 1.5662e+07 secs
+Sequence 607 length: 2124 → est. time: 11977.7 secs
+ → up to est. time: 1.5674e+07 secs
+Sequence 608 length: 1869 → est. time: 8160.9 secs
+ → up to est. time: 1.56821e+07 secs
+Sequence 609 length: 7473 → est. time: 521669 secs
+ → up to est. time: 1.62038e+07 secs
+Sequence 610 length: 6885 → est. time: 407964 secs
+ → up to est. time: 1.66118e+07 secs
+Sequence 611 length: 7458 → est. time: 518534 secs
+ → up to est. time: 1.71303e+07 secs
+Sequence 612 length: 7401 → est. time: 506735 secs
+ → up to est. time: 1.7637e+07 secs
+Sequence 613 length: 684 → est. time: 400.017 secs
+ → up to est. time: 1.76374e+07 secs
+Sequence 614 length: 1518 → est. time: 4372.45 secs
+ → up to est. time: 1.76418e+07 secs
+Sequence 615 length: 3042 → est. time: 35187.4 secs
+ → up to est. time: 1.7677e+07 secs
+Sequence 616 length: 3030 → est. time: 34772.7 secs
+ → up to est. time: 1.77118e+07 secs
+Sequence 617 length: 2295 → est. time: 15109.8 secs
+ → up to est. time: 1.77269e+07 secs
+Sequence 618 length: 1359 → est. time: 3137.39 secs
+ → up to est. time: 1.773e+07 secs
+Sequence 619 length: 780 → est. time: 593.19 secs
+ → up to est. time: 1.77306e+07 secs
+Sequence 620 length: 1161 → est. time: 1956.17 secs
+ → up to est. time: 1.77326e+07 secs
+Sequence 621 length: 3525 → est. time: 54750.4 secs
+ → up to est. time: 1.77873e+07 secs
+Sequence 622 length: 3381 → est. time: 48310.9 secs
+ → up to est. time: 1.78356e+07 secs
+Sequence 623 length: 4323 → est. time: 100987 secs
+ → up to est. time: 1.79366e+07 secs
+Sequence 624 length: 1155 → est. time: 1926 secs
+ → up to est. time: 1.79385e+07 secs
+Sequence 625 length: 1233 → est. time: 2343.15 secs
+ → up to est. time: 1.79409e+07 secs
+Sequence 626 length: 1062 → est. time: 1497.21 secs
+ → up to est. time: 1.79424e+07 secs
+Sequence 627 length: 1266 → est. time: 2536.36 secs
+ → up to est. time: 1.79449e+07 secs
+Sequence 628 length: 1161 → est. time: 1956.17 secs
+ → up to est. time: 1.79469e+07 secs
+Sequence 629 length: 2283 → est. time: 14874 secs
+ → up to est. time: 1.79617e+07 secs
+Sequence 630 length: 1146 → est. time: 1881.33 secs
+ → up to est. time: 1.79636e+07 secs
+Sequence 631 length: 2373 → est. time: 16703.3 secs
+ → up to est. time: 1.79803e+07 secs
+Sequence 632 length: 2391 → est. time: 17086.3 secs
+ → up to est. time: 1.79974e+07 secs
+Sequence 633 length: 2298 → est. time: 15169.1 secs
+ → up to est. time: 1.80126e+07 secs
+Sequence 634 length: 1851 → est. time: 7927.37 secs
+ → up to est. time: 1.80205e+07 secs
+Sequence 635 length: 1752 → est. time: 6722.21 secs
+ → up to est. time: 1.80272e+07 secs
+Sequence 636 length: 1773 → est. time: 6966.85 secs
+ → up to est. time: 1.80342e+07 secs
+Sequence 637 length: 1752 → est. time: 6722.21 secs
+ → up to est. time: 1.80409e+07 secs
+Sequence 638 length: 645 → est. time: 335.42 secs
+ → up to est. time: 1.80413e+07 secs
+Sequence 639 length: 1008 → est. time: 1280.24 secs
+ → up to est. time: 1.80425e+07 secs
+Sequence 640 length: 1482 → est. time: 4068.69 secs
+ → up to est. time: 1.80466e+07 secs
+Sequence 641 length: 1440 → est. time: 3732.48 secs
+ → up to est. time: 1.80503e+07 secs
+Sequence 642 length: 1377 → est. time: 3263.71 secs
+ → up to est. time: 1.80536e+07 secs
+Sequence 643 length: 285 → est. time: 28.9364 secs
+ → up to est. time: 1.80536e+07 secs
+Sequence 644 length: 1743 → est. time: 6619.15 secs
+ → up to est. time: 1.80602e+07 secs
+Sequence 645 length: 1647 → est. time: 5584.58 secs
+ → up to est. time: 1.80658e+07 secs
+Sequence 646 length: 1656 → est. time: 5676.64 secs
+ → up to est. time: 1.80715e+07 secs
+Sequence 647 length: 8259 → est. time: 704194 secs
+ → up to est. time: 1.87757e+07 secs
+Sequence 648 length: 8334 → est. time: 723553 secs
+ → up to est. time: 1.94993e+07 secs
+Sequence 649 length: 8070 → est. time: 656947 secs
+ → up to est. time: 2.01562e+07 secs
+Sequence 650 length: 8112 → est. time: 667258 secs
+ → up to est. time: 2.08235e+07 secs
+Sequence 651 length: 8034 → est. time: 648195 secs
+ → up to est. time: 2.14717e+07 secs
+Sequence 652 length: 4269 → est. time: 97249.7 secs
+ → up to est. time: 2.15689e+07 secs
+Sequence 653 length: 1527 → est. time: 4450.69 secs
+ → up to est. time: 2.15734e+07 secs
+Sequence 654 length: 1401 → est. time: 3437.36 secs
+ → up to est. time: 2.15768e+07 secs
+Sequence 655 length: 3162 → est. time: 39518.1 secs
+ → up to est. time: 2.16163e+07 secs
+Sequence 656 length: 831 → est. time: 717.32 secs
+ → up to est. time: 2.1617e+07 secs
+Sequence 657 length: 3123 → est. time: 38073.8 secs
+ → up to est. time: 2.16551e+07 secs
+Sequence 658 length: 807 → est. time: 656.947 secs
+ → up to est. time: 2.16558e+07 secs
+Sequence 659 length: 3429 → est. time: 50397.9 secs
+ → up to est. time: 2.17062e+07 secs
+Sequence 660 length: 2058 → est. time: 10895.5 secs
+ → up to est. time: 2.17171e+07 secs
+Sequence 661 length: 1938 → est. time: 9098.53 secs
+ → up to est. time: 2.17262e+07 secs
+Sequence 662 length: 1158 → est. time: 1941.05 secs
+ → up to est. time: 2.17281e+07 secs
+Sequence 663 length: 645 → est. time: 335.42 secs
+ → up to est. time: 2.17284e+07 secs
+Sequence 664 length: 693 → est. time: 416.016 secs
+ → up to est. time: 2.17288e+07 secs
+Sequence 665 length: 1134 → est. time: 1822.84 secs
+ → up to est. time: 2.17307e+07 secs
+Sequence 666 length: 1527 → est. time: 4450.69 secs
+ → up to est. time: 2.17351e+07 secs
+Sequence 667 length: 1605 → est. time: 5168.15 secs
+ → up to est. time: 2.17403e+07 secs
+Sequence 668 length: 1434 → est. time: 3686.02 secs
+ → up to est. time: 2.1744e+07 secs
+Sequence 669 length: 1587 → est. time: 4996.21 secs
+ → up to est. time: 2.1749e+07 secs
+Sequence 670 length: 1689 → est. time: 6022.81 secs
+ → up to est. time: 2.1755e+07 secs
+Sequence 671 length: 2295 → est. time: 15109.8 secs
+ → up to est. time: 2.17701e+07 secs
+Sequence 672 length: 2184 → est. time: 13021.7 secs
+ → up to est. time: 2.17831e+07 secs
+Sequence 673 length: 1950 → est. time: 9268.59 secs
+ → up to est. time: 2.17924e+07 secs
+Sequence 674 length: 2274 → est. time: 14698.8 secs
+ → up to est. time: 2.18071e+07 secs
+Sequence 675 length: 1839 → est. time: 7774.19 secs
+ → up to est. time: 2.18149e+07 secs
+Sequence 676 length: 1908 → est. time: 8682.51 secs
+ → up to est. time: 2.18235e+07 secs
+Sequence 677 length: 1896 → est. time: 8519.71 secs
+ → up to est. time: 2.18321e+07 secs
+Sequence 678 length: 1611 → est. time: 5226.33 secs
+ → up to est. time: 2.18373e+07 secs
+Sequence 679 length: 1557 → est. time: 4718.19 secs
+ → up to est. time: 2.1842e+07 secs
+Sequence 680 length: 1830 → est. time: 7660.61 secs
+ → up to est. time: 2.18497e+07 secs
+Sequence 681 length: 4524 → est. time: 115738 secs
+ → up to est. time: 2.19654e+07 secs
+Sequence 682 length: 4506 → est. time: 114362 secs
+ → up to est. time: 2.20798e+07 secs
+Sequence 683 length: 1080 → est. time: 1574.64 secs
+ → up to est. time: 2.20813e+07 secs
+Sequence 684 length: 1581 → est. time: 4939.76 secs
+ → up to est. time: 2.20863e+07 secs
+Sequence 685 length: 1587 → est. time: 4996.21 secs
+ → up to est. time: 2.20913e+07 secs
+Sequence 686 length: 1374 → est. time: 3242.43 secs
+ → up to est. time: 2.20945e+07 secs
+Sequence 687 length: 1038 → est. time: 1397.98 secs
+ → up to est. time: 2.20959e+07 secs
+Sequence 688 length: 708 → est. time: 443.619 secs
+ → up to est. time: 2.20964e+07 secs
+Sequence 689 length: 2610 → est. time: 22224.5 secs
+ → up to est. time: 2.21186e+07 secs
+Sequence 690 length: 2553 → est. time: 20800 secs
+ → up to est. time: 2.21394e+07 secs
+Sequence 691 length: 471 → est. time: 130.609 secs
+ → up to est. time: 2.21395e+07 secs
+Sequence 692 length: 3519 → est. time: 54471.3 secs
+ → up to est. time: 2.2194e+07 secs
+Sequence 693 length: 3429 → est. time: 50397.9 secs
+ → up to est. time: 2.22444e+07 secs
+Sequence 694 length: 2121 → est. time: 11927 secs
+ → up to est. time: 2.22563e+07 secs
+Sequence 695 length: 2049 → est. time: 10753.2 secs
+ → up to est. time: 2.22671e+07 secs
+Sequence 696 length: 2019 → est. time: 10287.7 secs
+ → up to est. time: 2.22774e+07 secs
+Sequence 697 length: 1341 → est. time: 3014.37 secs
+ → up to est. time: 2.22804e+07 secs
+Sequence 698 length: 1611 → est. time: 5226.33 secs
+ → up to est. time: 2.22856e+07 secs
+Sequence 699 length: 1020 → est. time: 1326.51 secs
+ → up to est. time: 2.22869e+07 secs
+Sequence 700 length: 1734 → est. time: 6517.14 secs
+ → up to est. time: 2.22934e+07 secs
+Sequence 701 length: 627 → est. time: 308.115 secs
+ → up to est. time: 2.22938e+07 secs
+Sequence 702 length: 1005 → est. time: 1268.84 secs
+ → up to est. time: 2.2295e+07 secs
+Sequence 703 length: 1176 → est. time: 2032.97 secs
+ → up to est. time: 2.22971e+07 secs
+Sequence 704 length: 1053 → est. time: 1459.47 secs
+ → up to est. time: 2.22985e+07 secs
+Sequence 705 length: 579 → est. time: 242.631 secs
+ → up to est. time: 2.22988e+07 secs
+Sequence 706 length: 660 → est. time: 359.37 secs
+ → up to est. time: 2.22991e+07 secs
+Sequence 707 length: 651 → est. time: 344.868 secs
+ → up to est. time: 2.22995e+07 secs
+Sequence 708 length: 1314 → est. time: 2835.93 secs
+ → up to est. time: 2.23023e+07 secs
+Sequence 709 length: 696 → est. time: 421.442 secs
+ → up to est. time: 2.23027e+07 secs
+Sequence 710 length: 4839 → est. time: 141637 secs
+ → up to est. time: 2.24444e+07 secs
+Sequence 711 length: 4752 → est. time: 134134 secs
+ → up to est. time: 2.25785e+07 secs
+Sequence 712 length: 4752 → est. time: 134134 secs
+ → up to est. time: 2.27126e+07 secs
+Sequence 713 length: 3468 → est. time: 52137.1 secs
+ → up to est. time: 2.27648e+07 secs
+Sequence 714 length: 807 → est. time: 656.947 secs
+ → up to est. time: 2.27654e+07 secs
+Sequence 715 length: 729 → est. time: 484.276 secs
+ → up to est. time: 2.27659e+07 secs
+Sequence 716 length: 492 → est. time: 148.869 secs
+ → up to est. time: 2.2766e+07 secs
+Sequence 717 length: 1875 → est. time: 8239.75 secs
+ → up to est. time: 2.27743e+07 secs
+Sequence 718 length: 1572 → est. time: 4855.88 secs
+ → up to est. time: 2.27791e+07 secs
+Sequence 719 length: 1650 → est. time: 5615.16 secs
+ → up to est. time: 2.27848e+07 secs
+Sequence 720 length: 1215 → est. time: 2242.02 secs
+ → up to est. time: 2.2787e+07 secs
+Sequence 721 length: 957 → est. time: 1095.58 secs
+ → up to est. time: 2.27881e+07 secs
+Sequence 722 length: 660 → est. time: 359.37 secs
+ → up to est. time: 2.27885e+07 secs
+Sequence 723 length: 3060 → est. time: 35815.8 secs
+ → up to est. time: 2.28243e+07 secs
+Sequence 724 length: 3558 → est. time: 56302.5 secs
+ → up to est. time: 2.28806e+07 secs
+Sequence 725 length: 3552 → est. time: 56018.2 secs
+ → up to est. time: 2.29366e+07 secs
+Sequence 726 length: 2097 → est. time: 11526.7 secs
+ → up to est. time: 2.29481e+07 secs
+Sequence 727 length: 2097 → est. time: 11526.7 secs
+ → up to est. time: 2.29596e+07 secs
+Sequence 728 length: 1584 → est. time: 4967.93 secs
+ → up to est. time: 2.29646e+07 secs
+Sequence 729 length: 1995 → est. time: 9925.19 secs
+ → up to est. time: 2.29745e+07 secs
+Sequence 730 length: 381 → est. time: 69.1329 secs
+ → up to est. time: 2.29746e+07 secs
+Sequence 731 length: 1326 → est. time: 2914.34 secs
+ → up to est. time: 2.29775e+07 secs
+Sequence 732 length: 1458 → est. time: 3874.2 secs
+ → up to est. time: 2.29814e+07 secs
+Sequence 733 length: 1065 → est. time: 1509.94 secs
+ → up to est. time: 2.29829e+07 secs
+Sequence 734 length: 678 → est. time: 389.582 secs
+ → up to est. time: 2.29833e+07 secs
+Sequence 735 length: 819 → est. time: 686.692 secs
+ → up to est. time: 2.2984e+07 secs
+Sequence 736 length: 1650 → est. time: 5615.16 secs
+ → up to est. time: 2.29896e+07 secs
+Sequence 737 length: 948 → est. time: 1064.96 secs
+ → up to est. time: 2.29907e+07 secs
+Sequence 738 length: 1332 → est. time: 2954.08 secs
+ → up to est. time: 2.29936e+07 secs
+Sequence 739 length: 1038 → est. time: 1397.98 secs
+ → up to est. time: 2.2995e+07 secs
+Sequence 740 length: 1008 → est. time: 1280.24 secs
+ → up to est. time: 2.29963e+07 secs
+Sequence 741 length: 1119 → est. time: 1751.46 secs
+ → up to est. time: 2.2998e+07 secs
+Sequence 742 length: 969 → est. time: 1137.32 secs
+ → up to est. time: 2.29992e+07 secs
+Sequence 743 length: 990 → est. time: 1212.87 secs
+ → up to est. time: 2.30004e+07 secs
+Sequence 744 length: 810 → est. time: 664.301 secs
+ → up to est. time: 2.30011e+07 secs
+Sequence 745 length: 729 → est. time: 484.276 secs
+ → up to est. time: 2.30015e+07 secs
+Sequence 746 length: 681 → est. time: 394.777 secs
+ → up to est. time: 2.30019e+07 secs
+Sequence 747 length: 786 → est. time: 606.985 secs
+ → up to est. time: 2.30025e+07 secs
+Sequence 748 length: 3837 → est. time: 70613.1 secs
+ → up to est. time: 2.30732e+07 secs
+Sequence 749 length: 3813 → est. time: 69296.4 secs
+ → up to est. time: 2.31425e+07 secs
+Sequence 750 length: 1089 → est. time: 1614.33 secs
+ → up to est. time: 2.31441e+07 secs
+Sequence 751 length: 2196 → est. time: 13237.5 secs
+ → up to est. time: 2.31573e+07 secs
+Sequence 752 length: 3564 → est. time: 56587.8 secs
+ → up to est. time: 2.32139e+07 secs
+Sequence 753 length: 3555 → est. time: 56160.2 secs
+ → up to est. time: 2.32701e+07 secs
+Sequence 754 length: 636 → est. time: 321.574 secs
+ → up to est. time: 2.32704e+07 secs
+Sequence 755 length: 597 → est. time: 265.97 secs
+ → up to est. time: 2.32706e+07 secs
+Sequence 756 length: 195 → est. time: 9.26859 secs
+ → up to est. time: 2.32707e+07 secs
+Sequence 757 length: 1590 → est. time: 5024.6 secs
+ → up to est. time: 2.32757e+07 secs
+Sequence 758 length: 1488 → est. time: 4118.31 secs
+ → up to est. time: 2.32798e+07 secs
+Sequence 759 length: 1587 → est. time: 4996.21 secs
+ → up to est. time: 2.32848e+07 secs
+Sequence 760 length: 1446 → est. time: 3779.33 secs
+ → up to est. time: 2.32886e+07 secs
+Sequence 761 length: 4665 → est. time: 126901 secs
+ → up to est. time: 2.34155e+07 secs
+Sequence 762 length: 4458 → est. time: 110747 secs
+ → up to est. time: 2.35262e+07 secs
+Sequence 763 length: 4503 → est. time: 114134 secs
+ → up to est. time: 2.36404e+07 secs
+Sequence 764 length: 4758 → est. time: 134643 secs
+ → up to est. time: 2.3775e+07 secs
+Sequence 765 length: 4401 → est. time: 106553 secs
+ → up to est. time: 2.38816e+07 secs
+Sequence 766 length: 927 → est. time: 995.747 secs
+ → up to est. time: 2.38825e+07 secs
+Sequence 767 length: 1314 → est. time: 2835.93 secs
+ → up to est. time: 2.38854e+07 secs
+Sequence 768 length: 870 → est. time: 823.129 secs
+ → up to est. time: 2.38862e+07 secs
+Sequence 769 length: 324 → est. time: 42.5153 secs
+ → up to est. time: 2.38862e+07 secs
+Sequence 770 length: 7044 → est. time: 436886 secs
+ → up to est. time: 2.43231e+07 secs
+Sequence 771 length: 7026 → est. time: 433545 secs
+ → up to est. time: 2.47567e+07 secs
+Sequence 772 length: 453 → est. time: 116.2 secs
+ → up to est. time: 2.47568e+07 secs
+Sequence 773 length: 282 → est. time: 28.0322 secs
+ → up to est. time: 2.47568e+07 secs
+Sequence 774 length: 1017 → est. time: 1314.84 secs
+ → up to est. time: 2.47581e+07 secs
+Sequence 775 length: 909 → est. time: 938.862 secs
+ → up to est. time: 2.47591e+07 secs
+Sequence 776 length: 588 → est. time: 254.122 secs
+ → up to est. time: 2.47593e+07 secs
+Sequence 777 length: 2622 → est. time: 22532.4 secs
+ → up to est. time: 2.47819e+07 secs
+Sequence 778 length: 2994 → est. time: 33547.9 secs
+ → up to est. time: 2.48154e+07 secs
+Sequence 779 length: 3240 → est. time: 42515.3 secs
+ → up to est. time: 2.48579e+07 secs
+Sequence 780 length: 1506 → est. time: 4269.58 secs
+ → up to est. time: 2.48622e+07 secs
+Sequence 781 length: 876 → est. time: 840.277 secs
+ → up to est. time: 2.4863e+07 secs
+Sequence 782 length: 747 → est. time: 521.041 secs
+ → up to est. time: 2.48636e+07 secs
+Sequence 783 length: 753 → est. time: 533.697 secs
+ → up to est. time: 2.48641e+07 secs
+Sequence 784 length: 1587 → est. time: 4996.21 secs
+ → up to est. time: 2.48691e+07 secs
+Sequence 785 length: 1662 → est. time: 5738.56 secs
+ → up to est. time: 2.48748e+07 secs
+Sequence 786 length: 1572 → est. time: 4855.88 secs
+ → up to est. time: 2.48797e+07 secs
+Sequence 787 length: 2055 → est. time: 10847.9 secs
+ → up to est. time: 2.48905e+07 secs
+Sequence 788 length: 570 → est. time: 231.491 secs
+ → up to est. time: 2.48908e+07 secs
+Sequence 789 length: 2604 → est. time: 22071.6 secs
+ → up to est. time: 2.49128e+07 secs
+Sequence 790 length: 2238 → est. time: 14011.7 secs
+ → up to est. time: 2.49268e+07 secs
+Sequence 791 length: 2826 → est. time: 28211.5 secs
+ → up to est. time: 2.49551e+07 secs
+Sequence 792 length: 2631 → est. time: 22765.3 secs
+ → up to est. time: 2.49778e+07 secs
+Sequence 793 length: 2319 → est. time: 15588.8 secs
+ → up to est. time: 2.49934e+07 secs
+Sequence 794 length: 3159 → est. time: 39405.7 secs
+ → up to est. time: 2.50328e+07 secs
+Sequence 795 length: 1935 → est. time: 9056.34 secs
+ → up to est. time: 2.50419e+07 secs
+Sequence 796 length: 1812 → est. time: 7436.77 secs
+ → up to est. time: 2.50493e+07 secs
+Sequence 797 length: 390 → est. time: 74.1487 secs
+ → up to est. time: 2.50494e+07 secs
+Sequence 798 length: 177 → est. time: 6.93154 secs
+ → up to est. time: 2.50494e+07 secs
+Sequence 799 length: 438 → est. time: 105.035 secs
+ → up to est. time: 2.50495e+07 secs
+Sequence 800 length: 186 → est. time: 8.04357 secs
+ → up to est. time: 2.50495e+07 secs
+Sequence 801 length: 627 → est. time: 308.115 secs
+ → up to est. time: 2.50498e+07 secs
+Sequence 802 length: 1683 → est. time: 5958.85 secs
+ → up to est. time: 2.50558e+07 secs
+Sequence 803 length: 1848 → est. time: 7888.89 secs
+ → up to est. time: 2.50637e+07 secs
+Sequence 804 length: 1923 → est. time: 8888.9 secs
+ → up to est. time: 2.50725e+07 secs
+Sequence 805 length: 1719 → est. time: 6349.47 secs
+ → up to est. time: 2.50789e+07 secs
+Sequence 806 length: 267 → est. time: 23.7927 secs
+ → up to est. time: 2.50789e+07 secs
+Sequence 807 length: 6723 → est. time: 379839 secs
+ → up to est. time: 2.54588e+07 secs
+Sequence 808 length: 1260 → est. time: 2500.47 secs
+ → up to est. time: 2.54613e+07 secs
+Sequence 809 length: 243 → est. time: 17.9361 secs
+ → up to est. time: 2.54613e+07 secs
+Sequence 810 length: 1320 → est. time: 2874.96 secs
+ → up to est. time: 2.54642e+07 secs
+Sequence 811 length: 3774 → est. time: 67191.7 secs
+ → up to est. time: 2.55313e+07 secs
+Sequence 812 length: 4863 → est. time: 143755 secs
+ → up to est. time: 2.56751e+07 secs
+Sequence 813 length: 939 → est. time: 1034.92 secs
+ → up to est. time: 2.56761e+07 secs
+Sequence 814 length: 666 → est. time: 369.26 secs
+ → up to est. time: 2.56765e+07 secs
+Sequence 815 length: 396 → est. time: 77.6239 secs
+ → up to est. time: 2.56766e+07 secs
+Sequence 816 length: 1716 → est. time: 6316.29 secs
+ → up to est. time: 2.56829e+07 secs
+Sequence 817 length: 1659 → est. time: 5707.54 secs
+ → up to est. time: 2.56886e+07 secs
+Sequence 818 length: 1803 → est. time: 7326.51 secs
+ → up to est. time: 2.56959e+07 secs
+Sequence 819 length: 1668 → est. time: 5800.94 secs
+ → up to est. time: 2.57017e+07 secs
+Sequence 820 length: 1596 → est. time: 5081.7 secs
+ → up to est. time: 2.57068e+07 secs
+Sequence 821 length: 3360 → est. time: 47416.3 secs
+ → up to est. time: 2.57542e+07 secs
+Sequence 822 length: 3480 → est. time: 52680.2 secs
+ → up to est. time: 2.58069e+07 secs
+Sequence 823 length: 411 → est. time: 86.7832 secs
+ → up to est. time: 2.5807e+07 secs
+Sequence 824 length: 2916 → est. time: 30993.6 secs
+ → up to est. time: 2.5838e+07 secs
+Sequence 825 length: 849 → est. time: 764.95 secs
+ → up to est. time: 2.58388e+07 secs
+Sequence 826 length: 1842 → est. time: 7812.3 secs
+ → up to est. time: 2.58466e+07 secs
+Sequence 827 length: 759 → est. time: 546.557 secs
+ → up to est. time: 2.58471e+07 secs
+Sequence 828 length: 708 → est. time: 443.619 secs
+ → up to est. time: 2.58476e+07 secs
+Sequence 829 length: 816 → est. time: 679.173 secs
+ → up to est. time: 2.58482e+07 secs
+Sequence 830 length: 510 → est. time: 165.814 secs
+ → up to est. time: 2.58484e+07 secs
+Sequence 831 length: 780 → est. time: 593.19 secs
+ → up to est. time: 2.5849e+07 secs
+Sequence 832 length: 693 → est. time: 416.016 secs
+ → up to est. time: 2.58494e+07 secs
+Sequence 833 length: 2397 → est. time: 17215.3 secs
+ → up to est. time: 2.58666e+07 secs
+Sequence 834 length: 1764 → est. time: 6861.29 secs
+ → up to est. time: 2.58735e+07 secs
+Sequence 835 length: 513 → est. time: 168.757 secs
+ → up to est. time: 2.58737e+07 secs
+Sequence 836 length: 1116 → est. time: 1737.41 secs
+ → up to est. time: 2.58754e+07 secs
+Sequence 837 length: 1128 → est. time: 1794.06 secs
+ → up to est. time: 2.58772e+07 secs
+Sequence 838 length: 1446 → est. time: 3779.33 secs
+ → up to est. time: 2.5881e+07 secs
+Sequence 839 length: 1005 → est. time: 1268.84 secs
+ → up to est. time: 2.58822e+07 secs
+Sequence 840 length: 921 → est. time: 976.537 secs
+ → up to est. time: 2.58832e+07 secs
+Sequence 841 length: 3294 → est. time: 44676.7 secs
+ → up to est. time: 2.59279e+07 secs
+Sequence 842 length: 252 → est. time: 20.0038 secs
+ → up to est. time: 2.59279e+07 secs
+Sequence 843 length: 1023 → est. time: 1338.25 secs
+ → up to est. time: 2.59292e+07 secs
+Sequence 844 length: 996 → est. time: 1235.06 secs
+ → up to est. time: 2.59305e+07 secs
+Sequence 845 length: 2796 → est. time: 27322.6 secs
+ → up to est. time: 2.59578e+07 secs
+Sequence 846 length: 2631 → est. time: 22765.3 secs
+ → up to est. time: 2.59806e+07 secs
+Sequence 847 length: 2562 → est. time: 21020.7 secs
+ → up to est. time: 2.60016e+07 secs
+Sequence 848 length: 2448 → est. time: 18337.7 secs
+ → up to est. time: 2.60199e+07 secs
+Sequence 849 length: 2361 → est. time: 16451.2 secs
+ → up to est. time: 2.60364e+07 secs
+Sequence 850 length: 2361 → est. time: 16451.2 secs
+ → up to est. time: 2.60528e+07 secs
+Sequence 851 length: 1479 → est. time: 4044.03 secs
+ → up to est. time: 2.60569e+07 secs
+Sequence 852 length: 1497 → est. time: 4193.49 secs
+ → up to est. time: 2.60611e+07 secs
+Sequence 853 length: 1530 → est. time: 4476.97 secs
+ → up to est. time: 2.60655e+07 secs
+Sequence 854 length: 1068 → est. time: 1522.73 secs
+ → up to est. time: 2.60671e+07 secs
+Sequence 855 length: 1077 → est. time: 1561.55 secs
+ → up to est. time: 2.60686e+07 secs
+Sequence 856 length: 891 → est. time: 884.185 secs
+ → up to est. time: 2.60695e+07 secs
+Sequence 857 length: 1389 → est. time: 3349.78 secs
+ → up to est. time: 2.60729e+07 secs
+Sequence 858 length: 1056 → est. time: 1471.98 secs
+ → up to est. time: 2.60743e+07 secs
+Sequence 859 length: 2613 → est. time: 22301.2 secs
+ → up to est. time: 2.60966e+07 secs
+Sequence 860 length: 2529 → est. time: 20218.9 secs
+ → up to est. time: 2.61169e+07 secs
+Sequence 861 length: 933 → est. time: 1015.21 secs
+ → up to est. time: 2.61179e+07 secs
+Sequence 862 length: 744 → est. time: 514.788 secs
+ → up to est. time: 2.61184e+07 secs
+Sequence 863 length: 606 → est. time: 278.181 secs
+ → up to est. time: 2.61187e+07 secs
+Sequence 864 length: 456 → est. time: 118.524 secs
+ → up to est. time: 2.61188e+07 secs
+Sequence 865 length: 1197 → est. time: 2143.84 secs
+ → up to est. time: 2.61209e+07 secs
+Sequence 866 length: 2997 → est. time: 33648.9 secs
+ → up to est. time: 2.61546e+07 secs
+Sequence 867 length: 2937 → est. time: 31668.1 secs
+ → up to est. time: 2.61862e+07 secs
+Sequence 868 length: 2934 → est. time: 31571.1 secs
+ → up to est. time: 2.62178e+07 secs
+Sequence 869 length: 2697 → est. time: 24521.8 secs
+ → up to est. time: 2.62423e+07 secs
+Sequence 870 length: 477 → est. time: 135.664 secs
+ → up to est. time: 2.62425e+07 secs
+Sequence 871 length: 1194 → est. time: 2127.76 secs
+ → up to est. time: 2.62446e+07 secs
+Sequence 872 length: 2103 → est. time: 11625.9 secs
+ → up to est. time: 2.62562e+07 secs
+Sequence 873 length: 1929 → est. time: 8972.36 secs
+ → up to est. time: 2.62652e+07 secs
+Sequence 874 length: 1836 → est. time: 7736.21 secs
+ → up to est. time: 2.62729e+07 secs
+Sequence 875 length: 1116 → est. time: 1737.41 secs
+ → up to est. time: 2.62747e+07 secs
+Sequence 876 length: 3549 → est. time: 55876.3 secs
+ → up to est. time: 2.63305e+07 secs
+Sequence 877 length: 3486 → est. time: 52953.2 secs
+ → up to est. time: 2.63835e+07 secs
+Sequence 878 length: 3240 → est. time: 42515.3 secs
+ → up to est. time: 2.6426e+07 secs
+Sequence 879 length: 3504 → est. time: 53777.7 secs
+ → up to est. time: 2.64798e+07 secs
+Sequence 880 length: 3132 → est. time: 38403.9 secs
+ → up to est. time: 2.65182e+07 secs
+Sequence 881 length: 1629 → est. time: 5403.48 secs
+ → up to est. time: 2.65236e+07 secs
+Sequence 882 length: 210 → est. time: 11.5763 secs
+ → up to est. time: 2.65236e+07 secs
+Sequence 883 length: 993 → est. time: 1223.93 secs
+ → up to est. time: 2.65248e+07 secs
+Sequence 884 length: 1086 → est. time: 1601.03 secs
+ → up to est. time: 2.65264e+07 secs
+Sequence 885 length: 966 → est. time: 1126.79 secs
+ → up to est. time: 2.65276e+07 secs
+Sequence 886 length: 1035 → est. time: 1385.9 secs
+ → up to est. time: 2.6529e+07 secs
+Sequence 887 length: 555 → est. time: 213.692 secs
+ → up to est. time: 2.65292e+07 secs
+Sequence 888 length: 1044 → est. time: 1422.37 secs
+ → up to est. time: 2.65306e+07 secs
+Sequence 889 length: 957 → est. time: 1095.58 secs
+ → up to est. time: 2.65317e+07 secs
+Sequence 890 length: 843 → est. time: 748.846 secs
+ → up to est. time: 2.65324e+07 secs
+Sequence 891 length: 951 → est. time: 1075.11 secs
+ → up to est. time: 2.65335e+07 secs
+Sequence 892 length: 1554 → est. time: 4690.97 secs
+ → up to est. time: 2.65382e+07 secs
+Sequence 893 length: 1557 → est. time: 4718.19 secs
+ → up to est. time: 2.65429e+07 secs
+Sequence 894 length: 804 → est. time: 649.648 secs
+ → up to est. time: 2.65436e+07 secs
+Sequence 895 length: 4743 → est. time: 133373 secs
+ → up to est. time: 2.66769e+07 secs
+Sequence 896 length: 4716 → est. time: 131109 secs
+ → up to est. time: 2.6808e+07 secs
+Sequence 897 length: 4587 → est. time: 120641 secs
+ → up to est. time: 2.69287e+07 secs
+Sequence 898 length: 4539 → est. time: 116894 secs
+ → up to est. time: 2.70456e+07 secs
+Sequence 899 length: 4056 → est. time: 83407.3 secs
+ → up to est. time: 2.7129e+07 secs
+Sequence 900 length: 3927 → est. time: 75699.4 secs
+ → up to est. time: 2.72047e+07 secs
+Sequence 901 length: 1104 → est. time: 1681.97 secs
+ → up to est. time: 2.72064e+07 secs
+Sequence 902 length: 312 → est. time: 37.9642 secs
+ → up to est. time: 2.72064e+07 secs
+Sequence 903 length: 1665 → est. time: 5769.69 secs
+ → up to est. time: 2.72122e+07 secs
+Sequence 904 length: 1440 → est. time: 3732.48 secs
+ → up to est. time: 2.72159e+07 secs
+Sequence 905 length: 2067 → est. time: 11039 secs
+ → up to est. time: 2.7227e+07 secs
+Sequence 906 length: 2004 → est. time: 10060.1 secs
+ → up to est. time: 2.7237e+07 secs
+Sequence 907 length: 1164 → est. time: 1971.37 secs
+ → up to est. time: 2.7239e+07 secs
+Sequence 908 length: 1269 → est. time: 2554.44 secs
+ → up to est. time: 2.72415e+07 secs
+Sequence 909 length: 1269 → est. time: 2554.44 secs
+ → up to est. time: 2.72441e+07 secs
+Sequence 910 length: 2781 → est. time: 26885.2 secs
+ → up to est. time: 2.7271e+07 secs
+Sequence 911 length: 2736 → est. time: 25601.1 secs
+ → up to est. time: 2.72966e+07 secs
+Sequence 912 length: 1851 → est. time: 7927.37 secs
+ → up to est. time: 2.73045e+07 secs
+Sequence 913 length: 3612 → est. time: 58905.1 secs
+ → up to est. time: 2.73634e+07 secs
+Sequence 914 length: 1890 → est. time: 8439.09 secs
+ → up to est. time: 2.73719e+07 secs
+Sequence 915 length: 2286 → est. time: 14932.7 secs
+ → up to est. time: 2.73868e+07 secs
+Sequence 916 length: 2130 → est. time: 12079.5 secs
+ → up to est. time: 2.73989e+07 secs
+Sequence 917 length: 1686 → est. time: 5990.77 secs
+ → up to est. time: 2.74049e+07 secs
+Sequence 918 length: 1524 → est. time: 4424.51 secs
+ → up to est. time: 2.74093e+07 secs
+Sequence 919 length: 4062 → est. time: 83778 secs
+ → up to est. time: 2.74931e+07 secs
+Sequence 920 length: 3459 → est. time: 51732.3 secs
+ → up to est. time: 2.75448e+07 secs
+Sequence 921 length: 498 → est. time: 154.382 secs
+ → up to est. time: 2.75449e+07 secs
+Sequence 922 length: 1524 → est. time: 4424.51 secs
+ → up to est. time: 2.75494e+07 secs
+Sequence 923 length: 1449 → est. time: 3802.9 secs
+ → up to est. time: 2.75532e+07 secs
+Sequence 924 length: 1389 → est. time: 3349.78 secs
+ → up to est. time: 2.75565e+07 secs
+Sequence 925 length: 4017 → est. time: 81024.3 secs
+ → up to est. time: 2.76375e+07 secs
+Sequence 926 length: 3951 → est. time: 77095.9 secs
+ → up to est. time: 2.77146e+07 secs
+Sequence 927 length: 1086 → est. time: 1601.03 secs
+ → up to est. time: 2.77162e+07 secs
+Sequence 928 length: 2202 → est. time: 13346.3 secs
+ → up to est. time: 2.77296e+07 secs
+Sequence 929 length: 1998 → est. time: 9970.03 secs
+ → up to est. time: 2.77396e+07 secs
+Sequence 930 length: 1626 → est. time: 5373.68 secs
+ → up to est. time: 2.77449e+07 secs
+Sequence 931 length: 549 → est. time: 206.836 secs
+ → up to est. time: 2.77451e+07 secs
+Sequence 932 length: 411 → est. time: 86.7832 secs
+ → up to est. time: 2.77452e+07 secs
+Sequence 933 length: 333 → est. time: 46.1575 secs
+ → up to est. time: 2.77453e+07 secs
+Sequence 934 length: 1284 → est. time: 2646.09 secs
+ → up to est. time: 2.77479e+07 secs
+Sequence 935 length: 1335 → est. time: 2974.09 secs
+ → up to est. time: 2.77509e+07 secs
+Sequence 936 length: 405 → est. time: 83.0377 secs
+ → up to est. time: 2.7751e+07 secs
+Sequence 937 length: 1125 → est. time: 1779.79 secs
+ → up to est. time: 2.77528e+07 secs
+Sequence 938 length: 1521 → est. time: 4398.43 secs
+ → up to est. time: 2.77572e+07 secs
+Sequence 939 length: 750 → est. time: 527.344 secs
+ → up to est. time: 2.77577e+07 secs
+Sequence 940 length: 726 → est. time: 478.321 secs
+ → up to est. time: 2.77582e+07 secs
+Sequence 941 length: 9237 → est. time: 985151 secs
+ → up to est. time: 2.87433e+07 secs
+Sequence 942 length: 8622 → est. time: 801187 secs
+ → up to est. time: 2.95445e+07 secs
+Sequence 943 length: 9168 → est. time: 963238 secs
+ → up to est. time: 3.05077e+07 secs
+Sequence 944 length: 2181 → est. time: 12968.1 secs
+ → up to est. time: 3.05207e+07 secs
+Sequence 945 length: 2907 → est. time: 30707.5 secs
+ → up to est. time: 3.05514e+07 secs
+Sequence 946 length: 1149 → est. time: 1896.14 secs
+ → up to est. time: 3.05533e+07 secs
+Sequence 947 length: 1584 → est. time: 4967.93 secs
+ → up to est. time: 3.05583e+07 secs
+Sequence 948 length: 627 → est. time: 308.115 secs
+ → up to est. time: 3.05586e+07 secs
+Sequence 949 length: 357 → est. time: 56.8741 secs
+ → up to est. time: 3.05586e+07 secs
+Sequence 950 length: 1620 → est. time: 5314.41 secs
+ → up to est. time: 3.0564e+07 secs
+Sequence 951 length: 1758 → est. time: 6791.51 secs
+ → up to est. time: 3.05707e+07 secs
+Sequence 952 length: 3939 → est. time: 76395.5 secs
+ → up to est. time: 3.06471e+07 secs
+Sequence 953 length: 1005 → est. time: 1268.84 secs
+ → up to est. time: 3.06484e+07 secs
+Sequence 954 length: 1260 → est. time: 2500.47 secs
+ → up to est. time: 3.06509e+07 secs
+Sequence 955 length: 660 → est. time: 359.37 secs
+ → up to est. time: 3.06513e+07 secs
+Sequence 956 length: 726 → est. time: 478.321 secs
+ → up to est. time: 3.06517e+07 secs
+Sequence 957 length: 435 → est. time: 102.891 secs
+ → up to est. time: 3.06519e+07 secs
+Sequence 958 length: 309 → est. time: 36.8795 secs
+ → up to est. time: 3.06519e+07 secs
+Sequence 959 length: 1590 → est. time: 5024.6 secs
+ → up to est. time: 3.06569e+07 secs
+Sequence 960 length: 1530 → est. time: 4476.97 secs
+ → up to est. time: 3.06614e+07 secs
+Sequence 961 length: 1956 → est. time: 9354.41 secs
+ → up to est. time: 3.06707e+07 secs
+Sequence 962 length: 1917 → est. time: 8805.95 secs
+ → up to est. time: 3.06795e+07 secs
+Sequence 963 length: 1866 → est. time: 8121.66 secs
+ → up to est. time: 3.06877e+07 secs
+Sequence 964 length: 918 → est. time: 967.026 secs
+ → up to est. time: 3.06886e+07 secs
+Sequence 965 length: 1419 → est. time: 3571.55 secs
+ → up to est. time: 3.06922e+07 secs
+Sequence 966 length: 1524 → est. time: 4424.51 secs
+ → up to est. time: 3.06966e+07 secs
+Sequence 967 length: 1527 → est. time: 4450.69 secs
+ → up to est. time: 3.07011e+07 secs
+Sequence 968 length: 1491 → est. time: 4143.27 secs
+ → up to est. time: 3.07052e+07 secs
+Sequence 969 length: 1911 → est. time: 8723.53 secs
+ → up to est. time: 3.0714e+07 secs
+Sequence 970 length: 2157 → est. time: 12544.7 secs
+ → up to est. time: 3.07265e+07 secs
+Sequence 971 length: 2058 → est. time: 10895.5 secs
+ → up to est. time: 3.07374e+07 secs
+Sequence 972 length: 1767 → est. time: 6896.36 secs
+ → up to est. time: 3.07443e+07 secs
+Sequence 973 length: 1332 → est. time: 2954.08 secs
+ → up to est. time: 3.07472e+07 secs
+Sequence 974 length: 4482 → est. time: 112545 secs
+ → up to est. time: 3.08598e+07 secs
+Sequence 975 length: 1677 → est. time: 5895.34 secs
+ → up to est. time: 3.08657e+07 secs
+Sequence 976 length: 798 → est. time: 635.212 secs
+ → up to est. time: 3.08663e+07 secs
+Sequence 977 length: 1320 → est. time: 2874.96 secs
+ → up to est. time: 3.08692e+07 secs
+Sequence 978 length: 1296 → est. time: 2720.98 secs
+ → up to est. time: 3.08719e+07 secs
+Sequence 979 length: 1302 → est. time: 2758.94 secs
+ → up to est. time: 3.08747e+07 secs
+Sequence 980 length: 987 → est. time: 1201.88 secs
+ → up to est. time: 3.08759e+07 secs
+Sequence 981 length: 945 → est. time: 1054.89 secs
+ → up to est. time: 3.08769e+07 secs
+Sequence 982 length: 366 → est. time: 61.2849 secs
+ → up to est. time: 3.0877e+07 secs
+Sequence 983 length: 1584 → est. time: 4967.93 secs
+ → up to est. time: 3.0882e+07 secs
+Sequence 984 length: 1566 → est. time: 4800.49 secs
+ → up to est. time: 3.08868e+07 secs
+Sequence 985 length: 903 → est. time: 920.393 secs
+ → up to est. time: 3.08877e+07 secs
+Sequence 986 length: 6648 → est. time: 367268 secs
+ → up to est. time: 3.12549e+07 secs
+Sequence 987 length: 5994 → est. time: 269191 secs
+ → up to est. time: 3.15241e+07 secs
+Sequence 988 length: 6390 → est. time: 326146 secs
+ → up to est. time: 3.18503e+07 secs
+Sequence 989 length: 5724 → est. time: 234428 secs
+ → up to est. time: 3.20847e+07 secs
+Sequence 990 length: 5724 → est. time: 234428 secs
+ → up to est. time: 3.23191e+07 secs
+Sequence 991 length: 2751 → est. time: 26024.5 secs
+ → up to est. time: 3.23452e+07 secs
+Sequence 992 length: 1422 → est. time: 3594.25 secs
+ → up to est. time: 3.23488e+07 secs
+Sequence 993 length: 327 → est. time: 43.7072 secs
+ → up to est. time: 3.23488e+07 secs
+Sequence 994 length: 906 → est. time: 929.597 secs
+ → up to est. time: 3.23497e+07 secs
+Sequence 995 length: 2208 → est. time: 13455.7 secs
+ → up to est. time: 3.23632e+07 secs
+Sequence 996 length: 3549 → est. time: 55876.3 secs
+ → up to est. time: 3.24191e+07 secs
+Sequence 997 length: 1335 → est. time: 2974.09 secs
+ → up to est. time: 3.2422e+07 secs
+Sequence 998 length: 1437 → est. time: 3709.2 secs
+ → up to est. time: 3.24257e+07 secs
+Sequence 999 length: 1764 → est. time: 6861.29 secs
+ → up to est. time: 3.24326e+07 secs
+Sequence 1000 length: 2568 → est. time: 21168.7 secs
+ → up to est. time: 3.24538e+07 secs
+Sequence 1001 length: 429 → est. time: 98.692 secs
+ → up to est. time: 3.24539e+07 secs
+Sequence 1002 length: 411 → est. time: 86.7832 secs
+ → up to est. time: 3.2454e+07 secs
+Sequence 1003 length: 513 → est. time: 168.757 secs
+ → up to est. time: 3.24541e+07 secs
+Sequence 1004 length: 222 → est. time: 13.6763 secs
+ → up to est. time: 3.24541e+07 secs
+Sequence 1005 length: 210 → est. time: 11.5763 secs
+ → up to est. time: 3.24542e+07 secs
+Sequence 1006 length: 201 → est. time: 10.1508 secs
+ → up to est. time: 3.24542e+07 secs
+Sequence 1007 length: 2172 → est. time: 12808.2 secs
+ → up to est. time: 3.2467e+07 secs
+Sequence 1008 length: 171 → est. time: 6.25026 secs
+ → up to est. time: 3.2467e+07 secs
+Sequence 1009 length: 2271 → est. time: 14640.7 secs
+ → up to est. time: 3.24816e+07 secs
+Sequence 1010 length: 396 → est. time: 77.6239 secs
+ → up to est. time: 3.24817e+07 secs
+Sequence 1011 length: 201 → est. time: 10.1508 secs
+ → up to est. time: 3.24817e+07 secs
+Sequence 1012 length: 2013 → est. time: 10196.3 secs
+ → up to est. time: 3.24919e+07 secs
+Sequence 1013 length: 1539 → est. time: 4556.44 secs
+ → up to est. time: 3.24965e+07 secs
+Sequence 1014 length: 1686 → est. time: 5990.77 secs
+ → up to est. time: 3.25025e+07 secs
+Sequence 1015 length: 1521 → est. time: 4398.43 secs
+ → up to est. time: 3.25069e+07 secs
+Sequence 1016 length: 1383 → est. time: 3306.56 secs
+ → up to est. time: 3.25102e+07 secs
+Sequence 1017 length: 429 → est. time: 98.692 secs
+ → up to est. time: 3.25103e+07 secs
+Sequence 1018 length: 2445 → est. time: 18270.3 secs
+ → up to est. time: 3.25285e+07 secs
+Sequence 1019 length: 1296 → est. time: 2720.98 secs
+ → up to est. time: 3.25312e+07 secs
+Sequence 1020 length: 1281 → est. time: 2627.59 secs
+ → up to est. time: 3.25339e+07 secs
+Sequence 1021 length: 2724 → est. time: 25265.7 secs
+ → up to est. time: 3.25591e+07 secs
+Sequence 1022 length: 2652 → est. time: 23314.7 secs
+ → up to est. time: 3.25825e+07 secs
+Sequence 1023 length: 2508 → est. time: 19719.4 secs
+ → up to est. time: 3.26022e+07 secs
+Sequence 1024 length: 2763 → est. time: 26366.5 secs
+ → up to est. time: 3.26285e+07 secs
+Sequence 1025 length: 2616 → est. time: 22378.1 secs
+ → up to est. time: 3.26509e+07 secs
+Sequence 1026 length: 2259 → est. time: 14409.8 secs
+ → up to est. time: 3.26653e+07 secs
+Sequence 1027 length: 2115 → est. time: 11826.1 secs
+ → up to est. time: 3.26772e+07 secs
+Sequence 1028 length: 1404 → est. time: 3459.48 secs
+ → up to est. time: 3.26806e+07 secs
+Sequence 1029 length: 1737 → est. time: 6551.03 secs
+ → up to est. time: 3.26872e+07 secs
+Sequence 1030 length: 1641 → est. time: 5523.77 secs
+ → up to est. time: 3.26927e+07 secs
+Sequence 1031 length: 1599 → est. time: 5110.41 secs
+ → up to est. time: 3.26978e+07 secs
+Sequence 1032 length: 252 → est. time: 20.0038 secs
+ → up to est. time: 3.26978e+07 secs
+Sequence 1033 length: 4017 → est. time: 81024.3 secs
+ → up to est. time: 3.27788e+07 secs
+Sequence 1034 length: 3981 → est. time: 78865.4 secs
+ → up to est. time: 3.28577e+07 secs
+Sequence 1035 length: 3951 → est. time: 77095.9 secs
+ → up to est. time: 3.29348e+07 secs
+Sequence 1036 length: 396 → est. time: 77.6239 secs
+ → up to est. time: 3.29349e+07 secs
+Sequence 1037 length: 393 → est. time: 75.8731 secs
+ → up to est. time: 3.2935e+07 secs
+Sequence 1038 length: 1761 → est. time: 6826.34 secs
+ → up to est. time: 3.29418e+07 secs
+Sequence 1039 length: 1698 → est. time: 6119.6 secs
+ → up to est. time: 3.29479e+07 secs
+Sequence 1040 length: 1572 → est. time: 4855.88 secs
+ → up to est. time: 3.29528e+07 secs
+Sequence 1041 length: 1626 → est. time: 5373.68 secs
+ → up to est. time: 3.29581e+07 secs
+Sequence 1042 length: 1134 → est. time: 1822.84 secs
+ → up to est. time: 3.296e+07 secs
+Sequence 1043 length: 513 → est. time: 168.757 secs
+ → up to est. time: 3.29601e+07 secs
+Sequence 1044 length: 1692 → est. time: 6054.96 secs
+ → up to est. time: 3.29662e+07 secs
+Sequence 1045 length: 2454 → est. time: 18472.8 secs
+ → up to est. time: 3.29847e+07 secs
+Sequence 1046 length: 2595 → est. time: 21843.5 secs
+ → up to est. time: 3.30065e+07 secs
+Sequence 1047 length: 2520 → est. time: 20003.8 secs
+ → up to est. time: 3.30265e+07 secs
+Sequence 1048 length: 1854 → est. time: 7965.98 secs
+ → up to est. time: 3.30345e+07 secs
+Sequence 1049 length: 1839 → est. time: 7774.19 secs
+ → up to est. time: 3.30422e+07 secs
+Sequence 1050 length: 2019 → est. time: 10287.7 secs
+ → up to est. time: 3.30525e+07 secs
+Sequence 1051 length: 2019 → est. time: 10287.7 secs
+ → up to est. time: 3.30628e+07 secs
+Sequence 1052 length: 624 → est. time: 303.713 secs
+ → up to est. time: 3.30631e+07 secs
+Sequence 1053 length: 690 → est. time: 410.636 secs
+ → up to est. time: 3.30635e+07 secs
+Sequence 1054 length: 642 → est. time: 330.762 secs
+ → up to est. time: 3.30639e+07 secs
+Sequence 1055 length: 1062 → est. time: 1497.21 secs
+ → up to est. time: 3.30654e+07 secs
+Sequence 1056 length: 3531 → est. time: 55030.5 secs
+ → up to est. time: 3.31204e+07 secs
+Sequence 1057 length: 3534 → est. time: 55170.8 secs
+ → up to est. time: 3.31756e+07 secs
+Sequence 1058 length: 2856 → est. time: 29119.5 secs
+ → up to est. time: 3.32047e+07 secs
+Sequence 1059 length: 2784 → est. time: 26972.3 secs
+ → up to est. time: 3.32317e+07 secs
+Sequence 1060 length: 477 → est. time: 135.664 secs
+ → up to est. time: 3.32318e+07 secs
+Sequence 1061 length: 1383 → est. time: 3306.56 secs
+ → up to est. time: 3.32351e+07 secs
+Sequence 1062 length: 1371 → est. time: 3221.23 secs
+ → up to est. time: 3.32383e+07 secs
+Sequence 1063 length: 1050 → est. time: 1447.03 secs
+ → up to est. time: 3.32398e+07 secs
+Sequence 1064 length: 681 → est. time: 394.777 secs
+ → up to est. time: 3.32402e+07 secs
+Sequence 1065 length: 1686 → est. time: 5990.77 secs
+ → up to est. time: 3.32461e+07 secs
+Sequence 1066 length: 1218 → est. time: 2258.67 secs
+ → up to est. time: 3.32484e+07 secs
+Sequence 1067 length: 2061 → est. time: 10943.2 secs
+ → up to est. time: 3.32594e+07 secs
+Sequence 1068 length: 1440 → est. time: 3732.48 secs
+ → up to est. time: 3.32631e+07 secs
+Sequence 1069 length: 1407 → est. time: 3481.71 secs
+ → up to est. time: 3.32666e+07 secs
+Sequence 1070 length: 1377 → est. time: 3263.71 secs
+ → up to est. time: 3.32698e+07 secs
+Sequence 1071 length: 378 → est. time: 67.5127 secs
+ → up to est. time: 3.32699e+07 secs
+Sequence 1072 length: 3009 → est. time: 34054.7 secs
+ → up to est. time: 3.3304e+07 secs
+Sequence 1073 length: 3030 → est. time: 34772.7 secs
+ → up to est. time: 3.33387e+07 secs
+Sequence 1074 length: 2904 → est. time: 30612.6 secs
+ → up to est. time: 3.33693e+07 secs
+Sequence 1075 length: 3000 → est. time: 33750 secs
+ → up to est. time: 3.34031e+07 secs
+Sequence 1076 length: 2958 → est. time: 32352.3 secs
+ → up to est. time: 3.34354e+07 secs
+Sequence 1077 length: 2850 → est. time: 28936.4 secs
+ → up to est. time: 3.34644e+07 secs
+Sequence 1078 length: 3873 → est. time: 72619.4 secs
+ → up to est. time: 3.3537e+07 secs
+Sequence 1079 length: 3657 → est. time: 61134.3 secs
+ → up to est. time: 3.35981e+07 secs
+Sequence 1080 length: 2856 → est. time: 29119.5 secs
+ → up to est. time: 3.36272e+07 secs
+Sequence 1081 length: 1545 → est. time: 4609.94 secs
+ → up to est. time: 3.36319e+07 secs
+Sequence 1082 length: 1611 → est. time: 5226.33 secs
+ → up to est. time: 3.36371e+07 secs
+Sequence 1083 length: 1833 → est. time: 7698.35 secs
+ → up to est. time: 3.36448e+07 secs
+Sequence 1084 length: 2766 → est. time: 26452.5 secs
+ → up to est. time: 3.36712e+07 secs
+Sequence 1085 length: 2382 → est. time: 16894.1 secs
+ → up to est. time: 3.36881e+07 secs
+Sequence 1086 length: 2427 → est. time: 17869.8 secs
+ → up to est. time: 3.3706e+07 secs
+Sequence 1087 length: 2127 → est. time: 12028.5 secs
+ → up to est. time: 3.3718e+07 secs
+Sequence 1088 length: 2250 → est. time: 14238.3 secs
+ → up to est. time: 3.37323e+07 secs
+Sequence 1089 length: 2145 → est. time: 12336.5 secs
+ → up to est. time: 3.37446e+07 secs
+Sequence 1090 length: 2106 → est. time: 11675.8 secs
+ → up to est. time: 3.37563e+07 secs
+Sequence 1091 length: 2100 → est. time: 11576.2 secs
+ → up to est. time: 3.37679e+07 secs
+Sequence 1092 length: 1323 → est. time: 2894.61 secs
+ → up to est. time: 3.37707e+07 secs
+Sequence 1093 length: 1296 → est. time: 2720.98 secs
+ → up to est. time: 3.37735e+07 secs
+Sequence 1094 length: 1365 → est. time: 3179.13 secs
+ → up to est. time: 3.37766e+07 secs
+Sequence 1095 length: 1050 → est. time: 1447.03 secs
+ → up to est. time: 3.37781e+07 secs
+Sequence 1096 length: 2568 → est. time: 21168.7 secs
+ → up to est. time: 3.37993e+07 secs
+Sequence 1097 length: 900 → est. time: 911.25 secs
+ → up to est. time: 3.38002e+07 secs
+Sequence 1098 length: 1005 → est. time: 1268.84 secs
+ → up to est. time: 3.38014e+07 secs
+Sequence 1099 length: 885 → est. time: 866.443 secs
+ → up to est. time: 3.38023e+07 secs
+Sequence 1100 length: 597 → est. time: 265.97 secs
+ → up to est. time: 3.38026e+07 secs
+Sequence 1101 length: 1296 → est. time: 2720.98 secs
+ → up to est. time: 3.38053e+07 secs
+Sequence 1102 length: 2034 → est. time: 10518.7 secs
+ → up to est. time: 3.38158e+07 secs
+Sequence 1103 length: 2346 → est. time: 16139.6 secs
+ → up to est. time: 3.3832e+07 secs
+Sequence 1104 length: 2166 → est. time: 12702.4 secs
+ → up to est. time: 3.38447e+07 secs
+Sequence 1105 length: 2127 → est. time: 12028.5 secs
+ → up to est. time: 3.38567e+07 secs
+Sequence 1106 length: 1134 → est. time: 1822.84 secs
+ → up to est. time: 3.38585e+07 secs
+Sequence 1107 length: 1143 → est. time: 1866.59 secs
+ → up to est. time: 3.38604e+07 secs
+Sequence 1108 length: 3264 → est. time: 43467.1 secs
+ → up to est. time: 3.39038e+07 secs
+Sequence 1109 length: 1446 → est. time: 3779.33 secs
+ → up to est. time: 3.39076e+07 secs
+Sequence 1110 length: 1302 → est. time: 2758.94 secs
+ → up to est. time: 3.39104e+07 secs
+Sequence 1111 length: 1263 → est. time: 2518.37 secs
+ → up to est. time: 3.39129e+07 secs
+Sequence 1112 length: 1200 → est. time: 2160 secs
+ → up to est. time: 3.39151e+07 secs
+Sequence 1113 length: 1377 → est. time: 3263.71 secs
+ → up to est. time: 3.39183e+07 secs
+Sequence 1114 length: 1320 → est. time: 2874.96 secs
+ → up to est. time: 3.39212e+07 secs
+Sequence 1115 length: 1005 → est. time: 1268.84 secs
+ → up to est. time: 3.39225e+07 secs
+Sequence 1116 length: 894 → est. time: 893.146 secs
+ → up to est. time: 3.39234e+07 secs
+Sequence 1117 length: 1041 → est. time: 1410.14 secs
+ → up to est. time: 3.39248e+07 secs
+Sequence 1118 length: 1629 → est. time: 5403.48 secs
+ → up to est. time: 3.39302e+07 secs
+Sequence 1119 length: 1611 → est. time: 5226.33 secs
+ → up to est. time: 3.39354e+07 secs
+Sequence 1120 length: 1611 → est. time: 5226.33 secs
+ → up to est. time: 3.39406e+07 secs
+Sequence 1121 length: 621 → est. time: 299.354 secs
+ → up to est. time: 3.39409e+07 secs
+Sequence 1122 length: 1218 → est. time: 2258.67 secs
+ → up to est. time: 3.39432e+07 secs
+Sequence 1123 length: 1305 → est. time: 2778.06 secs
+ → up to est. time: 3.3946e+07 secs
+Sequence 1124 length: 1176 → est. time: 2032.97 secs
+ → up to est. time: 3.3948e+07 secs
+Sequence 1125 length: 1077 → est. time: 1561.55 secs
+ → up to est. time: 3.39496e+07 secs
+Sequence 1126 length: 432 → est. time: 100.777 secs
+ → up to est. time: 3.39497e+07 secs
+Sequence 1127 length: 3795 → est. time: 68319.6 secs
+ → up to est. time: 3.4018e+07 secs
+Sequence 1128 length: 561 → est. time: 220.698 secs
+ → up to est. time: 3.40182e+07 secs
+Sequence 1129 length: 1128 → est. time: 1794.06 secs
+ → up to est. time: 3.402e+07 secs
+Sequence 1130 length: 960 → est. time: 1105.92 secs
+ → up to est. time: 3.40211e+07 secs
+Sequence 1131 length: 429 → est. time: 98.692 secs
+ → up to est. time: 3.40212e+07 secs
+Sequence 1132 length: 903 → est. time: 920.393 secs
+ → up to est. time: 3.40221e+07 secs
+Sequence 1133 length: 5724 → est. time: 234428 secs
+ → up to est. time: 3.42565e+07 secs
+Sequence 1134 length: 5697 → est. time: 231126 secs
+ → up to est. time: 3.44877e+07 secs
+Sequence 1135 length: 5745 → est. time: 237017 secs
+ → up to est. time: 3.47247e+07 secs
+Sequence 1136 length: 789 → est. time: 613.961 secs
+ → up to est. time: 3.47253e+07 secs
+Sequence 1137 length: 1383 → est. time: 3306.56 secs
+ → up to est. time: 3.47286e+07 secs
+Sequence 1138 length: 1404 → est. time: 3459.48 secs
+ → up to est. time: 3.47321e+07 secs
+Sequence 1139 length: 1365 → est. time: 3179.13 secs
+ → up to est. time: 3.47352e+07 secs
+Sequence 1140 length: 1329 → est. time: 2934.17 secs
+ → up to est. time: 3.47382e+07 secs
+Sequence 1141 length: 1782 → est. time: 7073.48 secs
+ → up to est. time: 3.47453e+07 secs
+Sequence 1142 length: 1794 → est. time: 7217.34 secs
+ → up to est. time: 3.47525e+07 secs
+Sequence 1143 length: 1788 → est. time: 7145.17 secs
+ → up to est. time: 3.47596e+07 secs
+Sequence 1144 length: 1860 → est. time: 8043.57 secs
+ → up to est. time: 3.47677e+07 secs
+Sequence 1145 length: 1845 → est. time: 7850.53 secs
+ → up to est. time: 3.47755e+07 secs
+Sequence 1146 length: 1860 → est. time: 8043.57 secs
+ → up to est. time: 3.47836e+07 secs
+Sequence 1147 length: 2655 → est. time: 23394 secs
+ → up to est. time: 3.4807e+07 secs
+Sequence 1148 length: 1590 → est. time: 5024.6 secs
+ → up to est. time: 3.4812e+07 secs
+Sequence 1149 length: 1590 → est. time: 5024.6 secs
+ → up to est. time: 3.4817e+07 secs
+Sequence 1150 length: 468 → est. time: 128.129 secs
+ → up to est. time: 3.48171e+07 secs
+Sequence 1151 length: 189 → est. time: 8.43909 secs
+ → up to est. time: 3.48171e+07 secs
+Sequence 1152 length: 4182 → est. time: 91424.4 secs
+ → up to est. time: 3.49086e+07 secs
+Sequence 1153 length: 4032 → est. time: 81935.4 secs
+ → up to est. time: 3.49905e+07 secs
+Sequence 1154 length: 3903 → est. time: 74320 secs
+ → up to est. time: 3.50648e+07 secs
+Sequence 1155 length: 7098 → est. time: 447011 secs
+ → up to est. time: 3.55118e+07 secs
+Sequence 1156 length: 1731 → est. time: 6483.38 secs
+ → up to est. time: 3.55183e+07 secs
+Sequence 1157 length: 1710 → est. time: 6250.26 secs
+ → up to est. time: 3.55246e+07 secs
+Sequence 1158 length: 1194 → est. time: 2127.76 secs
+ → up to est. time: 3.55267e+07 secs
+Sequence 1159 length: 1986 → est. time: 9791.47 secs
+ → up to est. time: 3.55365e+07 secs
+Sequence 1160 length: 3444 → est. time: 51062.2 secs
+ → up to est. time: 3.55875e+07 secs
+Sequence 1161 length: 3540 → est. time: 55452.3 secs
+ → up to est. time: 3.5643e+07 secs
+Sequence 1162 length: 3408 → est. time: 49477.6 secs
+ → up to est. time: 3.56925e+07 secs
+Sequence 1163 length: 525 → est. time: 180.879 secs
+ → up to est. time: 3.56927e+07 secs
+Sequence 1164 length: 1647 → est. time: 5584.58 secs
+ → up to est. time: 3.56982e+07 secs
+Sequence 1165 length: 1632 → est. time: 5433.38 secs
+ → up to est. time: 3.57037e+07 secs
+Sequence 1166 length: 1677 → est. time: 5895.34 secs
+ → up to est. time: 3.57096e+07 secs
+Sequence 1167 length: 3360 → est. time: 47416.3 secs
+ → up to est. time: 3.5757e+07 secs
+Sequence 1168 length: 2703 → est. time: 24685.9 secs
+ → up to est. time: 3.57817e+07 secs
+Sequence 1169 length: 345 → est. time: 51.3295 secs
+ → up to est. time: 3.57817e+07 secs
+Sequence 1170 length: 183 → est. time: 7.66061 secs
+ → up to est. time: 3.57817e+07 secs
+Sequence 1171 length: 288 → est. time: 29.8598 secs
+ → up to est. time: 3.57818e+07 secs
+Sequence 1172 length: 216 → est. time: 12.5971 secs
+ → up to est. time: 3.57818e+07 secs
+Sequence 1173 length: 312 → est. time: 37.9642 secs
+ → up to est. time: 3.57818e+07 secs
+Sequence 1174 length: 1383 → est. time: 3306.56 secs
+ → up to est. time: 3.57851e+07 secs
+Sequence 1175 length: 1743 → est. time: 6619.15 secs
+ → up to est. time: 3.57917e+07 secs
+Sequence 1176 length: 1605 → est. time: 5168.15 secs
+ → up to est. time: 3.57969e+07 secs
+Sequence 1177 length: 459 → est. time: 120.878 secs
+ → up to est. time: 3.5797e+07 secs
+Sequence 1178 length: 1722 → est. time: 6382.77 secs
+ → up to est. time: 3.58034e+07 secs
+Sequence 1179 length: 1488 → est. time: 4118.31 secs
+ → up to est. time: 3.58075e+07 secs
+Sequence 1180 length: 1560 → est. time: 4745.52 secs
+ → up to est. time: 3.58123e+07 secs
+Sequence 1181 length: 1533 → est. time: 4503.36 secs
+ → up to est. time: 3.58168e+07 secs
+Sequence 1182 length: 1260 → est. time: 2500.47 secs
+ → up to est. time: 3.58193e+07 secs
+Sequence 1183 length: 276 → est. time: 26.2807 secs
+ → up to est. time: 3.58193e+07 secs
+Sequence 1184 length: 4398 → est. time: 106335 secs
+ → up to est. time: 3.59256e+07 secs
+Sequence 1185 length: 4359 → est. time: 103531 secs
+ → up to est. time: 3.60292e+07 secs
+Sequence 1186 length: 1032 → est. time: 1373.88 secs
+ → up to est. time: 3.60305e+07 secs
+Sequence 1187 length: 3768 → est. time: 66871.8 secs
+ → up to est. time: 3.60974e+07 secs
+Sequence 1188 length: 2940 → est. time: 31765.2 secs
+ → up to est. time: 3.61292e+07 secs
+Sequence 1189 length: 3657 → est. time: 61134.3 secs
+ → up to est. time: 3.61903e+07 secs
+Sequence 1190 length: 3168 → est. time: 39743.4 secs
+ → up to est. time: 3.62301e+07 secs
+Sequence 1191 length: 1311 → est. time: 2816.55 secs
+ → up to est. time: 3.62329e+07 secs
+Sequence 1192 length: 1299 → est. time: 2739.92 secs
+ → up to est. time: 3.62356e+07 secs
+Sequence 1193 length: 1311 → est. time: 2816.55 secs
+ → up to est. time: 3.62384e+07 secs
+Sequence 1194 length: 1299 → est. time: 2739.92 secs
+ → up to est. time: 3.62412e+07 secs
+Sequence 1195 length: 1338 → est. time: 2994.18 secs
+ → up to est. time: 3.62442e+07 secs
+Sequence 1196 length: 1107 → est. time: 1695.72 secs
+ → up to est. time: 3.62459e+07 secs
+Sequence 1197 length: 1245 → est. time: 2412.23 secs
+ → up to est. time: 3.62483e+07 secs
+Sequence 1198 length: 1173 → est. time: 2017.46 secs
+ → up to est. time: 3.62503e+07 secs
+Sequence 1199 length: 1023 → est. time: 1338.25 secs
+ → up to est. time: 3.62516e+07 secs
+Sequence 1200 length: 4092 → est. time: 85647.9 secs
+ → up to est. time: 3.63373e+07 secs
+Sequence 1201 length: 3927 → est. time: 75699.4 secs
+ → up to est. time: 3.6413e+07 secs
+Sequence 1202 length: 3897 → est. time: 73977.8 secs
+ → up to est. time: 3.64869e+07 secs
+Sequence 1203 length: 888 → est. time: 875.284 secs
+ → up to est. time: 3.64878e+07 secs
+Sequence 1204 length: 699 → est. time: 426.915 secs
+ → up to est. time: 3.64883e+07 secs
+Sequence 1205 length: 612 → est. time: 286.526 secs
+ → up to est. time: 3.64885e+07 secs
+Sequence 1206 length: 2127 → est. time: 12028.5 secs
+ → up to est. time: 3.65006e+07 secs
+Sequence 1207 length: 2013 → est. time: 10196.3 secs
+ → up to est. time: 3.65108e+07 secs
+Sequence 1208 length: 2259 → est. time: 14409.8 secs
+ → up to est. time: 3.65252e+07 secs
+Sequence 1209 length: 2088 → est. time: 11378.9 secs
+ → up to est. time: 3.65366e+07 secs
+Sequence 1210 length: 1869 → est. time: 8160.9 secs
+ → up to est. time: 3.65447e+07 secs
+Sequence 1211 length: 1794 → est. time: 7217.34 secs
+ → up to est. time: 3.65519e+07 secs
+Sequence 1212 length: 1878 → est. time: 8279.36 secs
+ → up to est. time: 3.65602e+07 secs
+Sequence 1213 length: 1890 → est. time: 8439.09 secs
+ → up to est. time: 3.65686e+07 secs
+Sequence 1214 length: 1788 → est. time: 7145.17 secs
+ → up to est. time: 3.65758e+07 secs
+Sequence 1215 length: 204 → est. time: 10.6121 secs
+ → up to est. time: 3.65758e+07 secs
+Sequence 1216 length: 375 → est. time: 65.918 secs
+ → up to est. time: 3.65759e+07 secs
+Sequence 1217 length: 1809 → est. time: 7399.9 secs
+ → up to est. time: 3.65833e+07 secs
+Sequence 1218 length: 1881 → est. time: 8319.1 secs
+ → up to est. time: 3.65916e+07 secs
+Sequence 1219 length: 1824 → est. time: 7585.51 secs
+ → up to est. time: 3.65992e+07 secs
+Sequence 1220 length: 1818 → est. time: 7510.89 secs
+ → up to est. time: 3.66067e+07 secs
+Sequence 1221 length: 1818 → est. time: 7510.89 secs
+ → up to est. time: 3.66142e+07 secs
+Sequence 1222 length: 2022 → est. time: 10333.6 secs
+ → up to est. time: 3.66245e+07 secs
+Sequence 1223 length: 1605 → est. time: 5168.15 secs
+ → up to est. time: 3.66297e+07 secs
+Sequence 1224 length: 1251 → est. time: 2447.27 secs
+ → up to est. time: 3.66321e+07 secs
+Sequence 1225 length: 1152 → est. time: 1911.03 secs
+ → up to est. time: 3.66341e+07 secs
+Sequence 1226 length: 1152 → est. time: 1911.03 secs
+ → up to est. time: 3.6636e+07 secs
+Sequence 1227 length: 663 → est. time: 364.293 secs
+ → up to est. time: 3.66363e+07 secs
+Sequence 1228 length: 171 → est. time: 6.25026 secs
+ → up to est. time: 3.66363e+07 secs
+Sequence 1229 length: 318 → est. time: 40.1968 secs
+ → up to est. time: 3.66364e+07 secs
+Sequence 1230 length: 447 → est. time: 111.643 secs
+ → up to est. time: 3.66365e+07 secs
+Sequence 1231 length: 522 → est. time: 177.796 secs
+ → up to est. time: 3.66367e+07 secs
+Sequence 1232 length: 264 → est. time: 22.9997 secs
+ → up to est. time: 3.66367e+07 secs
+Sequence 1233 length: 420 → est. time: 92.61 secs
+ → up to est. time: 3.66368e+07 secs
+Sequence 1234 length: 1356 → est. time: 3116.66 secs
+ → up to est. time: 3.66399e+07 secs
+Sequence 1235 length: 1206 → est. time: 2192.56 secs
+ → up to est. time: 3.66421e+07 secs
+Sequence 1236 length: 1158 → est. time: 1941.05 secs
+ → up to est. time: 3.6644e+07 secs
+Sequence 1237 length: 948 → est. time: 1064.96 secs
+ → up to est. time: 3.66451e+07 secs
+Sequence 1238 length: 894 → est. time: 893.146 secs
+ → up to est. time: 3.6646e+07 secs
+Sequence 1239 length: 897 → est. time: 902.168 secs
+ → up to est. time: 3.66469e+07 secs
+Sequence 1240 length: 1278 → est. time: 2609.17 secs
+ → up to est. time: 3.66495e+07 secs
+Sequence 1241 length: 1299 → est. time: 2739.92 secs
+ → up to est. time: 3.66522e+07 secs
+Sequence 1242 length: 1305 → est. time: 2778.06 secs
+ → up to est. time: 3.6655e+07 secs
+Sequence 1243 length: 2907 → est. time: 30707.5 secs
+ → up to est. time: 3.66857e+07 secs
+Sequence 1244 length: 1248 → est. time: 2429.71 secs
+ → up to est. time: 3.66882e+07 secs
+Sequence 1245 length: 1209 → est. time: 2208.97 secs
+ → up to est. time: 3.66904e+07 secs
+Sequence 1246 length: 948 → est. time: 1064.96 secs
+ → up to est. time: 3.66914e+07 secs
+Sequence 1247 length: 909 → est. time: 938.862 secs
+ → up to est. time: 3.66924e+07 secs
+Sequence 1248 length: 6018 → est. time: 272437 secs
+ → up to est. time: 3.69648e+07 secs
+Sequence 1249 length: 1470 → est. time: 3970.65 secs
+ → up to est. time: 3.69688e+07 secs
+Sequence 1250 length: 1860 → est. time: 8043.57 secs
+ → up to est. time: 3.69768e+07 secs
+Sequence 1251 length: 1824 → est. time: 7585.51 secs
+ → up to est. time: 3.69844e+07 secs
+Sequence 1252 length: 1740 → est. time: 6585.03 secs
+ → up to est. time: 3.6991e+07 secs
+Sequence 1253 length: 1449 → est. time: 3802.9 secs
+ → up to est. time: 3.69948e+07 secs
+Sequence 1254 length: 1227 → est. time: 2309.11 secs
+ → up to est. time: 3.69971e+07 secs
+Sequence 1255 length: 1380 → est. time: 3285.09 secs
+ → up to est. time: 3.70004e+07 secs
+Sequence 1256 length: 1431 → est. time: 3662.93 secs
+ → up to est. time: 3.70041e+07 secs
+Sequence 1257 length: 1629 → est. time: 5403.48 secs
+ → up to est. time: 3.70095e+07 secs
+Sequence 1258 length: 1455 → est. time: 3850.34 secs
+ → up to est. time: 3.70133e+07 secs
+Sequence 1259 length: 1185 → est. time: 2080.01 secs
+ → up to est. time: 3.70154e+07 secs
+Sequence 1260 length: 921 → est. time: 976.537 secs
+ → up to est. time: 3.70164e+07 secs
+Sequence 1261 length: 1410 → est. time: 3504.03 secs
+ → up to est. time: 3.70199e+07 secs
+Sequence 1262 length: 1059 → est. time: 1484.56 secs
+ → up to est. time: 3.70214e+07 secs
+Sequence 1263 length: 1815 → est. time: 7473.77 secs
+ → up to est. time: 3.70288e+07 secs
+Sequence 1264 length: 2115 → est. time: 11826.1 secs
+ → up to est. time: 3.70407e+07 secs
+Sequence 1265 length: 2832 → est. time: 28391.6 secs
+ → up to est. time: 3.7069e+07 secs
+Sequence 1266 length: 2748 → est. time: 25939.4 secs
+ → up to est. time: 3.7095e+07 secs
+Sequence 1267 length: 2616 → est. time: 22378.1 secs
+ → up to est. time: 3.71174e+07 secs
+Sequence 1268 length: 2475 → est. time: 18951.2 secs
+ → up to est. time: 3.71363e+07 secs
+Sequence 1269 length: 2514 → est. time: 19861.2 secs
+ → up to est. time: 3.71562e+07 secs
+Sequence 1270 length: 2436 → est. time: 18069.3 secs
+ → up to est. time: 3.71742e+07 secs
+Sequence 1271 length: 1767 → est. time: 6896.36 secs
+ → up to est. time: 3.71811e+07 secs
+Sequence 1272 length: 372 → est. time: 64.3486 secs
+ → up to est. time: 3.71812e+07 secs
+Sequence 1273 length: 933 → est. time: 1015.21 secs
+ → up to est. time: 3.71822e+07 secs
+Sequence 1274 length: 3981 → est. time: 78865.4 secs
+ → up to est. time: 3.72611e+07 secs
+Sequence 1275 length: 3966 → est. time: 77977.3 secs
+ → up to est. time: 3.73391e+07 secs
+Sequence 1276 length: 105 → est. time: 1.44703 secs
+ → up to est. time: 3.73391e+07 secs
+Sequence 1277 length: 1224 → est. time: 2292.21 secs
+ → up to est. time: 3.73414e+07 secs
+Sequence 1278 length: 429 → est. time: 98.692 secs
+ → up to est. time: 3.73415e+07 secs
+Sequence 1279 length: 846 → est. time: 756.87 secs
+ → up to est. time: 3.73422e+07 secs
+Sequence 1280 length: 750 → est. time: 527.344 secs
+ → up to est. time: 3.73427e+07 secs
+Sequence 1281 length: 1017 → est. time: 1314.84 secs
+ → up to est. time: 3.73441e+07 secs
+Sequence 1282 length: 504 → est. time: 160.03 secs
+ → up to est. time: 3.73442e+07 secs
+Sequence 1283 length: 540 → est. time: 196.83 secs
+ → up to est. time: 3.73444e+07 secs
+Sequence 1284 length: 8754 → est. time: 838551 secs
+ → up to est. time: 3.8183e+07 secs
+Sequence 1285 length: 9132 → est. time: 951936 secs
+ → up to est. time: 3.91349e+07 secs
+Sequence 1286 length: 1695 → est. time: 6087.22 secs
+ → up to est. time: 3.9141e+07 secs
+Sequence 1287 length: 1314 → est. time: 2835.93 secs
+ → up to est. time: 3.91438e+07 secs
+Sequence 1288 length: 1449 → est. time: 3802.9 secs
+ → up to est. time: 3.91476e+07 secs
+Sequence 1289 length: 1398 → est. time: 3415.32 secs
+ → up to est. time: 3.9151e+07 secs
+Sequence 1290 length: 351 → est. time: 54.0544 secs
+ → up to est. time: 3.91511e+07 secs
+Sequence 1291 length: 813 → est. time: 671.71 secs
+ → up to est. time: 3.91518e+07 secs
+Sequence 1292 length: 168 → est. time: 5.92704 secs
+ → up to est. time: 3.91518e+07 secs
+Sequence 1293 length: 1683 → est. time: 5958.85 secs
+ → up to est. time: 3.91577e+07 secs
+Sequence 1294 length: 168 → est. time: 5.92704 secs
+ → up to est. time: 3.91577e+07 secs
+Sequence 1295 length: 1425 → est. time: 3617.05 secs
+ → up to est. time: 3.91614e+07 secs
+Sequence 1296 length: 1092 → est. time: 1627.71 secs
+ → up to est. time: 3.9163e+07 secs
+Sequence 1297 length: 1179 → est. time: 2048.57 secs
+ → up to est. time: 3.9165e+07 secs
+Sequence 1298 length: 1155 → est. time: 1926 secs
+ → up to est. time: 3.9167e+07 secs
+Sequence 1299 length: 1380 → est. time: 3285.09 secs
+ → up to est. time: 3.91702e+07 secs
+Sequence 1300 length: 1131 → est. time: 1808.41 secs
+ → up to est. time: 3.9172e+07 secs
+Sequence 1301 length: 309 → est. time: 36.8795 secs
+ → up to est. time: 3.91721e+07 secs
+Sequence 1302 length: 1959 → est. time: 9397.52 secs
+ → up to est. time: 3.91815e+07 secs
+Sequence 1303 length: 1803 → est. time: 7326.51 secs
+ → up to est. time: 3.91888e+07 secs
+Sequence 1304 length: 1581 → est. time: 4939.76 secs
+ → up to est. time: 3.91937e+07 secs
+Sequence 1305 length: 1950 → est. time: 9268.59 secs
+ → up to est. time: 3.9203e+07 secs
+Sequence 1306 length: 6477 → est. time: 339650 secs
+ → up to est. time: 3.95427e+07 secs
+Sequence 1307 length: 6378 → est. time: 324312 secs
+ → up to est. time: 3.9867e+07 secs
+Sequence 1308 length: 594 → est. time: 261.981 secs
+ → up to est. time: 3.98672e+07 secs
+Sequence 1309 length: 798 → est. time: 635.212 secs
+ → up to est. time: 3.98679e+07 secs
+Sequence 1310 length: 420 → est. time: 92.61 secs
+ → up to est. time: 3.9868e+07 secs
+Sequence 1311 length: 1386 → est. time: 3328.13 secs
+ → up to est. time: 3.98713e+07 secs
+Sequence 1312 length: 1059 → est. time: 1484.56 secs
+ → up to est. time: 3.98728e+07 secs
+Sequence 1313 length: 1878 → est. time: 8279.36 secs
+ → up to est. time: 3.98811e+07 secs
+Sequence 1314 length: 1803 → est. time: 7326.51 secs
+ → up to est. time: 3.98884e+07 secs
+Sequence 1315 length: 1536 → est. time: 4529.85 secs
+ → up to est. time: 3.98929e+07 secs
+Sequence 1316 length: 1524 → est. time: 4424.51 secs
+ → up to est. time: 3.98973e+07 secs
+Sequence 1317 length: 2046 → est. time: 10706 secs
+ → up to est. time: 3.9908e+07 secs
+Sequence 1318 length: 2322 → est. time: 15649.4 secs
+ → up to est. time: 3.99237e+07 secs
+Sequence 1319 length: 1995 → est. time: 9925.19 secs
+ → up to est. time: 3.99336e+07 secs
+Sequence 1320 length: 1896 → est. time: 8519.71 secs
+ → up to est. time: 3.99421e+07 secs
+Sequence 1321 length: 1836 → est. time: 7736.21 secs
+ → up to est. time: 3.99499e+07 secs
+Sequence 1322 length: 1704 → est. time: 6184.7 secs
+ → up to est. time: 3.99561e+07 secs
+Sequence 1323 length: 486 → est. time: 143.489 secs
+ → up to est. time: 3.99562e+07 secs
+Sequence 1324 length: 414 → est. time: 88.6974 secs
+ → up to est. time: 3.99563e+07 secs
+Sequence 1325 length: 246 → est. time: 18.6087 secs
+ → up to est. time: 3.99563e+07 secs
+Sequence 1326 length: 1158 → est. time: 1941.05 secs
+ → up to est. time: 3.99583e+07 secs
+Sequence 1327 length: 1143 → est. time: 1866.59 secs
+ → up to est. time: 3.99601e+07 secs
+Sequence 1328 length: 1023 → est. time: 1338.25 secs
+ → up to est. time: 3.99615e+07 secs
+Sequence 1329 length: 567 → est. time: 227.855 secs
+ → up to est. time: 3.99617e+07 secs
+Sequence 1330 length: 1761 → est. time: 6826.34 secs
+ → up to est. time: 3.99685e+07 secs
+Sequence 1331 length: 2265 → est. time: 14524.9 secs
+ → up to est. time: 3.9983e+07 secs
+Sequence 1332 length: 2427 → est. time: 17869.8 secs
+ → up to est. time: 4.00009e+07 secs
+Sequence 1333 length: 2394 → est. time: 17150.7 secs
+ → up to est. time: 4.00181e+07 secs
+Sequence 1334 length: 1989 → est. time: 9835.91 secs
+ → up to est. time: 4.00279e+07 secs
+Sequence 1335 length: 1509 → est. time: 4295.14 secs
+ → up to est. time: 4.00322e+07 secs
+Sequence 1336 length: 7536 → est. time: 534974 secs
+ → up to est. time: 4.05672e+07 secs
+Sequence 1337 length: 7527 → est. time: 533060 secs
+ → up to est. time: 4.11002e+07 secs
+Sequence 1338 length: 2358 → est. time: 16388.6 secs
+ → up to est. time: 4.11166e+07 secs
+Sequence 1339 length: 2265 → est. time: 14524.9 secs
+ → up to est. time: 4.11311e+07 secs
+Sequence 1340 length: 1824 → est. time: 7585.51 secs
+ → up to est. time: 4.11387e+07 secs
+Sequence 1341 length: 1149 → est. time: 1896.14 secs
+ → up to est. time: 4.11406e+07 secs
+Sequence 1342 length: 1209 → est. time: 2208.97 secs
+ → up to est. time: 4.11428e+07 secs
+Sequence 1343 length: 1521 → est. time: 4398.43 secs
+ → up to est. time: 4.11472e+07 secs
+Sequence 1344 length: 1446 → est. time: 3779.33 secs
+ → up to est. time: 4.1151e+07 secs
+Sequence 1345 length: 1005 → est. time: 1268.84 secs
+ → up to est. time: 4.11523e+07 secs
+Sequence 1346 length: 1623 → est. time: 5343.99 secs
+ → up to est. time: 4.11576e+07 secs
+Sequence 1347 length: 972 → est. time: 1147.91 secs
+ → up to est. time: 4.11588e+07 secs
+Sequence 1348 length: 2004 → est. time: 10060.1 secs
+ → up to est. time: 4.11688e+07 secs
+Sequence 1349 length: 1938 → est. time: 9098.53 secs
+ → up to est. time: 4.11779e+07 secs
+Sequence 1350 length: 18921 → est. time: 8.46725e+06 secs
+ → up to est. time: 4.96452e+07 secs
+Sequence 1351 length: 579 → est. time: 242.631 secs
+ → up to est. time: 4.96454e+07 secs
+Sequence 1352 length: 2121 → est. time: 11927 secs
+ → up to est. time: 4.96573e+07 secs
+Sequence 1353 length: 2127 → est. time: 12028.5 secs
+ → up to est. time: 4.96694e+07 secs
+Sequence 1354 length: 2121 → est. time: 11927 secs
+ → up to est. time: 4.96813e+07 secs
+Sequence 1355 length: 4740 → est. time: 133121 secs
+ → up to est. time: 4.98144e+07 secs
+Sequence 1356 length: 4710 → est. time: 130609 secs
+ → up to est. time: 4.9945e+07 secs
+Sequence 1357 length: 4701 → est. time: 129862 secs
+ → up to est. time: 5.00749e+07 secs
+Sequence 1358 length: 3978 → est. time: 78687.2 secs
+ → up to est. time: 5.01536e+07 secs
+Sequence 1359 length: 5136 → est. time: 169350 secs
+ → up to est. time: 5.03229e+07 secs
+Sequence 1360 length: 5124 → est. time: 168166 secs
+ → up to est. time: 5.04911e+07 secs
+Sequence 1361 length: 5073 → est. time: 163194 secs
+ → up to est. time: 5.06543e+07 secs
+Sequence 1362 length: 4959 → est. time: 152438 secs
+ → up to est. time: 5.08067e+07 secs
+Sequence 1363 length: 5094 → est. time: 165229 secs
+ → up to est. time: 5.0972e+07 secs
+Sequence 1364 length: 4917 → est. time: 148597 secs
+ → up to est. time: 5.11206e+07 secs
+Sequence 1365 length: 1632 → est. time: 5433.38 secs
+ → up to est. time: 5.1126e+07 secs
+Sequence 1366 length: 906 → est. time: 929.597 secs
+ → up to est. time: 5.11269e+07 secs
+Sequence 1367 length: 1626 → est. time: 5373.68 secs
+ → up to est. time: 5.11323e+07 secs
+Sequence 1368 length: 1185 → est. time: 2080.01 secs
+ → up to est. time: 5.11344e+07 secs
+Sequence 1369 length: 1992 → est. time: 9880.48 secs
+ → up to est. time: 5.11442e+07 secs
+Sequence 1370 length: 1992 → est. time: 9880.48 secs
+ → up to est. time: 5.11541e+07 secs
+Sequence 1371 length: 1860 → est. time: 8043.57 secs
+ → up to est. time: 5.11622e+07 secs
+Sequence 1372 length: 600 → est. time: 270 secs
+ → up to est. time: 5.11624e+07 secs
+Sequence 1373 length: 1575 → est. time: 4883.73 secs
+ → up to est. time: 5.11673e+07 secs
+Sequence 1374 length: 1551 → est. time: 4663.86 secs
+ → up to est. time: 5.1172e+07 secs
+Sequence 1375 length: 1620 → est. time: 5314.41 secs
+ → up to est. time: 5.11773e+07 secs
+Sequence 1376 length: 1746 → est. time: 6653.39 secs
+ → up to est. time: 5.1184e+07 secs
+Sequence 1377 length: 1782 → est. time: 7073.48 secs
+ → up to est. time: 5.1191e+07 secs
+Sequence 1378 length: 1515 → est. time: 4346.58 secs
+ → up to est. time: 5.11954e+07 secs
+Sequence 1379 length: 1602 → est. time: 5139.22 secs
+ → up to est. time: 5.12005e+07 secs
+Sequence 1380 length: 273 → est. time: 25.433 secs
+ → up to est. time: 5.12005e+07 secs
+Sequence 1381 length: 1056 → est. time: 1471.98 secs
+ → up to est. time: 5.1202e+07 secs
+Sequence 1382 length: 1011 → est. time: 1291.71 secs
+ → up to est. time: 5.12033e+07 secs
+Sequence 1383 length: 639 → est. time: 326.146 secs
+ → up to est. time: 5.12036e+07 secs
+Sequence 1384 length: 1329 → est. time: 2934.17 secs
+ → up to est. time: 5.12066e+07 secs
+Sequence 1385 length: 2112 → est. time: 11775.8 secs
+ → up to est. time: 5.12183e+07 secs
+Sequence 1386 length: 2736 → est. time: 25601.1 secs
+ → up to est. time: 5.12439e+07 secs
+Sequence 1387 length: 1806 → est. time: 7363.14 secs
+ → up to est. time: 5.12513e+07 secs
+Sequence 1388 length: 1287 → est. time: 2664.68 secs
+ → up to est. time: 5.1254e+07 secs
+Sequence 1389 length: 288 → est. time: 29.8598 secs
+ → up to est. time: 5.1254e+07 secs
+Sequence 1390 length: 1218 → est. time: 2258.67 secs
+ → up to est. time: 5.12563e+07 secs
+Sequence 1391 length: 1455 → est. time: 3850.34 secs
+ → up to est. time: 5.12601e+07 secs
+Sequence 1392 length: 681 → est. time: 394.777 secs
+ → up to est. time: 5.12605e+07 secs
+Sequence 1393 length: 777 → est. time: 586.372 secs
+ → up to est. time: 5.12611e+07 secs
+Sequence 1394 length: 783 → est. time: 600.061 secs
+ → up to est. time: 5.12617e+07 secs
+Sequence 1395 length: 1413 → est. time: 3526.44 secs
+ → up to est. time: 5.12652e+07 secs
+Sequence 1396 length: 1587 → est. time: 4996.21 secs
+ → up to est. time: 5.12702e+07 secs
+Sequence 1397 length: 4539 → est. time: 116894 secs
+ → up to est. time: 5.13871e+07 secs
+Sequence 1398 length: 4548 → est. time: 117590 secs
+ → up to est. time: 5.15047e+07 secs
+Sequence 1399 length: 4380 → est. time: 105035 secs
+ → up to est. time: 5.16097e+07 secs
+Sequence 1400 length: 2649 → est. time: 23235.7 secs
+ → up to est. time: 5.1633e+07 secs
+Sequence 1401 length: 2814 → est. time: 27853.7 secs
+ → up to est. time: 5.16608e+07 secs
+Sequence 1402 length: 2766 → est. time: 26452.5 secs
+ → up to est. time: 5.16873e+07 secs
+Sequence 1403 length: 2838 → est. time: 28572.4 secs
+ → up to est. time: 5.17158e+07 secs
+Sequence 1404 length: 2934 → est. time: 31571.1 secs
+ → up to est. time: 5.17474e+07 secs
+Sequence 1405 length: 2682 → est. time: 24114.9 secs
+ → up to est. time: 5.17715e+07 secs
+Sequence 1406 length: 2907 → est. time: 30707.5 secs
+ → up to est. time: 5.18022e+07 secs
+Sequence 1407 length: 2487 → est. time: 19228.1 secs
+ → up to est. time: 5.18215e+07 secs
+Sequence 1408 length: 2415 → est. time: 17606 secs
+ → up to est. time: 5.18391e+07 secs
+Sequence 1409 length: 1383 → est. time: 3306.56 secs
+ → up to est. time: 5.18424e+07 secs
+Sequence 1410 length: 1203 → est. time: 2176.24 secs
+ → up to est. time: 5.18446e+07 secs
+Sequence 1411 length: 2589 → est. time: 21692.3 secs
+ → up to est. time: 5.18662e+07 secs
+Sequence 1412 length: 2424 → est. time: 17803.6 secs
+ → up to est. time: 5.18841e+07 secs
+Sequence 1413 length: 2406 → est. time: 17409.9 secs
+ → up to est. time: 5.19015e+07 secs
+Sequence 1414 length: 2241 → est. time: 14068.1 secs
+ → up to est. time: 5.19155e+07 secs
+Sequence 1415 length: 1398 → est. time: 3415.32 secs
+ → up to est. time: 5.19189e+07 secs
+Sequence 1416 length: 387 → est. time: 72.4508 secs
+ → up to est. time: 5.1919e+07 secs
+Sequence 1417 length: 1005 → est. time: 1268.84 secs
+ → up to est. time: 5.19203e+07 secs
+Sequence 1418 length: 1008 → est. time: 1280.24 secs
+ → up to est. time: 5.19216e+07 secs
+Sequence 1419 length: 375 → est. time: 65.918 secs
+ → up to est. time: 5.19216e+07 secs
+Sequence 1420 length: 690 → est. time: 410.636 secs
+ → up to est. time: 5.1922e+07 secs
+Sequence 1421 length: 546 → est. time: 203.464 secs
+ → up to est. time: 5.19222e+07 secs
+Sequence 1422 length: 408 → est. time: 84.8966 secs
+ → up to est. time: 5.19223e+07 secs
+Sequence 1423 length: 321 → est. time: 41.3452 secs
+ → up to est. time: 5.19224e+07 secs
+Sequence 1424 length: 1182 → est. time: 2064.25 secs
+ → up to est. time: 5.19244e+07 secs
+Sequence 1425 length: 1434 → est. time: 3686.02 secs
+ → up to est. time: 5.19281e+07 secs
+Sequence 1426 length: 1638 → est. time: 5493.53 secs
+ → up to est. time: 5.19336e+07 secs
+Sequence 1427 length: 1974 → est. time: 9615.05 secs
+ → up to est. time: 5.19432e+07 secs
+Sequence 1428 length: 1356 → est. time: 3116.66 secs
+ → up to est. time: 5.19463e+07 secs
+Sequence 1429 length: 4233 → est. time: 94810.1 secs
+ → up to est. time: 5.20412e+07 secs
+Sequence 1430 length: 4419 → est. time: 107865 secs
+ → up to est. time: 5.2149e+07 secs
+Sequence 1431 length: 4377 → est. time: 104819 secs
+ → up to est. time: 5.22538e+07 secs
+Sequence 1432 length: 4293 → est. time: 98899.2 secs
+ → up to est. time: 5.23527e+07 secs
+Sequence 1433 length: 4368 → est. time: 104174 secs
+ → up to est. time: 5.24569e+07 secs
+Sequence 1434 length: 4164 → est. time: 90249 secs
+ → up to est. time: 5.25472e+07 secs
+Sequence 1435 length: 2421 → est. time: 17737.6 secs
+ → up to est. time: 5.25649e+07 secs
+Sequence 1436 length: 2199 → est. time: 13291.9 secs
+ → up to est. time: 5.25782e+07 secs
+Sequence 1437 length: 2133 → est. time: 12130.6 secs
+ → up to est. time: 5.25903e+07 secs
+Sequence 1438 length: 915 → est. time: 957.576 secs
+ → up to est. time: 5.25913e+07 secs
+Sequence 1439 length: 645 → est. time: 335.42 secs
+ → up to est. time: 5.25916e+07 secs
+Sequence 1440 length: 897 → est. time: 902.168 secs
+ → up to est. time: 5.25925e+07 secs
+Sequence 1441 length: 1662 → est. time: 5738.56 secs
+ → up to est. time: 5.25983e+07 secs
+Sequence 1442 length: 1731 → est. time: 6483.38 secs
+ → up to est. time: 5.26047e+07 secs
+Sequence 1443 length: 1521 → est. time: 4398.43 secs
+ → up to est. time: 5.26091e+07 secs
+Sequence 1444 length: 1071 → est. time: 1535.6 secs
+ → up to est. time: 5.26107e+07 secs
+Sequence 1445 length: 1455 → est. time: 3850.34 secs
+ → up to est. time: 5.26145e+07 secs
+Sequence 1446 length: 1503 → est. time: 4244.11 secs
+ → up to est. time: 5.26188e+07 secs
+Sequence 1447 length: 1500 → est. time: 4218.75 secs
+ → up to est. time: 5.2623e+07 secs
+Sequence 1448 length: 1800 → est. time: 7290 secs
+ → up to est. time: 5.26303e+07 secs
+Sequence 1449 length: 1656 → est. time: 5676.64 secs
+ → up to est. time: 5.2636e+07 secs
+Sequence 1450 length: 1779 → est. time: 7037.82 secs
+ → up to est. time: 5.2643e+07 secs
+Sequence 1451 length: 2343 → est. time: 16077.8 secs
+ → up to est. time: 5.26591e+07 secs
+Sequence 1452 length: 3417 → est. time: 49870.6 secs
+ → up to est. time: 5.27089e+07 secs
+Sequence 1453 length: 1140 → est. time: 1851.93 secs
+ → up to est. time: 5.27108e+07 secs
+Sequence 1454 length: 1245 → est. time: 2412.23 secs
+ → up to est. time: 5.27132e+07 secs
+Sequence 1455 length: 903 → est. time: 920.393 secs
+ → up to est. time: 5.27141e+07 secs
+Sequence 1456 length: 1200 → est. time: 2160 secs
+ → up to est. time: 5.27163e+07 secs
+Sequence 1457 length: 1878 → est. time: 8279.36 secs
+ → up to est. time: 5.27246e+07 secs
+Sequence 1458 length: 1986 → est. time: 9791.47 secs
+ → up to est. time: 5.27344e+07 secs
+Sequence 1459 length: 231 → est. time: 15.408 secs
+ → up to est. time: 5.27344e+07 secs
+Sequence 1460 length: 522 → est. time: 177.796 secs
+ → up to est. time: 5.27346e+07 secs
+Sequence 1461 length: 234 → est. time: 16.0161 secs
+ → up to est. time: 5.27346e+07 secs
+Sequence 1462 length: 4161 → est. time: 90054 secs
+ → up to est. time: 5.28246e+07 secs
+Sequence 1463 length: 4041 → est. time: 82485.3 secs
+ → up to est. time: 5.29071e+07 secs
+Sequence 1464 length: 4032 → est. time: 81935.4 secs
+ → up to est. time: 5.2989e+07 secs
+Sequence 1465 length: 675 → est. time: 384.434 secs
+ → up to est. time: 5.29894e+07 secs
+Sequence 1466 length: 588 → est. time: 254.122 secs
+ → up to est. time: 5.29897e+07 secs
+Sequence 1467 length: 2343 → est. time: 16077.8 secs
+ → up to est. time: 5.30058e+07 secs
+Sequence 1468 length: 1176 → est. time: 2032.97 secs
+ → up to est. time: 5.30078e+07 secs
+Sequence 1469 length: 1953 → est. time: 9311.44 secs
+ → up to est. time: 5.30171e+07 secs
+Sequence 1470 length: 1143 → est. time: 1866.59 secs
+ → up to est. time: 5.3019e+07 secs
+Sequence 1471 length: 1116 → est. time: 1737.41 secs
+ → up to est. time: 5.30207e+07 secs
+Sequence 1472 length: 1374 → est. time: 3242.43 secs
+ → up to est. time: 5.30239e+07 secs
+Sequence 1473 length: 1503 → est. time: 4244.11 secs
+ → up to est. time: 5.30282e+07 secs
+Sequence 1474 length: 852 → est. time: 773.088 secs
+ → up to est. time: 5.3029e+07 secs
+Sequence 1475 length: 822 → est. time: 694.265 secs
+ → up to est. time: 5.30297e+07 secs
+Sequence 1476 length: 912 → est. time: 948.188 secs
+ → up to est. time: 5.30306e+07 secs
+Sequence 1477 length: 924 → est. time: 986.111 secs
+ → up to est. time: 5.30316e+07 secs
+Sequence 1478 length: 900 → est. time: 911.25 secs
+ → up to est. time: 5.30325e+07 secs
+Sequence 1479 length: 771 → est. time: 572.893 secs
+ → up to est. time: 5.30331e+07 secs
+Sequence 1480 length: 1161 → est. time: 1956.17 secs
+ → up to est. time: 5.3035e+07 secs
+Sequence 1481 length: 1341 → est. time: 3014.37 secs
+ → up to est. time: 5.30381e+07 secs
+Sequence 1482 length: 1344 → est. time: 3034.64 secs
+ → up to est. time: 5.30411e+07 secs
+Sequence 1483 length: 1158 → est. time: 1941.05 secs
+ → up to est. time: 5.3043e+07 secs
+Sequence 1484 length: 1050 → est. time: 1447.03 secs
+ → up to est. time: 5.30445e+07 secs
+Sequence 1485 length: 1257 → est. time: 2482.65 secs
+ → up to est. time: 5.3047e+07 secs
+Sequence 1486 length: 1308 → est. time: 2797.26 secs
+ → up to est. time: 5.30498e+07 secs
+Sequence 1487 length: 1191 → est. time: 2111.76 secs
+ → up to est. time: 5.30519e+07 secs
+Sequence 1488 length: 1428 → est. time: 3639.94 secs
+ → up to est. time: 5.30555e+07 secs
+Sequence 1489 length: 1041 → est. time: 1410.14 secs
+ → up to est. time: 5.30569e+07 secs
+Sequence 1490 length: 1254 → est. time: 2464.92 secs
+ → up to est. time: 5.30594e+07 secs
+Sequence 1491 length: 963 → est. time: 1116.32 secs
+ → up to est. time: 5.30605e+07 secs
+Sequence 1492 length: 2040 → est. time: 10612.1 secs
+ → up to est. time: 5.30711e+07 secs
+Sequence 1493 length: 2028 → est. time: 10425.9 secs
+ → up to est. time: 5.30815e+07 secs
+Sequence 1494 length: 3192 → est. time: 40653.6 secs
+ → up to est. time: 5.31222e+07 secs
+Sequence 1495 length: 3297 → est. time: 44798.8 secs
+ → up to est. time: 5.3167e+07 secs
+Sequence 1496 length: 3159 → est. time: 39405.7 secs
+ → up to est. time: 5.32064e+07 secs
+Sequence 1497 length: 3291 → est. time: 44554.7 secs
+ → up to est. time: 5.32509e+07 secs
+Sequence 1498 length: 3342 → est. time: 46658.3 secs
+ → up to est. time: 5.32976e+07 secs
+Sequence 1499 length: 3261 → est. time: 43347.3 secs
+ → up to est. time: 5.3341e+07 secs
+Sequence 1500 length: 3198 → est. time: 40883.2 secs
+ → up to est. time: 5.33818e+07 secs
+Sequence 1501 length: 3174 → est. time: 39969.7 secs
+ → up to est. time: 5.34218e+07 secs
+Sequence 1502 length: 3021 → est. time: 34463.7 secs
+ → up to est. time: 5.34563e+07 secs
+Sequence 1503 length: 2757 → est. time: 26195.1 secs
+ → up to est. time: 5.34825e+07 secs
+Sequence 1504 length: 375 → est. time: 65.918 secs
+ → up to est. time: 5.34825e+07 secs
+Sequence 1505 length: 5847 → est. time: 249867 secs
+ → up to est. time: 5.37324e+07 secs
+Sequence 1506 length: 5733 → est. time: 235535 secs
+ → up to est. time: 5.39679e+07 secs
+Sequence 1507 length: 5718 → est. time: 233691 secs
+ → up to est. time: 5.42016e+07 secs
+Sequence 1508 length: 4518 → est. time: 115279 secs
+ → up to est. time: 5.43169e+07 secs
+Sequence 1509 length: 5613 → est. time: 221052 secs
+ → up to est. time: 5.4538e+07 secs
+Sequence 1510 length: 5664 → est. time: 227133 secs
+ → up to est. time: 5.47651e+07 secs
+Sequence 1511 length: 5715 → est. time: 233324 secs
+ → up to est. time: 5.49984e+07 secs
+Sequence 1512 length: 387 → est. time: 72.4508 secs
+ → up to est. time: 5.49985e+07 secs
+Sequence 1513 length: 2082 → est. time: 11281.1 secs
+ → up to est. time: 5.50098e+07 secs
+Sequence 1514 length: 1980 → est. time: 9702.99 secs
+ → up to est. time: 5.50195e+07 secs
+Sequence 1515 length: 1452 → est. time: 3826.57 secs
+ → up to est. time: 5.50233e+07 secs
+Sequence 1516 length: 1440 → est. time: 3732.48 secs
+ → up to est. time: 5.5027e+07 secs
+Sequence 1517 length: 1356 → est. time: 3116.66 secs
+ → up to est. time: 5.50301e+07 secs
+Sequence 1518 length: 1461 → est. time: 3898.17 secs
+ → up to est. time: 5.5034e+07 secs
+Sequence 1519 length: 1392 → est. time: 3371.54 secs
+ → up to est. time: 5.50374e+07 secs
+Sequence 1520 length: 1371 → est. time: 3221.23 secs
+ → up to est. time: 5.50406e+07 secs
+Sequence 1521 length: 1410 → est. time: 3504.03 secs
+ → up to est. time: 5.50441e+07 secs
+Sequence 1522 length: 1407 → est. time: 3481.71 secs
+ → up to est. time: 5.50476e+07 secs
+Sequence 1523 length: 663 → est. time: 364.293 secs
+ → up to est. time: 5.5048e+07 secs
+Sequence 1524 length: 1434 → est. time: 3686.02 secs
+ → up to est. time: 5.50517e+07 secs
+Sequence 1525 length: 753 → est. time: 533.697 secs
+ → up to est. time: 5.50522e+07 secs
+Sequence 1526 length: 750 → est. time: 527.344 secs
+ → up to est. time: 5.50527e+07 secs
+Sequence 1527 length: 330 → est. time: 44.9212 secs
+ → up to est. time: 5.50528e+07 secs
+Sequence 1528 length: 207 → est. time: 11.0872 secs
+ → up to est. time: 5.50528e+07 secs
+Sequence 1529 length: 225 → est. time: 14.2383 secs
+ → up to est. time: 5.50528e+07 secs
+Sequence 1530 length: 300 → est. time: 33.75 secs
+ → up to est. time: 5.50528e+07 secs
+Sequence 1531 length: 1170 → est. time: 2002.02 secs
+ → up to est. time: 5.50548e+07 secs
+Sequence 1532 length: 2748 → est. time: 25939.4 secs
+ → up to est. time: 5.50808e+07 secs
+Sequence 1533 length: 216 → est. time: 12.5971 secs
+ → up to est. time: 5.50808e+07 secs
+Sequence 1534 length: 2418 → est. time: 17671.7 secs
+ → up to est. time: 5.50985e+07 secs
+Sequence 1535 length: 1443 → est. time: 3755.86 secs
+ → up to est. time: 5.51022e+07 secs
+Sequence 1536 length: 201 → est. time: 10.1508 secs
+ → up to est. time: 5.51022e+07 secs
+Sequence 1537 length: 693 → est. time: 416.016 secs
+ → up to est. time: 5.51026e+07 secs
+Sequence 1538 length: 942 → est. time: 1044.87 secs
+ → up to est. time: 5.51037e+07 secs
+Sequence 1539 length: 840 → est. time: 740.88 secs
+ → up to est. time: 5.51044e+07 secs
+Sequence 1540 length: 693 → est. time: 416.016 secs
+ → up to est. time: 5.51048e+07 secs
+Sequence 1541 length: 996 → est. time: 1235.06 secs
+ → up to est. time: 5.51061e+07 secs
+Sequence 1542 length: 852 → est. time: 773.088 secs
+ → up to est. time: 5.51069e+07 secs
+Sequence 1543 length: 870 → est. time: 823.129 secs
+ → up to est. time: 5.51077e+07 secs
+Sequence 1544 length: 927 → est. time: 995.747 secs
+ → up to est. time: 5.51087e+07 secs
+Sequence 1545 length: 873 → est. time: 831.673 secs
+ → up to est. time: 5.51095e+07 secs
+Sequence 1546 length: 975 → est. time: 1158.57 secs
+ → up to est. time: 5.51107e+07 secs
+Sequence 1547 length: 1308 → est. time: 2797.26 secs
+ → up to est. time: 5.51135e+07 secs
+Sequence 1548 length: 1296 → est. time: 2720.98 secs
+ → up to est. time: 5.51162e+07 secs
+Sequence 1549 length: 1128 → est. time: 1794.06 secs
+ → up to est. time: 5.5118e+07 secs
+Sequence 1550 length: 1116 → est. time: 1737.41 secs
+ → up to est. time: 5.51197e+07 secs
+Sequence 1551 length: 1299 → est. time: 2739.92 secs
+ → up to est. time: 5.51225e+07 secs
+Sequence 1552 length: 1230 → est. time: 2326.08 secs
+ → up to est. time: 5.51248e+07 secs
+Sequence 1553 length: 852 → est. time: 773.088 secs
+ → up to est. time: 5.51256e+07 secs
+Sequence 1554 length: 855 → est. time: 781.283 secs
+ → up to est. time: 5.51263e+07 secs
+Sequence 1555 length: 405 → est. time: 83.0377 secs
+ → up to est. time: 5.51264e+07 secs
+Sequence 1556 length: 303 → est. time: 34.7727 secs
+ → up to est. time: 5.51264e+07 secs
+Sequence 1557 length: 1539 → est. time: 4556.44 secs
+ → up to est. time: 5.5131e+07 secs
+Sequence 1558 length: 1692 → est. time: 6054.96 secs
+ → up to est. time: 5.51371e+07 secs
+Sequence 1559 length: 717 → est. time: 460.752 secs
+ → up to est. time: 5.51375e+07 secs
+Sequence 1560 length: 1353 → est. time: 3096.02 secs
+ → up to est. time: 5.51406e+07 secs
+Sequence 1561 length: 1356 → est. time: 3116.66 secs
+ → up to est. time: 5.51437e+07 secs
+Sequence 1562 length: 2328 → est. time: 15771 secs
+ → up to est. time: 5.51595e+07 secs
+Sequence 1563 length: 2256 → est. time: 14352.5 secs
+ → up to est. time: 5.51739e+07 secs
+Sequence 1564 length: 2355 → est. time: 16326.1 secs
+ → up to est. time: 5.51902e+07 secs
+Sequence 1565 length: 204 → est. time: 10.6121 secs
+ → up to est. time: 5.51902e+07 secs
+Sequence 1566 length: 513 → est. time: 168.757 secs
+ → up to est. time: 5.51904e+07 secs
+Sequence 1567 length: 1707 → est. time: 6217.43 secs
+ → up to est. time: 5.51966e+07 secs
+Sequence 1568 length: 2409 → est. time: 17475.1 secs
+ → up to est. time: 5.52141e+07 secs
+Sequence 1569 length: 2382 → est. time: 16894.1 secs
+ → up to est. time: 5.5231e+07 secs
+Sequence 1570 length: 2394 → est. time: 17150.7 secs
+ → up to est. time: 5.52481e+07 secs
+Sequence 1571 length: 1977 → est. time: 9658.95 secs
+ → up to est. time: 5.52578e+07 secs
+Sequence 1572 length: 1965 → est. time: 9484.13 secs
+ → up to est. time: 5.52672e+07 secs
+Sequence 1573 length: 1956 → est. time: 9354.41 secs
+ → up to est. time: 5.52766e+07 secs
+Sequence 1574 length: 2022 → est. time: 10333.6 secs
+ → up to est. time: 5.52869e+07 secs
+Sequence 1575 length: 1911 → est. time: 8723.53 secs
+ → up to est. time: 5.52957e+07 secs
+Sequence 1576 length: 1344 → est. time: 3034.64 secs
+ → up to est. time: 5.52987e+07 secs
+Sequence 1577 length: 1518 → est. time: 4372.45 secs
+ → up to est. time: 5.53031e+07 secs
+Sequence 1578 length: 435 → est. time: 102.891 secs
+ → up to est. time: 5.53032e+07 secs
+Sequence 1579 length: 1518 → est. time: 4372.45 secs
+ → up to est. time: 5.53075e+07 secs
+Sequence 1580 length: 1170 → est. time: 2002.02 secs
+ → up to est. time: 5.53095e+07 secs
+Sequence 1581 length: 1092 → est. time: 1627.71 secs
+ → up to est. time: 5.53112e+07 secs
+Sequence 1582 length: 732 → est. time: 490.279 secs
+ → up to est. time: 5.53117e+07 secs
+Sequence 1583 length: 852 → est. time: 773.088 secs
+ → up to est. time: 5.53124e+07 secs
+Sequence 1584 length: 711 → est. time: 449.282 secs
+ → up to est. time: 5.53129e+07 secs
+Sequence 1585 length: 1896 → est. time: 8519.71 secs
+ → up to est. time: 5.53214e+07 secs
+Sequence 1586 length: 1830 → est. time: 7660.61 secs
+ → up to est. time: 5.53291e+07 secs
+Sequence 1587 length: 156 → est. time: 4.74552 secs
+ → up to est. time: 5.53291e+07 secs
+Sequence 1588 length: 1452 → est. time: 3826.57 secs
+ → up to est. time: 5.53329e+07 secs
+Sequence 1589 length: 1392 → est. time: 3371.54 secs
+ → up to est. time: 5.53363e+07 secs
+Sequence 1590 length: 1689 → est. time: 6022.81 secs
+ → up to est. time: 5.53423e+07 secs
+Sequence 1591 length: 1773 → est. time: 6966.85 secs
+ → up to est. time: 5.53493e+07 secs
+Sequence 1592 length: 1665 → est. time: 5769.69 secs
+ → up to est. time: 5.5355e+07 secs
+Sequence 1593 length: 1431 → est. time: 3662.93 secs
+ → up to est. time: 5.53587e+07 secs
+Sequence 1594 length: 4569 → est. time: 119227 secs
+ → up to est. time: 5.54779e+07 secs
+Sequence 1595 length: 2187 → est. time: 13075.4 secs
+ → up to est. time: 5.5491e+07 secs
+Sequence 1596 length: 843 → est. time: 748.846 secs
+ → up to est. time: 5.54917e+07 secs
+Sequence 1597 length: 2472 → est. time: 18882.3 secs
+ → up to est. time: 5.55106e+07 secs
+Sequence 1598 length: 2892 → est. time: 30234.6 secs
+ → up to est. time: 5.55409e+07 secs
+Sequence 1599 length: 2859 → est. time: 29211.4 secs
+ → up to est. time: 5.55701e+07 secs
+Sequence 1600 length: 996 → est. time: 1235.06 secs
+ → up to est. time: 5.55713e+07 secs
+Sequence 1601 length: 1545 → est. time: 4609.94 secs
+ → up to est. time: 5.55759e+07 secs
+Sequence 1602 length: 3246 → est. time: 42751.9 secs
+ → up to est. time: 5.56187e+07 secs
+Sequence 1603 length: 3375 → est. time: 48054.2 secs
+ → up to est. time: 5.56667e+07 secs
+Sequence 1604 length: 2931 → est. time: 31474.4 secs
+ → up to est. time: 5.56982e+07 secs
+Sequence 1605 length: 1407 → est. time: 3481.71 secs
+ → up to est. time: 5.57017e+07 secs
+Sequence 1606 length: 3354 → est. time: 47162.8 secs
+ → up to est. time: 5.57488e+07 secs
+Sequence 1607 length: 3357 → est. time: 47289.4 secs
+ → up to est. time: 5.57961e+07 secs
+Sequence 1608 length: 1233 → est. time: 2343.15 secs
+ → up to est. time: 5.57985e+07 secs
+Sequence 1609 length: 567 → est. time: 227.855 secs
+ → up to est. time: 5.57987e+07 secs
+Sequence 1610 length: 369 → est. time: 62.8043 secs
+ → up to est. time: 5.57988e+07 secs
+Sequence 1611 length: 3669 → est. time: 61738.1 secs
+ → up to est. time: 5.58605e+07 secs
+Sequence 1612 length: 3666 → est. time: 61586.8 secs
+ → up to est. time: 5.59221e+07 secs
+Sequence 1613 length: 3753 → est. time: 66076.3 secs
+ → up to est. time: 5.59882e+07 secs
+Sequence 1614 length: 3750 → est. time: 65918 secs
+ → up to est. time: 5.60541e+07 secs
+Sequence 1615 length: 3558 → est. time: 56302.5 secs
+ → up to est. time: 5.61104e+07 secs
+Sequence 1616 length: 3648 → est. time: 60684 secs
+ → up to est. time: 5.61711e+07 secs
+Sequence 1617 length: 2334 → est. time: 15893.2 secs
+ → up to est. time: 5.6187e+07 secs
+Sequence 1618 length: 2244 → est. time: 14124.7 secs
+ → up to est. time: 5.62011e+07 secs
+Sequence 1619 length: 2256 → est. time: 14352.5 secs
+ → up to est. time: 5.62154e+07 secs
+Sequence 1620 length: 2358 → est. time: 16388.6 secs
+ → up to est. time: 5.62318e+07 secs
+Sequence 1621 length: 2088 → est. time: 11378.9 secs
+ → up to est. time: 5.62432e+07 secs
+Sequence 1622 length: 2241 → est. time: 14068.1 secs
+ → up to est. time: 5.62573e+07 secs
+Sequence 1623 length: 2223 → est. time: 13731.8 secs
+ → up to est. time: 5.6271e+07 secs
+Sequence 1624 length: 2901 → est. time: 30517.8 secs
+ → up to est. time: 5.63015e+07 secs
+Sequence 1625 length: 3054 → est. time: 35605.5 secs
+ → up to est. time: 5.63371e+07 secs
+Sequence 1626 length: 3012 → est. time: 34156.6 secs
+ → up to est. time: 5.63713e+07 secs
+Sequence 1627 length: 3006 → est. time: 33952.9 secs
+ → up to est. time: 5.64052e+07 secs
+Sequence 1628 length: 2982 → est. time: 33146.1 secs
+ → up to est. time: 5.64384e+07 secs
+Sequence 1629 length: 2988 → est. time: 33346.6 secs
+ → up to est. time: 5.64717e+07 secs
+Sequence 1630 length: 2913 → est. time: 30898.1 secs
+ → up to est. time: 5.65026e+07 secs
+Sequence 1631 length: 2913 → est. time: 30898.1 secs
+ → up to est. time: 5.65335e+07 secs
+Sequence 1632 length: 2889 → est. time: 30140.7 secs
+ → up to est. time: 5.65637e+07 secs
+Sequence 1633 length: 2811 → est. time: 27764.7 secs
+ → up to est. time: 5.65914e+07 secs
+Sequence 1634 length: 1638 → est. time: 5493.53 secs
+ → up to est. time: 5.65969e+07 secs
+Sequence 1635 length: 1614 → est. time: 5255.58 secs
+ → up to est. time: 5.66022e+07 secs
+Sequence 1636 length: 1764 → est. time: 6861.29 secs
+ → up to est. time: 5.6609e+07 secs
+Sequence 1637 length: 1686 → est. time: 5990.77 secs
+ → up to est. time: 5.6615e+07 secs
+Sequence 1638 length: 1128 → est. time: 1794.06 secs
+ → up to est. time: 5.66168e+07 secs
+Sequence 1639 length: 1098 → est. time: 1654.69 secs
+ → up to est. time: 5.66185e+07 secs
+Sequence 1640 length: 1731 → est. time: 6483.38 secs
+ → up to est. time: 5.6625e+07 secs
+Sequence 1641 length: 1683 → est. time: 5958.85 secs
+ → up to est. time: 5.66309e+07 secs
+Sequence 1642 length: 1953 → est. time: 9311.44 secs
+ → up to est. time: 5.66402e+07 secs
+Sequence 1643 length: 966 → est. time: 1126.79 secs
+ → up to est. time: 5.66414e+07 secs
+Sequence 1644 length: 657 → est. time: 354.492 secs
+ → up to est. time: 5.66417e+07 secs
+Sequence 1645 length: 3315 → est. time: 45536.6 secs
+ → up to est. time: 5.66873e+07 secs
+Sequence 1646 length: 3243 → est. time: 42633.5 secs
+ → up to est. time: 5.67299e+07 secs
+Sequence 1647 length: 2718 → est. time: 25099.1 secs
+ → up to est. time: 5.6755e+07 secs
+Sequence 1648 length: 1305 → est. time: 2778.06 secs
+ → up to est. time: 5.67578e+07 secs
+Sequence 1649 length: 1851 → est. time: 7927.37 secs
+ → up to est. time: 5.67657e+07 secs
+Sequence 1650 length: 2736 → est. time: 25601.1 secs
+ → up to est. time: 5.67913e+07 secs
+Sequence 1651 length: 2187 → est. time: 13075.4 secs
+ → up to est. time: 5.68044e+07 secs
+Sequence 1652 length: 1200 → est. time: 2160 secs
+ → up to est. time: 5.68065e+07 secs
+Sequence 1653 length: 1110 → est. time: 1709.54 secs
+ → up to est. time: 5.68082e+07 secs
+Sequence 1654 length: 969 → est. time: 1137.32 secs
+ → up to est. time: 5.68094e+07 secs
+Sequence 1655 length: 984 → est. time: 1190.95 secs
+ → up to est. time: 5.68106e+07 secs
+Sequence 1656 length: 2733 → est. time: 25517 secs
+ → up to est. time: 5.68361e+07 secs
+Sequence 1657 length: 2142 → est. time: 12284.8 secs
+ → up to est. time: 5.68484e+07 secs
+Sequence 1658 length: 2130 → est. time: 12079.5 secs
+ → up to est. time: 5.68604e+07 secs
+Sequence 1659 length: 657 → est. time: 354.492 secs
+ → up to est. time: 5.68608e+07 secs
+Sequence 1660 length: 6330 → est. time: 317045 secs
+ → up to est. time: 5.71778e+07 secs
+Sequence 1661 length: 1275 → est. time: 2590.84 secs
+ → up to est. time: 5.71804e+07 secs
+Sequence 1662 length: 1116 → est. time: 1737.41 secs
+ → up to est. time: 5.71822e+07 secs
+Sequence 1663 length: 1092 → est. time: 1627.71 secs
+ → up to est. time: 5.71838e+07 secs
+Sequence 1664 length: 939 → est. time: 1034.92 secs
+ → up to est. time: 5.71848e+07 secs
+Sequence 1665 length: 966 → est. time: 1126.79 secs
+ → up to est. time: 5.7186e+07 secs
+Sequence 1666 length: 1842 → est. time: 7812.3 secs
+ → up to est. time: 5.71938e+07 secs
+Sequence 1667 length: 1614 → est. time: 5255.58 secs
+ → up to est. time: 5.7199e+07 secs
+Sequence 1668 length: 1605 → est. time: 5168.15 secs
+ → up to est. time: 5.72042e+07 secs
+Sequence 1669 length: 1449 → est. time: 3802.9 secs
+ → up to est. time: 5.7208e+07 secs
+Sequence 1670 length: 1215 → est. time: 2242.02 secs
+ → up to est. time: 5.72102e+07 secs
+Sequence 1671 length: 1197 → est. time: 2143.84 secs
+ → up to est. time: 5.72124e+07 secs
+Sequence 1672 length: 1932 → est. time: 9014.29 secs
+ → up to est. time: 5.72214e+07 secs
+Sequence 1673 length: 687 → est. time: 405.303 secs
+ → up to est. time: 5.72218e+07 secs
+Sequence 1674 length: 1152 → est. time: 1911.03 secs
+ → up to est. time: 5.72237e+07 secs
+Sequence 1675 length: 1584 → est. time: 4967.93 secs
+ → up to est. time: 5.72287e+07 secs
+Sequence 1676 length: 549 → est. time: 206.836 secs
+ → up to est. time: 5.72289e+07 secs
+Sequence 1677 length: 1074 → est. time: 1548.54 secs
+ → up to est. time: 5.72304e+07 secs
+Sequence 1678 length: 1944 → est. time: 9183.3 secs
+ → up to est. time: 5.72396e+07 secs
+Sequence 1679 length: 2001 → est. time: 10015 secs
+ → up to est. time: 5.72496e+07 secs
+Sequence 1680 length: 987 → est. time: 1201.88 secs
+ → up to est. time: 5.72508e+07 secs
+Sequence 1681 length: 2001 → est. time: 10015 secs
+ → up to est. time: 5.72609e+07 secs
+Sequence 1682 length: 690 → est. time: 410.636 secs
+ → up to est. time: 5.72613e+07 secs
+
+Total estimated time: 5.72613e+07 secs
