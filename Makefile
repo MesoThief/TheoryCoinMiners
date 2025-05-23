@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -std=c++17 -Iinclude -g -O1 -fsanitize=address
+CXXFLAGS = -std=c++17 -Iinclude -O3 -march=native -flto -DNDEBUG -pthread
 BIN_DIR = bin
 
 DEBUG ?= 0
