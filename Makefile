@@ -1,10 +1,15 @@
 CXX = g++
-CXXFLAGS = -std=c++17 -Iinclude
+CXXFLAGS = -std=c++17 -Iinclude -g
 BIN_DIR = bin
 
 DEBUG ?= 0
 ifeq ($(DEBUG), 1)
 	CXXFLAGS += -DDEBUG
+endif
+
+NOCP ?= 0
+ifeq ($(NOCP), 1)
+	CXXFLAGS += -DNOCP
 endif
 
 MAIN = main

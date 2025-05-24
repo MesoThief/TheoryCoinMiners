@@ -198,10 +198,14 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(const string& text, const string&
 
                 // make j_2 a starting point of x_arch_indexes
                 x_arch_indexes.insert(x_arch_indexes.begin(), j_2);
-
+#ifdef NOCP
+                // In case of NO-CheckPoint
+                string z = computeShortlexNormalForm(sub_T_string, k);
+#else
                 // line 21: z <- ShortLex_k(T'[j_2 : j_1]) using the checkpoint mechanism and Map
                 // line 22: Save Checkpoints for each arch link of T'[j_2 : j_1]
                 string z = shortlex_with_checkpoint(k, pattern_universality, sub_T_string, check_points, x_arch_indexes, y_arch_indexes);
+#endif
 
                 // line 23: if z ~k ShortLex(p)
                 if(z != shortlex_p.shortlexNormalForm) continue;
@@ -431,6 +435,10 @@ string MatchSimK::shortlex_with_checkpoint(
                 (i == 0) ? vector<int>(Alphabet::getInstance().size(), 1) : x_vectors[i];
             vector<int> y_vector =
                 (i == pattern_universality - 1) ? vector<int>(Alphabet::getInstance().size(), 1) : y_vectors[i + 1];
+
+            // Failsafe (Not sure if this is valid...)
+            if (x_vector.size() == 0) x_vector = vector<int>(Alphabet::getInstance().size(), 1);
+            if (y_vector.size() == 0) y_vector = vector<int>(Alphabet::getInstance().size(), 1);
 
             debug(cout << "[XY-link COMPUTE] i = " << i
                         << ", Will compute shortlex for substring [" << x_val << ", " << y_val << "]"
