@@ -5,6 +5,7 @@
 #include <vector>
 #include <chrono>
 #include <unordered_map>
+#include <nlohmann/json.hpp>
 
 #include "data/MatchSimK.h"
 #include "data/Shortlex.h"
@@ -14,14 +15,14 @@
 #include "utils/CalculateUniversality.h"
 
 using namespace std;
+using json = nlohmann::json;
 
 // ------------------
 // Running Time Analysis
 // ------------------
 int main(int argc, char* argv[]) {
-    if (argc < 2) {
-        cerr << "You must enter a test input file" << endl;
-        cerr << "Usage: " << argv[0] << " <test-input-file-name>" << endl;
+    if (argc < 3) {
+        cerr << "Usage: " << argv[0] << " <input-file> <output-file-path>\n";
         return 1;
     }
 
@@ -32,6 +33,32 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
+    // HAIL JSON
+    json input_json = json::parse(inputFile);
+
+    string alphabet = input_json["alphabet"];
+    int k = input_json["k"];
+    cout << "k: " << k << endl;
+
+    vector<int> text_len_vec;
+    cout << "|T|: ";
+    for (int tls : input_json["text_length"]) {
+        text_len_vec.push_back(tls);
+        cout << tls << " ";
+    }
+    cout << endl;
+
+    json output_res;
+    output_res["alphabet"] = alphabet;
+    output_res["k"] = k;
+#ifdef NOCP
+    output_res["use_checkpoint"] = false;
+#else
+    output_res["use_checkpoint"] = true;
+#endif
+    output_res["result"] = json::array();
+
+    /*
     string alphabet;
     int k;
     vector<int> text_len_vec;
@@ -69,6 +96,7 @@ int main(int argc, char* argv[]) {
         cerr << "No experiment request was read. Strange!" << endl;
         return 1;
     }
+    */
 
     // Testing Part
     string text, subseq, shortlex_subseq;
@@ -126,18 +154,40 @@ int main(int argc, char* argv[]) {
         auto f_t = chrono::high_resolution_clock::now();
         cout << "Timing Ended." << endl;
         // cout << "Found Best Matching Pattern P=" << best_sl << " with Matching Count=" << best_count << endl;
-        cout << "Found Best Matching Pattern for Each Univ. Idx:" << endl;
+        // Build JSON instead of printing.
+        json res_json;
+        auto duration = chrono::duration_cast<chrono::milliseconds>(f_t - s_t);
+        res_json["text"] = text;
+        res_json["text_length"] = tl;
+        res_json["duration_ms"] = duration.count();
+        res_json["patterns"] = json::array();
+
         for (int i = 0; i < k; i++) {
             if (sl_cnt_map[i].second == -1) {
-                cout << "i=" << i << ": No match found for given univ. idx!" << endl;
+                res_json["patterns"].push_back({{"universality_index", i}, {"has_match", false}});
             }
             else {
-                cout << "i=" << i << ": " << sl_cnt_map[i].first << " w/ " << sl_cnt_map[i].second << " Matches" << endl;
+                res_json["patterns"].push_back({{"universality_index", i}, {"has_match", true}, {"pattern", sl_cnt_map[i].first}, {"match_count", sl_cnt_map[i].second}});
             }
         }
-        auto duration = chrono::duration_cast<chrono::microseconds>(f_t - s_t);
-        cout << "The Experiment Took: " << duration.count() << " microseconds." << endl;
+
+        output_res["result"].push_back(res_json);
+
+        // cout << "Found Best Matching Pattern for Each Univ. Idx:" << endl;
+        // for (int i = 0; i < k; i++) {
+        //     if (sl_cnt_map[i].second == -1) {
+        //         cout << "i=" << i << ": No match found for given univ. idx!" << endl;
+        //     }
+        //     else {
+        //         cout << "i=" << i << ": " << sl_cnt_map[i].first << " w/ " << sl_cnt_map[i].second << " Matches" << endl;
+        //     }
+        // }
+        // auto duration = chrono::duration_cast<chrono::microseconds>(f_t - s_t);
+        // cout << "The Experiment Took: " << duration.count() << " microseconds." << endl;
     }
+
+    ofstream output(argv[2]);
+    output << output_res.dump(4);
 
     return 0;
 }
