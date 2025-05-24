@@ -29,7 +29,10 @@ int main(int argc, char* argv[]) {
         istringstream iss(line);
         string sequence;
         int dna_class;
-        if (iss >> sequence >> dna_class && sequence.size() < 1000) {
+        if (iss >> sequence >> dna_class &&
+            sequence.size() < 600 &&
+            sequence.find('N') == string::npos
+        ) {
             json obj = json::object();
             obj["id"] = ++id;
             obj["class"] = dna_class;
