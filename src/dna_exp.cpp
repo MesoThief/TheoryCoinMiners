@@ -37,11 +37,12 @@ int main(int argc, char* argv[]) {
 
     // 2) Launch one async task per sequence
     json results = json::array();
+    int N = sequences.size();
+    vector<future<json>> futures;
+    futures.reserve(N);
     
     for (auto &data : sequences) {
-        results.push_back(async(launch::async, [&data]() {
-            cout << "Processing sequence " << data["id"] << " ..." << endl;
-
+        futures.emplace_back(async(launch::async, [&data]() {
             const string& sequence = data["sequence"];
             int exp_k = calculateUniversalityIndex(sequence);
 
@@ -102,11 +103,13 @@ int main(int argc, char* argv[]) {
             result["most_frequent_pattern"] = most_frequent_pattern;
             result["most_frequent_pattern_snf"] = most_frequent_pattern_snf;
             result["num_matches"] = most_frequent_pattern_num_matches;
-
-            cout << "Processing sequence " << data["id"] << " finished in " << duration << " ms" << endl;
-
+            
             return result;
-        }).get());
+        }));
+    }
+
+    for (int i = 0; i < N; ++i) {
+        results.push_back(futures[i].get());
     }
 
     json out_json = json::object();
