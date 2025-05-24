@@ -53,6 +53,7 @@ int main(int argc, char* argv[]) {
             json result = json::object();
             result["id"] = data["id"];
             result["sequence"] = sequence;
+            result["sequence_length"] = data["sequence_length"];
             result["class"] = data["class"];
             result["expected k"] = exp_k;
 
@@ -103,7 +104,7 @@ int main(int argc, char* argv[]) {
             result["most_frequent_pattern"] = most_frequent_pattern;
             result["most_frequent_pattern_snf"] = most_frequent_pattern_snf;
             result["num_matches"] = most_frequent_pattern_num_matches;
-            
+
             return result;
         }));
     }
