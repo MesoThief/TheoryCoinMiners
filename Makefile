@@ -13,6 +13,7 @@ SHORTLEX = shortlex
 XY_TREE = xy_tree
 MATCH_SIM_K = match_sim_k
 DNA_EXP = dna_exp
+DNA_DATASET_CONVERTER = dna_dataset_converter
 
 SRC := $(wildcard src/data/*.cpp src/utils/*.cpp)
 
@@ -39,6 +40,10 @@ $(MATCH_SIM_K): src/match_sim_k.cpp $(SRC)
 $(DNA_EXP): src/dna_exp.cpp $(SRC)
 	@mkdir -p $(BIN_DIR)
 	$(CXX) $(CXXFLAGS) $< $(SRC) -o $(BIN_DIR)/$@
+
+$(DNA_DATASET_CONVERTER): src/dna_dataset_converter.cpp
+	@mkdir -p $(BIN_DIR)
+	$(CXX) -Iinclude $< -o $(BIN_DIR)/$@
 
 all: $(MAIN) $(SIMON_TREE) $(SHORTLEX) $(XY_TREE) $(MATCH_SIM_K) $(DNA_EXP)
 
