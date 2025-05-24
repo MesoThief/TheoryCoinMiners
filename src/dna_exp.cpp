@@ -43,7 +43,7 @@ int main(int argc, char* argv[]) {
             cout << "Processing sequence " << data["id"] << " ..." << endl;
 
             const string& sequence = data["sequence"];
-            int exp_k = calculateUniversalityIndex(sequence) - 1;
+            int exp_k = calculateUniversalityIndex(sequence);
 
             // Cache to skip duplicate SNF builds (keyed by substring view)
             unordered_map<string_view, string> snf_cache;
