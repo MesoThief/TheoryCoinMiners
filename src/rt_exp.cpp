@@ -100,6 +100,7 @@ int main(int argc, char* argv[]) {
 
     // Testing Part
     string text, subseq, shortlex_subseq;
+    set<string> sl_history;
     // unordered_map<string, int> sl_cnt_map;
     // unordered_map<string, int>::const_iterator sl_find;
     int p_count, best_count, iota;
@@ -112,6 +113,7 @@ int main(int argc, char* argv[]) {
         
         // Effectively reset the vector
         for (auto pr : sl_cnt_map) pr.second = -1;
+        sl_history.clear();
 
         cout << "Timing Started." << endl;
 
@@ -125,8 +127,8 @@ int main(int argc, char* argv[]) {
                 iota = calculateUniversalityIndex(shortlex_subseq);
 
                 // // This operation has const. time complexity unless being sooooooooooooooooo unlucky
-                // if (sl_cnt_map.count(shortlex_subseq) != 0) continue;
-                if(iota == k) continue;
+                if (sl_history.find(shortlex_subseq) != sl_history.end()) continue;
+                if (iota == k) continue;
 
                 p_count = 0;
                 vector<MatchSimK::triple> positions = MatchSimK::matchSimK(text, shortlex_subseq, k);
@@ -156,10 +158,10 @@ int main(int argc, char* argv[]) {
         // cout << "Found Best Matching Pattern P=" << best_sl << " with Matching Count=" << best_count << endl;
         // Build JSON instead of printing.
         json res_json;
-        auto duration = chrono::duration_cast<chrono::milliseconds>(f_t - s_t);
+        auto duration = chrono::duration<double, milli>(f_t - s_t).count();
         res_json["text"] = text;
         res_json["text_length"] = tl;
-        res_json["duration_ms"] = duration.count();
+        res_json["duration_ms"] = duration;
         res_json["patterns"] = json::array();
 
         for (int i = 0; i < k; i++) {
