@@ -7,6 +7,7 @@
 #include <unordered_map>
 #include <vector>
 #include <chrono>              // for timing
+#include <nlohmann/json.hpp>
 
 #include "data/MatchSimK.h"
 #include "utils/Alphabet.h"
@@ -15,60 +16,48 @@
 #include "utils/CalculateUniversality.h"
 
 using namespace std;
-
-// A small struct to hold each result for printing later
-struct Result {
-    string sequence;
-    int    key;
-    int    exp_k;
-    string best_orig, best_snf;
-    int    best_count;
-    double duration_ms;
-};
+using json = nlohmann::json;
 
 int main(int argc, char* argv[]) {
-    if (argc < 2) {
-        cerr << "Usage: " << argv[0] << " <input-file>\n";
+    if (argc < 3) {
+        cerr << "Usage: " << argv[0] << " <input-file> <output-file-path>\n";
         return 1;
     }
 
     // 0) Read all inputs first
-    ifstream in(argv[1]);
-    string title;
-    getline(in, title);
-    cout << "Title: " << title << "\n\n";
+    ifstream input_file(argv[1]);
+    json input_json = json::parse(input_file);
+    string animal = input_json["animal"];
 
-    vector<pair<string,int>> inputs;
-    string line;
-    while (getline(in, line)) {
-        if (line.empty()) continue;
-        istringstream iss(line);
-        string seq;
-        int k;
-        if (iss >> seq >> k && seq.size() < 1000)
-            inputs.emplace_back(move(seq), k);
-    }
+    json sequences = input_json["sequences"];
 
     // 1) Init alphabet once
     Alphabet &alpha = Alphabet::getInstance();
     alpha.setAlphabet("ATGC");
 
     // 2) Launch one async task per sequence
-    int N = inputs.size();
-    vector<future<Result>> futures;
-    futures.reserve(N);
+    json results = json::array();
+    
+    for (auto &data : sequences) {
+        results.push_back(async(launch::async, [&data]() {
+            cout << "Processing sequence " << data["id"] << " ..." << endl;
 
-    for (auto &inp : inputs) {
-        futures.emplace_back(async(launch::async, [&inp]() {
-            const string& sequence = inp.first;
-            int key = inp.second;
-            int exp_k = calculateUniversalityIndex(sequence);
+            const string& sequence = data["sequence"];
+            int exp_k = calculateUniversalityIndex(sequence) - 1;
 
             // Cache to skip duplicate SNF builds (keyed by substring view)
             unordered_map<string_view, string> snf_cache;
             snf_cache.reserve(1024);
 
-            Result R{sequence, key, exp_k, "", "", 0, 0.0};
+            json result = json::object();
+            result["id"] = data["id"];
+            result["sequence"] = sequence;
+            result["class"] = data["class"];
+            result["expected k"] = exp_k;
+
+            string most_frequent_pattern = "";
+            string most_frequent_pattern_snf = "";
+            int most_frequent_pattern_num_matches = 0;
 
             auto t0 = chrono::high_resolution_clock::now();
 
@@ -91,39 +80,41 @@ int main(int argc, char* argv[]) {
                     }
 
                     auto pos = MatchSimK::matchSimK(sequence, snf, exp_k);
-                    int total = 0;
+                    int num_matches = 0;
                     for (const auto &t : pos) {
                         const auto &iint = get<0>(t);
                         const auto &jint = get<1>(t);
-                        total += (iint.end - iint.start + 1) *
+                        num_matches += (iint.end - iint.start + 1) *
                                  (jint.end - jint.start + 1);
                     }
-                    if (total > R.best_count) {
-                        R.best_count = total;
-                        R.best_orig  = string(raw_view);
-                        R.best_snf   = snf;
+                    if (num_matches > most_frequent_pattern_num_matches) {
+                        most_frequent_pattern_num_matches = num_matches;
+                        most_frequent_pattern = string(raw_view);
+                        most_frequent_pattern_snf = snf;
                     }
                 }
             }
 
             auto t1 = chrono::high_resolution_clock::now();
-            R.duration_ms = chrono::duration<double, milli>(t1 - t0).count();
-            return R;
-        }));
+            double duration = chrono::duration<double, milli>(t1 - t0).count();
+            result["duration_ms"] = duration;
+
+            result["most_frequent_pattern"] = most_frequent_pattern;
+            result["most_frequent_pattern_snf"] = most_frequent_pattern_snf;
+            result["num_matches"] = most_frequent_pattern_num_matches;
+
+            cout << "Processing sequence " << data["id"] << " finished in " << duration << " ms" << endl;
+
+            return result;
+        }).get());
     }
 
-    // 3) Collect & print in order
-    for (int i = 0; i < N; ++i) {
-        Result R = futures[i].get();
-        cout << "Sequence " << (i+1) << ":\n"
-             << "[" << R.sequence << "]\n"
-             << "expected k: " << R.exp_k << "\n"
-             << "Original substring:       " << R.best_orig  << "\n"
-             << "Shortlex-normalized form: " << R.best_snf   << "\n"
-             << "-> with " << R.best_count << " matches\n"
-             << "Processing time: " << R.duration_ms << " ms\n"
-             << "-> aligning with key: " << R.key << "\n\n";
-    }
+    json out_json = json::object();
+    out_json["animal"] = animal;
+    out_json["results"] = results;
+
+    ofstream output(argv[2]);
+    output << out_json.dump(4);
 
     return 0;
 }
