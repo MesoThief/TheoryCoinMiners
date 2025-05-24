@@ -23,6 +23,7 @@ int main(int argc, char* argv[]) {
     getline(input, line);
 
     json sequences = json::array();
+    int id = 0;
     while (getline(input, line)) {
         if (line.empty()) continue;
         istringstream iss(line);
@@ -30,6 +31,7 @@ int main(int argc, char* argv[]) {
         int dna_class;
         if (iss >> sequence >> dna_class && sequence.size() < 1000) {
             json obj = json::object();
+            obj["id"] = ++id;
             obj["class"] = dna_class;
             obj["sequence"] = sequence;
             obj["sequence_length"] = sequence.size();
