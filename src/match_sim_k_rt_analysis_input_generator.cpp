@@ -48,9 +48,9 @@ int main(int argc, char* argv[]) {
     output_res["k"] = k;
     output_res["pattern"] = pattern;
     output_res["pattern_shortlex"] = pattern_shortlex;
+    output_res["text_lengths"] = text_lengths;
 
     output_res["texts"] = json::array();
-
     for (int text_length : text_lengths) {
         string text = generateRandomText(text_length);
         output_res["texts"].push_back(text);

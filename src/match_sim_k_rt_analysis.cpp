@@ -82,7 +82,7 @@ int main(int argc, char* argv[]) {
         }
 
         json res_json;
-        res_json["text"] = text;
+        // res_json["text"] = text;
         res_json["text_length"] = text_length;
         res_json["duration_ms"] = duration;
         res_json["num_matches"] = num_matches;

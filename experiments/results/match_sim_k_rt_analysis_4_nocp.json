@@ -1,0 +1,84 @@
+{
+    "alphabet": "ABCD",
+    "k": 5,
+    "pattern": "ADBADADCBAAABCCAADDDCCBABDCDACBBCBABCDDBDDABABBACA",
+    "pattern_shortlex": "ABCDABCDABCDABCDABCD",
+    "result": [
+        {
+            "duration_ms": 29.19979,
+            "num_matches": 701015660,
+            "text_length": 100000
+        },
+        {
+            "duration_ms": 59.416074,
+            "num_matches": -1482879456,
+            "text_length": 200000
+        },
+        {
+            "duration_ms": 96.629892,
+            "num_matches": 2038243984,
+            "text_length": 300000
+        },
+        {
+            "duration_ms": 141.084241,
+            "num_matches": -1620440408,
+            "text_length": 400000
+        },
+        {
+            "duration_ms": 203.484471,
+            "num_matches": 425836320,
+            "text_length": 500000
+        },
+        {
+            "duration_ms": 288.578544,
+            "num_matches": -412713241,
+            "text_length": 600000
+        },
+        {
+            "duration_ms": 364.07276,
+            "num_matches": 158754158,
+            "text_length": 700000
+        },
+        {
+            "duration_ms": 477.082899,
+            "num_matches": 2140311162,
+            "text_length": 800000
+        },
+        {
+            "duration_ms": 604.95965,
+            "num_matches": 1236909850,
+            "text_length": 900000
+        },
+        {
+            "duration_ms": 716.471586,
+            "num_matches": 1743589868,
+            "text_length": 1000000
+        },
+        {
+            "duration_ms": 820.14254,
+            "num_matches": -634586473,
+            "text_length": 1100000
+        },
+        {
+            "duration_ms": 975.922547,
+            "num_matches": -1602665095,
+            "text_length": 1200000
+        },
+        {
+            "duration_ms": 1120.836832,
+            "num_matches": -1160737151,
+            "text_length": 1300000
+        },
+        {
+            "duration_ms": 1282.880537,
+            "num_matches": 691205383,
+            "text_length": 1400000
+        },
+        {
+            "duration_ms": 1546.04668,
+            "num_matches": -341665323,
+            "text_length": 1500000
+        }
+    ],
+    "use_checkpoint": false
+}
