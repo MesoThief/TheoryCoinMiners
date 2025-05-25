@@ -199,7 +199,7 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(const string& text, const string&
                 x_arch_indexes.insert(x_arch_indexes.begin(), j_2);
 #ifdef NOCP
                 // In case of NO-CheckPoint
-                string z = computeShortlexNormalForm(sub_T_string, k);
+                string z = computeShortlexNormalForm(sub_T_string.substr(j_2, j_1 - j_2), k);
 #else
                 // line 21: z <- ShortLex_k(T'[j_2 : j_1]) using the checkpoint mechanism and Map
                 // line 22: Save Checkpoints for each arch link of T'[j_2 : j_1]
