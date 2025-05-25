@@ -21,6 +21,7 @@ RT_EXP = rt_exp
 RT_EXP_NOCP = rt_exp_nocp
 MATCH_SIM_K_RT_ANALYSIS = match_sim_k_rt_analysis
 MATCH_SIM_K_RT_ANALYSIS_NOCP = match_sim_k_rt_analysis_nocp
+MATCH_SIM_K_RT_ANALYSIS_INPUT_GENERATOR = match_sim_k_rt_analysis_input_generator
 
 SRC := $(wildcard src/data/*.cpp src/utils/*.cpp)
 
@@ -57,6 +58,10 @@ $(MATCH_SIM_K_RT_ANALYSIS): src/match_sim_k_rt_analysis.cpp $(SRC)
 	$(CXX) $(CXXFLAGS) $< $(SRC) -o $(BIN_DIR)/$@
 
 $(MATCH_SIM_K_RT_ANALYSIS_NOCP): src/match_sim_k_rt_analysis.cpp $(SRC)
+	@mkdir -p $(BIN_DIR)
+	$(CXX) $(CXXFLAGS) -DNOCP $< $(SRC) -o $(BIN_DIR)/$@
+
+$(MATCH_SIM_K_RT_ANALYSIS_INPUT_GENERATOR): src/match_sim_k_rt_analysis_input_generator.cpp $(SRC)
 	@mkdir -p $(BIN_DIR)
 	$(CXX) $(CXXFLAGS) -DNOCP $< $(SRC) -o $(BIN_DIR)/$@
 
