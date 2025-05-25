@@ -97,7 +97,6 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(const string& text, const string&
         int offset = sub_T.start;
 
         // line 10: Map <- empty map for saving vectors and substrings
-        unordered_map<int, string> map;  // TODO: checkpoint 관련 구현 시 수정
 
         // line 11: Preprocess X- and Y-ranker array
         RankerTable rankers = RankerTable(sub_T_string);
