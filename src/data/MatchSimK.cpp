@@ -376,7 +376,6 @@ string MatchSimK::shortlex_with_checkpoint(
                         << ", Will compute shortlex for substring [" << x_val << ", " << y_val << "]"
                         << " = " << sub_T_string.substr(x_val, y_val - x_val) << endl);
 
-            int threshold = k + 1 - pattern_universality;
             debug(cout <<  "threshold: " << threshold << endl);
             ShortlexResult partialShortlex = computePartialShortlexNormalForm(
                 sub_T_string.substr(x_val, y_val - x_val),
