@@ -348,8 +348,8 @@ string MatchSimK::shortlex_with_checkpoint(
 
     // compute YX-link first
     for (int i = 0; i <= pattern_universality; i++) {
-        int x_val = x_arch_indexes[i];
-        int y_val = y_arch_indexes[pattern_universality - i];
+        const int x_val = x_arch_indexes[i];
+        const int y_val = y_arch_indexes[pattern_universality - i];
 
         Interval yx_link(x_val, y_val);
 
@@ -388,12 +388,14 @@ string MatchSimK::shortlex_with_checkpoint(
 
             partial_shortlex_z[2 * i] = partialShortlex.shortlexNormalForm;
 
-            check_points[x_val].emplace_back(
+            if (i != 0 && i != pattern_universality) {
+                check_points[x_val].emplace_back(
                 yx_link,
                 partialShortlex.shortlexNormalForm,
                 partialShortlex.X_vector,
                 partialShortlex.Y_vector
                 );
+            }
             x_vectors[i] = partialShortlex.X_vector;
             y_vectors[i] = partialShortlex.Y_vector;
 
