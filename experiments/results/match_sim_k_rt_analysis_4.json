@@ -5,80 +5,80 @@
     "pattern_shortlex": "ABCDABCDABCDABCDABCD",
     "result": [
         {
-            "duration_ms": 28.746172,
+            "duration_ms": 28.21903,
             "num_matches": 4995982956,
             "text_length": 100000
         },
         {
-            "duration_ms": 61.872393,
+            "duration_ms": 56.892435,
             "num_matches": 19991957024,
             "text_length": 200000
         },
         {
-            "duration_ms": 105.930321,
+            "duration_ms": 101.381874,
             "num_matches": 44987916944,
             "text_length": 300000
         },
         {
-            "duration_ms": 141.226055,
+            "duration_ms": 148.369966,
             "num_matches": 79983938216,
             "text_length": 400000
         },
         {
-            "duration_ms": 205.32295,
+            "duration_ms": 207.148993,
             "num_matches": 124979887904,
             "text_length": 500000
         },
         {
-            "duration_ms": 278.33825,
+            "duration_ms": 297.919727,
             "num_matches": 179975913191,
             "text_length": 600000
         },
         {
-            "duration_ms": 352.961773,
+            "duration_ms": 407.048804,
             "num_matches": 244971890030,
             "text_length": 700000
         },
         {
-            "duration_ms": 455.12154,
+            "duration_ms": 533.01485,
             "num_matches": 319967891066,
             "text_length": 800000
         },
         {
-            "duration_ms": 567.740973,
+            "duration_ms": 583.321842,
             "num_matches": 404963835674,
             "text_length": 900000
         },
         {
-            "duration_ms": 688.771276,
+            "duration_ms": 712.904657,
             "num_matches": 499959796204,
             "text_length": 1000000
         },
         {
-            "duration_ms": 820.101965,
+            "duration_ms": 853.848355,
             "num_matches": 604955802263,
             "text_length": 1100000
         },
         {
-            "duration_ms": 984.505151,
+            "duration_ms": 1071.243265,
             "num_matches": 719951840633,
             "text_length": 1200000
         },
         {
-            "duration_ms": 1131.733919,
+            "duration_ms": 1231.490994,
             "num_matches": 844947820161,
             "text_length": 1300000
         },
         {
-            "duration_ms": 1318.911523,
+            "duration_ms": 1373.724105,
             "num_matches": 979943748871,
             "text_length": 1400000
         },
         {
-            "duration_ms": 1538.546993,
+            "duration_ms": 1549.966095,
             "num_matches": 1124939766229,
             "text_length": 1500000
         }
     ],
-    "use_checkpoint": false
+    "use_checkpoint": true
 }

@@ -6,6 +6,7 @@
 #include <chrono>
 #include <unordered_map>
 #include <nlohmann/json.hpp>
+#include <omp.h>
 
 #include "data/MatchSimK.h"
 #include "data/Shortlex.h"
@@ -18,7 +19,7 @@ using namespace std;
 using json = nlohmann::json;
 
 // ------------------
-// MatchSimK Running Time Analysis
+// Naive MatchSimK Running Time Analysis
 // ------------------
 int main(int argc, char* argv[]) {
     if (argc < 3) {
@@ -67,18 +68,36 @@ int main(int argc, char* argv[]) {
         int text_length = text.size();
         cout << "Text length: " << text_length << endl;
         
+        // sub_texts 추출 병렬적 전처리
+        vector<string> sub_texts;
+        #pragma omp parallel
+        {
+            vector<string> local_sub_texts;
+
+            #pragma omp for nowait
+            for (int start = 0; start < text_length; start++) {
+                for (int sub_text_length = 1; sub_text_length <= text_length - start; sub_text_length++) {
+                    local_sub_texts.push_back(text.substr(start, sub_text_length));
+                }
+            }
+
+            #pragma omp critical
+            {
+                sub_texts.insert(sub_texts.end(), local_sub_texts.begin(), local_sub_texts.end());
+            }
+        }
+        
+        long num_matches = 0;
         auto start_time = chrono::high_resolution_clock::now();
-        vector<MatchSimK::triple> positions = MatchSimK::matchSimK(text, pattern_shortlex, k);
+        for (string sub_text : sub_texts) {
+            string sub_text_shortlex = computeShortlexNormalForm(sub_text, k);
+            if (sub_text_shortlex == pattern_shortlex) {
+                ++num_matches;
+            }
+        }
         auto end_time = chrono::high_resolution_clock::now();
         
         auto duration = chrono::duration<double, milli>(end_time - start_time).count();
-
-        long num_matches = 0;
-        for (const auto &pos : positions) {
-            const auto &interval_1 = get<0>(pos);
-            const auto &interval_2 = get<1>(pos);
-            num_matches += (interval_1.end - interval_1.start + 1) * (interval_2.end - interval_2.start + 1);
-        }
 
         json res_json;
         // res_json["text"] = text;
