@@ -4,7 +4,7 @@
 #include <string>
 #include <string_view>
 #include <vector>
-#include <set>
+#include <unordered_map>
 #include <algorithm>
 #include <chrono>              // for timing
 #include <nlohmann/json.hpp>
@@ -36,68 +36,87 @@ int main(int argc, char* argv[]) {
     // Prepare results vector to preserve sequence order
     vector<json> results(M);
 
-    // 1) Init alphabet once
+    // Initialize alphabet once
     Alphabet &alpha = Alphabet::getInstance();
     alpha.setAlphabet("ATGC");
-
-    int exp_k = 15;
 
     #pragma omp parallel for schedule(dynamic)
     for (int i = 0; i < M; ++i) {
         const auto &data = sequences[i];
-        string sequence = data["sequence"];
+        const string sequence = data["sequence"];
+        int exp_k = data["sequence_length"];
 
-        json result;
-        result["class"] = data["class"];
-        result["id"] = data["id"];
-        result["sequence"] = sequence;
-        result["sequence_length"] = data["sequence_length"];
-        json patterns = json::array();
+        // Map to accumulate pattern info per unique SNF pattern
+        unordered_map<string, json> pattern_map;
+        pattern_map.reserve(1024);
 
-        set<string> pattern_set;
         int n = static_cast<int>(sequence.size());
 
         for (int start = 0; start < n; ++start) {
             for (int len = 1; start + len <= n; ++len) {
+                // Get substring and its SNF pattern
                 string_view raw_view(sequence.data() + start, len);
                 string subseq(raw_view);
                 string pattern = computeShortlexNormalForm(subseq, exp_k);
 
-                if (!pattern_set.insert(pattern).second)
+                // Skip trivial patterns
+                int universality = calculateUniversalityIndex(pattern);
+                if (static_cast<int>(pattern.length()) == universality * alpha.size())
                     continue;
 
+                // Measure matching
                 auto t0 = chrono::high_resolution_clock::now();
                 auto positions = MatchSimK::matchSimK(sequence, pattern, exp_k);
                 auto t1 = chrono::high_resolution_clock::now();
                 double duration = chrono::duration<double, milli>(t1 - t0).count();
 
-                long long num_matches = 0;
+                // Compute matches count for this occurrence
+                long long this_matches = 0;
                 for (const auto &pos : positions) {
                     const auto &int1 = get<0>(pos);
                     const auto &int2 = get<1>(pos);
-                    num_matches += static_cast<long long>((int1.end - int1.start + 1)) *
-                                   (int2.end - int2.start + 1);
+                    this_matches += static_cast<long long>(int1.end - int1.start + 1) *
+                                    (int2.end - int2.start + 1);
                 }
-                if (num_matches == 0) continue;
+                if (this_matches == 0) continue;
 
-                json pattern_info;
-                pattern_info["pattern"] = pattern;
-                pattern_info["pattern_universality"] = calculateUniversalityIndex(pattern);
-                pattern_info["num_matches"] = num_matches;
-                pattern_info["duration_ms"] = duration;
-
-                patterns.push_back(pattern_info);
+                auto it = pattern_map.find(pattern);
+                if (it == pattern_map.end()) {
+                    // First occurrence: create JSON entry
+                    json info;
+                    info["pattern"] = pattern;
+                    info["pattern_universality"] = universality;
+                    info["num_matches"] = this_matches;
+                    info["duration_ms"] = duration;
+                    info["occurrences"] = 1;
+                    pattern_map.emplace(pattern, move(info));
+                } else {
+                    // Subsequent occurrence: accumulate
+                    json &info = it->second;
+                    info["num_matches"] = info["num_matches"].get<long long>() + this_matches;
+                    info["duration_ms"] = info["duration_ms"].get<double>() + duration;
+                    info["occurrences"] = info["occurrences"].get<long long>() + 1;
+                }
             }
         }
 
-        // Sort patterns by num_matches descending within this sequence
+        // Collect and sort pattern infos by num_matches descending
+        vector<json> patterns;
+        patterns.reserve(pattern_map.size());
+        for (auto &p : pattern_map) patterns.push_back(move(p.second));
         sort(patterns.begin(), patterns.end(), [](const json &a, const json &b) {
             return a["num_matches"].get<long long>() > b["num_matches"].get<long long>();
         });
+
+        // Assemble result
+        json result;
+        result["class"] = data["class"];
+        result["id"] = data["id"];
+        result["sequence"] = sequence;
+        result["sequence_length"] = n;
         result["patterns"] = patterns;
 
-        // Store result at index i to preserve input order
-        results[i] = result;
+        results[i] = move(result);
     }
 
     // Output JSON
