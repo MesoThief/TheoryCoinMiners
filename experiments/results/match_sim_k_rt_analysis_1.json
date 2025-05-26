@@ -1,0 +1,69 @@
+{
+    "alphabet": "ABCD",
+    "k": 2,
+    "pattern": "ABCACCCBDA",
+    "pattern_shortlex": "ABCBCDA",
+    "result": [
+        {
+            "duration_ms": 2.068048,
+            "num_matches": 70,
+            "text_length": 2000
+        },
+        {
+            "duration_ms": 2.84102,
+            "num_matches": 52,
+            "text_length": 2500
+        },
+        {
+            "duration_ms": 3.610933,
+            "num_matches": 74,
+            "text_length": 3000
+        },
+        {
+            "duration_ms": 4.513036,
+            "num_matches": 63,
+            "text_length": 3500
+        },
+        {
+            "duration_ms": 5.772052,
+            "num_matches": 136,
+            "text_length": 4000
+        },
+        {
+            "duration_ms": 6.365505,
+            "num_matches": 102,
+            "text_length": 4500
+        },
+        {
+            "duration_ms": 7.485262,
+            "num_matches": 194,
+            "text_length": 5000
+        },
+        {
+            "duration_ms": 9.255262,
+            "num_matches": 135,
+            "text_length": 5500
+        },
+        {
+            "duration_ms": 12.168697,
+            "num_matches": 126,
+            "text_length": 6000
+        },
+        {
+            "duration_ms": 13.695754,
+            "num_matches": 131,
+            "text_length": 6500
+        },
+        {
+            "duration_ms": 14.716298,
+            "num_matches": 153,
+            "text_length": 7000
+        },
+        {
+            "duration_ms": 17.95774,
+            "num_matches": 202,
+            "text_length": 7500
+        }
+    ],
+    "use_checkpoint": true
+}

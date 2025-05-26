@@ -3,6 +3,9 @@
 
 #include <iostream>
 #include <limits>
+#include <utility>
+
+using namespace std;
 
 #ifdef DEBUG
 #define debug(x) x;
@@ -14,13 +17,13 @@ struct Interval {
     int start;
     int end;
 
-    Interval() {};
-    Interval(int start, int end) : start(start), end(end) {};
+    Interval() {}
+    Interval(int start, int end) : start(start), end(end) {}
 };
 
-constexpr int INF = std::numeric_limits<int>::max();
+constexpr int INF = numeric_limits<int>::max();
 
-inline std::ostream& operator<<(std::ostream& os, const Interval& interval) {
+inline ostream& operator<<(ostream& os, const Interval& interval) {
     if (interval.start == INF)
         os << "[INF";
     else

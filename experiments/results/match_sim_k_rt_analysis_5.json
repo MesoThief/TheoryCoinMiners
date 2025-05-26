@@ -1,0 +1,64 @@
+{
+    "alphabet": "ABCD",
+    "k": 10,
+    "pattern": "BBBADCADCCBACBDDCDACCCBADCDAACDCBDCAAABACADDBACDBBBDABCDAACCBCDAAADBCABDAACAADDDBDBCCADBABCBDCAACDAB",
+    "pattern_shortlex": "ABCDABCDABCDABCDABCDABCDABCDABCDABCDABCD",
+    "result": [
+        {
+            "duration_ms": 403.398088,
+            "num_matches": 499918050026,
+            "text_length": 1000000
+        },
+        {
+            "duration_ms": 471.671898,
+            "num_matches": 604909960543,
+            "text_length": 1100000
+        },
+        {
+            "duration_ms": 652.341043,
+            "num_matches": 719901722882,
+            "text_length": 1200000
+        },
+        {
+            "duration_ms": 828.566453,
+            "num_matches": 844893798743,
+            "text_length": 1300000
+        },
+        {
+            "duration_ms": 999.724766,
+            "num_matches": 979885266978,
+            "text_length": 1400000
+        },
+        {
+            "duration_ms": 1223.931898,
+            "num_matches": 1124877287978,
+            "text_length": 1500000
+        },
+        {
+            "duration_ms": 1445.019094,
+            "num_matches": 1279868987987,
+            "text_length": 1600000
+        },
+        {
+            "duration_ms": 1675.358592,
+            "num_matches": 1444861082438,
+            "text_length": 1700000
+        },
+        {
+            "duration_ms": 1804.847346,
+            "num_matches": 1619852889131,
+            "text_length": 1800000
+        },
+        {
+            "duration_ms": 2050.666059,
+            "num_matches": 1804844758572,
+            "text_length": 1900000
+        },
+        {
+            "duration_ms": 2305.552549,
+            "num_matches": 1999836075053,
+            "text_length": 2000000
+        }
+    ],
+    "use_checkpoint": true
+}

@@ -97,7 +97,6 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(const string& text, const string&
         int offset = sub_T.start;
 
         // line 10: Map <- empty map for saving vectors and substrings
-        unordered_map<int, string> map;  // TODO: checkpoint 관련 구현 시 수정
 
         // line 11: Preprocess X- and Y-ranker array
         RankerTable rankers = RankerTable(sub_T_string);
@@ -198,10 +197,14 @@ vector<MatchSimK::triple> MatchSimK::matchSimK(const string& text, const string&
 
                 // make j_2 a starting point of x_arch_indexes
                 x_arch_indexes.insert(x_arch_indexes.begin(), j_2);
-
+#ifdef NOCP
+                // In case of NO-CheckPoint
+                string z = computeShortlexNormalForm(sub_T_string.substr(j_2, j_1 - j_2), k);
+#else
                 // line 21: z <- ShortLex_k(T'[j_2 : j_1]) using the checkpoint mechanism and Map
                 // line 22: Save Checkpoints for each arch link of T'[j_2 : j_1]
                 string z = shortlex_with_checkpoint(k, pattern_universality, sub_T_string, check_points, x_arch_indexes, y_arch_indexes);
+#endif
 
                 // line 23: if z ~k ShortLex(p)
                 if(z != shortlex_p.shortlexNormalForm) continue;
@@ -345,8 +348,8 @@ string MatchSimK::shortlex_with_checkpoint(
 
     // compute YX-link first
     for (int i = 0; i <= pattern_universality; i++) {
-        int x_val = x_arch_indexes[i];
-        int y_val = y_arch_indexes[pattern_universality - i];
+        const int x_val = x_arch_indexes[i];
+        const int y_val = y_arch_indexes[pattern_universality - i];
 
         Interval yx_link(x_val, y_val);
 
@@ -385,12 +388,14 @@ string MatchSimK::shortlex_with_checkpoint(
 
             partial_shortlex_z[2 * i] = partialShortlex.shortlexNormalForm;
 
-            check_points[x_val].emplace_back(
+            if (i != 0 && i != pattern_universality) {
+                check_points[x_val].emplace_back(
                 yx_link,
                 partialShortlex.shortlexNormalForm,
                 partialShortlex.X_vector,
                 partialShortlex.Y_vector
                 );
+            }
             x_vectors[i] = partialShortlex.X_vector;
             y_vectors[i] = partialShortlex.Y_vector;
 
@@ -427,11 +432,9 @@ string MatchSimK::shortlex_with_checkpoint(
         }
 
         if (!found) {
-            vector<int> x_vector =
-                (i == 0) ? vector<int>(Alphabet::getInstance().size(), 1) : x_vectors[i];
-            vector<int> y_vector =
-                (i == pattern_universality - 1) ? vector<int>(Alphabet::getInstance().size(), 1) : y_vectors[i + 1];
-
+            const vector<int>& x_vector = x_vectors[i];
+            const vector<int>& y_vector = y_vectors[i + 1];
+            
             debug(cout << "[XY-link COMPUTE] i = " << i
                         << ", Will compute shortlex for substring [" << x_val << ", " << y_val << "]"
                         << " = " << sub_T_string.substr(x_val, y_val - x_val) << endl);
