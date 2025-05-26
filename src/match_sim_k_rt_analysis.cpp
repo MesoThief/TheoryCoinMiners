@@ -74,7 +74,7 @@ int main(int argc, char* argv[]) {
         
         auto duration = chrono::duration<double, milli>(end_time - start_time).count();
 
-        int num_matches = 0;
+        long num_matches = 0;
         for (const auto &pos : positions) {
             const auto &interval_1 = get<0>(pos);
             const auto &interval_2 = get<1>(pos);
