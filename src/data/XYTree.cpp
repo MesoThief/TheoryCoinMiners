@@ -103,9 +103,29 @@ namespace XYTree
                 // s_p를 sp_p에 복사한 뒤 checkpoint loop (기존 로직)
                 auto sp_p = s_p;
                 while (!sp_p.empty()) {
-                    auto S = sp_p.back(); sp_p.pop_back();
-                    // sigma 선택 후 pnode->r 갱신, break 조건 등
-                    // … (기존 알고리즘 그대로) …
+                    auto S = sp_p.back();
+                    sp_p.pop_back();
+
+                    // Find sigma = argmin R_X(parent_r, sigma)
+                    int minRank = 0;
+                    char minSigma = 0;
+                    bool first = true;
+                    for (char c : S) {
+                        int xr = ranker.getX(pnode->r, c);
+                        if (first || xr < minRank) {
+                            minRank = xr;
+                            minSigma = c;
+                            first = false;
+                        }
+                    }
+
+                    // Update pnode->r
+                    pnode->r = ranker.getX(pnode->r, minSigma);
+                    if (pnode->r == INF) {
+                        // No further arch, revert and break
+                        pnode->r = parentRank;
+                        break;
+                    }
                 }
             } else {
                 pnode = it->second;
