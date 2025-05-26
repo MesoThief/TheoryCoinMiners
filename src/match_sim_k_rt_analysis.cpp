@@ -4,7 +4,6 @@
 #include <string>
 #include <vector>
 #include <chrono>
-#include <unordered_map>
 #include <nlohmann/json.hpp>
 
 #include "data/MatchSimK.h"
