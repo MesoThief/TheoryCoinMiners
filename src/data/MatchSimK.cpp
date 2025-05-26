@@ -430,14 +430,12 @@ string MatchSimK::shortlex_with_checkpoint(
         }
 
         if (!found) {
-            vector<int> x_vector =
-                (i == 0) ? vector<int>(Alphabet::getInstance().size(), 1) : x_vectors[i];
-            vector<int> y_vector =
-                (i == pattern_universality - 1) ? vector<int>(Alphabet::getInstance().size(), 1) : y_vectors[i + 1];
+            const vector<int>& x_vector = x_vectors[i];
+            const vector<int>& y_vector = y_vectors[i + 1];
 
             // Failsafe (Not sure if this is valid...)
-            if (x_vector.size() == 0) x_vector = vector<int>(Alphabet::getInstance().size(), 1);
-            if (y_vector.size() == 0) y_vector = vector<int>(Alphabet::getInstance().size(), 1);
+            // if (x_vector.size() == 0) x_vector = vector<int>(Alphabet::getInstance().size(), 1);
+            // if (y_vector.size() == 0) y_vector = vector<int>(Alphabet::getInstance().size(), 1);
 
             debug(cout << "[XY-link COMPUTE] i = " << i
                         << ", Will compute shortlex for substring [" << x_val << ", " << y_val << "]"
