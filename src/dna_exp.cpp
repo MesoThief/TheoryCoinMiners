@@ -69,14 +69,8 @@ int main(int argc, char* argv[]) {
                     continue;
                 }
 
-                cout << "pattern: " << pattern << endl;
-
                 auto t0 = chrono::high_resolution_clock::now();
                 auto positions = MatchSimK::matchSimK(sequence, subsequence, exp_k);
-                if (positions.size() > 0) {
-                    cout << get<0>(positions[0]) << endl;
-                    cout << get<1>(positions[0]) << endl;
-                }
                 auto t1 = chrono::high_resolution_clock::now();
                 double duration = chrono::duration<double, milli>(t1 - t0).count();
 
