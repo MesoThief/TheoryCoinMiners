@@ -1,0 +1,64 @@
+{
+    "alphabet": "ABCD",
+    "k": 15,
+    "pattern": "BAACAAACDBADABCCDDCDACDACACCAADCCCDBDBACBADADCDBDAABDDBDCADDBBACCDBCDADABBBABCDBCBAAADBDCBACBADAADCDCBBBABDBDACCABCBCABBABCCBCBDAAAADBCABDDACDDAADCBBACDAAABDBACDBDAADBAAACCDDABDCDBBBACDDBACDCDDBBACCCABACBCCDACAADBBBDADBABBBBDCCAABCBDBADCCDCBCBAAAADCACCBCABDACBBCBCABDDCCDAADBACDAABABCADDCCCADCBACCAAC",
+    "pattern_shortlex": "ABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCDABCD",
+    "result": [
+        {
+            "duration_ms": 5162.505035,
+            "num_matches": 49998765146771,
+            "text_length": 10000000
+        },
+        {
+            "duration_ms": 6567.629779,
+            "num_matches": 60498640801439,
+            "text_length": 11000000
+        },
+        {
+            "duration_ms": 9137.489156,
+            "num_matches": 71998517895976,
+            "text_length": 12000000
+        },
+        {
+            "duration_ms": 10967.252913,
+            "num_matches": 84498394422166,
+            "text_length": 13000000
+        },
+        {
+            "duration_ms": 13041.793421,
+            "num_matches": 97998272842838,
+            "text_length": 14000000
+        },
+        {
+            "duration_ms": 15193.294486,
+            "num_matches": 112498147380647,
+            "text_length": 15000000
+        },
+        {
+            "duration_ms": 17311.582366,
+            "num_matches": 127998024286131,
+            "text_length": 16000000
+        },
+        {
+            "duration_ms": 20808.014253,
+            "num_matches": 144497901187419,
+            "text_length": 17000000
+        },
+        {
+            "duration_ms": 23556.322278,
+            "num_matches": 161997777501598,
+            "text_length": 18000000
+        },
+        {
+            "duration_ms": 27223.897281,
+            "num_matches": 180497653965840,
+            "text_length": 19000000
+        },
+        {
+            "duration_ms": 29177.390182,
+            "num_matches": 199997529706184,
+            "text_length": 20000000
+        }
+    ],
+    "use_checkpoint": true
+}
