@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -std=c++17 -Iinclude -O3 -march=native -flto -DNDEBUG -pthread
+CXXFLAGS = -std=c++17 -Iinclude -O3 -march=native -flto -DNDEBUG
 BIN_DIR = bin
 
 DEBUG ?= 0
@@ -74,7 +74,7 @@ $(NAIVE_PATTERN_MATCHING_RT_ANALYSIS): src/naive_pattern_matching_rt_analysis.cp
 
 $(DNA_EXP): src/dna_exp.cpp $(SRC)
 	@mkdir -p $(BIN_DIR)
-	$(CXX) $(CXXFLAGS) $< $(SRC) -o $(BIN_DIR)/$@
+	$(CXX) $(CXXFLAGS) -fopenmp $< $(SRC) -o $(BIN_DIR)/$@
 
 $(DNA_DATASET_CONVERTER): src/dna_dataset_converter.cpp
 	@mkdir -p $(BIN_DIR)
