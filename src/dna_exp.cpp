@@ -72,7 +72,7 @@ int main(int argc, char* argv[]) {
                 cout << "pattern: " << pattern << endl;
 
                 auto t0 = chrono::high_resolution_clock::now();
-                auto positions = MatchSimK::matchSimK(sequence, pattern, exp_k);
+                auto positions = MatchSimK::matchSimK(sequence, subsequence, exp_k);
                 if (positions.size() > 0) {
                     cout << get<0>(positions[0]) << endl;
                     cout << get<1>(positions[0]) << endl;

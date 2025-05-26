@@ -23,70 +23,60 @@ namespace XYTree
      * @param text Text.
      * @return `XYTree::Tree` the constructed X-tree.
      */
-    Tree buildXTree(const RankerTable& ranker, const ShortlexResult& shortlex, const string& text) {
+    Tree buildXTree(const RankerTable& ranker,
+                const ShortlexResult& shortlex,
+                const std::string& text) {
         Tree tree;
 
+        // Reset pools
         nodePoolX.clear();
         nodesMapX.clear();
-
         nodePoolX.reserve(text.size() + shortlex.stackForm.size() + 5);
         nodesMapX.reserve(text.size() + 5);
 
+        // Create root sentinel
         nodePoolX.emplace_back(INF);
         Node* root = &nodePoolX.back();
         tree.root = root;
         tree.parent.assign(text.size() + 1, nullptr);
         nodesMapX[INF] = root;
 
-        debug(cout << "Building X-tree..." << endl);
+        debug(std::cout << "Building X-tree..." << std::endl);
 
-        auto s_p = shortlex.stackForm;
-        //) Copy out s_p
-        {
-            std::set<char> deleted_chars;
-            for (int u = 0; u < shortlex.universality; ++u) {
-                while (deleted_chars.size() < shortlex.alphabet.size()) {
-                    for (char c : s_p.back()) deleted_chars.insert(c);
-                    s_p.pop_back();
-                }
-                deleted_chars.clear();
-            }
-        }
-
-        // ln 4-6
-        // before the loop
+        // Copy stackForm and prune by universality
+        std::deque<std::set<char>> s_p = shortlex.stackForm;
+        std::set<char> deleted_chars;
         size_t alphaSize = shortlex.alphabet.size();
-        set<char> deleted_chars;
-
-        // Trim s_p down by “universality” arches, but stop if we run dry
         for (int u = 0; u < shortlex.universality; ++u) {
             deleted_chars.clear();
             while (deleted_chars.size() < alphaSize) {
-                if (s_p.empty()) {
-//                    cerr << "[XYTree] Warning: ran out of stackForm blocks at universality step "
-//                         << u << " (needed " << alphaSize << " distinct chars)\n";
-                    break;        // bail out of the while, then go to next u
-                }
+                if (s_p.empty()) break;
                 for (char c : s_p.back()) {
                     deleted_chars.insert(c);
                 }
                 s_p.pop_back();
             }
         }
+        debug({
+            std::cout << "s_p is left with:" << std::endl;
+            for (auto &block : s_p) {
+                for (char c : block) std::cout << c << ' ';
+                std::cout << std::endl;
+            }
+            std::cout << std::endl;
+        });
 
-        debug(cout << "s_p is left with: " << endl);
-        debug(for(auto ss: s_p){ for(auto a: ss){ cout << a << endl; } } cout << endl);
-
+        // Build nodes
         Node* last = root;
-        for (int i = 0; i < (int)text.size(); ++i) {
-            // parent rank 계산
+        for (int i = 0; i < static_cast<int>(text.size()); ++i) {
+            // Determine parent rank = max X-rank over alphabet
             int parentRank = -1;
             for (char a : shortlex.alphabet) {
                 int xr = ranker.getX(i, a);
                 if (xr > parentRank) parentRank = xr;
             }
 
-            // 노드 생성 혹은 재사용
+            // Allocate or reuse node for this rank
             Node* pnode;
             auto it = nodesMapX.find(parentRank);
             if (it == nodesMapX.end()) {
@@ -94,13 +84,14 @@ namespace XYTree
                 pnode = &nodePoolX.back();
                 nodesMapX[parentRank] = pnode;
 
+                // Link into root cycle
                 last->next = pnode;
                 last = pnode;
 
-                // children 초기화
+                // Initialize child interval just before this position
                 pnode->children = Interval(i, i - 1);
 
-                // s_p를 sp_p에 복사한 뒤 checkpoint loop (기존 로직)
+                // Checkpoint loop: copy and process s_p
                 auto sp_p = s_p;
                 while (!sp_p.empty()) {
                     auto S = sp_p.back();
@@ -131,13 +122,18 @@ namespace XYTree
                 pnode = it->second;
             }
 
-            // 자식 구간 확장
+            // Extend child interval and record parent pointer
             pnode->children.end++;
             tree.parent[i] = pnode;
+
+            debug(std::cout << "Set parent of " << i << " to " << *pnode << std::endl;);
         }
 
+        // Close the cycle and set final parent
         last->next = root;
         tree.parent[text.size()] = root;
+
+        debug(std::cout << "End of X-tree construction" << std::endl << std::endl;);
         return tree;
     }
 
