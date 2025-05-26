@@ -6,9 +6,6 @@
 #include <string_view>
 #include <unordered_map>
 #include <vector>
-#include <set>
-#include <mutex>
-#include <algorithm>
 #include <chrono>              // for timing
 #include <nlohmann/json.hpp>
 
@@ -27,12 +24,13 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    // 0) Read input JSON
+    // 0) Read all inputs first
     ifstream input_file(argv[1]);
     json input_json = json::parse(input_file);
     input_file.close();
-
+    
     string animal = input_json["animal"];
+
     json sequences = input_json["sequences"];
 
     // 1) Init alphabet once
@@ -42,45 +40,47 @@ int main(int argc, char* argv[]) {
     int exp_k = 15;
 
     json results = json::array();
-    mutex results_mutex;
+    std::mutex results_mutex;
 
     #pragma omp parallel for schedule(dynamic)
-    for (int i = 0; i < static_cast<int>(sequences.size()); ++i) {
+    for (int i = 0; i < sequences.size(); ++i) {
         const auto &data = sequences[i];
-        json result = json::object();
 
+        json result = json::object();
         string sequence = data["sequence"];
+
+        set<string> pattern_set;
+
         result["class"] = data["class"];
         result["id"] = data["id"];
         result["sequence"] = sequence;
         result["sequence_length"] = data["sequence_length"];
         result["patterns"] = json::array();
 
-        set<string> pattern_set;
-        int n = static_cast<int>(sequence.size());
-
+        int n = (int)sequence.size();
         for (int start = 0; start < n; ++start) {
-            for (int subseq_len = 1; start + subseq_len <= n; ++subseq_len) {
-                string_view raw_view(sequence.data() + start, subseq_len);
-                string subseq(raw_view);
-                string pattern = computeShortlexNormalForm(subseq, exp_k);
+            for (int subsequence_length = 1; start + subsequence_length <= n; ++subsequence_length) {
+                string subsequence = sequence.substr(start, subsequence_length);
+                string pattern = computeShortlexNormalForm(subsequence, exp_k);
 
-                if (!pattern_set.insert(pattern).second) {
+                if (pattern_set.find(pattern) == pattern_set.end()) {
+                    pattern_set.emplace(pattern);
+                } else {
                     continue;
                 }
 
                 auto t0 = chrono::high_resolution_clock::now();
-                auto positions = MatchSimK::matchSimK(sequence, pattern, exp_k);
+                auto positions = MatchSimK::matchSimK(sequence, subsequence, exp_k);
                 auto t1 = chrono::high_resolution_clock::now();
                 double duration = chrono::duration<double, milli>(t1 - t0).count();
 
-                long long num_matches = 0;
-                for (const auto &pos : positions) {
-                    const auto &interval1 = get<0>(pos);
-                    const auto &interval2 = get<1>(pos);
-                    num_matches += static_cast<long long>((interval1.end - interval1.start + 1)) *
-                                   (interval2.end - interval2.start + 1);
+                long num_matches = 0;
+                for (const auto &position : positions) {
+                    const auto &interval_1 = get<0>(position);
+                    const auto &interval_2 = get<1>(position);
+                    num_matches += (interval_1.end - interval_1.start + 1) * (interval_2.end - interval_2.start + 1);
                 }
+
                 if (num_matches == 0) continue;
 
                 json pattern_info = json::object();
@@ -93,26 +93,20 @@ int main(int argc, char* argv[]) {
             }
         }
 
-        // Sort patterns by num_matches descending
-        auto &patterns = result["patterns"];
-        sort(patterns.begin(), patterns.end(), [](const json &a, const json &b) {
-            return a["num_matches"].get<long long>() > b["num_matches"].get<long long>();
-        });
-
-        // Merge into final results
+        // 병렬 결과 병합
         {
-            lock_guard<mutex> lock(results_mutex);
+            std::lock_guard<std::mutex> lock(results_mutex);
             results.push_back(result);
         }
     }
 
-    // Output JSON
     json out_json = json::object();
     out_json["animal"] = animal;
     out_json["results"] = results;
 
     ofstream output(argv[2]);
     output << out_json.dump(4);
+
     output.close();
 
     return 0;
