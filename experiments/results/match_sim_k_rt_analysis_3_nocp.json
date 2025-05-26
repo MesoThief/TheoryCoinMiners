@@ -1,0 +1,59 @@
+{
+    "alphabet": "ABCD",
+    "k": 5,
+    "pattern": "CDBBCBCBBACADACCCBBBBCCBACDAACDCCDABDACCCBDCDBCACC",
+    "pattern_shortlex": "ABCDABCDABCDABCDABCD",
+    "result": [
+        {
+            "duration_ms": 14.39074,
+            "num_matches": 1247985849,
+            "text_length": 50000
+        },
+        {
+            "duration_ms": 29.866206,
+            "num_matches": 701025236,
+            "text_length": 100000
+        },
+        {
+            "duration_ms": 43.406416,
+            "num_matches": -1640924289,
+            "text_length": 150000
+        },
+        {
+            "duration_ms": 62.451405,
+            "num_matches": -1482851366,
+            "text_length": 200000
+        },
+        {
+            "duration_ms": 85.650373,
+            "num_matches": 1175164128,
+            "text_length": 250000
+        },
+        {
+            "duration_ms": 110.185877,
+            "num_matches": 2038285874,
+            "text_length": 300000
+        },
+        {
+            "duration_ms": 149.376283,
+            "num_matches": 1106422001,
+            "text_length": 350000
+        },
+        {
+            "duration_ms": 198.162306,
+            "num_matches": -1620445716,
+            "text_length": 400000
+        },
+        {
+            "duration_ms": 254.503987,
+            "num_matches": -1847265684,
+            "text_length": 450000
+        },
+        {
+            "duration_ms": 313.978408,
+            "num_matches": 425898991,
+            "text_length": 500000
+        }
+    ],
+    "use_checkpoint": false
+}

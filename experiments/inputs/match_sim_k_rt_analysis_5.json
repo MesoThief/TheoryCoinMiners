@@ -1,0 +1,20 @@
+{
+    "alphabet": "ABCD",
+    "k": 10,
+    "pattern": "BBBADCADCCBACBDDCDACCCBADCDAACDCBDCAAABACADDBACDBBBDABCDAACCBCDAAADBCABDAACAADDDBDBCCADBABCBDCAACDAB",
+    "pattern_shortlex": "ABCDABCDABCDABCDABCDABCDABCDABCDABCDABCD",
+    "text_lengths": [
+        1000000,
+        1100000,
+        1200000,
+        1300000,
+        1400000,
+        1500000,
+        1600000,
+        1700000,
+        1800000,
+        1900000,
+        2000000
+    ],
+    "texts": ["너무 길어서 생략, 위 조건들만 참고하시길"]
+}
